@@ -11,4 +11,4 @@ Defaults	env_reset
 root	ALL=(ALL) ALL
 
 # Allow owner to sudo
-<%= @node[:owner_name] %> ALL=(ALL) NOPASSWD: ALL
+<%= @node[:appuser_name] %> ALL=(ALL) NOPASSWD: ALL
