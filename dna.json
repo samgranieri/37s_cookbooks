@@ -1,0 +1,9 @@
+{"owner_name": "app",
+ "mailserver":"mail.37signals.com",
+ "alert_email":"sysadmins@37signals.com",
+ "users":[{"password":"j49jhjre",
+           "comment":"",
+           "uid":"1000",
+           "gid":"1000",
+           "username":"app"}]
+}
