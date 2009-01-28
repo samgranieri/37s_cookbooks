@@ -8,5 +8,6 @@
 #
 
 package "nagios" do
+  package_name 'nagios3'
   action :install
 end
