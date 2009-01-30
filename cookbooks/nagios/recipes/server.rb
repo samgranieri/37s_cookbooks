@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: nagios
-# Recipe:: default
+# Recipe:: server
 #
 # Copyright 2009, 37signals
 #
