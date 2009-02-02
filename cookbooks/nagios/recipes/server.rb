@@ -12,10 +12,16 @@ package "nagios" do
   action :install
 end
 
-
 template "/etc/nagios3/nagios.cfg" do
   owner "nagios"
   group "nagios"
   source "nagios.cfg.erb"
+  mode 0440
+end
+
+template "/etc/nagios3/commands.cfg" do
+  owner "nagios"
+  group "nagios"
+  source "commands.cfg.erb"
   mode 0440
 end
