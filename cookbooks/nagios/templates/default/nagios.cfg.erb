@@ -1,7 +1,7 @@
 log_file=/var/log/nagios3/nagios.log
 
-admin_email=<%= base[:sysadmin_email] %>
-admin_pager=<%= base[:sysadmin_sms_email] %>
+admin_email=<%= @node[:base][:sysadmin_email] %>
+admin_pager=<%= @node[:base][:sysadmin_sms_email] %>
 
 cfg_dir=/etc/nagios-plugins/config
 cfg_dir=/etc/nagios3/conf.d
