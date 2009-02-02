@@ -1,8 +1,8 @@
 #
 # Rakefile for Chef Server Repository
 #
-# Author:: Adam Jacob (<adam@hjksolutions.com>)
-# Copyright:: Copyright (c) 2008 HJK Solutions, LLC
+# Author:: Adam Jacob (<adam@opscode.com>)
+# Copyright:: Copyright (c) 2008 OpsCode, Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,7 +22,6 @@ require File.join(File.dirname(__FILE__), 'config', 'rake')
 
 require 'tempfile'
 
-$vcs = :svn
 if File.directory?(File.join(TOPDIR, ".svn"))
   $vcs = :svn
 elsif File.directory?(File.join(TOPDIR, ".git"))
@@ -47,6 +46,8 @@ task :update do
     else
       puts "* Skipping git pull, no origin specified"
     end
+  else
+    puts "* No SCM configured, skipping update"
   end
 end
 
@@ -54,6 +55,7 @@ desc "Test your cookbooks for syntax errors"
 task :test do
   puts "** Testing your cookbooks for syntax errors"
   Dir[ File.join(TOPDIR, "cookbooks", "**", "*.rb") ].each do |recipe|
+    print "Testing recipe #{recipe}: "
     sh %{ruby -c #{recipe}} do |ok, res|
       if ! ok
         raise "Syntax error in #{recipe}"
@@ -73,12 +75,12 @@ task :install => [ :update, :test ] do
   puts "* Creating Directories"
   directories.each do |dir|
     sh "sudo mkdir -p #{dir}"
-    sh "sudo chown root:root #{dir}"
+    sh "sudo chown root #{dir}"
   end
   puts "* Installing new Cookbooks"
   sh "sudo rsync -rlP --delete --exclude '.svn' cookbooks/ #{COOKBOOK_PATH}"
   puts "* Installing new Site Cookbooks"
-  sh "sudo rsync -rlP --delete --exclude '.svn' cookbooks/ #{COOKBOOK_PATH}"
+  sh "sudo rsync -rlP --delete --exclude '.svn' site-cookbooks/ #{SITE_COOKBOOK_PATH}"
   puts "* Installing new Chef Server Config"
   sh "sudo cp config/server.rb #{CHEF_SERVER_CONFIG}"
   puts "* Installing new Chef Client Config"
