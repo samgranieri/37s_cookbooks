@@ -26,7 +26,7 @@ template "/etc/nagios3/commands.cfg" do
   mode 0440
 end
 
-@hosts = search(:nodes, "*")
+@hosts = search(:node, "*")
 
 template "/etc/nagios3/conf.d/hosts.cfg" do
   owner "nagios"
