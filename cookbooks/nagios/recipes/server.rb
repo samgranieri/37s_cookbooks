@@ -13,7 +13,7 @@ package "nagios" do
 end
 
 hosts = []
-search(:node, "*") {|node| (hosts << node }
+search(:node, "*") {|node| hosts << node }
 
 service "nagios3" do
   supports :status => true, :restart => true, :reload => true
