@@ -26,6 +26,7 @@ end
 
 nagios_conf "nagios"
 nagios_conf "commands"
+nagios_conf "contacts"
 nagios_conf "notification_commands"
 nagios_conf "hosts" do
   variables ({:hosts => hosts})
