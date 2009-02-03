@@ -23,9 +23,6 @@ merb_log_path      "/var/log/chef-server.log"
 search_index_path  "/var/chef/search_index"
 openid_providers   [ "http://noc:4001", "http://noc:4000", "jsierles.myopenid.com" ]
 
-api_username 'chef_api'
-api_password 'snics1or'
-
 Chef::Log::Formatter.show_time = false
 
 

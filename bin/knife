@@ -8,6 +8,9 @@ require 'chef/rest'
 
 Chef::Config.from_file("/etc/chef/server.rb")
 
+API_USERNAME='chef_api'
+API_PASSWORD='snics1or'
+
 class Knife < Thor  
   method_options :node => :required
   def initialize(*args); super; end
@@ -30,6 +33,6 @@ class Knife < Thor
   end
   
   def authenticate
-    rest.authenticate(Chef::Config[:api_user], Chef::Config[:api_password])
+    rest.authenticate(API_USERNAME, API_PASSWORD)
   end
 end
