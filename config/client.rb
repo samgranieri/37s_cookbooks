@@ -8,5 +8,5 @@ openid_url       "http://noc2:4001"
 template_url     "http://noc2:4000"
 remotefile_url   "http://noc2:4000"
 search_url       "http://noc2:4000"
-node_name        `hostname -s`
+node_name        `hostname -s`.chomp
 validation_token   "bd1ea65f20d3c20db41bfcc86602afab"
