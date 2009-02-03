@@ -26,13 +26,13 @@ template "/etc/nagios3/commands.cfg" do
   mode 0440
 end
 
-@hosts = []
-search(:node, "*") {|node| @hosts << node }
+hosts = []
+search(:node, "*") {|node| hosts << node }
 
 template "/etc/nagios3/conf.d/hosts.cfg" do
   owner "nagios"
   group "nagios"
   source "hosts.cfg.erb"
-  variables({:hosts => @hosts})
+  variables({:hosts => hosts})
   mode 0440
 end
