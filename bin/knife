@@ -1,0 +1,35 @@
+#!/usr/bin/ruby
+
+require 'rubygems'
+require 'thor'
+require 'chef'
+require 'chef/node'
+require 'chef/rest'
+
+Chef::Config.from_file("/etc/chef/server.rb")
+
+class Knife < Thor  
+  method_options :node => :required
+  def initialize(*args); super; end
+  
+  desc "add_recipe", "Add a recipe to a node"
+  method_options :recipe => :required, :after => :optional
+  def add_recipe
+    authenticate
+    node = rest.get_rest("nodes/#{options[:node]}")
+    node.recipes << options[:recipe] if !node.recipes.include?(options[:recipe])
+    rest = Chef::REST.new(Chef::Config[:registration_url])
+    rest.put_rest("nodes/#{options[:node]}", node)
+    list_recipes
+  end
+
+  def list_recipes
+    authenticate
+    node = rest.get_rest("nodes/#{options[:node]}")
+    puts node.recipes
+  end
+  
+  def authenticate
+    rest.authenticate(Chef::Config[:api_user], Chef::Config[:api_password])
+  end
+end
