@@ -27,7 +27,7 @@ template "/etc/nagios3/commands.cfg" do
 end
 
 @hosts = []
-@hosts = search(:node, "*") {|node| (@hosts << node }
+search(:node, "*") {|node| (@hosts << node }
 
 template "/etc/nagios3/conf.d/hosts.cfg" do
   owner "nagios"
