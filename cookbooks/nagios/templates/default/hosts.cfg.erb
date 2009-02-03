@@ -2,7 +2,7 @@
 
 <% @hosts.each do |host| %>
 define host {
-  use linux-server
+  use generic-host
 	address <%= host['ipaddress'] %>
   host_name <%= host['hostname'] %>
 }
