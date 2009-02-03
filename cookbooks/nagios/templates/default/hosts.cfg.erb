@@ -1,0 +1,9 @@
+# host definitions
+
+<% @hosts.each do |host| %>
+define host {
+	use linux-server
+	address <%= host['ipaddress'] %>
+	host_name <%= host['hostname'] %>
+	}
+<% end %>

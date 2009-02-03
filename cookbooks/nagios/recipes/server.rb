@@ -25,3 +25,11 @@ template "/etc/nagios3/commands.cfg" do
   source "commands.cfg.erb"
   mode 0440
 end
+
+template "/etc/nagios3/conf.d/hosts.cfg" do
+  owner "nagios"
+  group "nagios"
+  source "hosts.cfg.erb"
+  variables {:hosts => search("*")}
+  mode 0440
+end
