@@ -21,7 +21,7 @@ openid_store_path  "/var/chef/openid/store"
 openid_cstore_path "/var/chef/openid/cstore"
 merb_log_path      "/var/log/chef-server.log"
 search_index_path  "/var/chef/search_index"
-openid_providers   [ "http://noc:4000" ]
+openid_providers   [ "http://noc:4001", "http://noc:4000", "jsierles.myopenid.com" ]
 
 Chef::Log::Formatter.show_time = false
 
