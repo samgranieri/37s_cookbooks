@@ -24,7 +24,7 @@ service "nagios3" do
   action [ :enable, :start ]
 end
 
-nagios_conf "nagios"
+nagios_conf "nagios", :config_subdir => false
 nagios_conf "commands"
 nagios_conf "contacts"
 nagios_conf "notification_commands"
