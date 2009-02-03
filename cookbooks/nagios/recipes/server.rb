@@ -12,7 +12,8 @@ package "nagios" do
   action :install
 end
 
-search(:node, "*") {|node| hosts << node }
+hosts = []
+search(:node, "*") {|node| (hosts << node }
 
 service "nagios3" do
   supports :status => true, :restart => true, :reload => true
