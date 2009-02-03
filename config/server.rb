@@ -9,19 +9,19 @@ log_location       STDOUT
 file_store_path    "/var/chef/file_store"
 file_cache_path    "/var/chef/cache"
 ssl_verify_mode    :verify_none
-registration_url   "http://noc:4000"
-openid_url         "http://noc:4001"
+registration_url   "http://noc2:4000"
+openid_url         "http://noc2:4001"
 validation_token   "bd1ea65f20d3c20db41bfcc86602afab"
-template_url       "http://noc:4000"
-remotefile_url     "http://noc:4000"
-search_url         "http://noc:4000"
+template_url       "http://noc2:4000"
+remotefile_url     "http://noc2:4000"
+search_url         "http://noc2:4000"
 cookbook_path      [ "/var/chef/site-cookbooks", "/var/chef/cookbooks" ]
 node_path          "/var/chef/nodes"
 openid_store_path  "/var/chef/openid/store"
 openid_cstore_path "/var/chef/openid/cstore"
 merb_log_path      "/var/log/chef-server.log"
 search_index_path  "/var/chef/search_index"
-openid_providers   [ "http://noc:4001", "http://noc:4000", "jsierles.myopenid.com" ]
+openid_providers   [ "http://noc2:4001", "http://noc2:4000", "jsierles.myopenid.com" ]
 
 Chef::Log::Formatter.show_time = false
 
