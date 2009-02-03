@@ -13,7 +13,7 @@ package "nagios" do
 end
 
 file @node[:nagios][:root]+"/conf.d/contacts_nagios2.cfg" do
-  action :delete
+  action :delete if File.exists(@node[:nagios][:root]+"/conf.d/contacts_nagios2.cfg")
 end
 
 hosts = []
