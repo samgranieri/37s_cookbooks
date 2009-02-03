@@ -12,6 +12,10 @@ package "nagios" do
   action :install
 end
 
+file @node[:nagios][:root]+"/conf.d/contacts_nagios2.cfg" do
+  action :delete
+end
+
 hosts = []
 search(:node, "*") {|node| hosts << node }
 
@@ -22,6 +26,7 @@ end
 
 nagios_conf "nagios"
 nagios_conf "commands"
+nagios_conf "notification_commands"
 nagios_conf "hosts" do
   variables ({:hosts => hosts})
 end
