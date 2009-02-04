@@ -10,7 +10,7 @@ define :nagios_conf, :variables => {}, :config_subdir => true do
     owner "nagios"
     group "nagios"
     source "#{params[:name]}.cfg.erb"
-    mode 0440
+    mode 0644
     variables params[:variables]
     notifies :restart, resources(:service => "nagios3")
   end
