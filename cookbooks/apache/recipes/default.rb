@@ -13,6 +13,7 @@ package "apache" do
 end
 
 service "apache" do
+  service_name 'apache2'
   supports :restart => true, :reload => true, :status => true
   action :enable
 end
