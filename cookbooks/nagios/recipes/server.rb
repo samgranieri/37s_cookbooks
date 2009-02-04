@@ -6,6 +6,19 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+include_recipe "apache"
+
+
+file "/etc/nagios3/htpasswd.users" do
+  owner "nagios"
+  group "nagios"
+  mode 0750
+  action :create
+end
+
+add_htpasswd_users "/etc/nagios3/htpasswd.users" do
+  users @node[:nagios][:users]
+end
 
 package "nagios" do
   package_name 'nagios3'
