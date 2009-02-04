@@ -17,7 +17,7 @@ file "/etc/nagios3/htpasswd.users" do
 end
 
 add_htpasswd_users "/etc/nagios3/htpasswd.users" do
-  users @node[:nagios][:users]
+  users node[:nagios][:users]
 end
 
 package "nagios" do
@@ -26,7 +26,7 @@ package "nagios" do
 end
 
 hosts = []
-search(:node, "*") {|node| hosts << node }
+search(:node, "*") {|n| hosts << n }
 
 service "nagios3" do
   supports :status => true, :restart => true, :reload => true
