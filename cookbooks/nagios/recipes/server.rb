@@ -11,7 +11,7 @@ include_recipe "apache"
 
 file "/etc/nagios3/htpasswd.users" do
   owner "nagios"
-  group "nagios"
+  group "www-data"
   mode 0750
   action :create
 end
