@@ -16,8 +16,11 @@ file "/etc/nagios3/htpasswd.users" do
   action :create
 end
 
+# using the node object inside this block fails, so we assign for now
+userlist = node[:nagios][:users]
+
 add_htpasswd_users "/etc/nagios3/htpasswd.users" do
-  users node[:nagios][:users]
+  users userlist
 end
 
 package "nagios" do
