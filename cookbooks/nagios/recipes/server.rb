@@ -46,3 +46,7 @@ nagios_conf "notification_commands"
 nagios_conf "hosts" do
   variables ({:hosts => hosts})
 end
+
+service "nagios3" do
+  action :start
+end
