@@ -10,3 +10,7 @@
 package "postfix" do
   action :upgrade
 end
+
+service "postfix" do
+  action [:enable, :start]
+end
