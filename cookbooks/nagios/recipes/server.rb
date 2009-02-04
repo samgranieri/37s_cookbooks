@@ -12,16 +12,12 @@ package "nagios" do
   action :install
 end
 
-file @node[:nagios][:root]+"/conf.d/contacts_nagios2.cfg" do
-  action :delete if File.exists?(@node[:nagios][:root]+"/conf.d/contacts_nagios2.cfg")
-end
-
 hosts = []
 search(:node, "*") {|node| hosts << node }
 
 service "nagios3" do
   supports :status => true, :restart => true, :reload => true
-  action [ :enable, :start ]
+  action [ :enable ]
 end
 
 nagios_conf "nagios" do

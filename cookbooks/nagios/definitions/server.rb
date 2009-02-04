@@ -1,7 +1,6 @@
 define :nagios_conf, :variables => {}, :config_subdir => true do
-  include_recipe "nagios::server"
   
-  subdir = if params[:config_subdir]
+    subdir = if params[:config_subdir]
     "/#{node[:nagios][:config_subdir]}/"
   else
     "/"
