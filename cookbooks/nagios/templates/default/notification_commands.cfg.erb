@@ -1,7 +1,7 @@
 # host notifications
 
 define command{
-	command_name	host-notify-by-email
+	command_name	notify-host-by-email
 	command_line	/usr/bin/printf "%b" "$LONGDATETIME$\n\n$HOSTALIAS$ $NOTIFICATIONTYPE$ $HOSTSTATE$\n\n$HOSTOUTPUT$\n\nLogin: ssh://$HOSTNAME$" | /bin/mail -s "$NOTIFICATIONTYPE$ - $HOSTALIAS$ $HOSTSTATE$!" $CONTACTEMAIL$
 	}
 
@@ -32,7 +32,7 @@ define command{
 # service notifications
 
 define command{
-	command_name	service-notify-by-email
+	command_name	notify-service-by-email
 	command_line	/usr/bin/printf "%b" "$LONGDATETIME$ - $SERVICEDESC$ $SERVICESTATE$\n\n$HOSTALIAS$  $NOTIFICATIONTYPE$\n\n$SERVICEOUTPUT$\n\nLogin: ssh://$HOSTNAME$" | /bin/mail -s "** $NOTIFICATIONTYPE$ - $HOSTALIAS$ - $SERVICEDESC$ - $SERVICESTATE$" $CONTACTEMAIL$
 	}
 
