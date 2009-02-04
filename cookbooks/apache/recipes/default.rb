@@ -11,3 +11,8 @@ package "apache" do
   package_name 'apache2'
   action :install
 end
+
+service "apache" do
+  supports :restart => true, :reload => true, :status => true
+  action :enable
+end
