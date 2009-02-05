@@ -1,5 +1,8 @@
 {"users":[{"password":"$1$hk40k332$wpSYJYlbbVo3AK/7thxO3.", "comment":"App User", "uid":1000, "gid":1000, "username":"app"},
-					{"password":"$1$4k01kee3$tQkwp46/ngyG.iH4kIaTJ0", "comment":"Site User", "uid":1001, "gid":1001, "username":"site"}],
+					{"password":"$1$4k01kee3$tQkwp46/ngyG.iH4kIaTJ0", "comment":"Site User", "uid":1001, "gid":1001, "username":"site"},
+					{"password":"$1$1EcOMWnu$E/TtE2ODkJKKiOgOq14Sq1", "comment":"DHH", "uid":1002, "gid":1000, "username":"david"}],
+					{"password":"$1$vRx7xHSn$xXL0.q9zIfV/p/sm9EDLQ/", "comment":"Joshua Sierles", "uid":1003, "gid":2000, "username":"joshua"},
+					{"password":"$1$/Tksj8KW$Vqswv0AALCtHLMog3z6kk/", "comment":"Mark Imbriaco", "uid":1004, "gid":2000, "username":"mark"}],
  "groups": [{"name": "app", "gid": 1000},{"name": "site", "gid": 1001},{"name": "admin", "gid": 2000}],
  "recipes": ["base","sudo","rails_passenger","postfix"],
  "ssh_keys":[
