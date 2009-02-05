@@ -1,6 +1,6 @@
 {"users":[{"password":"$1$hk40k332$wpSYJYlbbVo3AK/7thxO3.", "comment":"App User", "uid":"1000", "gid":"1000", "username":"app"},
 					{"password":"$1$4k01kee3$tQkwp46/ngyG.iH4kIaTJ0", "comment":"Site User", "uid":"1001", "gid":"1001", "username":"site"}],
- "groups": [{"name": "app", "gid": "1000"},{"name": "site", "gid": "1001"}]
+ "groups": [{"name": "app", "gid": "1000"},{"name": "site", "gid": "1001"},{"name": "admin", "gid": "2000"}],
  "recipes": ["base","sudo","rails_passenger","postfix"],
  "ssh_keys":[
 	{"username": "david",
