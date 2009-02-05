@@ -9,3 +9,6 @@ base[:sysadmin_campfire_room] = "System Administration"
 base[:clickatell_username] = "37signals"
 base[:clickatell_api_id] = "3131956"
 base[:clickatell_password] = "EIJVhiv4"
+
+users Mash.new unless attribute?("users")
+users = Array.new

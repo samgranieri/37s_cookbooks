@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: sudo
+# Cookbook Name:: apt
 # Recipe:: default
 #
 # Copyright 2008, OpsCode, Inc.
@@ -17,17 +17,15 @@
 # limitations under the License.
 #
 
-package "sudo" do
-  action :upgrade
+execute "apt-get-update" do
+  command "apt-get update"
 end
 
-template "/etc/sudoers" do
-  source "sudoers.erb"
-  mode 0440
-  owner "root"
-  group "root"
-  variables(
-    :sudoers_groups => node[:authorization][:sudo][:groups], 
-    :sudoers_users => node[:authorization][:sudo][:users]
-  )
+%w{/var/cache/local /var/cache/local/preseeding}.each do |dirname|
+  directory dirname do
+    owner "root"
+    group "root"
+    mode  0644
+    action :create
+  end
 end

@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: sudo
-# Recipe:: default
+# Attribute File:: sudoers
 #
 # Copyright 2008, OpsCode, Inc.
 #
@@ -17,17 +17,14 @@
 # limitations under the License.
 #
 
-package "sudo" do
-  action :upgrade
+authorization Mash.new unless attribute?("authorization")
+
+authorization[:sudo] = Mash.new unless authorization.has_key?(:sudo)
+
+unless authorization[:sudo].has_key?(:groups)
+  authorization[:sudo][:groups] = Array.new 
 end
 
-template "/etc/sudoers" do
-  source "sudoers.erb"
-  mode 0440
-  owner "root"
-  group "root"
-  variables(
-    :sudoers_groups => node[:authorization][:sudo][:groups], 
-    :sudoers_users => node[:authorization][:sudo][:users]
-  )
+unless authorization[:sudo].has_key?(:users)
+  authorization[:sudo][:users] = Array.new
 end

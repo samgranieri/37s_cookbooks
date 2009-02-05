@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: sudo
+# Cookbook Name:: build-essential
 # Recipe:: default
 #
 # Copyright 2008, OpsCode, Inc.
@@ -17,17 +17,27 @@
 # limitations under the License.
 #
 
-package "sudo" do
-  action :upgrade
+case node[:platform]
+when "ubuntu","debian"
+  %w{build-essential binutils-doc}.each do |pkg|
+    package pkg do
+      action :install
+    end
+  end
+when "centos"
+  package "gcc" do
+    action :install
+  end
 end
 
-template "/etc/sudoers" do
-  source "sudoers.erb"
-  mode 0440
-  owner "root"
-  group "root"
-  variables(
-    :sudoers_groups => node[:authorization][:sudo][:groups], 
-    :sudoers_users => node[:authorization][:sudo][:users]
-  )
+package "autoconf" do
+  action :install
+end
+
+package "flex" do
+  action :install
+end
+
+package "bison" do
+  action :install
 end
