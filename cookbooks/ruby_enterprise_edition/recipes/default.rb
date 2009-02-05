@@ -14,7 +14,7 @@ bash "install_ruby_enterprise_edition" do
   user "root"
   cwd "/usr/local/src"
   code <<-EOH
-  tar -zxf #{tarball}
+  tar -zxf #{filename}
   cd #{name}
   ./installer --auto /usr/local
   EOH
