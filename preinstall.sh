@@ -1,5 +1,5 @@
 apt-get update
-apt-get -y install emacs22-nox vim git-core mysql-client libmysqlclient15-dev build-essential syslog-ng ntp ruby ruby1.8-dev rubygems libopenssl-ruby1.8 irb rdoc ri rubygems man
+apt-get -y install emacs22-nox vim git-core mysql-client libmysqlclient15-dev build-essential syslog-ng ntp ruby ruby1.8-dev rubygems libopenssl-ruby1.8 irb rdoc ri rubygems man rake
 cd /tmp
 wget http://rubyforge.org/frs/download.php/45904/rubygems-update-1.3.1.gem
 sudo gem install rubygems-update-1.3.1.gem
