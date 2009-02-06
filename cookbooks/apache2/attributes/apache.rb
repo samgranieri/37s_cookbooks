@@ -72,11 +72,13 @@ apache[:worker][:threadsperchild] = 64    unless apache[:worker].has_key?(:threa
 apache[:worker][:maxrequestsperchild] = 0 unless apache[:worker].has_key?(:maxrequestsperchild)
 
 # Module configuration
+apache[:deflate] = Mash.new unless apache.has_key?(:deflate)
 apache[:deflate][:mime_types] = %w(text/html text/plain text/xml application/xml application/xhtml+xml
-                                text/javascript application/x-javascript text/css) unless apache[:deflate][:mime_types].has_key?(:mime_types)
+                                text/javascript application/x-javascript application/javascript text/css) unless apache[:deflate].has_key?(:mime_types)
 
-apache[:expires][:match] = "access plus 1 year" unless apache[:expires].has_key?(:default)                                
+apache[:expires] = Mash.new unless apache.has_key?(:expires)
+apache[:expires][:default] = "access plus 1 year" unless apache[:expires].has_key?(:default)                                
 apache[:expires][:match] = "\.(ico|gif|jpe?g|png|js|css)$" unless apache[:expires].has_key?(:match)
 apache[:expires][:set] = {"Cache-Control" => "public"} unless apache[:expires].has_key?(:set)
-apache[:expires][:unset] = %(Last-Modified ETag) unless apache[:expires].has_key?(:unset)
+apache[:expires][:unset] = %w(Last-Modified ETag) unless apache[:expires].has_key?(:unset)
 apache[:expires][:file_etag] = "None" unless apache[:expires].has_key?(:file_etag)

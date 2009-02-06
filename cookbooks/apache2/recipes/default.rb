@@ -117,11 +117,11 @@ template "#{node[:apache][:dir]}/mods-available/deflate.conf" do
   owner "root"
   group "root"
   mode 0644
-  variables(:mime_types => node[:apache][:gzip][:mime_types].join(" "))
+  variables(:mime_types => node[:apache][:deflate][:mime_types].join(" "))
   notifies :reload, resources(:service => "apache2")
 end
 
-%(headers expires).each do |mod|
+%w(headers expires).each do |mod|
   template "#{node[:apache][:dir]}/mods-available/#{mod}.conf" do
     source "#{mod}.conf.erb"
     owner "root"
