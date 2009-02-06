@@ -125,7 +125,8 @@ include_recipe "apache2::mod_env"
 include_recipe "apache2::mod_mime"
 include_recipe "apache2::mod_negotiation"
 include_recipe "apache2::mod_setenvif"
-include_recipe "apache::mod_deflate"
+include_recipe "apache2::mod_deflate"
+include_recipe "apache2::mod_expires"
 include_recipe "apache2::mod_log_config" if platform?("centos", "redhat", "suse")
 
 service "apache2" do

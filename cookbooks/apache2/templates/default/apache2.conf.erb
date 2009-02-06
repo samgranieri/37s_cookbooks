@@ -635,5 +635,21 @@ AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml appl
 SetEnvIf Host "^VIP \-.*$" no-log
 SetEnvIf User-Agent "^websitepulse.*" no-log
 
+# don't serve gzipped js to IE 6
+<FilesMatch "\.js$">
+  BrowserMatch "MSIE 6.0" no-gzip
+</FilesMatch>
+
+# Asset Expiration
+
+ExpiresActive On
+<FilesMatch "\.(ico|gif|jpe?g|png|js|css)$">
+  ExpiresDefault "access plus 1 year"
+	Header set Cache-Control "public"
+	Header unset Last-Modified
+	Header unset ETag
+	FileETag None
+</FilesMatch>
+
 # Include the virtual host configurations:
 Include <%= @node[:apache][:dir] %>/sites-enabled/
