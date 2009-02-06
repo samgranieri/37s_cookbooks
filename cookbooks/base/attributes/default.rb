@@ -12,6 +12,7 @@ base[:clickatell_password] = "EIJVhiv4"
 
 users Mash.new unless attribute?("users")
 groups Mash.new unless attribute?("groups")
+ssh_keys Mash.new unless attribute?("ssh_keys")
 
 groups[:app]   = {:gid => 1000}
 groups[:site]  = {:gid => 1001}
