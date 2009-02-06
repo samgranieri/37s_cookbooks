@@ -31,7 +31,7 @@ include_recipe "apache2::mod_rewrite"
 
 node[:applications].each do |app, config|
   puts config.inspect
-  template "/etc/apache2/sites-available/#{app}_#{config[:env]}.conf" do
+  template "/etc/apache2/sites-available/#{app}_#{config[:env]}" do
     owner 'root'
     group 'root'
     mode 0644
