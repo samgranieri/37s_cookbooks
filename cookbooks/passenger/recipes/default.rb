@@ -30,7 +30,6 @@ include_recipe "apache2::mod_deflate"
 include_recipe "apache2::mod_rewrite"
 
 node[:applications].each do |app, config|
-  puts config.inspect
   template "/etc/apache2/sites-available/#{app}_#{config[:env]}" do
     owner 'root'
     group 'root'
