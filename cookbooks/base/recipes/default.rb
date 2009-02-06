@@ -1,19 +1,19 @@
-# BROKEN
-# node[:groups].each do |g|
-#   group g[:name] do
-#     gid g[:gid]
-#   end
-# end
+node[:groups].each do |name, config|
+  group name do
+    gid config[:gid]
+  end
+end
 
-# node[:users].each do |u|
-#   user u[:username] do
-#     comment u[:comment]
-#     uid u[:uid]
-#     gid u[:gid]
-#     shell "/bin/bash"
-#     password u[:password]
-#   end
-# end
+node[:users].each do |name, config|
+  user name do
+    comment config[:comment]
+    uid config[:uid]
+    gid config[:gid]
+    home "/home/#{name}"
+    shell "/bin/bash"
+    password config[:password]
+  end
+end
 
 directory "/u/app" do
   action :create
