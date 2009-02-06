@@ -5,10 +5,12 @@ node[:users].each do |name, config|
   keys = {}
   keys[name] = node[:ssh_keys][name]
   
-  config[:ssh_keys].each do |user|
-    keys[user] = node[:ssh_keys][user]
+  if config[:ssh_keys]
+    config[:ssh_keys].each do |user|
+      keys[user] = node[:ssh_keys][user]
+    end
   end
-    
+  
   template "/home/#{name}/.ssh/authorized_keys" do
     source "authorized_keys.erb"
     action :create

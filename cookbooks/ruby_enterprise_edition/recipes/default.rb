@@ -26,7 +26,7 @@ name = 'shadow-1.4.1'
 
 remote_file "/usr/local/src/#{filename}" do
   source filename
-  not_if File.exists? "/usr/local/lib/ruby/site_ruby/1.8/x86_64-linux/shadow.so"
+  not_if File.exists?("/usr/local/lib/ruby/site_ruby/1.8/x86_64-linux/shadow.so")
 end
 
 bash "install_ruby_enterprise_edition" do
@@ -38,5 +38,5 @@ bash "install_ruby_enterprise_edition" do
   ruby extconf.rb
   make install
   EOH
-  not_if File.exists? "/usr/local/lib/ruby/site_ruby/1.8/x86_64-linux/shadow.so"
+  not_if File.exists?("/usr/local/lib/ruby/site_ruby/1.8/x86_64-linux/shadow.so")
 end
