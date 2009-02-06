@@ -34,7 +34,7 @@ node[:applications].each do |app, config|
   template "/etc/apache2/sites-available/#{app}_#{config[:env]}.conf" do
     owner 'root'
     group 'root'
-    mode 0655
+    mode 0644
     source "application.vhost.erb"
     variables({
       :docroot  => "/u/apps/#{app}/current/public",
@@ -42,5 +42,7 @@ node[:applications].each do |app, config|
       :max_pool_size    => config[:max_pool_size]
     })
   end
-  apache_site app
+  apache_site app do
+    enable config[:enable]
+  end
 end
