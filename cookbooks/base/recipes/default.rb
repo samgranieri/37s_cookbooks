@@ -1,23 +1,23 @@
-node[:groups].each do |name, config|
-  group name do
+node[:groups].each do |u, config|
+  group u do
     gid config[:gid]
   end
 end
 
-node[:users].each do |name, config|
-  user name do
+node[:users].each do |u, config|
+  user u do
     comment config[:comment]
     uid config[:uid]
     gid config[:gid]
-    home "/home/#{name}"
+    home "/home/#{u}"
     shell "/bin/bash"
     password config[:password]
   end
 end
 
-directory "/home/#{name}/.ssh" do
+directory "/home/#{u}/.ssh" do
   action :create
-  owner name
+  owner u
   group config[:gid]
   mode 0700
 end
