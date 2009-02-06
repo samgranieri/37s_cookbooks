@@ -15,6 +15,13 @@ node[:users].each do |name, config|
   end
 end
 
+directory "/home/#{name}/.ssh" do
+  action :create
+  owner name
+  group config[:gid]
+  mode 0700
+end
+
 directory "/u/app" do
   action :create
   owner "app"
