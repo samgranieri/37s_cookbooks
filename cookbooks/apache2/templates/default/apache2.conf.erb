@@ -626,5 +626,14 @@ ServerSignature On
     #</Location>
 #</IfModule>
 
+# on-the-fly compression
+
+AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml application/xhtml+xml text/javascript application/x-javascript text/css
+
+# Don't log webmux heartbeat requests or websitepulse checks.
+
+SetEnvIf Host "^VIP \-.*$" no-log
+SetEnvIf User-Agent "^websitepulse.*" no-log
+
 # Include the virtual host configurations:
 Include <%= @node[:apache][:dir] %>/sites-enabled/
