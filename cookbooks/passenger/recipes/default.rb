@@ -1,4 +1,4 @@
-require_recipe "apache"
+require_recipe "apache2"
 
 package "apache2-prefork-dev"
 
@@ -30,6 +30,7 @@ include_recipe "apache2::mod_deflate"
 include_recipe "apache2::mod_rewrite"
 
 node[:applications].each do |app, config|
+  puts config.inspect
   template "/etc/apache2/sites-available/#{app}_#{config[:env]}.conf" do
     owner 'root'
     group 'root'
