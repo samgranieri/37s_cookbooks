@@ -16,7 +16,7 @@ node[:users].each do |name, config|
     action :create
     owner config[:username]
     group config[:gid]
-    variables(:key => keys)
+    variables(:keys => keys)
     mode 0600
   end
 
