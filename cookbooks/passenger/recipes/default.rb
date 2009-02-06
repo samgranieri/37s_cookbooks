@@ -35,7 +35,7 @@ node[:applications].each do |app, config|
     owner 'root'
     group 'root'
     mode 0655
-    source "application_vhost.conf.erb"
+    source "application.vhost.erb"
     variables({
       :docroot  => "/u/apps/#{app}/current/public",
       :server_name  => config[:server_name],
