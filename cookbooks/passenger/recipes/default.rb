@@ -42,7 +42,7 @@ node[:applications].each do |app, config|
       :max_pool_size    => config[:max_pool_size]
     })
   end
-  apache_site app do
+  apache_site "#{app}_#{config[:env]}" do
     enable config[:enable]
   end
 end
