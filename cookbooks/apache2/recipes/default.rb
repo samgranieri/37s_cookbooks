@@ -34,7 +34,7 @@ service "apache2" do
   when "debian","ubuntu"
     name "apache2"
   end
-  supports :restart => true
+  supports :restart => true, :reload => true
   action :enable
 end
 
@@ -127,6 +127,7 @@ include_recipe "apache2::mod_negotiation"
 include_recipe "apache2::mod_setenvif"
 include_recipe "apache2::mod_deflate"
 include_recipe "apache2::mod_expires"
+include_recipe "apache2::mod_headers"
 include_recipe "apache2::mod_log_config" if platform?("centos", "redhat", "suse")
 
 service "apache2" do
