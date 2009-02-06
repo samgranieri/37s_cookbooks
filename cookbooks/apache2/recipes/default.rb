@@ -111,6 +111,26 @@ template "#{node[:apache][:dir]}/sites-available/default" do
   notifies :restart, resources(:service => "apache2")
 end
 
+
+template "#{node[:apache][:dir]}/mods-available/deflate.conf" do
+  source "deflate.conf.erb"
+  owner "root"
+  group "root"
+  mode 0644
+  variables(:mime_types => node[:apache][:gzip][:mime_types].join(" "))
+  notifies :reload, resources(:service => "apache2")
+end
+
+%(headers expires).each do |mod|
+  template "#{node[:apache][:dir]}/mods-available/#{mod}.conf" do
+    source "#{mod}.conf.erb"
+    owner "root"
+    group "root"
+    mode 0644
+    notifies :reload, resources(:service => "apache2")
+  end
+end
+
 include_recipe "apache2::mod_status"
 include_recipe "apache2::mod_alias"
 include_recipe "apache2::mod_auth_basic"
