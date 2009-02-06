@@ -1,0 +1,157 @@
+# syslog-ng configuration file.
+#
+
+options {
+    time_reopen (10);
+    log_fifo_size (5000);
+    long_hostnames (off);
+    use_dns (yes);
+    use_fqdn (no);
+    create_dirs (no);
+    keep_hostname (yes);
+    flush_lines (1);
+    stats_freq (600);
+};
+
+source s_sys {
+    file ("/proc/kmsg" log_prefix("kernel: "));
+    unix-stream ("/dev/log");
+    internal();
+};
+
+source s_remote {
+    udp(ip(0.0.0.0) port(514));
+};
+
+destination d_cons { file("/dev/console"); };
+destination d_mesg { file("/var/log/messages"); };
+destination d_auth { file("/var/log/secure"); };
+destination d_mail { file("/var/log/maillog" sync(10)); };
+destination d_spol { file("/var/log/spooler"); };
+destination d_boot { file("/var/log/boot.log"); };
+destination d_cron { file("/var/log/cron"); };
+destination d_mlal { usertty("*"); };
+
+#filter f_filter1  { facility(kern); };
+filter f_filter2   { level(info..emerg) and not facility(mail,authpriv,cron); };
+filter f_filter3   { facility(authpriv); };
+filter f_filter4   { facility(mail); };
+filter f_filter5   { level(emerg); };
+filter f_filter6   { facility(uucp) or (facility(news) and level(crit..emerg)); };
+filter f_filter7   { facility(local7); };
+filter f_filter8   { facility(cron); };
+filter f_local0    { facility(local0); };
+filter f_local1    { facility(local1); };
+filter f_local2    { facility(local2); };
+filter f_local3    { facility(local3); };
+filter f_local4    { facility(local4); };
+filter f_local5    { facility(local5); };
+filter f_local6    { facility(local6); };
+filter f_local7    { facility(local7); };
+
+#
+# HAProxy Monitoring
+#
+
+filter f_haproxy { program("haproxy"); };
+
+destination d_bc_haproxy { file("/u/logs/basecamp/haproxy.log", owner(app), group(app), perm(0640)); };
+filter f_bc_haproxy { program("haproxy") and match("basecamp"); };
+log { source(s_remote); filter(f_local1); filter(f_haproxy); filter(f_bc_haproxy); destination(d_bc_haproxy); flags(final); };
+
+destination d_bp_haproxy { file("/u/logs/backpack/haproxy.log", owner(app), group(app), perm(0640)); };
+filter f_bp_haproxy { program("haproxy") and match("backpack"); };
+log { source(s_remote); filter(f_local1); filter(f_haproxy); filter(f_bp_haproxy); destination(d_bp_haproxy); flags(final); };
+
+destination d_cf_haproxy { file("/u/logs/campfire/haproxy.log", owner(app), group(app), perm(0640)); };
+filter f_cf_haproxy { program("haproxy") and match("campfire"); };
+log { source(s_remote); filter(f_local1); filter(f_haproxy); filter(f_cf_haproxy); destination(d_cf_haproxy); flags(final); };
+
+destination d_hr_haproxy { file("/u/logs/highrise/haproxy.log", owner(app), group(app), perm(0640)); };
+filter f_hr_haproxy { program("haproxy") and match("highrise"); };
+log { source(s_remote); filter(f_local1); filter(f_haproxy); filter(f_hr_haproxy); destination(d_hr_haproxy); flags(final); };
+
+destination d_wb_haproxy { file("/u/logs/writeboard/haproxy.log", owner(app), group(app), perm(0640)); };
+filter f_wb_haproxy { program("haproxy") and match("writeboard"); };
+log { source(s_remote); filter(f_local1); filter(f_haproxy); filter(f_wb_haproxy); destination(d_wb_haproxy); flags(final); };
+
+# 
+# Rails Applications
+#
+
+filter f_completed_in { match("Completed in"); };
+filter f_thumbnail_build { match("thumbnail\.build"); };
+
+destination basecamp_file { file("/u/logs/basecamp/rails.log", owner(app), group(app), perm(0640)); };
+destination basecamp_completed { file("/u/logs/basecamp/completed.log", owner(app), group(app), perm(0640)); };
+destination basecamp_thumbnails { file("/u/logs/basecamp/thumbnails.log", owner(app), group(app), perm(0640)); };
+
+filter f_basecamp { program("basecamp"); };
+filter f_host_app1_app6 { host("app[1-6]"); };
+filter f_host_bc_xen { host("bc-app-0[1-4]"); };
+
+destination basecamp_logsort { program("/u/apps/basecamp/shared/bin/logsort", log_fifo_size(30000)); };
+log { source(s_remote); filter(f_basecamp); filter(f_completed_in); destination(basecamp_completed); };
+log { source(s_remote); filter(f_basecamp); filter(f_thumbnail_build); destination(basecamp_thumbnails); };
+log { source(s_remote); filter(f_basecamp); destination(basecamp_logsort); flags(final); };
+
+destination backpack { file("/u/logs/backpack/rails.log", owner(app), group(app), perm(0640)); };
+filter f_backpack { program("backpack"); };
+log { source(s_remote); filter(f_backpack); destination(backpack); flags(final); };
+
+destination highrise { file("/u/logs/highrise/rails.log", owner(app), group(app), perm(0640)); };
+filter f_highrise { program("highrise"); };
+log { source(s_remote); filter(f_highrise); destination(highrise); flags(final); };
+
+destination campfire { file("/u/logs/campfire/rails.log", owner(app), group(app), perm(0640)); };
+filter f_campfire { program("campfire"); };
+log { source(s_remote); filter(f_campfire); destination(campfire); flags(final); };
+
+destination open_bar { file("/u/logs/open_bar/rails.log", owner(app), group(app), perm(0640)); };
+filter f_open_bar { program("open_bar"); };
+log { source(s_remote); filter(f_open_bar); destination(open_bar); flags(final); };
+
+destination tadalist { file("/u/logs/tadalist/rails.log", owner(app), group(app), perm(0640)); };
+filter f_tadalist { program("tadalist"); };
+log { source(s_remote); filter(f_tadalist); destination(tadalist); flags(final); };
+
+destination writeboard { file("/u/logs/writeboard/rails.log", owner(app), group(app), perm(0640)); };
+filter f_writeboard { program("writeboard"); };
+log { source(s_remote); filter(f_writeboard); destination(writeboard); flags(final); };
+
+destination jobs { file("/u/logs/jobs/rails.log", owner(app), group(app), perm(0640)); };
+filter f_jobs { program("jobs"); };
+log { source(s_remote); filter(f_jobs); destination(jobs); flags(final); };
+
+# Standard system logging
+
+#log { source(s_sys); filter(f_filter1); destination(d_cons); };
+log { source(s_sys); filter(f_filter2); destination(d_mesg); };
+log { source(s_sys); filter(f_filter3); destination(d_auth); };
+log { source(s_sys); filter(f_filter4); destination(d_mail); };
+log { source(s_sys); filter(f_filter5); destination(d_mlal); };
+log { source(s_sys); filter(f_filter6); destination(d_spol); };
+log { source(s_sys); filter(f_filter7); destination(d_boot); };
+log { source(s_sys); filter(f_filter8); destination(d_cron); };
+
+# Cisco Loadbalancer
+
+destination d_cisco { file("/u/logs/syslog/cisco", owner(root), group(wheel), perm(0640)); };
+log { source(s_remote); filter(f_local6); destination(d_cisco); flags(final); };
+
+# Remote system logging
+
+destination d_mesg_remote { file("/u/logs/syslog/messages", owner(root), group(wheel), perm(0640)); };
+destination d_auth_remote { file("/u/logs/syslog/secure", owner(root), group(wheel), perm(0640)); };
+destination d_mail_remote { file("/u/logs/syslog/maillog", owner(root), group(wheel), perm(0640), sync(10)); };
+destination d_spol_remote { file("/u/logs/syslog/spooler", owner(root), group(wheel), perm(0640)); };
+destination d_boot_remote { file("/u/logs/syslog/boot.log", owner(root), group(wheel), perm(0640)); };
+destination d_cron_remote { file("/u/logs/syslog/cron", owner(root), group(wheel), perm(0640)); };
+
+log { source(s_remote); filter(f_filter2); destination(d_mesg_remote); };
+log { source(s_remote); filter(f_filter3); destination(d_auth_remote); };
+log { source(s_remote); filter(f_filter4); destination(d_mail_remote); };
+log { source(s_remote); filter(f_filter6); destination(d_spol_remote); };
+log { source(s_remote); filter(f_filter7); destination(d_boot_remote); };
+log { source(s_remote); filter(f_filter8); destination(d_cron_remote); };
+
