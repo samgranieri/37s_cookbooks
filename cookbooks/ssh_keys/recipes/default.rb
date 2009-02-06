@@ -1,15 +1,15 @@
 include_recipe "base"
 
 node[:users].each do |user| 
-  if key = node[:ssh_keys].select {|k| k['username'] == user['username']}
-    
-    directory "/home/#{user['username']}/.ssh" do
-      action :create
-      owner user['username']
-      group user['gid']
-      mode 0600
-    end
-    
+  
+  directory "/home/#{user['username']}/.ssh" do
+    action :create
+    owner user['username']
+    group user['gid']
+    mode 0700
+  end
+  
+  if key = node[:ssh_keys][user]      
     template "/home/#{user['username']}/.ssh/authorized_keys" do
       source "authorized_keys.erb"
       action :create
@@ -19,4 +19,5 @@ node[:users].each do |user|
       mode 0600
     end
   end
+
 end
