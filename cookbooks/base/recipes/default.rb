@@ -13,13 +13,12 @@ node[:users].each do |u, config|
     shell "/bin/bash"
     password config[:password]
   end
-end
-
-directory "/home/#{u}/.ssh" do
-  action :create
-  owner u
-  group config[:gid]
-  mode 0700
+  directory "/home/#{u}/.ssh" do
+    action :create
+    owner u
+    group config[:gid]
+    mode 0700
+  end
 end
 
 directory "/u/app" do
