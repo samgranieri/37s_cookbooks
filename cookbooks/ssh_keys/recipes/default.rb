@@ -1,11 +1,11 @@
 include_recipe "base"
 
-node[:users].each do |user| 
+node[:users].each do |name, config| 
   
-  directory "/home/#{user['username']}/.ssh" do
+  directory "/home/#{name}/.ssh" do
     action :create
-    owner user['username']
-    group user['gid']
+    owner name
+    group config['gid']
     mode 0700
   end
   
