@@ -1,0 +1,13 @@
+<Proxy balancer://chef> 
+  BalancerMember http://127.0.0.1:4000 
+  BalancerMember http://127.0.0.1:4001
+</Proxy>
+
+<VirtualHost *:80> 
+  ServerAdmin     <%= @node[:base][:sysadmin_email] %>
+  DocumentRoot    <%= @node[:config][:merb_root]%>
+  ServerName      chef.<%= @node[:base][:default_domain] %>
+  ErrorLog        /path/to/your/error.log 
+  ProxyPass         / balancer://chef/ 
+  ProxyPassReverse  / balancer://chef/ 
+</VirtualHost>

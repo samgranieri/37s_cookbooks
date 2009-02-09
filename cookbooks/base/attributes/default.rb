@@ -9,6 +9,7 @@ base[:sysadmin_campfire_room] = "System Administration"
 base[:clickatell_username] = "37signals"
 base[:clickatell_api_id] = "3131956"
 base[:clickatell_password] = "EIJVhiv4"
+base[:default_domain] = "37signals.com"
 
 users Mash.new unless attribute?("users")
 groups Mash.new unless attribute?("groups")
