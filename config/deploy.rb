@@ -48,8 +48,19 @@ task :update_chef do
   run "cd ~/ohai && git pull && rake install"
 end
 
+desc "Update recipes"
+task :update_recipes do
+  run "cd #{current_path} && rake install"
+end
+
+desc "Run chef solo"
+task :run_solo do
+  run "cd #{current_path} && chef-solo -c config/solo.rb -j config/#{stage}/backup.json"
+end
+
 before "deploy", :fix_git_remote_url
 after "deploy:update", "deploy:cleanup"
+after "deploy", "update_recipes"
 
 deploy.task :default, :except => {:no_release => true} do
   on_rollback { run "rm -rf #{release_path}; true" }

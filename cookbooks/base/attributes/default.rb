@@ -11,10 +11,14 @@ base[:clickatell_api_id] = "3131956"
 base[:clickatell_password] = "EIJVhiv4"
 base[:default_domain] = "37signals.com"
 
+users Mash.new unless attribute?("ddclient")
 users Mash.new unless attribute?("users")
 groups Mash.new unless attribute?("groups")
 ssh_keys Mash.new unless attribute?("ssh_keys")
 sudo Mash.new unless attribute?("sudo")
+
+ddclient[:dyndns_login] = "883mhi-ec2dyn"
+ddclient[:dyndns_password] = "5SkR2hJiNsQP"
 
 groups[:app]   = {:gid => 1000}
 groups[:site]  = {:gid => 1001}
