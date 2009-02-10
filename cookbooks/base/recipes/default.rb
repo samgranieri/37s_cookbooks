@@ -1,4 +1,5 @@
 require_recipe "postfix"
+require_recipe "ssh_keys"
 
 node[:groups].each do |u, config|
   group u do
