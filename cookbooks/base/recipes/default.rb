@@ -1,3 +1,5 @@
+require_recipe "postfix"
+
 node[:groups].each do |u, config|
   group u do
     gid config[:gid]

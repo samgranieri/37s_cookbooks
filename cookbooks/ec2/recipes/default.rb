@@ -8,6 +8,7 @@ end
 
 bash "Set mailname for postfix" do
   code "echo #{node[:assigned_hostname]}.#{node[:assigned_domain]} > /etc/mailname"
+  notifies :restart, resources(:service => "postfix")
 end
 
 service "hostname.sh" do
