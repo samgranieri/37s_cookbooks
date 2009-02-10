@@ -1,4 +1,4 @@
-include_recipe "base"
+require_recipe "base"
 
 node[:users].each do |name, config| 
     
@@ -14,7 +14,7 @@ node[:users].each do |name, config|
   template "/home/#{name}/.ssh/authorized_keys" do
     source "authorized_keys.erb"
     action :create
-    owner config[:username]
+    owner name
     group config[:gid]
     variables(:keys => keys)
     mode 0600
