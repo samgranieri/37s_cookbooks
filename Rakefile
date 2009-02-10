@@ -65,7 +65,7 @@ task :test do
 end
 
 desc "Install the latest copy of the repository on this Chef Server"
-task :install => [ :update, :test ] do
+task :install => [ :test ] do
   puts "** Installing your cookbooks"  
   directories = [ 
     COOKBOOK_PATH,
