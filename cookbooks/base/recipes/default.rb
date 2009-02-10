@@ -1,3 +1,5 @@
+require_recipe "ruby_enterprise_edition"
+
 node[:groups].each do |u, config|
   group u do
     gid config[:gid]

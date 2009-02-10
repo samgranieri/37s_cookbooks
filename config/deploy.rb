@@ -24,14 +24,15 @@ task :bootstrap do
   run "cd /tmp && wget http://rubyforge.org/frs/download.php/45904/rubygems-update-1.3.1.gem && sudo gem install rubygems-update-1.3.1.gem && sudo /var/lib/gems/1.8/bin/update_rubygems"
   run "mkdir -p /etc/chef"
   run "sudo gem sources -a http://gems.opscode.com && gem sources -a http://gems.github.com"
-  run "gem install opscode-ohai opscode-chef --no-rdoc --no-ri"
+  install_chef
+  
 end
 
 desc "Install latest chef"
 task :install_chef do
   run "gem install rspec json --no-rdoc --no-ri"
-  #run "git clone git://github.com/opscode/ohai.git"
-  #run "cd ohai && rake install"
+  run "git clone git://github.com/opscode/ohai.git"
+  run "cd ohai && rake install"
   run "git clone git://github.com/opscode/chef.git"
   run "cd chef && rake install"
 end
