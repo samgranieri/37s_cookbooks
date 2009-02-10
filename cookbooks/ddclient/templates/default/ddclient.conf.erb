@@ -4,4 +4,4 @@ server=update.dynect.net
 use=web
 login=<%= @node[:ddclient][:dyndns_login] %>
 password=<%= @node[:ddclient][:dyndns_password] %>
-<%= "#{@hostname}.#{@domain}" %>
+<%= "#{@node[:assigned_hostname]}.#{@node[:assigned_domain]}" %>
