@@ -1,2 +1,0 @@
-{"recipes": ["base", "chef::server"]}
-
