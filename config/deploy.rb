@@ -48,8 +48,6 @@ task :update_chef do
   run "cd ~/ohai && git pull && rake install"
 end
 
-before "deploy:setup", :bootstrap
-
 before "deploy", :fix_git_remote_url
 after "deploy:update", "deploy:cleanup"
 

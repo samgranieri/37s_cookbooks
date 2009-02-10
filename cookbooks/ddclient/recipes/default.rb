@@ -1,3 +1,5 @@
+package "ddclient"
+
 service "ddclient" do
   supports :restart => true
   action :enable
