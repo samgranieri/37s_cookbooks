@@ -1,2 +1,2 @@
-{"recipes: ["base", "chef::server"]}
+{"recipes": ["base", "chef::server"]}
 
