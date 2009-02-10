@@ -1,0 +1,5 @@
+{"recipes": ["base", "ec2", "ddclient"],
+ "assigned_hostname": "backup",
+ "assigned_domain": "ec2-eu.37signals.com",
+ "ebs_volumes": {"vol-d0b752b9": {"mount_point": "/u/data", "device": "/dev/sds", "type": "ext3"}}
+}
