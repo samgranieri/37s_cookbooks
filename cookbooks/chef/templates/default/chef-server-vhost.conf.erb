@@ -7,7 +7,7 @@
   ServerAdmin     <%= @node[:base][:sysadmin_email] %>
   DocumentRoot    <%= @node[:config][:merb_root]%>
   ServerName      chef.<%= @node[:base][:default_domain] %>
-  ErrorLog        /path/to/your/error.log 
-  ProxyPass         / balancer://chef/ 
+  ErrorLog        <%= @node[:config][:merb_root]%>/log/apache_error.log 
+  ProxyPass         / balancer://chef/
   ProxyPassReverse  / balancer://chef/ 
 </VirtualHost>

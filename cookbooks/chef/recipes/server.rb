@@ -61,3 +61,12 @@ gem_package "chef_server"
 
 runit_service "chef-indexer" 
 runit_service "chef-server"
+
+apache_module "proxy_balancer"
+
+template "/etc/apache2/sites-available/chef-server" do
+  source 'chef-server-vhost.conf.erb'
+  action :create
+  owner "root"
+  mode 0644
+end
