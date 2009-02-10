@@ -11,7 +11,7 @@ base[:clickatell_api_id] = "3131956"
 base[:clickatell_password] = "EIJVhiv4"
 base[:default_domain] = "37signals.com"
 
-users Mash.new unless attribute?("ddclient")
+ddclient Mash.new unless attribute?("ddclient")
 users Mash.new unless attribute?("users")
 groups Mash.new unless attribute?("groups")
 ssh_keys Mash.new unless attribute?("ssh_keys")
