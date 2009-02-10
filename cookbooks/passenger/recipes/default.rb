@@ -1,5 +1,6 @@
 require_recipe "apache2"
 
+# Required to compile passenger
 package "apache2-prefork-dev"
 
 gem_package "passenger" do
@@ -29,19 +30,21 @@ apache_module "passenger"
 include_recipe "apache2::mod_deflate"
 include_recipe "apache2::mod_rewrite"
 
-node[:applications].each do |app, config|
-  template "/etc/apache2/sites-available/#{app}_#{config[:env]}" do
-    owner 'root'
-    group 'root'
-    mode 0644
-    source "application.vhost.erb"
-    variables({
-      :docroot  => "/u/apps/#{app}/current/public",
-      :server_name  => config[:server_name],
-      :max_pool_size    => config[:max_pool_size]
-    })
-  end
-  apache_site "#{app}_#{config[:env]}" do
-    enable config[:enable]
+if node[:applications]
+  node[:applications].each do |app, config|
+    template "/etc/apache2/sites-available/#{app}_#{config[:env]}" do
+      owner 'root'
+      group 'root'
+      mode 0644
+      source "application.vhost.erb"
+      variables({
+        :docroot  => "/u/apps/#{app}/current/public",
+        :server_name  => config[:server_name],
+        :max_pool_size    => config[:max_pool_size]
+      })
+    end
+    apache_site "#{app}_#{config[:env]}" do
+      enable config[:enable]
+    end
   end
 end

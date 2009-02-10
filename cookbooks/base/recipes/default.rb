@@ -12,6 +12,7 @@ node[:users].each do |u, config|
     home "/home/#{u}"
     shell "/bin/bash"
     password config[:password]
+    supports :manage_home => true
   end
   directory "/home/#{u}/.ssh" do
     action :create
@@ -21,14 +22,21 @@ node[:users].each do |u, config|
   end
 end
 
-directory "/u/app" do
+directory "/u" do
+  action :create
+  owner "root"
+  group "admin"
+  mode 0775
+end
+
+directory "/u/apps" do
   action :create
   owner "app"
   group "app"
   mode 0775
 end
 
-directory "/u/site" do
+directory "/u/sites" do
   action :create
   owner "site"
   group "site"
