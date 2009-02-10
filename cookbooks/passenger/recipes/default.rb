@@ -1,5 +1,4 @@
 require_recipe "apache2"
-require_recipe "ruby_enterprise_edition"
 
 # Required to compile passenger
 package "apache2-prefork-dev"
