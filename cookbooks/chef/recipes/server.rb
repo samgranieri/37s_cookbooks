@@ -59,7 +59,7 @@ template "/usr/lib/ruby/gems/1.8/gems/chef-server-0.5.3/lib/config.ru" do
   action :create
   owner "root"
   group "www-data"
-  mode 0640
+  mode 0644
 end
 
 template "/usr/lib/ruby/gems/1.8/gems/chef-server-0.5.3/lib/init.rb" do
@@ -67,7 +67,7 @@ template "/usr/lib/ruby/gems/1.8/gems/chef-server-0.5.3/lib/init.rb" do
   action :create
   owner "root"
   group "www-data"
-  mode 0640
+  mode 0644
 end
 
 apache_site "chef-server"
