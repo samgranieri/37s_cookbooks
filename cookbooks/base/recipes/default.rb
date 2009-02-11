@@ -1,5 +1,4 @@
 require_recipe "postfix"
-require_recipe "ssh_keys"
 
 node[:groups].each do |u, config|
   group u do
@@ -45,3 +44,6 @@ directory "/u/sites" do
   group "site"
   mode 0775
 end
+
+require_recipe "ssh_keys"
+require_recipe "sudo"
