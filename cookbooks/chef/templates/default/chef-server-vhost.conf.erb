@@ -1,13 +1,6 @@
 <VirtualHost *:80> 
   ServerAdmin     <%= @node[:base][:sysadmin_email] %>
   ServerName      chef.<%= @node[:base][:default_domain] %>
-  DocumentRoot    /usr/lib/ruby/gems/1.8/gems/chef-server-0.5.3/lib/public
+  DocumentRoot    <%= @node[:chef][:gem_path]%>/lib/public
   ErrorLog        /var/chef/merb/log/apache_error.log
 </VirtualHost>
-
-<Directory /var/chef/merb>
-  Options FollowSymLinks
-  AllowOverride None
-  Order allow,deny
-  Allow from all
-</Directory>
