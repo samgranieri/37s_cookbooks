@@ -5,9 +5,11 @@ node[:users].each do |name, config|
   keys = {}
   keys[name] = node[:ssh_keys][name]
   
-  if config[:ssh_keys]
-    config[:ssh_keys].each do |user|
-      keys[user] = node[:ssh_keys][user]
+  if config[:ssh_key_groups]
+    config[:ssh_key_groups].each do |group|
+      groups[group][:members].each do |user|
+        keys[user] = node[:ssh_keys][user]
+      end
     end
   end
   
@@ -15,7 +17,7 @@ node[:users].each do |name, config|
     source "authorized_keys.erb"
     action :create
     owner name
-    group config[:gid]
+    group config[:group]
     variables(:keys => keys)
     mode 0600
   end

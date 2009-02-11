@@ -10,7 +10,7 @@ node[:users].each do |u, config|
   user u do
     comment config[:comment]
     uid config[:uid]
-    gid config[:gid]
+    gid node[:groups][config[:group]][:gid]
     home "/home/#{u}"
     shell "/bin/bash"
     password config[:password]
@@ -19,10 +19,11 @@ node[:users].each do |u, config|
   directory "/home/#{u}/.ssh" do
     action :create
     owner u
-    group config[:gid]
+    group config[:group]
     mode 0700
   end
 end
+
 
 directory "/u" do
   action :create
