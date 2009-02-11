@@ -50,6 +50,7 @@ template "/etc/apache2/sites-available/chef-server" do
   source 'chef-server-vhost.conf.erb'
   action :create
   owner "root"
+  group "www-data"
   mode 0640
 end
 
@@ -57,6 +58,7 @@ template "/usr/lib/ruby/gems/1.8/gems/chef-server-0.5.3/lib/config.ru" do
   source 'config.ru.erb'
   action :create
   owner "root"
+  group "www-data"
   mode 0640
 end
 
@@ -64,6 +66,7 @@ template "/usr/lib/ruby/gems/1.8/gems/chef-server-0.5.3/lib/init.rb" do
   source 'init.rb.erb'
   action :create
   owner "root"
+  group "www-data"
   mode 0640
 end
 
