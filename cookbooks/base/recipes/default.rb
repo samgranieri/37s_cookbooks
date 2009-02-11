@@ -10,16 +10,17 @@ node[:users].each do |u, config|
   user u do
     comment config[:comment]
     uid config[:uid]
-    gid node[:groups][config[:group]][:gid]
+    gid config[:group].to_s
     home "/home/#{u}"
     shell "/bin/bash"
     password config[:password]
     supports :manage_home => true
   end
+  
   directory "/home/#{u}/.ssh" do
     action :create
     owner u
-    group config[:group]
+    group config[:group].to_s
     mode 0700
   end
 end

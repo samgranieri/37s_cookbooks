@@ -17,7 +17,7 @@ node[:users].each do |name, config|
     source "authorized_keys.erb"
     action :create
     owner name
-    group config[:group]
+    group config[:group].to_s
     variables(:keys => keys)
     mode 0600
   end
