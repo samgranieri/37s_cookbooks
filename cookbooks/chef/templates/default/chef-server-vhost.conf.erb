@@ -1,6 +1,6 @@
 <VirtualHost *:80> 
   ServerAdmin     <%= @node[:base][:sysadmin_email] %>
   ServerName      chef.<%= @node[:base][:default_domain] %>
-  DocumentRoot    <%= @node[:chef][:gem_path]%>/lib/public
+  DocumentRoot    <%= @node[:chef][:server_path]%>/lib/public
   ErrorLog        /var/chef/merb/log/apache_error.log
 </VirtualHost>
