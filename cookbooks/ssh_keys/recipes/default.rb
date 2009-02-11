@@ -7,7 +7,7 @@ node[:users].each do |name, config|
   
   if config[:ssh_key_groups]
     config[:ssh_key_groups].each do |group|
-      groups[group][:members].each do |user|
+      node[:groups][group][:members].each do |user|
         keys[user] = node[:ssh_keys][user]
       end
     end
