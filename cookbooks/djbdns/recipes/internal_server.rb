@@ -52,3 +52,8 @@ end
 link "/etc/init.d/tinydns-internal" do
   to node[:runit_sv_bin]
 end
+
+hosts = []
+search(:node, "*") {|n| hosts << n }
+
+
