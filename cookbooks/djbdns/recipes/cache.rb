@@ -40,6 +40,14 @@ template "/etc/public-dnscache/log/run" do
   mode 0755
 end
 
+file "/etc/public-dnscache/root/ip/#{node[:djbdns][:public_dnscache_allowed_networks]}" do
+  mode 0644
+end
+
+template "/etc/public-dnscache/root/servers/#{node[:djbdns][:tinydns_internal_resolved_domain]}" do
+  mode 0644
+end
+
 link "#{node[:runit_service_dir]}/public-dnscache" do
   to "/etc/public-dnscache"
 end
