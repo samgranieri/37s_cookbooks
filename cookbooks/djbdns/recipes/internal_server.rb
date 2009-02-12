@@ -19,7 +19,7 @@
 #
 include_recipe "djbdns"
 
-execute "/usr/bin/tinydns-conf tinydns dnslog /etc/tinydns #{node[:djbdns][:tinydns_ipaddress]}" do
+execute "/usr/bin/tinydns-conf tinydns dnslog /etc/tinydns-internal #{node[:djbdns][:tinydns_ipaddress]}" do
   only_if "/usr/bin/test ! -d /etc/tinydns-internal"
 end
 
