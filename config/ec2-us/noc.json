@@ -1,5 +1,5 @@
 {"recipes": ["base", "ec2", "ddclient", "chef::server"],
  "assigned_hostname": "backup",
- "assigned_domain": "ec2-eu.37signals.com",
+ "assigned_domain": "ec2-us.37signals.com",
  "ebs_volumes": {"logs": {"id": "vol-9eae4af7", "mount_point": "/u/logs", "device": "/dev/sdi", "type": "ext3"}}
 }
