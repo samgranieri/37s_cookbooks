@@ -1,1 +1,8 @@
-37signals cookbooks for use with Chef (http://wiki.opscode.com/display/chef/Home).
+37signals cookbooks for use with Chef (http://wiki.opscode.com/display/chef/Home). These are provided solely as examples and helpful guides.
+
+Some of the cookbooks are based on examples at:
+
+http://github.com/opscode/cookbooks
+http://github.com/mikehale/chef-repo
+
+Contact joshua@37signals.com with any questions.
