@@ -4,6 +4,7 @@ set :repository, "ssh://#{scm_user}@dev.37signals.com/u/git/chef_recipes.git"
 set :deploy_to, "/var/chef_recipes"
 set :deploy_via, :fast_remote_cache
 set :scm, :git
+
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
