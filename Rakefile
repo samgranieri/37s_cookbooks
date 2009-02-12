@@ -51,6 +51,11 @@ task :update do
   end
 end
 
+desc "Publish a tarball of this repo"
+task :publish_tarball do
+  sh "cd /var/chef/current && tar cvzf /var/chef/public/cookbooks.tgz ."
+end
+
 desc "Test your cookbooks for syntax errors"
 task :test do
   puts "** Testing your cookbooks for syntax errors"

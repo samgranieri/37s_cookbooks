@@ -13,6 +13,13 @@ API_PASSWORD='nics1or'
 
 class Knife < Thor
 
+  desc "register", "Register an openid for an API user"
+  method_options :username => :required, :password => :required
+  def register
+    @rest = Chef::REST.new(Chef::Config[:registration_url])
+    @rest.register(options[:username], options[:password])
+  end
+  
   desc "add_recipe", "Add a recipe to a node"
   method_options :recipe => :required, :after => :optional, :node => :required
   def add_recipe
