@@ -1,1 +1,0 @@
-runit_service "chef-client"
