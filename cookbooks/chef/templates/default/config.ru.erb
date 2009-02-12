@@ -11,5 +11,7 @@ Merb::BootLoader.run
 #if prefix = ::Merb::Config[:path_prefix]
 #  use Merb::Rack::PathPrefix, prefix
 #end
- 
+
+Chef::Config.from_file(File.join("/etc", "chef", "server.rb"))
+
 run Merb::Rack::Application.new

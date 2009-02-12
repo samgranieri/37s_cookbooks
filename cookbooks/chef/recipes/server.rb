@@ -28,6 +28,12 @@ directory "/var/chef/openid" do
   mode 0750
 end
 
+directory "/var/chef/openid/cstore" do
+  owner "chef"
+  group "chef"
+  mode 0750
+end
+
 template "/etc/chef/server.rb" do
   owner "chef"
   group "chef"
