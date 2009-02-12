@@ -9,7 +9,20 @@ end
 
 directory "/var/chef/log" do
   owner "root"
-  mode 0750
+  group "www-data"
+  mode 0770
+end
+
+directory "/var/chef/openid" do
+  owner "root"
+  group "www-data"
+  mode 0770
+end
+
+directory "/var/chef/cstore" do
+  owner "root"
+  group "www-data"
+  mode 0770
 end
 
 template "/etc/chef/server.rb" do
