@@ -2,38 +2,43 @@ include_recipe "runit"
 include_recipe "apache2"
 include_recipe "passenger"
 
+group "chef"
+
+user "chef" do
+  comment "Chef user"
+  gid "chef"
+  home "/var/chef"
+  shell "/bin/false"
+end
+
 directory "/etc/chef" do
-  owner "root"
+  owner "chef"
   mode 0750
 end
 
 directory "/var/chef/log" do
-  owner "root"
-  group "www-data"
-  mode 0770
+  owner "chef"
+  group "chef"
+  mode 0750
 end
 
 directory "/var/chef/openid" do
-  owner "root"
-  group "www-data"
-  mode 0770
-end
-
-directory "/var/chef/cstore" do
-  owner "root"
-  group "www-data"
-  mode 0770
+  owner "chef"
+  group "chef"
+  mode 0750
 end
 
 template "/etc/chef/server.rb" do
-  owner "root"
+  owner "chef"
+  group "chef"
   mode 0640
   source "server.rb.erb"
   action :create
 end
 
 template "/etc/chef/client.rb" do
-  owner "root"
+  owner "chef"
+  group "chef"
   mode 0640
   source "client.rb.erb"
   action :create
@@ -71,15 +76,7 @@ template "/usr/lib/ruby/gems/1.8/gems/chef-server-0.5.3/lib/config.ru" do
   source 'config.ru.erb'
   action :create
   owner "root"
-  group "www-data"
-  mode 0644
-end
-
-template "/usr/lib/ruby/gems/1.8/gems/chef-server-0.5.3/lib/init.rb" do
-  source 'init.rb.erb'
-  action :create
-  owner "root"
-  group "www-data"
+  group "chef"
   mode 0644
 end
 
