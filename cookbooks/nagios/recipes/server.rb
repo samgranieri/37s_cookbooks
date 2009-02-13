@@ -1,11 +1,3 @@
-#
-# Cookbook Name:: nagios
-# Recipe:: server
-#
-# Copyright 2009, 37signals
-#
-# All rights reserved - Do Not Redistribute
-#
 include_recipe "apache2"
 
 file "/etc/nagios3/htpasswd.users" do
@@ -32,16 +24,41 @@ search(:node, "*") {|n| hosts << n }
 
 service "nagios3" do
   supports :status => true, :restart => true, :reload => true
-  action [ :enable ]
+  action :enable
 end
 
 nagios_conf "nagios" do
   config_subdir false
 end
 
+directory "/etc/nagios3/conf.d/dist" do
+  owner "nagios"
+  group "nagios"
+  mode 0755
+end
+
+execute "archive default nagios object definitions" do
+  command "mv #{node[:nagios][:root]}/conf.d/*_nagios2.cfg #{node[:nagios][:root]}/conf.d/dist"
+  not_if Dir.glob(node[:nagios][:root] + "/conf.d/*_nagios2.cfg").empty?
+end
+
+remote_directory "/var/lib/nagios/notifiers" do
+  source "notifiers"
+  files_backup 5
+  files_owner "nagios"
+  files_group "nagios"
+  files_mode 0644
+  owner "nagios"
+  group "nagios"
+  mode "0755"
+end
+
 nagios_conf "commands"
 nagios_conf "contacts"
 nagios_conf "notification_commands"
+nagios_conf "templates"
+nagios_conf "timeperiods"
+
 nagios_conf "hosts" do
   variables ({:hosts => hosts})
 end
