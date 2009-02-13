@@ -2,7 +2,7 @@
 #
 
 .<%= @node[:domain] %>:<%= @node[:djbdns][:tinydns_internal_ipaddress] %>:a:259200
-chef.<%= @node[:domain] %>:<%= node[:ipaddress] %>:300
++chef.<%= @node[:domain] %>:<%= @node[:ipaddress] %>:300
 <% @hosts.each do |host| %>
 =<%=host['fqdn']%>:<%= host['ipaddress'] %>:300
 <% end %>
