@@ -13,31 +13,31 @@ end
 
 directory "/etc/chef" do
   owner "chef"
-  mode 0750
+  mode 0755
 end
 
 directory "/var/chef/log" do
   owner "chef"
   group "chef"
-  mode 0750
+  mode 0755
 end
 
 directory "/var/chef/openid" do
   owner "chef"
   group "chef"
-  mode 0750
+  mode 0755
 end
 
 directory "/var/chef/openid/cstore" do
   owner "chef"
   group "chef"
-  mode 0750
+  mode 0755
 end
 
 template "/etc/chef/server.rb" do
   owner "chef"
   group "chef"
-  mode 0640
+  mode 0644
   source "server.rb.erb"
   action :create
 end
@@ -45,7 +45,7 @@ end
 template "/etc/chef/client.rb" do
   owner "chef"
   group "chef"
-  mode 0640
+  mode 0644
   source "client.rb.erb"
   action :create
 end
