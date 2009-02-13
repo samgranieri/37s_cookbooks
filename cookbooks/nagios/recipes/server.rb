@@ -6,8 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-include_recipe "apache"
-
+include_recipe "apache2"
 
 file "/etc/nagios3/htpasswd.users" do
   owner "nagios"
