@@ -11,4 +11,3 @@ nagios[:check_external_commands] = true
 # Other interval settings provided in seconds will calculate their actual from this value, since nagios works in 'time units' rather than allowing definitions everywhere in seconds
 
 nagios[:interval_length] = 15
-
