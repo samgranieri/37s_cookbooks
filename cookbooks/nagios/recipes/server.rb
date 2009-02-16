@@ -31,14 +31,14 @@ nagios_conf "nagios" do
   config_subdir false
 end
 
-directory "/etc/nagios3/conf.d/dist" do
+directory "/etc/nagios3/dist" do
   owner "nagios"
   group "nagios"
   mode 0755
 end
 
 execute "archive default nagios object definitions" do
-  command "mv #{node[:nagios][:root]}/conf.d/*_nagios*.cfg #{node[:nagios][:root]}/conf.d/dist"
+  command "mv #{node[:nagios][:root]}/conf.d/*_nagios*.cfg #{node[:nagios][:root]}/dist"
   not_if { Dir.glob(node[:nagios][:root] + "/conf.d/*_nagios*.cfg").empty? }
 end
 
