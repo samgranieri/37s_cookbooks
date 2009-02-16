@@ -1,6 +1,6 @@
 require_recipe "apt"
 
-directory node[:apt][:base_path] do
+directory node[:apt][:mirror][:base_path] do
   action :create
   owner "root"
   group "root"
@@ -8,7 +8,7 @@ directory node[:apt][:base_path] do
 end
 
 %(var skel mirror).each do |dir|
-  directory node[:apt][:base_path]+"/#{dir}" do
+  directory node[:apt][:mirror][:base_path]+"/#{dir}" do
     action :create
     owner "root"
     group "root"
@@ -24,6 +24,6 @@ end
 cron "apt mirror nightly update" do
   command "/usr/bin/apt-mirror > /var/log/apt-mirror.log 2>&1"
   hour 5
-  only_if File.exist?(node[:apt][:base_path]+"/mirror")
+  only_if File.exist?(node[:apt][:mirror][:base_path]+"/mirror")
 end
 
