@@ -16,7 +16,12 @@ end
   end
 end
 
-cron "ganglia_tomcat_thread_max" do
+template "/etc/apt/mirror.list" do
+  source "apt-mirror.list.erb"
+  mode 0644  
+end
+
+cron "apt mirror nightly update" do
   command "/usr/bin/apt-mirror > /var/log/apt-mirror.log 2>&1"
   hour 5
   only_if File.exist?(node[:apt][:base_path]+"/mirror")
