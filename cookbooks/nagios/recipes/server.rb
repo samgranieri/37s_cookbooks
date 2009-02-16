@@ -39,7 +39,7 @@ end
 
 execute "archive default nagios object definitions" do
   command "mv #{node[:nagios][:root]}/conf.d/*_nagios2.cfg #{node[:nagios][:root]}/conf.d/dist"
-  not_if Dir.glob(node[:nagios][:root] + "/conf.d/*_nagios2.cfg").empty?
+  not_if { Dir.glob(node[:nagios][:root] + "/conf.d/*_nagios2.cfg").empty? }
 end
 
 remote_directory "/var/lib/nagios/notifiers" do
