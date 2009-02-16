@@ -50,7 +50,7 @@ remote_directory "/var/lib/nagios/notifiers" do
   files_mode 0644
   owner "nagios"
   group "nagios"
-  mode "0755"
+  mode 0755
 end
 
 nagios_conf "commands"
