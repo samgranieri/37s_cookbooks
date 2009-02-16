@@ -1,4 +1,4 @@
-{"recipes": ["base", "chef::server", "djbdns", "djbdns::cache", "djbdns::internal_server"],
+{"recipes": ["base", "chef::server", "djbdns", "djbdns::cache", "djbdns::internal_server", "apt::mirror"],
  "assigned_hostname": "noc2",
  "assigned_domain": "rack-dfw.37signals.com"
 }
