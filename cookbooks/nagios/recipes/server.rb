@@ -42,16 +42,16 @@ execute "archive default nagios object definitions" do
   not_if { Dir.glob(node[:nagios][:root] + "/conf.d/*_nagios2.cfg").empty? }
 end
 
-remote_directory "/var/lib/nagios/notifiers" do
-  source "notifiers"
-  files_backup 5
-  files_owner "nagios"
-  files_group "nagios"
-  files_mode 0644
-  owner "nagios"
-  group "nagios"
-  mode 0755
-end
+# remote_directory "/var/lib/nagios/notifiers" do
+#   source "notifiers"
+#   files_backup 5
+#   files_owner "nagios"
+#   files_group "nagios"
+#   files_mode 0644
+#   owner "nagios"
+#   group "nagios"
+#   mode 0755
+# end
 
 nagios_conf "commands"
 nagios_conf "contacts"
