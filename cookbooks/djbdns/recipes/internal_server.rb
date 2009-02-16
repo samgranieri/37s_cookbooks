@@ -29,9 +29,13 @@ execute "build-tinydns-internal-data" do
   action :nothing
 end
 
+hosts = []
+search(:node, "*") {|n| hosts << n }
+
 template "/etc/tinydns-internal/root/data" do
   source "tinydns-internal-data.erb"
   mode 644
+  variables(:hosts => hosts)
   notifies :run, resources("execute[build-tinydns-internal-data]")
 end
 
@@ -52,8 +56,3 @@ end
 link "/etc/init.d/tinydns-internal" do
   to node[:runit_sv_bin]
 end
-
-hosts = []
-search(:node, "*") {|n| hosts << n }
-
-

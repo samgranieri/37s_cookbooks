@@ -14,7 +14,7 @@ status_file=/var/cache/nagios3/status.dat
 status_update_interval=10
 nagios_user=nagios
 nagios_group=nagios
-check_external_commands=0
+check_external_commands=1
 
 # NOTE: Setting this value to -1 causes Nagios to check the external command file as often as possible.
 command_check_interval=-1
@@ -77,7 +77,7 @@ retained_process_service_attribute_mask=0
 retained_contact_host_attribute_mask=0
 retained_contact_service_attribute_mask=0
 
-interval_length=60
+interval_length=15
 
 use_aggressive_host_checking=0
 

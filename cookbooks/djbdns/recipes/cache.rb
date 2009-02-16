@@ -45,6 +45,7 @@ file "/etc/public-dnscache/root/ip/#{node[:djbdns][:public_dnscache_allowed_netw
 end
 
 template "/etc/public-dnscache/root/servers/#{node[:djbdns][:tinydns_internal_resolved_domain]}" do
+  source "dnscache-servers.erb"
   mode 0644
 end
 
