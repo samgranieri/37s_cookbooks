@@ -1,0 +1,1 @@
+apt = Mash.new unless attribute?("apt")
