@@ -77,7 +77,7 @@ retained_process_service_attribute_mask=0
 retained_contact_host_attribute_mask=0
 retained_contact_service_attribute_mask=0
 
-interval_length=<%= @node[:nagios][:interval_length] %>
+interval_length=<%= nagios_attr(:interval_length) %>
 
 use_aggressive_host_checking=0
 

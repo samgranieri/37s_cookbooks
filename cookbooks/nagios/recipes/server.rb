@@ -31,10 +31,18 @@ nagios_conf "nagios" do
   config_subdir false
 end
 
-directory "/etc/nagios3/dist" do
+directory "#{node[:nagios][:root]}/dist" do
   owner "nagios"
   group "nagios"
   mode 0755
+end
+
+%(templates contacts commands).each do |dir|
+  directory "#{node[:nagios][:root]}/conf.d/#{dir}" do
+    owner "nagios"
+    group "nagios"
+    mode 0755
+  end
 end
 
 execute "archive default nagios object definitions" do
@@ -52,6 +60,12 @@ end
 #   group "nagios"
 #   mode 0755
 # end
+
+nagios_service_tempate "local" do
+  max_check_attempts      4
+  normal_check_interval   300
+  retry_check_interval    60
+end
 
 nagios_conf "commands"
 nagios_conf "contacts"

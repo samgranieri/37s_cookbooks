@@ -15,3 +15,7 @@ define :nagios_conf, :variables => {}, :config_subdir => true do
     notifies :restart, resources(:service => "nagios3")
   end
 end
+
+define :nagios_service_template do
+  node[:nagios][:service_templates]["#{params[:name]}-service"] = params
+end
