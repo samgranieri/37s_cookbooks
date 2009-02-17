@@ -4,5 +4,5 @@ PassengerDefaultUser chef
   ServerAdmin     <%= @node[:base][:sysadmin_email] %>
   ServerName      chef.<%= @node[:domain] %>
   DocumentRoot    <%= @node[:chef][:server_path]%>/lib/public
-  ErrorLog        /var/chef/merb/log/apache_error.log
+  ErrorLog        /var/log/chef/apache_error.log
 </VirtualHost>
