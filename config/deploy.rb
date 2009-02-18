@@ -2,21 +2,12 @@ set :application, "chef_recipes"
 set :scm_user, ENV['USER']
 set :repository, "ssh://#{scm_user}@dev.37signals.com/u/git/chef_recipes.git"
 set :deploy_to, "/var/chef_recipes"
-set :deploy_via, :fast_remote_cache
 set :scm, :git
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
 require 'capistrano/ext/multistage'
-
-task :fix_git_remote_url do
-  if scm == :git && strategy.is_a?(Capistrano::Deploy::Strategy::RemoteCache)
-    run "if [ -d #{shared_path}/cached-copy ]; then cd #{shared_path}/cached-copy; git config remote.origin.url #{repository}; fi"
-  else
-    logger.important "#{current_task.fully_qualified_name} is only run for the git SCM and remote-cache"
-  end
-end
 
 desc "Install essential packages for chef"
 task :bootstrap do
@@ -51,20 +42,16 @@ end
 
 desc "Update recipes"
 task :update_recipes do
-  run "cd #{current_path} && rake install"
+  run "cd #{deploy_to} && rake install"
 end
 
 desc "Run chef solo"
 task :run_solo do
-  run "cd #{current_path} && chef-solo -c config/solo.rb -j config/#{stage}/backup.json"
+  run "cd #{deploy_to} && chef-solo -c config/solo.rb -j config/#{stage}/backup.json"
 end
 
-before "deploy", :fix_git_remote_url
-after "deploy:update", "deploy:cleanup"
 after "deploy", "update_recipes"
 
 deploy.task :default, :except => {:no_release => true} do
-  on_rollback { run "rm -rf #{release_path}; true" }
-  strategy.deploy!
-  symlink
+  run "cd #{deploy_to} && git config remote.origin.url #{repository} && git pull"
 end
