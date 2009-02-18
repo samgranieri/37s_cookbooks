@@ -61,7 +61,7 @@ end
 #   mode 0755
 # end
 
-nagios_service_tempate "local" do
+nagios_servicetempate "local" do
   max_check_attempts      4
   normal_check_interval   300
   retry_check_interval    60
