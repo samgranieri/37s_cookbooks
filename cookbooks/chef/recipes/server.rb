@@ -4,11 +4,13 @@ include_recipe "passenger"
 
 group "chef"
 
+gem_package "chef-server"
+
 user "chef" do
   comment "Chef user"
   gid "chef"
   home "/var/chef"
-  shell "/bin/false"
+  shell "/bin/bash"
 end
 
 directory "/etc/chef" do
@@ -16,7 +18,7 @@ directory "/etc/chef" do
   mode 0755
 end
 
-directory "/var/chef/log" do
+directory "/var/log/chef" do
   owner "chef"
   group "chef"
   mode 0755
