@@ -78,7 +78,7 @@ template "/etc/apache2/sites-available/chef-server" do
   mode 0640
 end
 
-template "/usr/lib/ruby/gems/1.8/gems/chef-server-0.5.3/lib/config.ru" do
+template "#{node[:chef][:server_path]}/lib/config.ru" do
   source 'config.ru.erb'
   action :create
   owner "root"
