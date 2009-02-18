@@ -103,15 +103,6 @@ template "#{node[:apache][:dir]}/ports.conf" do
   mode 0644
 end
 
-template "#{node[:apache][:dir]}/sites-available/default" do
-  source "default-site.erb"
-  owner "root"
-  group "root"
-  mode 0644
-  notifies :restart, resources(:service => "apache2")
-end
-
-
 template "#{node[:apache][:dir]}/mods-available/deflate.conf" do
   source "deflate.conf.erb"
   owner "root"
