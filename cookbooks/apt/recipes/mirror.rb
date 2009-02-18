@@ -7,7 +7,7 @@ directory node[:apt][:mirror][:base_path] do
   mode 0755
 end
 
-%(var skel mirror).each do |dir|
+%w(var skel mirror).each do |dir|
   directory node[:apt][:mirror][:base_path]+"/#{dir}" do
     action :create
     owner "root"
