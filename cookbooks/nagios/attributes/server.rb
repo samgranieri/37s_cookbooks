@@ -13,6 +13,9 @@ nagios[:check_external_commands] = true
 nagios[:interval_length] = 1
 
 # Provide all interval values in seconds
+%w(default_host default_service hosts services service_templates).each do |var|
+nagios[var.to_sym] = Mash.new
+end
 
 nagios[:default_host][:check_interval] = 15
 nagios[:default_host][:retry_interval] = 15
@@ -24,6 +27,3 @@ nagios[:default_host][:retry_interval] = 15
 nagios[:default_host][:notification_interval] = 1200
 nagios[:default_host][:max_check_attempts] = 3
 
-nagios[:service_templates] = Mash.new
-nagios[:services] = Mash.new
-nagios[:hosts] = Mash.new
