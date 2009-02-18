@@ -1,5 +1,5 @@
 define contact {
-  name                            generic-contact
+  name                            default-contact
   service_notification_period     24x7
   host_notification_period        24x7
   service_notification_options    w,u,c,r,f,s
@@ -21,7 +21,7 @@ define contact {
 }
 
 define host {
-  name                            generic-host
+  name                            default-host
   notifications_enabled           1
   event_handler_enabled           1
   flap_detection_enabled          1

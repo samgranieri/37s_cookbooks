@@ -1,5 +1,10 @@
 include_recipe "apache2"
 
+package "nagios" do
+  package_name 'nagios3'
+  action :install
+end
+
 file "/etc/nagios3/htpasswd.users" do
   owner "nagios"
   group "www-data"
@@ -12,11 +17,6 @@ userlist = node[:nagios][:users]
 
 add_htpasswd_users "/etc/nagios3/htpasswd.users" do
   users userlist
-end
-
-package "nagios" do
-  package_name 'nagios3'
-  action :install
 end
 
 hosts = []
@@ -50,26 +50,25 @@ execute "archive default nagios object definitions" do
   not_if { Dir.glob(node[:nagios][:root] + "/conf.d/*_nagios*.cfg").empty? }
 end
 
-# remote_directory "/var/lib/nagios/notifiers" do
-#   source "notifiers"
-#   files_backup 5
-#   files_owner "nagios"
-#   files_group "nagios"
-#   files_mode 0644
-#   owner "nagios"
-#   group "nagios"
-#   mode 0755
-# end
-
-nagios_servicetempate "local" do
-  max_check_attempts      4
-  normal_check_interval   300
-  retry_check_interval    60
+remote_directory "/var/lib/nagios/notifiers" do
+  source "notifiers"
+  files_backup 5
+  files_owner "nagios"
+  files_group "nagios"
+  files_mode 0644
+  owner "nagios"
+  group "nagios"
+  mode 0755
 end
+
+# nagios_service_tempate "local" do
+#   max_check_attempts      4
+#   normal_check_interval   300
+#   retry_check_interval    60
+# end
 
 nagios_conf "commands"
 nagios_conf "contacts"
-nagios_conf "notification_commands"
 nagios_conf "templates"
 nagios_conf "timeperiods"
 
