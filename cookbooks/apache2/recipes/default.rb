@@ -142,6 +142,10 @@ include_recipe "apache2::mod_headers"
 include_recipe "apache2::mod_ssl"
 include_recipe "apache2::mod_log_config" if platform?("centos", "redhat", "suse")
 
+apache_site "default" do
+  disable true
+end
+
 service "apache2" do
   action :start
 end
