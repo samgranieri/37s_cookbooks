@@ -1,5 +1,3 @@
-require_recipe 'nagios'
-
 remote_directory "/var/lib/nagios/custom-plugins" do
   source "plugins"
   files_backup 5
