@@ -13,12 +13,12 @@ define :passenger_app do
       :docroot  => docroot,
       :server_name  => params[:conf][:server_name],
       :max_pool_size    => params[:conf][:max_pool_size] || 4,
-      :ssl => (params[:conf][:ssl] == "true")
+      :ssl => params[:conf][:ssl]
     })
     #only_if { File.exists?(docroot) }
   end
 
-  enable_setting = params[:conf][:enable] == "true"
+  enable_setting = params[:conf][:enable]
   apache_site full_name do
     puts params[:conf].inspect
     enable enable_setting
