@@ -1,3 +1,18 @@
+directory "/u/logs" do
+  action :create
+  mode 0755
+  owner "app"
+  group "app"
+end
+
+directory "/u/logs/apps" do
+  action :create
+  mode 0775
+  owner "app"
+  group "www-data"
+end
+
+
 if node[:applications]
   puts node[:applications].inspect
   node[:applications].each do |app, config_hash|

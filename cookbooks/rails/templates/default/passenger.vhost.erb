@@ -28,6 +28,7 @@
   </Directory>
 </VirtualHost>
 
+<% if @ssl %>
 <VirtualHost *:443>
 	ServerName <%= @server_name %>
   DocumentRoot <%= @docroot %>
@@ -68,3 +69,4 @@
   # Make Mongrel assume SSL
   RequestHeader append X_FORWARDED_PROTO "https" 
 </VirtualHost>
+<% end %>

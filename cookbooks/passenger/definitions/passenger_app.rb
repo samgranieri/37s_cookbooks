@@ -1,17 +1,19 @@
 define :passenger_app do
-  subdir = (params[:conf][:env] == :staging) ? "staging/" : ""
-  docroot = "/u/apps/#{subdir}#{params[:name]}/current/public"
+  subdir = (params[:conf][:env] == "staging") ? "staging/" : ""
+  docroot = "/u/#{subdir}apps/#{params[:name]}/current/public"
   full_name = "#{params[:name]}_#{params[:conf][:env]}"
+  
   template "/etc/apache2/sites-available/#{full_name}" do
     owner 'root'
     group 'root'
     mode 0644
     source "passenger.vhost.erb"
     variables({
-      :name => params[:name],
+      :name => full_name,
       :docroot  => docroot,
       :server_name  => params[:conf][:server_name],
-      :max_pool_size    => params[:conf][:max_pool_size] || 4
+      :max_pool_size    => params[:conf][:max_pool_size] || 4,
+      :ssl => (params[:conf][:ssl] == "true")
     })
     #only_if { File.exists?(docroot) }
   end
