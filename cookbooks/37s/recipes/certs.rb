@@ -1,3 +1,3 @@
-remote_directory "/etc/certs"
+remote_directory "/etc/certs" do
   source "certs"
 end
