@@ -14,6 +14,7 @@ end
 
 
 if node[:applications]
+  require_recipe "rails_passenger"
   puts node[:applications].inspect
   node[:applications].each do |app, config_hash|
     if config_hash[:type] == :mongrel
