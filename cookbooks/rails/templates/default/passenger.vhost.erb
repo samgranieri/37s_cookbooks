@@ -5,7 +5,7 @@
   RailsBaseURI /
   RailsMaxPoolSize <%= @max_pool_size %>
   RailsPoolIdleTime 3600
-  RailsEnv 'production'
+  RailsEnv '<%= @env %>'
   
 	ErrorLog      /u/logs/apps/<%= @name %>_error.log
 	CustomLog     /u/logs/apps/<%= @name %>_access.log combined

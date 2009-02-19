@@ -14,6 +14,7 @@ define :passenger_app do
       :server_name  => params[:conf][:server_name],
       :max_pool_size    => params[:conf][:max_pool_size] || 4,
       :ssl => params[:conf][:ssl]
+      :env => params[:conf][:env]
     })
     #only_if { File.exists?(docroot) }
   end
