@@ -13,6 +13,7 @@ base[:default_domain] = "37signals.com"
 base[:gems_path] =  `gem env gemdir`.chomp!
 base[:ruby_path] = `which ruby`.chomp!
 
+
 ddclient Mash.new unless attribute?("ddclient")
 users Mash.new unless attribute?("users")
 groups Mash.new unless attribute?("groups")
