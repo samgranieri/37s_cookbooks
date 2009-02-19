@@ -6,3 +6,18 @@ PassengerDefaultUser chef
   DocumentRoot    <%= @node[:chef][:server_path]%>/lib/public
   ErrorLog        /var/log/chef/apache_error.log
 </VirtualHost>
+
+<VirtualHost *:443>
+  ServerAdmin     <%= @node[:base][:sysadmin_email] %>
+  ServerName      chef.<%= @node[:domain] %>
+  DocumentRoot    <%= @node[:chef][:server_path]%>/lib/public
+  ErrorLog        /var/log/chef/apache_error.log
+	SSLEngine       On
+
+	# Enforce a decent level of encryption
+	SSLProtocol -ALL +SSLv3 +TLSv1
+	SSLCipherSuite ALL:!aNULL:!ADH:!eNULL:!LOW:!EXP:RC4+RSA:+HIGH:+MEDIUM
+
+	SSLCertificateFile       /var/chef/certificates/chef.<%= @node[:domain] %>.crt
+	SSLCertificateKeyFile    /var/chef/certificates/chef.<%= @node[:domain] %>.key
+</VirtualHost>

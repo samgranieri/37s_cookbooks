@@ -61,12 +61,6 @@ remote_directory "/var/lib/nagios/notifiers" do
   mode 0755
 end
 
-# nagios_service_tempate "local" do
-#   max_check_attempts      4
-#   normal_check_interval   300
-#   retry_check_interval    60
-# end
-
 nagios_conf "commands"
 nagios_conf "contacts"
 nagios_conf "templates"
@@ -74,6 +68,12 @@ nagios_conf "timeperiods"
 
 nagios_conf "hosts" do
   variables ({:hosts => hosts})
+end
+
+nagios_service_template "local" do
+  max_check_attempts      4
+  normal_check_interval   300
+  retry_check_interval    60
 end
 
 service "nagios3" do
