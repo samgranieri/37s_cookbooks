@@ -20,7 +20,6 @@ define :passenger_app do
 
   enable_setting = params[:conf][:enable]
   apache_site full_name do
-    puts params[:conf].inspect
     enable enable_setting
     only_if { File.exists?("/etc/apache2/sites-available/#{full_name}") }
   end
