@@ -13,7 +13,7 @@ define :passenger_app do
       :docroot  => docroot,
       :server_name  => params[:conf][:server_name],
       :max_pool_size    => params[:conf][:max_pool_size] || 4,
-      :ssl => params[:conf][:ssl]
+      :ssl => params[:conf][:ssl],
       :env => params[:conf][:env]
     })
     #only_if { File.exists?(docroot) }
