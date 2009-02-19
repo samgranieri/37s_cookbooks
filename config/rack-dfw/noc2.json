@@ -1,4 +1,4 @@
-{"recipes": ["base", "chef::server", "apt::mirror"],
+{"recipes": ["base", "chef::server"],
  "assigned_hostname": "noc2",
  "assigned_domain": "rack-dfw.37signals.com"
 }
