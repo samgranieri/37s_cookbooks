@@ -27,7 +27,6 @@ node[:users].each do |u, config|
   end
 end
 
-
 directory "/u" do
   action :create
   owner "root"
