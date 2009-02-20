@@ -1,3 +1,12 @@
+require_recipe "passenger"
+
+directory "/u/apps" do
+  action :create
+  owner "app"
+  group "app"
+  mode 0775
+end
+
 directory "/u/logs" do
   action :create
   mode 0755
@@ -12,17 +21,17 @@ directory "/u/logs/apps" do
   group "www-data"
 end
 
-
-if node[:applications]
-  require_recipe "rails_passenger"
-  node[:applications].each do |app, config_hash|
-    if config_hash[:type] == :mongrel
-      # mongrel_app app do
-      #   config config[:env]
-      # end
-    else
-      passenger_app app do
-        conf config_hash
+Dir.open("/u/apps").entries.each do |app|
+  %w(staging production).each do |role|
+    if node[:applications][app] && node[:applications][app][role]
+      full_name = "#{app}_#{role}"
+      config_path = "/u/apps/#{app}/current/config/apache/#{role}.conf"      
+      link config_path do
+        to "/etc/apache2/sites-available/#{full_name}"
+        only_if { File.exists?(config_path) }
+      end  
+      apache_site full_name do
+        only_if { File.exists?("/etc/apache2/sites-available/#{full_name}") }
       end
     end
   end

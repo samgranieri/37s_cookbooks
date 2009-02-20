@@ -1,3 +1,4 @@
+include_recipe "build-essential"
 require_recipe "postfix"
 require_recipe "ssh::server"
 
@@ -31,13 +32,6 @@ directory "/u" do
   action :create
   owner "root"
   group "admin"
-  mode 0775
-end
-
-directory "/u/apps" do
-  action :create
-  owner "app"
-  group "app"
   mode 0775
 end
 
