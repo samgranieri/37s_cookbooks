@@ -22,10 +22,10 @@ directory "/u/logs/apps" do
 end
 
 Dir.open("/u/apps").entries.each do |app|
-  %w(staging production).each do |role|
-    if node[:applications][app] && node[:applications][app][role]
-      full_name = "#{app}_#{role}"
-      config_path = "/u/apps/#{app}/current/config/apache/#{role}.conf"      
+  %w(staging production).each do |env|
+    if node[:applications][app] && node[:applications][app][:role] == env
+      full_name = "#{app}_#{env}"
+      config_path = "/u/apps/#{app}/current/config/apache/#{env}.conf"
       link config_path do
         to "/etc/apache2/sites-available/#{full_name}"
         only_if { File.exists?(config_path) }
