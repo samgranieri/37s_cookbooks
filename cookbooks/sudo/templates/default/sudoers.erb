@@ -18,4 +18,5 @@ root    			ALL=(ALL) ALL
 %<%= group %> ALL=(ALL) ALL
 <% end -%>
 
-%app	ALL=(app) ALL
+%app ALL=(app) ALL
+%app ALL=(root) /bin/su - app
