@@ -21,18 +21,15 @@ directory "/u/logs/apps" do
   group "www-data"
 end
 
-Dir.open("/u/apps").entries.each do |app|
-  %w(staging production).each do |env|
-    if node[:applications][app] && node[:applications][app][:role] == env
-      full_name = "#{app}_#{env}"
-      config_path = "/u/apps/#{app}/current/config/apache/#{env}.conf"
-      link config_path do
-        to "/etc/apache2/sites-available/#{full_name}"
-        only_if { File.exists?(config_path) }
-      end  
-      apache_site full_name do
-        only_if { File.exists?("/etc/apache2/sites-available/#{full_name}") }
-      end
-    end
+node[:applications].each do |app, conf|
+  full_name = "#{app}_#{conf[:env]}"
+  config_path = "/u/apps/#{app}/current/config/apache/#{conf[:env]}.conf"
+  
+  link config_path do
+    to "/etc/apache2/sites-available/#{full_name}"
+    only_if { File.exists?(config_path) }
+  end
+  apache_site full_name do
+    only_if { File.exists?("/etc/apache2/sites-available/#{full_name}") }
   end
 end
