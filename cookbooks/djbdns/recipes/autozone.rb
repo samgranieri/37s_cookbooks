@@ -4,7 +4,7 @@
 hosts = []
 search(:node, "*") {|n| hosts << n }
 
-template "/etc/tinydns-internal/zones/chef-server.zone" do
+template "/etc/tinydns-internal/root/zones/chef-server.zone" do
   source "tinydns-internal-data.erb"
   mode 644
   variables(:hosts => hosts)

@@ -23,6 +23,14 @@ execute "/usr/bin/tinydns-conf tinydns dnslog /etc/tinydns-internal #{node[:djbd
   only_if "/usr/bin/test ! -d /etc/tinydns-internal"
 end
 
+directory "/etc/tinydns-internal/root/zones" do
+  mode 0755
+end
+
+directory "/etc/tinydns-internal/root/backup_data" do
+  mode 0755
+end
+
 execute "build-tinydns-internal-data" do
   cwd "/etc/tinydns-internal/root"
   command "./update_from_zones && make"
@@ -55,12 +63,4 @@ end
 
 link "/etc/init.d/tinydns-internal" do
   to node[:runit_sv_bin]
-end
-
-directory "/etc/tinydns-internal/zones" do
-  mode 0755
-end
-
-directory "/etc/tinydns-internal/backup-data" do
-  mode 0755
 end
