@@ -25,22 +25,22 @@ end
 
 execute "build-tinydns-internal-data" do
   cwd "/etc/tinydns-internal/root"
-  command "make"
+  command "./update_from_zones && make"
   action :nothing
-end
-
-hosts = []
-search(:node, "*") {|n| hosts << n }
-
-template "/etc/tinydns-internal/root/data" do
-  source "tinydns-internal-data.erb"
-  mode 644
-  variables(:hosts => hosts)
-  notifies :run, resources("execute[build-tinydns-internal-data]")
 end
 
 template "/etc/tinydns-internal/run" do
   source "sv-server-run.erb"
+  mode 0755
+end
+
+template "/etc/tinydns-internal/root/update_from_zones" do
+  source "update_from_zones.sh.erb"
+  mode 0755
+end
+
+remote_file "/etc/tinydns-internal/root/valtz" do
+  source "valtz"
   mode 0755
 end
 
@@ -55,4 +55,12 @@ end
 
 link "/etc/init.d/tinydns-internal" do
   to node[:runit_sv_bin]
+end
+
+directory "/etc/tinydns-internal/zones" do
+  mode 0755
+end
+
+directory "/etc/tinydns-internal/backup-data" do
+  mode 0755
 end
