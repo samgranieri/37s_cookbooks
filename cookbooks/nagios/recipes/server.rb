@@ -67,7 +67,7 @@ nagios_conf "templates"
 nagios_conf "timeperiods"
 
 nagios_conf "hosts" do
-  variables ({:hosts => hosts})
+  variables({:hosts => hosts})
 end
 
 nagios_service_template "local" do
