@@ -23,27 +23,27 @@ sudo Mash.new unless attribute?("sudo")
 ddclient[:dyndns_login] = "883mhi-ec2dyn"
 ddclient[:dyndns_password] = "5SkR2hJiNsQP"
 
-groups[:app]   = {:gid => 1000, :members => [:david,:jamis,:sam,:jeremy,:jeff,:josh]}
-groups[:site]  = {:gid => 1001, :members => [:jamie,:ryan,:jason,:matt]}
-groups[:admin] = {:gid => 2000, :members => [:joshua,:mark]}
+groups[:app]   = {:gid => 3000, :members => [:david,:jamis,:sam,:jeremy,:jeff,:josh]}
+groups[:site]  = {:gid => 3001, :members => [:jamie,:ryan,:jason,:matt]}
+groups[:admin] = {:gid => 4000, :members => [:joshua,:mark]}
 
-users[:app]    = {:password => "$1$hk40k332$wpSYJYlbbVo3AK/7thxO3.", :comment => "App User", :uid => 1000, :group => :app, :ssh_key_groups => [:app,:admin]}
-users[:site]   = {:password => "$1$4k01kee3$tQkwp46/ngyG.iH4kIaTJ0", :comment => "Site User", :uid => 1001, :group => :site, :ssh_key_groups => [:site,:admin]}
+users[:app]    = {:password => "$1$hk40k332$wpSYJYlbbVo3AK/7thxO3.", :comment => "App User", :uid => 3000, :group => :app, :ssh_key_groups => [:app,:admin]}
+users[:site]   = {:password => "$1$4k01kee3$tQkwp46/ngyG.iH4kIaTJ0", :comment => "Site User", :uid => 4000, :group => :site, :ssh_key_groups => [:site,:admin]}
 
-users[:joshua] = {:password => "$1$vRx7xHSn$xXL0.q9zIfV/p/sm9EDLQ/", :comment => "Joshua Sierles", :uid => 1003, :group => :admin}
-users[:mark]   = {:password => "$1$/Tksj8KW$Vqswv0AALCtHLMog3z6kk/", :comment => "Mark Imbriaco", :uid => 1004, :group => :admin}
+users[:joshua] = {:password => "$1$vRx7xHSn$xXL0.q9zIfV/p/sm9EDLQ/", :comment => "Joshua Sierles", :uid => 3010, :group => :admin}
+users[:mark]   = {:password => "$1$/Tksj8KW$Vqswv0AALCtHLMog3z6kk/", :comment => "Mark Imbriaco", :uid => 3011, :group => :admin}
 
-users[:david]  = {:password => "$1$1EcOMWnu$E/TtE2ODkJKKiOgOq14Sq1", :comment => "DHH", :uid => 1002, :group => :app}
-users[:jamis]  = {:password => "$1$KXwTGx4Z$cJrqEqZ8DcsmIzXjz.nMH0", :comment => "Jamis Buck", :uid => 1006, :group => :app}
-users[:sam]    = {:password => "$1$6cIAM7hX$4w6vLIp2Wp8at6VksADJg0", :comment => "Sam Stephenson", :uid => 1007, :group => :app}
-users[:jeremy] = {:password => "$1$pphqNx4n$LS783nrUBTe4xH8ixpONw.", :comment => "Jeremy Kemper", :uid => 1009, :group => :app}
-users[:jeff]   = {:password => "$1$D5iSTU.m$9kri2Qq0UfUeLb9cjnn4E0", :comment => "Jeff Hardy", :uid => 1010, :group => :app}
-users[:josh]   = {:password => "$1$4NsbdsC2$qnPvm0nE0J2kNmHgqGfTO1", :comment => "Josh Peek", :uid => 1011, :group => :app}
+users[:david]  = {:password => "$1$1EcOMWnu$E/TtE2ODkJKKiOgOq14Sq1", :comment => "DHH", :uid => 3012, :group => :app}
+users[:jamis]  = {:password => "$1$KXwTGx4Z$cJrqEqZ8DcsmIzXjz.nMH0", :comment => "Jamis Buck", :uid => 3013, :group => :app}
+users[:sam]    = {:password => "$1$6cIAM7hX$4w6vLIp2Wp8at6VksADJg0", :comment => "Sam Stephenson", :uid => 3014, :group => :app}
+users[:jeremy] = {:password => "$1$pphqNx4n$LS783nrUBTe4xH8ixpONw.", :comment => "Jeremy Kemper", :uid => 3015, :group => :app}
+users[:jeff]   = {:password => "$1$D5iSTU.m$9kri2Qq0UfUeLb9cjnn4E0", :comment => "Jeff Hardy", :uid => 3016, :group => :app}
+users[:josh]   = {:password => "$1$4NsbdsC2$qnPvm0nE0J2kNmHgqGfTO1", :comment => "Josh Peek", :uid => 3017, :group => :app}
 
-users[:jamie]  = {:password => "$1$/cNS7YPq$Ko/qjme0ofsKIf2nZruZv1", :comment => "Jamie Dihiansan", :uid => 1008, :group => :site}
-users[:ryan]   = {:password => "$1$F4RLmWHq$SmMk24KYh/M0UPCqEfJ3s1", :comment => "Ryan Singer", :uid => 1005, :group => :site}
-users[:jason]  = {:password => "$1$uZBGnixP$IObtQbltwN/OMqYOvETgo.", :comment => "Jason Fried", :uid => 1012, :group => :site}
-users[:matt]   = {:password => "$1$uZBGnixP$IObtQbltwN/OMqYOvETgo.", :comment => "Jason Fried", :uid => 1013, :group => :site}
+users[:jamie]  = {:password => "$1$/cNS7YPq$Ko/qjme0ofsKIf2nZruZv1", :comment => "Jamie Dihiansan", :uid => 3018, :group => :site}
+users[:ryan]   = {:password => "$1$F4RLmWHq$SmMk24KYh/M0UPCqEfJ3s1", :comment => "Ryan Singer", :uid => 3019, :group => :site}
+users[:jason]  = {:password => "$1$uZBGnixP$IObtQbltwN/OMqYOvETgo.", :comment => "Jason Fried", :uid => 3020, :group => :site}
+users[:matt]   = {:password => "$1$uZBGnixP$IObtQbltwN/OMqYOvETgo.", :comment => "Jason Fried", :uid => 3021, :group => :site}
 
 ssh_keys[:david]   = "ssh-dss AAAAB3NzaC1kc3MAAAEBAMz5mPUa2WubrwTgE1VXPdmPSkT0qoU71vh4elJRaj0VWypb2c3IPyyGSdWjsCBSHUSUBUR4VL5fSJfu1QKrHVpt0BIU7Nl+dvCwATAeL9j3k0cpzYrjPhXLZQ4UStfh+Tpo20QitzXQ2ceoFaiVNXf5upUP+Yz+jTqhLkcjWVlIdas/eiVldXVtLEUqUo6RUTcaVLbb8ksp6lhZp1iVV8k07OMButiCB3X3k5kQxCnCMzzWI5IDP6VSacu5gUwIjnS2hB0S3lSBSgJL+YBOBWqjBW4HCqPHMkphEyxUs0GtVia1qdhIs62m8tMMD6hWiqr7+ATJi0xf0iI31TjUxSUAAAAVAPS7EZNGzL+bknalDVdd5JpTFlqfAAABAD1fD+2u1fAh/pMeUnj7fwNGVEH0NwjePLyrZiCV1qvcqfR2FOH6pJS5ntQPgo+bi33MnkXqp/dnkEdpWar/CRo9FgIcyQ4NUSkXYwlhY6HM+PxTQvM5WhRMpJqfcfQKXdhV8hlf293p5roWYmbale4vq+Kz+bpVnIxO+UQqvb1nbnbzB9/ztWWjKwTKUPklvja52g3tWYH1tywzGVHukLoiedZGwqw3kHT8FQgORAr2AbE8Bn++cT6PUr78PXUl537OLVTwtNPK/taB8mm4Fwbriz9fiEdvgtfsji+1vqkJubeUmQi8TPq5iwsthE3TPyY6Ip1ZJlPO8LTXENGyvD8AAAEAUYs2ZCRntt59ryfOsXiu4J/vYpzbSbBqXmX5wBzbb23qmZGd8LBLzUY6NwgR6NbD41e0qx31IGK5KE8fFX/z+oaZfQBw/Vt72QuyypdMcqYXVN4/AOv4u8+pqb7q+m1qULgGoi+/DMKE61mxw0+iiFz+drUr3ZF+9weuVE+xWlBWIze+GOBxMDVrKjvK4wuGFl67gD8F5/wcA8pRDltYVYgwkuf22L+o1ZvYRt+4861kAUfqeP2HM24+swXgPOK1Mi/3AZupqTFTSB1NruDlvd2xBKAMqSMv9sIc0y89cATd9Divusb85zRJVsIGQz19l7UUgA0Ogvwdm0+t4zr2Kw== david@Envy5.local"
 ssh_keys[:joshua]  = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAw942jLhdXBPHljWtE42B1XeFuWSJU/+w4pVTwdID6KEf8KF1cx/Jc0EJnA2ipMgJtUCJolWyt0PdGcqf8oE7UbrkzCW78g+zLa8muxUdHF6JK0b/nQW0plj8rg3rTxTz4lIi46AgW1iC9XXKlcX1IRC3w0Y9Lu+RMyGxdifFNHSj3g+Vd2QfHJBQkQz4Nx1ngT+y6y/966K/AIJHej67MmuCHRTxMKxX5vxmbvHP8WgSvylgx+mkTuYhUzGaQtvopM6zzXLfIsicnxVIu1hWjXlle55t0EamGysjGrJFbYiunbWDlwRfZOBe/ZKec5rBPLxwBC1xQ2F4sOJFUE+iUQ== jsierles@MacAir.local"
