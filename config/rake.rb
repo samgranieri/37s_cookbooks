@@ -28,6 +28,8 @@ NEW_COOKBOOK_LICENSE = :none
 # Chef Repository Layout #
 ##########################
 
+CHEF_BASEPATH = "/var/chef"
+
 # Where to find upstream cookbooks
 COOKBOOK_PATH = "/var/chef/cookbooks"
 
@@ -51,4 +53,4 @@ CHEF_CLIENT_CONFIG = File.join(CHEF_CONFIG_PATH, "client.rb")
 TOPDIR = File.expand_path(File.join(File.dirname(__FILE__), ".."))
 
 # Where to store certificates generated with ssl_cert
-CADIR = File.expand_path(File.join(TOPDIR, "certificates"))
+CADIR = File.expand_path(File.join(CHEF_BASEPATH, "certificates"))
