@@ -30,6 +30,18 @@ directory "/var/chef/openid" do
   mode 0755
 end
 
+directory "/var/chef/cache" do
+  owner "chef"
+  group "chef"
+  mode 0755
+end
+
+directory "/var/chef/search_indexes" do
+  owner "chef"
+  group "chef"
+  mode 0755
+end
+
 directory "/var/chef/openid/cstore" do
   owner "chef"
   group "chef"
