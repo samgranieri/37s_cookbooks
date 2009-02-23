@@ -36,7 +36,7 @@ directory "/var/chef/cache" do
   mode 0755
 end
 
-directory "/var/chef/search_indexes" do
+directory "/var/chef/search_index" do
   owner "chef"
   group "chef"
   mode 0755
