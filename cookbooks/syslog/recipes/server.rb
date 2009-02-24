@@ -7,3 +7,8 @@ template "/etc/syslog-ng/syslog-ng.conf" do
   mode 0644
   notifies :restart, resources(:service => "syslog-ng")
 end
+
+remote_file "/usr/local/bin/logsort" do
+  source "logsort"
+  mode 0755
+end
