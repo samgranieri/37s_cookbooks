@@ -1,6 +1,7 @@
 include_recipe "build-essential"
 require_recipe "postfix"
 require_recipe "ssh::server"
+include_recipe "ssh_keys"
 
 if node[:role] and node[:roles].has_key?(node[:role])
   
@@ -29,6 +30,10 @@ if node[:role] and node[:roles].has_key?(node[:role])
         group config[:group].to_s
         mode 0700
       end
+      
+      add_keys u do
+        conf config
+      end
     end
   end
 
@@ -39,7 +44,9 @@ if node[:role] and node[:roles].has_key?(node[:role])
     mode 0775
   end
 
-  require_recipe "ssh_keys"
+  
+  
+
   require_recipe "sudo"
 else
   Chef::Log.warn "The node requires a role, one of: #{node[:roles].keys.join(',')}"

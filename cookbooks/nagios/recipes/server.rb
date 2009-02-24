@@ -15,9 +15,10 @@ end
 # using the node object inside this block fails, so we assign for now
 userlist = node[:nagios][:users]
 
-add_htpasswd_users "/etc/nagios3/htpasswd.users" do
-  users userlist
-end
+# TODO: use an htpasswd template and already-encryped passwords
+# add_htpasswd_users "/etc/nagios3/htpasswd.users" do
+#   users userlist
+# end
 
 hosts = []
 search(:node, "*") {|n| hosts << n }
