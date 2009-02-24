@@ -68,7 +68,7 @@ filter f_<%= app %> { program("<%= app %>"); };
 log { source(s_remote); filter(f_<%= app %>); destination(<%= app %>); flags(final); };
 
 <% if config[:logsort] %>
-destination <%= app %>_logsort { program("/u/apps/<%= app %>/shared/bin/logsort", log_fifo_size(30000)); };
+destination <%= app %>_logsort { program("/usr/local/bin/logsort", log_fifo_size(30000)); };
 log { source(s_remote); filter(f_<%= app %>); destination(<%= app %>_logsort); flags(final); };	
 <% end %>
 
