@@ -1,18 +1,20 @@
 package "libcurl3"
 
+package "libcurl4-openssl-dev"
+
 remote_file "/usr/lib/apache2/modules/mod_authn_yubikey.so" do
   source "mod_authn_yubikey.so"
 end
 
-file "/etc/apache2/conf.d/yubikey_user" do
+file "/etc/apache2/conf.d/yubikey_owner" do
   action :create
-  user "www-data"
+  owner "www-data"
   mode 0640
 end
 
 file "/etc/apache2/conf.d/yubikey_tmp" do
   action :create
-  user "www-data"
+  owner "www-data"
   mode 0640
 end
 
