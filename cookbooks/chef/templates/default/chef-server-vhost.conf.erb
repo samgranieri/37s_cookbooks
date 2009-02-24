@@ -1,12 +1,5 @@
 PassengerDefaultUser chef
 
-<VirtualHost *:80> 
-  ServerAdmin     <%= @node[:base][:sysadmin_email] %>
-  ServerName      chef.<%= @node[:domain] %>
-  DocumentRoot    <%= @node[:chef][:server_path]%>/lib/public
-  ErrorLog        /var/log/chef/apache_error.log
-</VirtualHost>
-
 <VirtualHost *:443>
   ServerAdmin     <%= @node[:base][:sysadmin_email] %>
   ServerName      chef.<%= @node[:domain] %>
@@ -20,4 +13,17 @@ PassengerDefaultUser chef
 
 	SSLCertificateFile       /var/chef/certificates/chef.<%= @node[:domain] %>.crt
 	SSLCertificateKeyFile    /var/chef/certificates/chef.<%= @node[:domain] %>.key
+
+	<Location />
+		AuthType Basic
+		AuthBasicProvider yubikey
+		AuthName "Login"
+		AuthYubiKeyTimeout 30
+		AuthYubiKeyTmpFile conf.d/yubikey_tmp
+		AuthYubiKeyUserFile conf.d/yubikey_user
+		AuthYubiKeyRequireSecure On
+		AuthYubiKeyExternalErrorPage Off
+		Require valid-user
+	</Location>
+
 </VirtualHost>
