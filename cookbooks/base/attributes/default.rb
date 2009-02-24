@@ -19,19 +19,23 @@ users Mash.new unless attribute?("users")
 groups Mash.new unless attribute?("groups")
 ssh_keys Mash.new unless attribute?("ssh_keys")
 sudo Mash.new unless attribute?("sudo")
+roles Mash.new unless attribute?("roles")
 
 ddclient[:dyndns_login] = "883mhi-ec2dyn"
 ddclient[:dyndns_password] = "5SkR2hJiNsQP"
 
-groups[:app]   = {:gid => 3000, :members => [:david,:jamis,:sam,:jeremy,:jeff,:josh]}
-groups[:site]  = {:gid => 3001, :members => [:jamie,:ryan,:jason,:matt]}
-groups[:admin] = {:gid => 4000, :members => [:joshua,:mark]}
+groups[:app]   = {:gid => 3000}
+groups[:site]  = {:gid => 3001}
+groups[:admin] = {:gid => 4000}
+
+roles[:hypervisor]    = {:groups => [:admin], :sudo_groups => [:admin]}
+roles[:noc]           = {:groups => [:admin], :sudo_groups => [:admin]}
 
 users[:app]    = {:password => "$1$hk40k332$wpSYJYlbbVo3AK/7thxO3.", :comment => "App User", :uid => 3000, :group => :app, :ssh_key_groups => [:app,:admin]}
 users[:site]   = {:password => "$1$4k01kee3$tQkwp46/ngyG.iH4kIaTJ0", :comment => "Site User", :uid => 4000, :group => :site, :ssh_key_groups => [:site,:admin]}
 
-users[:joshua] = {:password => "$1$vRx7xHSn$xXL0.q9zIfV/p/sm9EDLQ/", :comment => "Joshua Sierles", :uid => 3010, :group => :admin}
-users[:mark]   = {:password => "$1$/Tksj8KW$Vqswv0AALCtHLMog3z6kk/", :comment => "Mark Imbriaco", :uid => 3011, :group => :admin}
+users[:joshua] = {:password => "$1$vRx7xHSn$xXL0.q9zIfV/p/sm9EDLQ/", :comment => "Joshua Sierles", :uid => 3010, :group => :admin, :yubikey_id => 'dtnkddnltnhk', :http_digest => 'Q0ow3S0HISHc.'}
+users[:mark]   = {:password => "$1$/Tksj8KW$Vqswv0AALCtHLMog3z6kk/", :comment => "Mark Imbriaco",  :uid => 3011, :group => :admin,  :yubikey_id => 'fffnfcuikinj', :http_digest => 'Dyil3x.G1g872'}
 
 users[:david]  = {:password => "$1$1EcOMWnu$E/TtE2ODkJKKiOgOq14Sq1", :comment => "DHH", :uid => 3012, :group => :app}
 users[:jamis]  = {:password => "$1$KXwTGx4Z$cJrqEqZ8DcsmIzXjz.nMH0", :comment => "Jamis Buck", :uid => 3013, :group => :app}

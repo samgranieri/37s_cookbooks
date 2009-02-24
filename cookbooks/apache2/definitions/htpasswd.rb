@@ -1,9 +1,8 @@
-define :add_htpasswd_users do
-    
-  params[:users].each do |user, pass|
-    execute "htpasswd add #{user}" do
-      command "/usr/bin/htpasswd -b #{params[:name]} #{user} #{pass}"
-      not_if "grep #{user} #{params[:name]}"
-    end
+define :htpasswd_file, :entries => {"default" => "04j9j02kv"} do
+  template params[:name] do
+    owner "www-data"
+    mode 0750
+    source "htpasswd.erb"
+    variables(:entries => params[:entries])
   end
 end

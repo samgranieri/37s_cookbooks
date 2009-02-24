@@ -7,7 +7,7 @@ node[:users].each do |name, config|
   
   if config[:ssh_key_groups]
     config[:ssh_key_groups].each do |group|
-      node[:groups][group][:members].each do |user|
+      node[:users].find_all{|u| u.last[:group] == group}.each do |user|
         keys[user] = node[:ssh_keys][user]
       end
     end

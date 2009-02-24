@@ -83,7 +83,7 @@ service "couchdb" do
   action [ :enable, :start ]
 end
 
-runit_service "chef-indexer" 
+runit_service "chef-indexer"
 
 template "/etc/apache2/sites-available/chef-server" do
   source 'chef-server-vhost.conf.erb'
@@ -100,5 +100,9 @@ template "#{node[:chef][:server_path]}/lib/config.ru" do
   group "chef"
   mode 0644
 end
+
+# htpasswd_file "/etc/apache2/conf.d/yubikey_user" do
+#   entries node[:users].collect {|username, values| {:comment => username, :username => values[:yubikey_id] || username, :password => values[:http_digest]} }
+# end
 
 apache_site "chef-server"
