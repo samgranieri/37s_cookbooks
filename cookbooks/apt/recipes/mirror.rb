@@ -27,15 +27,15 @@ cron "apt mirror nightly update" do
   only_if File.exist?(node[:apt][:mirror][:base_path]+"/mirror")
 end
 
-link node[:apt][:mirror][:base_path]+"/mirror/archive.ubuntu.com"
+link node[:apt][:mirror][:base_path]+"/mirror/archive.ubuntu.com" do
   to node[:apt][:mirror][:base_path]+"/www/archive-ubuntu"
 end
 
-link node[:apt][:mirror][:base_path]+"/mirror/security.ubuntu.com"
+link node[:apt][:mirror][:base_path]+"/mirror/security.ubuntu.com" do
   to node[:apt][:mirror][:base_path]+"/www/security-ubuntu"
 end
 
-link node[:apt][:mirror][:base_path]+"/mirror/archive.canonical.com"
+link node[:apt][:mirror][:base_path]+"/mirror/archive.canonical.com" do
   to node[:apt][:mirror][:base_path]+"/www/archive-canonical"
 end
 
