@@ -10,6 +10,7 @@ gem_package "choice"
 user "nagios" do
   action :manage
   home "/etc/nagios3"
+  shell "/bin/bash"
 end
 
 directory "/etc/nagios3/.ssh" do
