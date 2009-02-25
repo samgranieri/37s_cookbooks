@@ -12,7 +12,8 @@ base[:clickatell_password] = "EIJVhiv4"
 base[:default_domain] = "37signals.com"
 base[:gems_path] =  `gem env gemdir`.chomp!
 base[:ruby_path] = `which ruby`.chomp!
-
+base[:jabber_domain] = "37signals.com"
+base[:jabber_admin_password] = "x9CR0!7#z3ux7P"
 
 ddclient Mash.new unless attribute?("ddclient")
 users Mash.new unless attribute?("users")
