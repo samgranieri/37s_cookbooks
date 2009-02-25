@@ -9,11 +9,11 @@ gem_package "choice"
 
 user "nagios" do
   action :manage
-  home "/etc/nagios"
+  home "/etc/nagios3"
   supports :manage_home => true
 end
 
-directory "/etc/nagios/.ssh" do
+directory "/etc/nagios3/.ssh" do
   mode 0700
   owner "nagios"
   group "nagios"
