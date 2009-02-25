@@ -6,5 +6,5 @@ template "/etc/ejabberd/ejabberd.cfg" do
 end
 
 execute "add ejabberd admin user" do
-  command "ejabberdctl register admin #{node[:jabber_domain]} #{node[:base][:jabber_admin_password]}"
+  command "ejabberdctl register admin #{node[:base][:jabber_domain]} #{node[:base][:jabber_admin_password]}"
 end
