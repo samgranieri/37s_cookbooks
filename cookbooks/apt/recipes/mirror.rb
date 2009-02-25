@@ -7,7 +7,7 @@ directory node[:apt][:mirror][:base_path] do
   mode 0755
 end
 
-%w(var skel mirror).each do |dir|
+%w(var skel mirror www).each do |dir|
   directory node[:apt][:mirror][:base_path]+"/#{dir}" do
     action :create
     owner "root"
@@ -26,3 +26,25 @@ cron "apt mirror nightly update" do
   hour "5"
   only_if File.exist?(node[:apt][:mirror][:base_path]+"/mirror")
 end
+
+link node[:apt][:mirror][:base_path]+"/mirror/archive.ubuntu.com"
+  to node[:apt][:mirror][:base_path]+"/www/archive-ubuntu"
+end
+
+link node[:apt][:mirror][:base_path]+"/mirror/security.ubuntu.com"
+  to node[:apt][:mirror][:base_path]+"/www/security-ubuntu"
+end
+
+link node[:apt][:mirror][:base_path]+"/mirror/archive.canonical.com"
+  to node[:apt][:mirror][:base_path]+"/www/archive-canonical"
+end
+
+template "/etc/apache2/sites-available/apt-mirror" do
+  source 'mirror-vhost.conf.erb'
+  action :create
+  owner "root"
+  group "www-data"
+  mode 0640
+end
+
+apache_site "apt-mirror"
