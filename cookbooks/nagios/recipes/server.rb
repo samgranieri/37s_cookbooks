@@ -7,6 +7,10 @@ package "nagios-nrpe-plugin"
 gem_package "xml-simple"
 gem_package "choice"
 
+gem_package "tinder"
+gem_package "clickatell"
+gem_package "xmpp4r-simple"
+
 user "nagios" do
   action :manage
   home "/etc/nagios3"
@@ -24,6 +28,21 @@ file "/etc/nagios3/htpasswd.users" do
   group "www-data"
   mode 0750
   action :create
+end
+
+# Support our legacy nagios install
+directory "/usr/local/nagios"
+
+link "/usr/lib/nagios/plugins" do
+  to "/usr/local/nagios/libexec"
+end
+
+link "/usr/bin/mail" do
+  to "/bin/mail"
+end
+
+link "/u/nagios/current/bin" do
+  to "/usr/local/nagios/bin"
 end
 
 # using the node object inside this block fails, so we assign for now
