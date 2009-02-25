@@ -1,8 +1,22 @@
 include_recipe "apache2"
 
-package "nagios" do
-  package_name 'nagios3'
-  action :install
+package "nagios3"
+package "nagios-nrpe-plugin"
+
+# required for Solr plugin
+gem_package "xml-simple"
+gem_package "choice"
+
+user "nagios" do
+  action :manage
+  home "/etc/nagios"
+  supports :manage_home => true
+end
+
+directory "/etc/nagios/.ssh" do
+  mode 0700
+  owner "nagios"
+  group "nagios"
 end
 
 file "/etc/nagios3/htpasswd.users" do
