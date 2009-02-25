@@ -25,8 +25,14 @@ node[:applications].each do |app, conf|
   full_name = "#{app}_#{conf[:env]}"
   config_path = "/u/apps/#{app}/current/config/apache/#{conf[:env]}.conf"
   
-  link config_path do
-    to "/etc/apache2/sites-available/#{full_name}"
+  if conf[:gems]
+    conf[:gems].each do |gem_name|
+      gem_package gem_name
+    end
+  end
+  
+  link "/etc/apache2/sites-available/#{full_name}" do
+    to config_path
     only_if { File.exists?(config_path) }
   end
   apache_site full_name do

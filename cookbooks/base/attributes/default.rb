@@ -31,6 +31,7 @@ groups[:admin] = {:gid => 4000}
 
 roles[:hypervisor]    = {:groups => [:admin], :sudo_groups => [:admin]}
 roles[:noc]           = {:groups => [:admin], :sudo_groups => [:admin]}
+roles[:app]           = {:groups => [:admin, :app], :sudo_groups => [:admin]}
 
 users[:app]    = {:password => "$1$hk40k332$wpSYJYlbbVo3AK/7thxO3.", :comment => "App User", :uid => 3000, :group => :app, :ssh_key_groups => [:app,:admin]}
 users[:site]   = {:password => "$1$4k01kee3$tQkwp46/ngyG.iH4kIaTJ0", :comment => "Site User", :uid => 4000, :group => :site, :ssh_key_groups => [:site,:admin]}

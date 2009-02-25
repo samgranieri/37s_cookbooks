@@ -1,0 +1,4 @@
+{"recipes": ["base", "rails::apps"],
+ "role": "app", 
+ "applications": {"backpack": {"env": "production", "gems": ["fast_xs","hpricot"]}}
+}
