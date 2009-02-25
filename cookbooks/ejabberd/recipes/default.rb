@@ -8,7 +8,7 @@ end
 template "/etc/ejabberd/ejabberd.cfg" do
   source "ejabberd.cfg.erb"
   variables(:jabber_domain => node[:base][:jabber_domain])
-  
+  notifies :restart, resources(:service => "ejabberd")
 end
 
 execute "add ejabberd admin user" do
