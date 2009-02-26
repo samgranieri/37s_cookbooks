@@ -64,12 +64,13 @@ destination d_<%= app %>_haproxy { file("/u/logs/<%= app %>/haproxy.log", owner(
 filter f_<%= app %>_haproxy { program("haproxy") and match("<%= app %>"); };
 log { source(s_remote); filter(f_local1); filter(f_haproxy); filter(f_<%= app %>_haproxy); destination(d_<%= app %>_haproxy); flags(final); };
 
+filter f_<%= app %> { program("<%= app %>"); };
+
 <% if config[:logsort] %>
 destination <%= app %>_logsort { program("/usr/local/bin/logsort", log_fifo_size(30000)); };
 log { source(s_remote); filter(f_<%= app %>); destination(<%= app %>_logsort); flags(final); };	
 <% else %>
 destination <%= app %> { file("/u/logs/<%= app %>/rails.log", owner(app), group(app), perm(0640)); };
-filter f_<%= app %> { program("<%= app %>"); };
 log { source(s_remote); filter(f_<%= app %>); destination(<%= app %>); flags(final); };
 <% end %>
 
