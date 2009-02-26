@@ -21,6 +21,7 @@ groups Mash.new unless attribute?("groups")
 ssh_keys Mash.new unless attribute?("ssh_keys")
 sudo Mash.new unless attribute?("sudo")
 roles Mash.new unless attribute?("roles")
+applications Mash.new unless attribute?("applications")
 
 ddclient[:dyndns_login] = "883mhi-ec2dyn"
 ddclient[:dyndns_password] = "5SkR2hJiNsQP"
@@ -62,5 +63,13 @@ ssh_keys[:jamie]   = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAmvyjfIvphyTB5hnjnLq7CR
 ssh_keys[:josh]    = "ssh-dss AAAAB3NzaC1kc3MAAACBAL7Em127r7XKDMupp4knBm2evN49DDL6Rcq4PTsfmojkcmGVPnjqzcIfm79J1U1GSkFxOQ9Eha7XIvDbMvUuqVhfCcAi8uVpyZQ/fFFcF3OdNgBQ/FrzJY5db63ta4UGpph3EWZyLJUE14+mYJ1r3GTO/jCbGWxhZkkD07hBegY/AAAAFQDNuXmdNpRB/M7Ga2AySd8yAkRyhQAAAIBb7HBn+1/UNycTon++/eT5HeriCrVy6G9zqKm6M4HY71TTMD+qhOkGlhqX6C2mTcRFfdPh5f3/qpMRVIQgyBaVWwlST+HhQMm5SqAr6LpsiZo/q+iMUGV4PeTRBsuuNuWEUn6IPvca0BoHXoqZuzBx+P6l0kpcOgRMtKNKeiP0SAAAAIBBNOvt56nhUqskVsLn3NsCkXXKALjt4i/gFx32Jql/3FLCjG3Zz73TXBD90EMvz0gZTjLFX2B4a3sJ5qQz/jJWhgXhppC245x/8ygVZG1fhyZWJTDPe2kaFfPwSRabCWLJOJY4+kQ2AIzQg0BDlcFyQ/4MmhHJF+stKyYO/aJgQA== josh@Joshs-MacBook-Pro.local"
 ssh_keys[:matt]    = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAtxvNj/M53kW5eWyyFc3ZiFAbfQ5TAMxJdYwMaaZNIwDLljOcX7etPSFAaWsG4bAQorFzlFSHLAS2fPWTQdtCdSRHAOGxjZh+h17ueQ3z6zgsHq8r/PgnA9M6qIubcJ1cRIm3VkSAVFaZnInSp3M3UNm0CWA1/Uj5T+ijDIZQIXpFH3DOgv4MZb54TkWDVZEMDLd2ImCw7RgALnEkTaX/w1h3VZBdvZWTtoppz8+ICwcRlW+oi2WxAkSdD3n0+itmJfjTVE5r+zl7/7pPMJCGIGwBhDJCt/DzwBTKYoe61rsMD3Wx91Qy2P8VOJtYZTgqGc3j3PbS5CzpkC/oZEMkzQ== mattruby@Leonard.local"
 ssh_keys[:jeff]   = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAx0iwu7QIsXx6xbvWdQgqtG/ywwvTAgoWJX0e5fhkI0EV8TP6ot75gg6NxuQtRsQi3BcIvFI6K7kGvbY+7Bc4Hw2shGibqT7GPaaNMZWO4NyRPG8CNJd/B4xJNMO+Sp3x7zm6apaHbWwJiKbn5UddWxZNxX+tpV2lKYa0SjyUdGiK7Sgipl1MD5BMVCQ0876j17K3C88BldEpExItxC/8WPNwbLRSEiZf5ECsVITPCYkl4Gw/w1bEe0mx6VKO4HlJSkvRzevpzAvXSSfgrwK86nQ2AC5AXkr8Rdsks6oElxwzBeA/9346nA8W0cU8MmMYJBBfjMv6bUtNvWNGMwif0w== jeff@brunswick.local"
-sudo[:users]  = [:david]
-sudo[:groups] = [:admin]
+
+applications[:basecamp] = {:completed => true, :thumbnails => true, :logsort => true, :haproxy => true}
+applications[:highrise] = {:haproxy => true}
+applications[:campfire] = {:haproxy => true}
+applications[:openbar] = {}
+applications[:backpack] = {}
+applications[:writeboard] = {}
+applications[:jobs] = {}
+applications[:extra_extra] = {}
+applications[:blogcabin] = {}
