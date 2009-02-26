@@ -33,16 +33,16 @@ end
 # Support our legacy nagios install
 directory "/usr/local/nagios"
 
-link "/usr/lib/nagios/plugins" do
-  to "/usr/local/nagios/libexec"
+link "/usr/local/nagios/libexec" do
+  to "/usr/lib/nagios/plugins"
 end
 
-link "/usr/bin/mail" do
-  to "/bin/mail"
+link "/bin/mail" do
+  to "/usr/bin/mailx"
 end
 
-link "/u/nagios/current/bin" do
-  to "/usr/local/nagios/bin"
+link "/usr/local/nagios/bin" do
+  to "/u/nagios/current/bin"
 end
 
 # using the node object inside this block fails, so we assign for now
