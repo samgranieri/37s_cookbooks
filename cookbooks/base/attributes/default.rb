@@ -67,7 +67,7 @@ ssh_keys[:jeff]   = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAx0iwu7QIsXx6xbvWdQgqtG/
 applications[:basecamp] = {:completed => true, :thumbnails => true, :logsort => true, :haproxy => true}
 applications[:highrise] = {:haproxy => true}
 applications[:campfire] = {:haproxy => true}
-applications[:openbar] = {}
+applications[:open_bar] = {}
 applications[:backpack] = {}
 applications[:writeboard] = {}
 applications[:jobs] = {}
