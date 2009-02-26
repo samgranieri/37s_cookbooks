@@ -6,6 +6,7 @@ template "/etc/syslog-ng/syslog-ng.conf" do
   group "root"
   mode 0644
   notifies :restart, resources(:service => "syslog-ng")
+  variables(:applications => node[:applications])
 end
 
 remote_file "/usr/local/bin/logsort" do
@@ -19,7 +20,6 @@ if node[:applications]
       owner "app"
       group "app"
       mode 0750
-      variables(:applications => node[:applications])
     end
   end
 end
