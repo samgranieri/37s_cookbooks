@@ -4,6 +4,7 @@ PassengerDefaultUser chef
 <VirtualHost *:443>
   ServerAdmin     <%= @node[:base][:sysadmin_email] %>
   ServerName      chef.<%= @node[:domain] %>
+  ServerAlias			chef
   DocumentRoot    <%= @node[:chef][:server_path]%>/lib/public
   ErrorLog        /var/log/chef/apache_error.log
 	SSLEngine       On
@@ -22,6 +23,7 @@ PassengerDefaultUser chef
 <VirtualHost *:444>
   ServerAdmin     <%= @node[:base][:sysadmin_email] %>
   ServerName      chefadmin.<%= @node[:domain] %>
+	ServerAlias			chefadmin
   DocumentRoot    <%= @node[:chef][:server_path]%>/lib/public
   ErrorLog        /var/log/chef/apache_error.log
 	SSLEngine       On
