@@ -68,15 +68,6 @@ log { source(s_remote); filter(f_local1); filter(f_haproxy); filter(f_<%= app %>
 
 filter f_<%= app %> { program("<%= app %>"); };
 
-<% if config[:logsort] %>
-destination <%= app %>_logsort { program("/usr/local/bin/logsort", log_fifo_size(30000)); };
-log { source(s_remote); filter(f_<%= app %>); destination(<%= app %>_logsort); flags(final); };	
-<% else %>
-destination <%= app %> { file("/u/logs/<%= app %>/rails.log", owner(app), group(app), perm(0640)); };
-log { source(s_remote); filter(f_<%= app %>); destination(<%= app %>); flags(final); };
-<% end %>
-
-
 <% if config[:completed] %>
 destination <%= app %>_completed { file("/u/logs/<%= app %>/completed.log", owner(app), group(app), perm(0640)); };
 log { source(s_remote); filter(f_<%= app %>); filter(f_completed_in); destination(<%= app %>_completed); };
@@ -85,6 +76,14 @@ log { source(s_remote); filter(f_<%= app %>); filter(f_completed_in); destinatio
 <% if config[:thumbnails] %>
 destination <%= app %>_thumbnails { file("/u/logs/<%= app %>/thumbnails.log", owner(app), group(app), perm(0640)); };
 log { source(s_remote); filter(f_<%= app %>); filter(f_thumbnail_build); destination(<%= app %>_thumbnails); };
+<% end %>
+
+<% if config[:logsort] %>
+destination <%= app %>_logsort { program("/usr/local/bin/logsort", log_fifo_size(30000)); };
+log { source(s_remote); filter(f_<%= app %>); destination(<%= app %>_logsort); flags(final); };	
+<% else %>
+destination <%= app %> { file("/u/logs/<%= app %>/rails.log", owner(app), group(app), perm(0640)); };
+log { source(s_remote); filter(f_<%= app %>); destination(<%= app %>); flags(final); };
 <% end %>
 
 <% end %>
