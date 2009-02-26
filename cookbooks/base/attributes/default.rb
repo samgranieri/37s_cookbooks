@@ -64,12 +64,12 @@ ssh_keys[:josh]    = "ssh-dss AAAAB3NzaC1kc3MAAACBAL7Em127r7XKDMupp4knBm2evN49DD
 ssh_keys[:matt]    = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAtxvNj/M53kW5eWyyFc3ZiFAbfQ5TAMxJdYwMaaZNIwDLljOcX7etPSFAaWsG4bAQorFzlFSHLAS2fPWTQdtCdSRHAOGxjZh+h17ueQ3z6zgsHq8r/PgnA9M6qIubcJ1cRIm3VkSAVFaZnInSp3M3UNm0CWA1/Uj5T+ijDIZQIXpFH3DOgv4MZb54TkWDVZEMDLd2ImCw7RgALnEkTaX/w1h3VZBdvZWTtoppz8+ICwcRlW+oi2WxAkSdD3n0+itmJfjTVE5r+zl7/7pPMJCGIGwBhDJCt/DzwBTKYoe61rsMD3Wx91Qy2P8VOJtYZTgqGc3j3PbS5CzpkC/oZEMkzQ== mattruby@Leonard.local"
 ssh_keys[:jeff]   = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAx0iwu7QIsXx6xbvWdQgqtG/ywwvTAgoWJX0e5fhkI0EV8TP6ot75gg6NxuQtRsQi3BcIvFI6K7kGvbY+7Bc4Hw2shGibqT7GPaaNMZWO4NyRPG8CNJd/B4xJNMO+Sp3x7zm6apaHbWwJiKbn5UddWxZNxX+tpV2lKYa0SjyUdGiK7Sgipl1MD5BMVCQ0876j17K3C88BldEpExItxC/8WPNwbLRSEiZf5ECsVITPCYkl4Gw/w1bEe0mx6VKO4HlJSkvRzevpzAvXSSfgrwK86nQ2AC5AXkr8Rdsks6oElxwzBeA/9346nA8W0cU8MmMYJBBfjMv6bUtNvWNGMwif0w== jeff@brunswick.local"
 
-applications[:basecamp] = {:completed => true, :thumbnails => true, :logsort => true, :haproxy => true}
-applications[:highrise] = {:haproxy => true}
-applications[:campfire] = {:haproxy => true}
-applications[:open_bar] = {}
-applications[:backpack] = {}
-applications[:writeboard] = {}
-applications[:jobs] = {}
-applications[:extra_extra] = {}
-applications[:blogcabin] = {}
+applications[:basecamp] = {:completed => true, :thumbnails => true, :logsort => true, :haproxy => true, :gems => ['fast_xs']}
+applications[:highrise] = {:haproxy => true, :gems => ['fast_xs']}
+applications[:campfire] = {:haproxy => true, :gems => ['fast_xs']}
+applications[:open_bar] = {:gems => ['fast_xs']}
+applications[:backpack] = {:gems => ['fast_xs', 'hpricot', 'aws-s3']}
+applications[:writeboard] = {:gems => ['fast_xs']}
+applications[:jobs] = {:gems => ['fast_xs']}
+applications[:extra_extra] = {:gems => ['fast_xs']}
+applications[:blogcabin] = {:gems => ['fast_xs']}
