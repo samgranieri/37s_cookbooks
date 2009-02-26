@@ -1,5 +1,4 @@
 require_recipe "syslog"
-include_recipe "logrotate"
 
 template "/etc/syslog-ng/syslog-ng.conf" do
   source "syslog-ng-server.conf.erb"

@@ -1,0 +1,10 @@
+<%= @files.join("\n") %> {
+    <%= @frequency %>
+    rotate 5
+    compress
+    missingok
+    sharedscripts
+    postrotate
+        <%= @restart_command %>
+    endscript   
+}
