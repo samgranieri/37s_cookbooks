@@ -21,7 +21,7 @@ directory "/u/logs/apps" do
   group "www-data"
 end
 
-node[:applications].each do |app, conf|
+node[:active_applications].each do |app, conf|
   full_name = "#{app}_#{conf[:env]}"
   config_path = "/u/apps/#{app}/current/config/apache/#{conf[:env]}.conf"
   
