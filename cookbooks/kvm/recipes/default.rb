@@ -7,8 +7,10 @@
 # All rights reserved - Do Not Redistribute
 #
 
-remote_directory "/usr/local/vmbuild" do
-  source "vmbuild"
+package "kvm"
+
+remote_directory "/usr/local/share/kvm/templates" do
+  source "templates"
   files_backup 2
   files_owner "root"
   files_group "admin"
@@ -17,3 +19,5 @@ remote_directory "/usr/local/vmbuild" do
   group "admin"
   mode 0750
 end
+
+
