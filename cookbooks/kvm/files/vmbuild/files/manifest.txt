@@ -1,0 +1,1 @@
+/usr/local/vmbuild/files/event.d/ttyS0 /etc/event.d/ttyS0
