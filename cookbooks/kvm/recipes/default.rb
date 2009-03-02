@@ -15,5 +15,5 @@ remote_directory "/usr/local/vmbuild" do
   files_mode 0640
   owner "root"
   group "admin"
-  mode "0750"
+  mode 0750
 end
