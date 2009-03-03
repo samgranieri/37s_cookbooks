@@ -1,4 +1,4 @@
-<%= @p[:files].join("\n") %> {
+<%= @p[:files].to_a.join("\n") %> {
     <%= @p[:frequency] %>
     rotate <%= @p[:rotate_count] %>
 		<% if @p[:compress] %>
