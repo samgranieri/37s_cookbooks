@@ -1,7 +1,14 @@
 
 raise RuntimeError, "The node requires a role, one of: #{node[:roles].keys.join(',')}" unless node[:role] and node[:roles].has_key?(node[:role])
 
-package "emacs22-nox"
+
+case node[:platform]
+when "debian", "ubuntu"
+  package "emacs22-nox"
+else 
+  package "emacs-nox"
+end
+
 package "vim"
 package "curl"
 
