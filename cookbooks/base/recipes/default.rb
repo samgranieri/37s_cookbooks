@@ -11,6 +11,7 @@ end
 
 package "vim"
 package "curl"
+package "man-db"
 
 require_recipe "git"
 require_recipe "postfix"
