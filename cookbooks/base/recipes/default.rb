@@ -4,6 +4,7 @@ raise RuntimeError, "The node requires a role, one of: #{node[:roles].keys.join(
 package "emacs22-nox"
 package "vim"
 package "curl"
+package "man-db"
 
 require_recipe "git"
 require_recipe "postfix"
