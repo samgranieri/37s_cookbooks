@@ -21,30 +21,33 @@ directory "/u/logs/apps" do
   group "www-data"
 end
 
-node[:active_applications].each do |app, conf|
+if node[:active_applications]
+  node[:active_applications].each do |app, conf|
   
-  full_name = "#{app}_#{conf[:env]}"
-  config_path = "/u/apps/#{app}/current/config/apache/#{conf[:env]}.conf"
+    full_name = "#{app}_#{conf[:env]}"
+    config_path = "/u/apps/#{app}/current/config/apache/#{conf[:env]}.conf"
   
-  if conf[:gems]
-    conf[:gems].each do |gem_name|
-      gem_package gem_name
+    if conf[:gems]
+      conf[:gems].each do |gem_name|
+        gem_package gem_name
+      end
+    end
+  
+    link "/etc/apache2/sites-available/#{full_name}" do
+      to config_path
+      only_if { File.exists?(config_path) }
+    end
+
+    apache_site full_name do
+      only_if { File.exists?("/etc/apache2/sites-available/#{full_name}") }
+    end
+
+    logrotate full_name do
+      files "/u/apps/#{app}/current/log/*.log"
+      frequency "weekly"
+      restart_command "/etc/init.d/apache2 reload > /dev/null"
     end
   end
-  
-  link "/etc/apache2/sites-available/#{full_name}" do
-    to config_path
-    only_if { File.exists?(config_path) }
-  end
-
-  apache_site full_name do
-    only_if { File.exists?("/etc/apache2/sites-available/#{full_name}") }
-  end
-
-  logrotate full_name do
-    files "/u/apps/#{app}/current/log/*.log"
-    frequency "weekly"
-    restart_command "/etc/init.d/apache2 reload > /dev/null"
-  end
-
+else
+  Chef::Log.info "Add an :active_applications attribute to configure this node's apps"
 end
