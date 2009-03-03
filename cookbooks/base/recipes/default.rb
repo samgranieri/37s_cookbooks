@@ -1,7 +1,11 @@
 
 raise RuntimeError, "The node requires a role, one of: #{node[:roles].keys.join(',')}" unless node[:role] and node[:roles].has_key?(node[:role])
 
-include_recipe "build-essential"
+package "emacs22-nox"
+package "vim"
+package "curl"
+
+require_recipe "git"
 require_recipe "postfix"
 require_recipe "ssh::server"
 include_recipe "ssh_keys"
