@@ -51,7 +51,7 @@ apache_site "apt-mirror"
 
 directory node[:apache][:sites][:dist][:document_root]
 template "/etc/apache2/sites-available/dist" do
-  source 'mirror-vhost.conf.erb'
+  source 'dist-vhost.conf.erb'
   action :create
   owner "root"
   group "www-data"
