@@ -41,7 +41,6 @@ kvm_modules = Dir.glob("/lib/modules/#{@node[:kernel][:release]}/extra/kvm*.ko")
     end
   end
 end
-EOC
 
 script "update_dependencies" do
   code "/sbin/depmod -a"
