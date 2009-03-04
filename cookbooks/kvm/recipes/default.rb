@@ -28,8 +28,9 @@
   end
 end
 
-directory "/u/kvm/tmp"
-directory "/u/kvm/images"
+%W(tmp images).each do |dir|
+  directory dir { recursive true }
+end
 
 remote_directory "/usr/local/share/kvm" do
   source "templates"
