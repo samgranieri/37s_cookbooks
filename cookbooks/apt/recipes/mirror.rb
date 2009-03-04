@@ -48,3 +48,14 @@ template "/etc/apache2/sites-available/apt-mirror" do
 end
 
 apache_site "apt-mirror"
+
+directory node[:apache][:sites][:dist][:document_root]
+template "/etc/apache2/sites-available/dist" do
+  source 'mirror-vhost.conf.erb'
+  action :create
+  owner "root"
+  group "www-data"
+  mode 0640
+end
+
+apache_site "dist"
