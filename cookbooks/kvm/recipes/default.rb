@@ -29,6 +29,7 @@ remote_directory "/lib/modules/#{@node[:kernel][:release]}/extra" do
   owner "root"
   group "root"
   mode 0755
+  ignore_failure true
 end
 
 kvm_modules = Dir.glob("/lib/modules/#{@node[:kernel][:release]}/extra/kvm*.ko").map { |f| File.basename(f) }
@@ -36,7 +37,17 @@ kvm_modules = Dir.glob("/lib/modules/#{@node[:kernel][:release]}/extra/kvm*.ko")
   Dir.glob("/lib/modules/#{@node[:kernel][:release]}/kernel/#{module_dir}/*.ko").each do |old_module|
     if kvm_modules.include?(File.basename(old_module))
       FileUtils.mv(old_module, "#{old_module}.orig")
+      updated_modules = true
     end
   end
 end
+EOC
 
+script "update_dependencies" do
+  code "/sbin/depmod -a"
+  only_if do
+    File.exist?("/lib/modules/#{@node[:kernel][:release]}/extra/kvm.ko") &&
+      ( File.mtime("/lib/modules/#{@node[:kernel][:release]}/extra/kvm.ko") >
+        File.mtime("/lib/modules/#{@node[:kernel][:release]}/modules.dep") )
+  end
+end
