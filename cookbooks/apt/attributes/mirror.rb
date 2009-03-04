@@ -2,6 +2,7 @@ apt Mash.new
 apt[:mirror] = Mash.new
 apt[:mirror][:base_path] = "/u/mirrors/apt"
 
+apache = Mash.new unless attribute?("apache")
 apache[:sites] = Mash.new unless apache.has_key?("sites")
 apache[:sites][:dist] = Mash.new
 apache[:sites][:dist][:server_name] = "dist.rack-dfw.37signals.com"
