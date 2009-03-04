@@ -17,7 +17,7 @@ cron "gem mirror nightly update" do
 end
 
 
-template "/etc/apache2/sites-available/apt-mirror" do
+template "/etc/apache2/sites-available/gem-mirror" do
   source 'mirror-vhost.conf.erb'
   action :create
   owner "root"
