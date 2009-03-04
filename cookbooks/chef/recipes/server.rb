@@ -1,7 +1,6 @@
-include_recipe "runit"
-include_recipe "apache2"
-include_recipe "passenger"
-require_recipe "apache2::mod_authn_yubikey"
+require_recipe "runit"
+require_recipe "apache2"
+require_recipe "passenger"
 
 group "chef"
 
