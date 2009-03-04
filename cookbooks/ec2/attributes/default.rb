@@ -1,1 +1,1 @@
-ec2_userdata = JSON.parse(node[:userdata]) if node[:userdata]
+ec2_userdata = JSON.parse(userdata) if attribute?(userdata)
