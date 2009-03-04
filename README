@@ -7,3 +7,19 @@ http://github.com/mikehale/chef-repo
 http://github.com/jtimberman/cookbooks
 
 Contact joshua@37signals.com with any questions.
+
+Running Chef Server under passenger and SSL:
+
+To do this, get chef installed on the target machine.
+
+1. From the cookbook root, run:
+
+% rake ssl_cert FQDN=chef.mydomain.com
+
+'mydomain' should be whatever you want to use as your chef server domain. The recipes assume 'chef' as the hostname. Update as necessary.
+
+2. Copy these certificate files to /var/chef/certificates
+
+1. From the root of the cookbooks directory, run:
+
+% chef-solo -c config/solo.rb -j config/server.json
