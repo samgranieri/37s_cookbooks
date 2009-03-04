@@ -21,7 +21,7 @@ vmbuilder kvm ubuntu --suite=intrepid --flavour=virtual --arch=amd64 --hostname=
     --addpkg=mysql-client --addpkg=libmysqlclient15-dev --addpkg=build-essential --addpkg=syslog-ng --addpkg=ntp \
     --addpkg=curl --addpkg=wget --lang=en_US.UTF-8 \
     --templates=/usr/local/share/kvm/templates \
-    --copy=/usr/local/share/kvm/files/manifest.txt \
+    --copy=/usr/local/share/kvm/files/default/manifest.txt \
     --execscript=/usr/local/share/kvm/scripts/postinstall.sh \
     --libvirt=qemu:///system --verbose --debug
 
