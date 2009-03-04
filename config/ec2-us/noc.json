@@ -1,4 +1,4 @@
-{"recipes": ["base", "ec2", "ddclient", "chef::server"],
+{"recipes": ["base", "ec2", "ddclient", "chef::server", "djbdns::cache", "djbdns::internal_server", "djbdns::autozone"],
  "assigned_hostname": "noc",
  "assigned_domain": "ec2-us.37signals.com",
  "ebs_volumes": {"logs": {"id": "vol-9eae4af7", "mount_point": "/u/logs", "device": "/dev/sdi", "type": "ext3"}}
