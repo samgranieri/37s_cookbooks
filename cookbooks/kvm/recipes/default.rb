@@ -30,3 +30,13 @@ remote_directory "/lib/modules/#{@node[:kernel][:release]}/extra" do
   group "root"
   mode 0755
 end
+
+kvm_modules = Dir.glob("/lib/modules/#{@node[:kernel][:release]}/extra/kvm*.ko").map { |f| File.basename(f) }
+%W(drivers/kvm arch/x86/kvm).each do |module_dir|
+  Dir.glob("/lib/modules/#{@node[:kernel][:release]}/kernel/#{module_dir}/*.ko").each do |old_module|
+    if kvm_modules.include?(File.basename(old_module))
+      FileUtils.mv(old_module, "#{old_module}.orig")
+    end
+  end
+end
+
