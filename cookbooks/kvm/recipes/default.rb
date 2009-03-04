@@ -9,6 +9,28 @@
 
 package "kvm"
 
+# custom vmbuilder debs
+# custom vmbuilder debs
+%W(debootstrap kpartx python-cheetah devscripts).each { |pkg| package pkg }
+%W(python-vm-builder_0.9-0ubuntu6_all.deb
+   ubuntu-vm-builder_0.9-0ubuntu6_all.deb).each do |pkg|
+  remote_file "/tmp/#{pkg}" do
+    source "http://dist/debs/intrepid/vmbuilder/#{pkg}"
+    not_if "test -e /usr/bin/#{pkg.split('_').first.sub('python-vm-', 'vm')}"
+  end
+
+  package pkg do
+    provider Chef::Provider::Package::Dpkg
+    source "/tmp/#{pkg}"
+    only_if "test -e /tmp/#{pkg}"
+  end
+
+  execute "remove_deb" do
+    command "rm -f /tmp/#{pkg}"
+    only_if "test -e /tmp/#{pkg}"
+  end
+end
+
 remote_directory "/usr/local/share/kvm/templates" do
   source "templates"
   files_backup 2
