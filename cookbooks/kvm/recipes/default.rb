@@ -29,7 +29,9 @@
 end
 
 %W(tmp images).each do |dir|
-  directory dir { recursive true }
+  directory "/u/kvm/#{dir}" do
+    recursive true
+  end
 end
 
 remote_directory "/usr/local/share/kvm" do
