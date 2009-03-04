@@ -1,0 +1,1 @@
+ec2_userdata = JSON.parse(node[:userdata]) if node[:userdata]
