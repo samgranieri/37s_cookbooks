@@ -1,3 +1,5 @@
+gem_package "builder"
+
 directory node[:rubygems][:mirror][:base_path] do
   action :create
   owner "root"
@@ -17,9 +19,7 @@ end
 cron "gem mirror nightly update" do
   command "rsync -av rsync://master.mirror.rubyforge.org/gems #{node[:rubygems][:mirror][:base_path]} 2>&1 && gem generate_index -d /u/mirrors/gems"
   hour "5"
-  only_if File.exist?(node[:rubygems][:mirror][:base_path])
 end
-
 
 template "/etc/apache2/sites-available/gem-mirror" do
   source 'mirror-vhost.conf.erb'
