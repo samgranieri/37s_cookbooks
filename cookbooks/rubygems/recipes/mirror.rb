@@ -5,6 +5,10 @@ directory node[:rubygems][:mirror][:base_path] do
   mode 0755
 end
 
+directory "/etc/rubygems" do
+  mode 0755
+end
+
 template "/etc/rubygems/mirror.conf" do
   source "gemmirrorrc.erb"
   mode 0644
