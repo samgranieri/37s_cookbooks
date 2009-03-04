@@ -7,11 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
-package "kvm"
-
 # custom vmbuilder debs
-# custom vmbuilder debs
-%W(debootstrap kpartx python-cheetah devscripts).each { |pkg| package pkg }
+%W(kvm debootstrap kpartx python-cheetah devscripts python-libvirt).each { |pkg| package pkg }
 %W(python-vm-builder_0.9-0ubuntu6_all.deb
    ubuntu-vm-builder_0.9-0ubuntu6_all.deb).each do |pkg|
   remote_file "/tmp/#{pkg}" do
@@ -31,7 +28,13 @@ package "kvm"
   end
 end
 
-remote_directory "/usr/local/share/kvm/templates" do
+%W(tmp images).each do |dir|
+  directory "/u/kvm/#{dir}" do
+    recursive true
+  end
+end
+
+remote_directory "/usr/local/share/kvm" do
   source "templates"
   files_backup 2
   files_owner "root"
