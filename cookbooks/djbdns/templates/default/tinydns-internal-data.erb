@@ -6,6 +6,7 @@
 +chefadmin.<%= @node[:domain] %>:<%= @node[:ipaddress] %>:300
 +apt.<%= @node[:domain] %>:<%= @node[:ipaddress] %>:300
 +gems.<%= @node[:domain] %>:<%= @node[:ipaddress] %>:300
++dist.<%= @node[:domain] %>:<%= @node[:ipaddress] %>:300
 <% @hosts.each do |host| %>
 =<%=host['fqdn']%>:<%= host['ipaddress'] %>:300
 <% end %>
