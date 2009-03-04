@@ -28,3 +28,5 @@ template "/etc/apache2/sites-available/gem-mirror" do
   group "www-data"
   mode 0640
 end
+
+apache_site "gem-mirror"
