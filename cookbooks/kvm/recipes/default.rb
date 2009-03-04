@@ -42,8 +42,10 @@ kvm_modules = Dir.glob("/lib/modules/#{@node[:kernel][:release]}/extra/kvm*.ko")
   end
 end
 
-script "update_dependencies" do
-  code "/sbin/depmod -a"
+execute "modprobe" do
+  command "/sbin/depmod -a"
+  action :run
+  
   only_if do
     File.exist?("/lib/modules/#{@node[:kernel][:release]}/extra/kvm.ko") &&
       ( File.mtime("/lib/modules/#{@node[:kernel][:release]}/extra/kvm.ko") >
