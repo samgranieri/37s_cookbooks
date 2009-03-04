@@ -54,4 +54,5 @@ after "deploy", "update_recipes"
 
 deploy.task :default, :except => {:no_release => true} do
   run "cd #{deploy_to} && git config remote.origin.url #{repository} && git pull"
+  run "cd /var/chef && tar czvf /var/chef/public/cookbooks.tgz cookbooks"
 end
