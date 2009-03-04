@@ -1,43 +1,58 @@
 include_recipe "runit"
 include_recipe "apache2"
 include_recipe "passenger"
+require_recipe "apache2::mod_authn_yubikey"
 
 group "chef"
+
+gem_package "chef-server"
 
 user "chef" do
   comment "Chef user"
   gid "chef"
   home "/var/chef"
-  shell "/bin/false"
+  shell "/bin/bash"
 end
 
 directory "/etc/chef" do
   owner "chef"
-  mode 0750
+  mode 0755
 end
 
-directory "/var/chef/log" do
+directory "/var/log/chef" do
   owner "chef"
   group "chef"
-  mode 0750
+  mode 0755
 end
 
 directory "/var/chef/openid" do
   owner "chef"
   group "chef"
-  mode 0750
+  mode 0755
+end
+
+directory "/var/chef/cache" do
+  owner "chef"
+  group "chef"
+  mode 0755
+end
+
+directory "/var/chef/search_index" do
+  owner "chef"
+  group "chef"
+  mode 0755
 end
 
 directory "/var/chef/openid/cstore" do
   owner "chef"
   group "chef"
-  mode 0750
+  mode 0755
 end
 
 template "/etc/chef/server.rb" do
   owner "chef"
   group "chef"
-  mode 0640
+  mode 0644
   source "server.rb.erb"
   action :create
 end
@@ -45,7 +60,7 @@ end
 template "/etc/chef/client.rb" do
   owner "chef"
   group "chef"
-  mode 0640
+  mode 0644
   source "client.rb.erb"
   action :create
 end
@@ -68,7 +83,7 @@ service "couchdb" do
   action [ :enable, :start ]
 end
 
-runit_service "chef-indexer" 
+runit_service "chef-indexer"
 
 template "/etc/apache2/sites-available/chef-server" do
   source 'chef-server-vhost.conf.erb'
@@ -78,7 +93,7 @@ template "/etc/apache2/sites-available/chef-server" do
   mode 0640
 end
 
-template "/usr/lib/ruby/gems/1.8/gems/chef-server-0.5.3/lib/config.ru" do
+template "#{node[:chef][:server_path]}/lib/config.ru" do
   source 'config.ru.erb'
   action :create
   owner "root"
