@@ -28,6 +28,9 @@
   end
 end
 
+directory "/u/kvm/tmp"
+directory "/u/kvm/images"
+
 remote_directory "/usr/local/share/kvm" do
   source "templates"
   files_backup 2
