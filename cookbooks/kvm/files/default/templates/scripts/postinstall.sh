@@ -1,4 +1,4 @@
 #!/bin/sh
 
 echo "Enabling ttyS0 console..."
-sh /usr/local/vmbuild/scripts/grub-console.sh $1
+sh /usr/local/share/kvm/scripts/grub-console.sh $1
