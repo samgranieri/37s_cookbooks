@@ -30,6 +30,13 @@ template "/etc/public-dnscache/root/servers/#{node[:djbdns][:tinydns_internal_re
   mode 0644
 end
 
+@node[:djbdns][:ptr_networks].each do |network|
+  template "/etc/public-dnscache/root/servers/#{network}" do
+    source "dnscache-servers.erb"
+    mode 0644
+  end
+end
+
 link "#{node[:runit_service_dir]}/public-dnscache" do
   to "/etc/public-dnscache"
 end
