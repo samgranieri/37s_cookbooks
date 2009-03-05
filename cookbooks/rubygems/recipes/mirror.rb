@@ -17,7 +17,7 @@ template "/etc/rubygems/mirror.conf" do
 end
 
 cron "gem mirror nightly update" do
-  command "rsync -av rsync://master.mirror.rubyforge.org/gems #{node[:rubygems][:mirror][:base_path]} 2>&1 && gem generate_index -d /u/mirrors/gems"
+  command "rsync -av rsync://master.mirror.rubyforge.org/gems #{node[:rubygems][:mirror][:base_path]}/gems && gem generate_index -d /u/mirrors/gems > /var/log/gem-mirror.log 2>&1"
   hour "5"
 end
 
