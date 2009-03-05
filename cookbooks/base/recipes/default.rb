@@ -1,6 +1,4 @@
-
 raise RuntimeError, "The node requires a role, one of: #{node[:roles].keys.join(',')}" unless node[:role] and node[:roles].has_key?(node[:role])
-
 
 case node[:platform]
 when "debian", "ubuntu"
@@ -12,6 +10,8 @@ end
 package "vim"
 package "curl"
 package "man-db"
+package "strace"
+package "host"
 
 require_recipe "git"
 require_recipe "postfix"
