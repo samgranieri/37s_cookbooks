@@ -26,7 +26,7 @@ applications Mash.new unless attribute?("applications")
 ddclient[:dyndns_login] = "883mhi-ec2dyn"
 ddclient[:dyndns_password] = "5SkR2hJiNsQP"
 
-groups[:app]   = {:gid => 3000}
+groups[:app]   = {:gid => 1003}
 groups[:site]  = {:gid => 3001}
 groups[:admin] = {:gid => 4000}
 
@@ -34,7 +34,7 @@ roles[:hypervisor]    = {:groups => [:admin], :sudo_groups => [:admin]}
 roles[:noc]           = {:groups => [:admin], :sudo_groups => [:admin]}
 roles[:app]           = {:groups => [:admin, :app], :sudo_groups => [:admin]}
 
-users[:app]    = {:password => "$1$hk40k332$wpSYJYlbbVo3AK/7thxO3.", :comment => "App User", :uid => 3000, :group => :app, :ssh_key_groups => [:app,:admin]}
+users[:app]    = {:password => "$1$hk40k332$wpSYJYlbbVo3AK/7thxO3.", :comment => "App User", :uid => 1003, :group => :app, :ssh_key_groups => [:app,:admin]}
 users[:site]   = {:password => "$1$4k01kee3$tQkwp46/ngyG.iH4kIaTJ0", :comment => "Site User", :uid => 4000, :group => :site, :ssh_key_groups => [:site,:admin]}
 
 users[:joshua] = {:password => "$1$vRx7xHSn$xXL0.q9zIfV/p/sm9EDLQ/", :comment => "Joshua Sierles", :uid => 3010, :group => :admin, :yubikey_id => 'dtnkddnltnhk', :http_digest => 'Q0ow3S0HISHc.'}
