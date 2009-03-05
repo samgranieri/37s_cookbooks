@@ -31,7 +31,7 @@ template "/etc/public-dnscache/root/servers/#{node[:djbdns][:tinydns_internal_re
 end
 
 @node[:djbdns][:ptr_networks].each do |network|
-  template "/etc/public-dnscache/root/servers/#{network}" do
+  template "/etc/public-dnscache/root/servers/#{network}.in-addr.arpa" do
     source "dnscache-servers.erb"
     mode 0644
   end
