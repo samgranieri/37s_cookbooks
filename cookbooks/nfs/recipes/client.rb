@@ -13,5 +13,5 @@ if node[:nfs_mounts]
     end
   end
 else
-  Chef::Log.warn 'You included the NFS client recipe without defining nfs mounts."
+  Chef::Log.warn "You included the NFS client recipe without defining nfs mounts."
 end
