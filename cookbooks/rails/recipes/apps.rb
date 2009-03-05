@@ -27,8 +27,8 @@ if node[:active_applications]
     full_name = "#{app}_#{conf[:env]}"
     config_path = "/u/apps/#{app}/current/config/apache/#{conf[:env]}.conf"
   
-    if conf[:gems]
-      conf[:gems].each do |gem_name|
+    if node[:applications][app][:gems]
+      node[:applications][app][:gems].each do |gem_name|
         gem_package gem_name
       end
     end
