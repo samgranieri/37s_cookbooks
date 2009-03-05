@@ -1,4 +1,4 @@
-bootstrap_fqdn = "#{ec2_userdata[:assigned_hostname]}.#{ec2_userdata[:assigned_domain]}"
+bootstrap_fqdn = "#{node[:assigned_hostname]}.#{node[:assigned_domain]}"
 
 bash "Add temporary hosts entry for current node" do
   code "echo '#{node[:ipaddress]} #{bootstrap_fqdn}' >> /etc/hosts"
