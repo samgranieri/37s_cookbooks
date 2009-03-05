@@ -70,7 +70,7 @@ applications[:basecamp] = {:completed => true, :thumbnails => true, :logsort => 
 applications[:highrise] = {:haproxy => true, :gems => ['fast_xs']}
 applications[:campfire] = {:haproxy => true, :gems => ['fast_xs']}
 applications[:open_bar] = {:gems => ['fast_xs']}
-applications[:backpack] = {:gems => ['fast_xs', 'hpricot', 'aws-s3']}
+applications[:backpack] = {:gems => ['fast_xs', 'hpricot', 'aws-s3', 'ruby-prof']}
 applications[:writeboard] = {:gems => ['fast_xs']}
 applications[:jobs] = {:gems => ['fast_xs']}
 applications[:extra_extra] = {:gems => ['fast_xs']}
