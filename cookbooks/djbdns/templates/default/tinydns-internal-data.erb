@@ -2,7 +2,7 @@
 #
 
 .<%= @node[:domain] %>:<%= @node[:djbdns][:tinydns_internal_ipaddress] %>:a
-<% djbdns[:ptr_networks].each do |network| %>
+<% @node[:djbdns][:ptr_networks].each do |network| %>
 .<%= network %>.in-addr.arpa:<%= @node[:djbdns][:tinydns_internal_ipaddress] %>:a
 <% end %>
 
