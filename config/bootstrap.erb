@@ -2,6 +2,7 @@
 #
 # EC2 bootstrap
 #
+export PATH=$PATH:/usr/local/bin
 
 mkdir /etc/chef
 mkdir /var/chef
@@ -25,16 +26,19 @@ BOOTSTRAP
 
 cat > /etc/chef/init.json <<INIT
 {"role": "<%= @role %>",
- "recipes": ["ddclient", "base", "chef::client"]
+ "recipes": ["ddclient", "base", "chef::client"],
+ "public_fqdn": "<%= @public_fqdn %>"
 }
 INIT
 
 echo <%= @validation_token %> > /etc/chef/validation_token
 
-cat > /etc/resolv.conf <<DNS
+cat > /etc/ec2/resolv.conf <<DNS
 search <%= @domain %>
 nameserver <%= @primary_nameserver_ip %>
 DNS
+
+cp /etc/ec2/resolv.conf /etc/resolv.conf
 
 wget -P /tmp http://dist/ruby-enterprise_1.8.6-20090201_i386.deb
 dpkg -i /tmp/ruby-enterprise_1.8.6-20090201_i386.deb
@@ -42,5 +46,7 @@ gem sources -a http://gems
 gem sources -a http://gems.opscode.com
 gem install chef --no-rdoc --no-ri
 
-chef-solo -j /etc/ec2/bootstrap.json -r https://chef/cookbooks.tgz
-chef-solo -j /etc/ec2/init.json
+apt-get update
+
+chef-solo -j /etc/chef/bootstrap.json -r http://dist/cookbooks.tgz
+chef-solo -j /etc/chef/init.json
