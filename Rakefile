@@ -79,8 +79,7 @@ task :install => [ :test ] do
   ]
   puts "* Creating Directories"
   directories.each do |dir|
-    sh "sudo mkdir -p #{dir}"
-    sh "sudo chown root #{dir}"
+    sh "mkdir -p #{dir}"
   end
   puts "* Installing new Cookbooks"
   sh "sudo rsync -rlP --delete --exclude '.svn' cookbooks/ #{COOKBOOK_PATH}"
