@@ -45,14 +45,18 @@ task :update_recipes do
   run "cd #{deploy_to} && rake install"
 end
 
+desc "Create tarball for chef solo"
+task :create_tarball do
+  run "cd /var/chef && tar czvf /u/sites/dist/cookbooks.tgz cookbooks"
+end
+
 desc "Run chef solo"
 task :run_solo do
   run "cd #{deploy_to} && chef-solo -c config/solo.rb -j config/#{stage}/backup.json"
 end
 
 after "deploy", "update_recipes"
-
+after "update_recipes", "create_tarball"
 deploy.task :default, :except => {:no_release => true} do
   run "cd #{deploy_to} && git config remote.origin.url #{repository} && git pull"
-  run "cd /var/chef && tar czvf /var/chef/public/cookbooks.tgz cookbooks"
 end

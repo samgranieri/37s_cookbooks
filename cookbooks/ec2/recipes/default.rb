@@ -17,7 +17,6 @@ end
 
 bash "Set mailname for postfix" do
   code "echo #{bootstrap_fqdn} > /etc/mailname"
-  notifies :restart, resources(:service => "postfix")
   not_if "grep #{node[:assigned_hostname]} /etc/mailname"
 end
 
