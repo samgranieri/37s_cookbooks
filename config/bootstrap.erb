@@ -1,0 +1,38 @@
+#!/bin/sh
+#
+# EC2 bootstrap
+#
+
+mkdir /etc/chef
+mkdir /var/chef
+
+cat > /etc/chef/solo.rb <<SOLO
+cookbook_path     "/var/chef/cookbooks"
+node_path         "/var/chef/nodes"
+log_level         :info
+file_store_path  "/var/chef"
+file_cache_path  "/var/chef"
+SOLO
+
+cat > /etc/chef/bootstrap.json <<BOOTSTRAP
+{"assigned_hostname": "<%= @hostname %>",
+ "assigned_domain": "<%= @domain %>",
+ "role": "<%= @role %>",
+ "recipes": ["ec2", "ddclient", "base", "chef::client"]
+}
+BOOTSTRAP
+
+echo <%= @validation_token %> > /etc/chef/validation_token
+
+cat > /etc/resolv.conf <<DNS
+search <%= @domain %>
+nameserver <%= @primary_nameserver_ip %>
+DNS
+
+wget -P /tmp http://dist/ruby-enterprise_1.8.6-20090201_i386.deb
+dpkg -i /tmp/ruby-enterprise_1.8.6-20090201_i386.deb
+gem sources -a http://gems
+gem sources -a http://gems.opscode.com
+gem install chef --no-rdoc --no-ri
+
+chef-solo -j /etc/ec2/bootstrap.json
