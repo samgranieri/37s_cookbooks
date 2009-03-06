@@ -3,13 +3,16 @@ include_recipe "apache2"
 include_recipe "passenger"
 require_recipe "apache2::mod_authn_yubikey"
 
-group "chef"
+group "chef" do
+  gid 8000
+end
 
 gem_package "chef-server"
 
 user "chef" do
   comment "Chef user"
   gid "chef"
+  uid 8000
   home "/var/chef"
   shell "/bin/bash"
 end
