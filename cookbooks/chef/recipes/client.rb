@@ -17,4 +17,5 @@ runit_service "chef-client"
 
 logrotate "chef-client" do
   rotate_count 5
+  files "/var/log/chef/*.log"
 end
