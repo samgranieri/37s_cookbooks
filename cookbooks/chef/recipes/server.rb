@@ -1,14 +1,18 @@
-require_recipe "runit"
-require_recipe "apache2"
-require_recipe "passenger"
-
-group "chef"
+include_recipe "runit"
+include_recipe "apache2"
+include_recipe "passenger"
+require_recipe "apache2::mod_authn_yubikey"
 
 gem_package "chef-server"
+
+group "chef" do
+  gid 8000
+end
 
 user "chef" do
   comment "Chef user"
   gid "chef"
+  uid 8000
   home "/var/chef"
   shell "/bin/bash"
 end
@@ -90,6 +94,7 @@ template "/etc/apache2/sites-available/chef-server" do
   owner "root"
   group "www-data"
   mode 0640
+  notifies :restart, resources(:service => "apache2")
 end
 
 template "#{node[:chef][:server_path]}/lib/config.ru" do
@@ -98,6 +103,11 @@ template "#{node[:chef][:server_path]}/lib/config.ru" do
   owner "root"
   group "chef"
   mode 0644
+  notifies :restart, resources(:service => "apache2")
+end
+
+link "/var/chef/public" do
+  to "#{node[:chef][:server_path]}/lib/public"
 end
 
 apache_site "chef-server"

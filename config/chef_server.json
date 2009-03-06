@@ -1,1 +1,1 @@
-{"recipes": ["chef-server"]}
+{"recipes": ["chef::server"]}
