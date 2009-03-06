@@ -94,6 +94,7 @@ template "/etc/apache2/sites-available/chef-server" do
   owner "root"
   group "www-data"
   mode 0640
+  notifies :restart, resources(:service => "apache2")
 end
 
 template "#{node[:chef][:server_path]}/lib/config.ru" do
@@ -102,6 +103,7 @@ template "#{node[:chef][:server_path]}/lib/config.ru" do
   owner "root"
   group "chef"
   mode 0644
+  notifies :restart, resources(:service => "apache2")
 end
 
 link "/var/chef/public" do
