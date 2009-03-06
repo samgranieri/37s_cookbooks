@@ -45,7 +45,7 @@ if node[:active_applications]
     
     if node[:applications][app][:symlinks]
       node[:applications][app][:symlinks].each do |target, source|
-        link target
+        link target do
           to source
         end
       end      
