@@ -17,10 +17,17 @@ SOLO
 cat > /etc/chef/bootstrap.json <<BOOTSTRAP
 {"assigned_hostname": "<%= @hostname %>",
  "assigned_domain": "<%= @domain %>",
+ "public_fqdn": "<%= @public_fqdn %>",
  "role": "<%= @role %>",
- "recipes": ["ec2", "ddclient", "base", "chef::client"]
+ "recipes": ["ec2", "ddclient"]
 }
 BOOTSTRAP
+
+cat > /etc/chef/init.json <<INIT
+{"role": "<%= @role %>",
+ "recipes": ["base", "chef::client"]
+}
+INIT
 
 echo <%= @validation_token %> > /etc/chef/validation_token
 
@@ -35,4 +42,5 @@ gem sources -a http://gems
 gem sources -a http://gems.opscode.com
 gem install chef --no-rdoc --no-ri
 
-chef-solo -j /etc/ec2/bootstrap.json
+chef-solo -j /etc/ec2/bootstrap.json -r https://chef/cookbooks.tgz
+chef-solo -j /etc/ec2/init.json
