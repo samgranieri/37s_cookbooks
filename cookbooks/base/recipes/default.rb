@@ -57,4 +57,11 @@ directory "/u" do
   mode 0775
 end
 
+directory "/usr/local/build" do
+  action :create
+  owner "root"
+  group "admin"
+  mode 0775
+end
+
 require_recipe "sudo"
