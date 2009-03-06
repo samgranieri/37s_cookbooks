@@ -26,3 +26,7 @@ execute "Remove the validation token" do
 end
 
 runit_service "chef-client"
+
+service "chef-client" do
+  action :enable
+end
