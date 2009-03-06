@@ -19,13 +19,13 @@ cat > /etc/chef/bootstrap.json <<BOOTSTRAP
  "assigned_domain": "<%= @domain %>",
  "public_fqdn": "<%= @public_fqdn %>",
  "role": "<%= @role %>",
- "recipes": ["ec2", "ddclient"]
+ "recipes": ["ec2"]
 }
 BOOTSTRAP
 
 cat > /etc/chef/init.json <<INIT
 {"role": "<%= @role %>",
- "recipes": ["base", "chef::client"]
+ "recipes": ["ddclient", "base", "chef::client"]
 }
 INIT
 
