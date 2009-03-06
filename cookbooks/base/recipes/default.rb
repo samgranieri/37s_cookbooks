@@ -13,6 +13,7 @@ package "man-db"
 package "strace"
 package "host"
 
+require_recipe "apt"
 require_recipe "git"
 require_recipe "postfix"
 require_recipe "ssh::server"
