@@ -1,15 +1,20 @@
 require_recipe "runit"
+include_recipe "logrotate"
 
 template "/etc/chef/client.rb" do
-  owner "chef"
-  group "chef"
   mode 0644
   source "client.rb.erb"
   action :create
 end
 
+directory "/var/log/chef"
+
 execute "Initialize node in chef server" do
-  command "#{node[:chef][:client_path]} -t `cat /etc/chef/validation_token`"
+  command "#{node[:chef][:client_path]} -t #{`cat /etc/chef/validation_token`}"
 end
 
 runit_service "chef-client"
+
+logrotate "chef-client" do
+  rotate_count 5
+end

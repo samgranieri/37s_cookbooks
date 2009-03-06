@@ -3,11 +3,11 @@ include_recipe "apache2"
 include_recipe "passenger"
 require_recipe "apache2::mod_authn_yubikey"
 
+gem_package "chef-server"
+
 group "chef" do
   gid 8000
 end
-
-gem_package "chef-server"
 
 user "chef" do
   comment "Chef user"
