@@ -37,6 +37,20 @@ if node[:active_applications]
       end
     end
     
+    if node[:applications][app][:packages]
+      node[:applications][app][:packages].each do |package_name|
+        package package_name
+      end      
+    end
+    
+    if node[:applications][app][:symlinks]
+      node[:applications][app][:symlinks].each do |target, source|
+        link target
+          to source
+        end
+      end      
+    end
+    
     link "/etc/apache2/sites-available/#{full_name}" do
       to config_path
       only_if { File.exists?(config_path) }
