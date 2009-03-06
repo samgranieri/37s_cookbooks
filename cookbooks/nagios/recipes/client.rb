@@ -15,10 +15,10 @@ remote_directory "/u/nagios/plugins" do
   files_backup 5
   files_owner "nagios"
   files_group "nagios"
-  files_mode 0644
+  files_mode 0755
   owner "nagios"
   group "nagios"
-  mode "0755"
+  mode 0755
 end
 
 template "/etc/nagios/nrpe.cfg" do
