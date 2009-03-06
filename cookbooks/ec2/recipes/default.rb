@@ -1,16 +1,18 @@
 bootstrap_fqdn = "#{node[:assigned_hostname]}.#{node[:assigned_domain]}"
 
-bash "Add temporary hosts entry for current node" do
+bash "Add hosts entry for current node" do
   code "echo '#{node[:ipaddress]} #{bootstrap_fqdn}' >> /etc/hosts"
+  not_if "grep '#{node[:ipaddress]} #{bootstrap_fqdn}' /etc/hosts"
 end
 
 bash "Set domain name" do
   code "echo #{node[:assigned_domain]} /etc/domainname"
+  not_if "grep #{bootstrap_fqdn} /etc/domainname"
 end
 
 bash "Set hostname" do
   code "echo #{bootstrap_fqdn} > /etc/hostname"
-  not_if "grep #{bootstrap_fqdn} /etc/mailname"
+  not_if "grep #{bootstrap_fqdn} /etc/hostname"
 end
 
 bash "Set mailname for postfix" do
@@ -19,7 +21,7 @@ bash "Set mailname for postfix" do
   not_if "grep #{node[:assigned_hostname]} /etc/mailname"
 end
 
-service "hostname.sh" do
- supports :restart => true
- action :start
+execute "Set hostname" do
+  command "/etc/init.d/hostname.sh"
+  only_if { `hostname -f` != bootstrap_fqdn }
 end
