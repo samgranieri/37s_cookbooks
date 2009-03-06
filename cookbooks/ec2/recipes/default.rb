@@ -1,3 +1,12 @@
+execute "Kill dhclient" do
+  command "kill #{File.read("/var/run/dhclient.eth0.pid").chomp}"
+  only_if "pgrep dhclient"
+end
+
+execute "Install resolv.conf" do
+  command "cp /etc/ec2/resolv.conf /etc/resolv.conf"
+end
+
 bootstrap_fqdn = "#{node[:assigned_hostname]}.#{node[:assigned_domain]}"
 
 bash "Add hosts entry for current node" do
