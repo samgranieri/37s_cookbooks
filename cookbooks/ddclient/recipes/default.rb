@@ -14,7 +14,7 @@ end
 
 template "/etc/ddclient.conf" do
   source "ddclient.conf.erb"
-  mode 0644
+  mode 0600
   owner "root"
   notifies :restart, resources(:service => "ddclient")
 end
