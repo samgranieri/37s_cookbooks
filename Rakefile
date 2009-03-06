@@ -82,9 +82,9 @@ task :install => [ :test ] do
     sh "mkdir -p #{dir}"
   end
   puts "* Installing new Cookbooks"
-  sh "sudo rsync -rlP --delete --exclude '.svn' cookbooks/ #{COOKBOOK_PATH}"
+  sh "rsync -rlP --delete --exclude '.svn' cookbooks/ #{COOKBOOK_PATH}"
   puts "* Installing new Site Cookbooks"
-  sh "sudo rsync -rlP --delete --exclude '.svn' site-cookbooks/ #{SITE_COOKBOOK_PATH}"
+  sh "rsync -rlP --delete --exclude '.svn' site-cookbooks/ #{SITE_COOKBOOK_PATH}"
   # puts "* Installing new Chef Server Config"
   # sh "sudo cp config/server.rb #{CHEF_SERVER_CONFIG}"
   # puts "* Installing new Chef Client Config"
