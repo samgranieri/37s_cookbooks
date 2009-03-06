@@ -22,6 +22,10 @@ directory "/u/logs/apps" do
 end
 
 if node[:active_applications]
+
+  # TODO: install the passenger app monitor which will kill any bloating processes
+  # passenger_monitor "All apps" 
+  
   node[:active_applications].each do |app, conf|
   
     full_name = "#{app}_#{conf[:env]}"
@@ -32,7 +36,7 @@ if node[:active_applications]
         gem_package gem_name
       end
     end
-  
+    
     link "/etc/apache2/sites-available/#{full_name}" do
       to config_path
       only_if { File.exists?(config_path) }
