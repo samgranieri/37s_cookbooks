@@ -7,7 +7,7 @@ end
 
 bash "Set domain name" do
   code "echo #{node[:assigned_domain]} /etc/domainname"
-  not_if "grep #{bootstrap_fqdn} /etc/domainname"
+  not_if "grep #{node[:assigned_domain]} /etc/domainname"
 end
 
 bash "Set hostname" do
