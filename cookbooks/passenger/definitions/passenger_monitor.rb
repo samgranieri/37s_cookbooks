@@ -6,5 +6,6 @@ define :passenger_monitor do
   cron "passenger memory monitor" do
     command ""
     hour "5"
+    user "app"
   end
 end
