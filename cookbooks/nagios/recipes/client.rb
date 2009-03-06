@@ -2,7 +2,7 @@ package "nagios-nrpe-server"
 
 service "nagios-nrpe-server" do
   action :enable
-  supports :restart
+  supports :restart => true, :reload => true
 end
 
 directory "/u/nagios" do
@@ -23,5 +23,5 @@ end
 
 template "/etc/nagios/nrpe.cfg" do
   source "nrpe.cfg.erb"
-  notifies :restart, resources(:service => "nagios-nrpe-server")
+  notifies :reload, resources(:service => "nagios-nrpe-server")
 end
