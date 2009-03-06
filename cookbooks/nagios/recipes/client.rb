@@ -23,5 +23,5 @@ end
 
 template "/etc/nagios/nrpe.cfg" do
   source "nrpe.cfg.erb"
-  notifies :reload, resources(:service => "nagios-nrpe-server")
+  notifies :restart, resources(:service => "nagios-nrpe-server")
 end
