@@ -25,7 +25,7 @@ if node[:applications]
 end
 
 logrotate "applications" do
-  restart_command "/etc/rc.d/init.d/syslog-ng reload 2>&1 || true"
+  restart_command "/etc/init.d/syslog-ng reload 2>&1 || true"
   files node[:applications].keys.collect{|name| root+"/#{name}/*.log" }
   frequency "daily"
 end
