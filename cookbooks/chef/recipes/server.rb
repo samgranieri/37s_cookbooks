@@ -104,8 +104,8 @@ template "#{node[:chef][:server_path]}/lib/config.ru" do
   mode 0644
 end
 
-# htpasswd_file "/etc/apache2/conf.d/yubikey_user" do
-#   entries node[:users].collect {|username, values| {:comment => username, :username => values[:yubikey_id] || username, :password => values[:http_digest]} }
-# end
+link "/var/chef/public" do
+  to "#{node[:chef][:server_path]}/lib/public"
+end
 
 apache_site "chef-server"
