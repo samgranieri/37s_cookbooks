@@ -5,12 +5,14 @@ role :app, "noc.ec2-us.37signals.com"
 require 'erb'
 require 'right_aws'
 
-ROLE_IMAGE_MAP = {:app => {:ami => "ami-7cfd1a15", :type => 'c1.medium'}}
+ROLE_IMAGE_MAP = {:app => {:ami => "ami-7cfd1a15", :type => 'c1.medium'},
+                  :noc => {:ami => "ami-7cfd1a15", :type => 'c1.medium'}
+}
 
 namespace :ec2 do
   desc "Launch an instance and bootstrap it for chef"
   task :launch do
-    raise(ArgumentError, "Providing a HOSTNAME and ROLE") unless ENV['HOSTNAME'] && ENV['ROLE']
+    raise(ArgumentError, "Please set HOSTNAME, ROLE, AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY") unless ENV['HOSTNAME'] && ENV['ROLE'] && ENV['AWS_ACCESS_KEY_ID'] && ENV['AWS_SECRET_ACCESS_KEY']
     @hostname = ENV['HOSTNAME']
     @domain = "ec2-us-int.37signals.com"
     public_domain = "ec2-us.37signals.com"
@@ -22,7 +24,7 @@ namespace :ec2 do
     config = ROLE_IMAGE_MAP[@role.to_sym]
     output = ERB.new(File.read(File.dirname(__FILE__)+"/../bootstrap.erb")).result(binding)
     
-    ec2 = RightAws::Ec2.new('1RF809NDDCNB7616HJ02', 'T4XoXsVm9n5lap1fZH02s6aWgnPBmiR/6HqAYLma')
+    ec2 = RightAws::Ec2.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
     result = ec2.launch_instances(config[:ami], :group_ids => ['default', @role], :instance_type => config[:type], :key_name => 'ec2', :user_data => output)
     puts result.inspect
   end
