@@ -27,9 +27,16 @@ applications Mash.new unless attribute?("applications")
 ddclient[:dyndns_login] = "883mhi-ec2dyn"
 ddclient[:dyndns_password] = "5SkR2hJiNsQP"
 
-groups[:app]   = {:gid => 1003}
-groups[:site]  = {:gid => 3001}
+nameservers = case domain
+  when "rack-dfw-int.37signals.com" 
+    ["192.168.2.64", "192.168.1.157"]
+  when "ec2-us-int.37signals.com"
+    ["10.253.130.160", "10.252.234.178"]
+end
+
 groups[:admin] = {:gid => 4000}
+groups[:app]   = {:gid => 1003, :include => :admin}
+groups[:site]  = {:gid => 3001, :include => [:admin, :app]}
 
 roles[:hypervisor]    = {:groups => [:admin], :sudo_groups => [:admin]}
 roles[:dns]           = {:groups => [:admin], :sudo_groups => [:admin]}

@@ -19,10 +19,16 @@ require_recipe "postfix"
 require_recipe "ssh::server"
 include_recipe "ssh_keys"
 
-role[:groups].each do |group_name|
+role[:groups].each do |group_name, group_conf|
 
   group group_name.to_s do
-    gid node[:groups][group_name][:gid]
+    gid group_conf[:gid]
+    # add users from other groups as members
+    if conf[:include]
+      conf[:include].each do |included_group|
+        members users_for_group(included_group).keys
+      end
+    end
   end
 
   users = node[:users].find_all { |u| u.last[:group] == group_name }

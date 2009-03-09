@@ -15,3 +15,7 @@ def get_user(username)
   Chef::Log.info user.inspect
   user
 end
+
+def users_for_group(name)
+  node[:users].find_all {|u| u.last[:group] == name }
+end
