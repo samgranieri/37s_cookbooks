@@ -9,9 +9,9 @@ search(:node, "*") {|n| hosts << n }
 template "/etc/tinydns-internal/root/zones/chef-server.zone" do
   source "tinydns-internal-data.erb"
   mode 644
-  variables(:hosts => hosts
-            :chef_server_ip => node[:chef_server_ip] || node[:ipaddress]
-            :gem_mirror_ip => node[:gem_mirror_ip] || node[:ipaddress]
+  variables(:hosts => hosts,
+            :chef_server_ip => node[:chef_server_ip] || node[:ipaddress],
+            :gem_mirror_ip => node[:gem_mirror_ip] || node[:ipaddress],
             :dist_ip => node[:dist_ip] || node[:ipaddress]
   )
   notifies :run, resources("execute[build-tinydns-internal-data]")
