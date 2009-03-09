@@ -39,7 +39,7 @@ remote_directory "/usr/local/share/kvm" do
   files_backup 2
   files_owner "root"
   files_group "admin"
-  files_mode 0755
+  files_mode 0640
   owner "root"
   group "admin"
   mode 0750
