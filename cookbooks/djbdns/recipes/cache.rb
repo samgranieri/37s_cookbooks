@@ -44,3 +44,7 @@ end
 link "/etc/init.d/public-dnscache" do
   to node[:runit_sv_bin]
 end
+
+service "public-dnscache" do
+  supports :restart => true, :status => true
+end

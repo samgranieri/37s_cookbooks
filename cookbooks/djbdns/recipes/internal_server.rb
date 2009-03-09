@@ -35,6 +35,7 @@ execute "build-tinydns-internal-data" do
   cwd "/etc/tinydns-internal/root"
   command "./update_from_zones && make"
   action :nothing
+  notifies :restart, resources(:service => "public-dnscache")
 end
 
 template "/etc/tinydns-internal/run" do
