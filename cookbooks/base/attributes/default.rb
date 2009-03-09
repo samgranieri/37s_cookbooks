@@ -32,6 +32,7 @@ groups[:site]  = {:gid => 3001}
 groups[:admin] = {:gid => 4000}
 
 roles[:hypervisor]    = {:groups => [:admin], :sudo_groups => [:admin]}
+roles[:dns]           = {:groups => [:admin], :sudo_groups => [:admin]}
 roles[:noc]           = {:groups => [:admin, :app], :sudo_groups => [:admin]}
 roles[:app]           = {:groups => [:admin, :app], :sudo_groups => [:admin]}
 
