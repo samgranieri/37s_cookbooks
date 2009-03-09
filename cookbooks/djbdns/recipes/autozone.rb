@@ -12,7 +12,8 @@ template "/etc/tinydns-internal/root/zones/chef-server.zone" do
   variables(:hosts => hosts,
             :chef_server_ip => node[:chef_server_ip] || node[:ipaddress],
             :gem_mirror_ip => node[:gem_mirror_ip] || node[:ipaddress],
-            :dist_ip => node[:dist_ip] || node[:ipaddress]
+            :dist_ip => node[:dist_ip] || node[:ipaddress],
+            :apt_mirror_ip => node[:apt_mirror_ip] || node[:ipaddress]
   )
   notifies :run, resources("execute[build-tinydns-internal-data]")
 end
