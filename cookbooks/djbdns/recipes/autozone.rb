@@ -17,4 +17,5 @@ template "/etc/tinydns-internal/root/zones/chef-server.zone" do
             :apt_mirror_ip => node[:apt_mirror_ip] || node[:ipaddress]
   )
   notifies :run, resources("execute[build-tinydns-internal-data]")
+  notifies :restart, resources(:service => "public-dnscache")
 end
