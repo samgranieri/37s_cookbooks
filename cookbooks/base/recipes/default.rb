@@ -51,11 +51,11 @@ role[:groups].each do |group_name|
   end
   
   # remove users who may have been added but are now restricted from this node's role
-  (node[:users] - users).each do |u|
-    user u do
-      action :remove
-    end
-  end
+  # (node[:users] - users).each do |u|
+  #   user u do
+  #     action :remove
+  #   end
+  # end
 end
 
 directory "/u" do

@@ -5,7 +5,7 @@ require_recipe "apache2::mod_authn_yubikey"
 
 gem_package "chef-server"
 
-group "chef" do
+group "admin" do
   gid 8000
 end
 
@@ -19,51 +19,51 @@ end
 
 directory "/etc/chef" do
   owner "chef"
-  mode 0755
+  mode 0775
 end
 
 directory "/var/log/chef" do
   owner "chef"
-  group "chef"
-  mode 0755
+  group "admin"
+  mode 0775
 end
 
 directory "/var/chef/openid" do
   owner "chef"
-  group "chef"
-  mode 0755
+  group "admin"
+  mode 0775
 end
 
 directory "/var/chef/cache" do
   owner "chef"
-  group "chef"
-  mode 0755
+  group "admin"
+  mode 0775
 end
 
 directory "/var/chef/search_index" do
   owner "chef"
-  group "chef"
-  mode 0755
+  group "admin"
+  mode 0775
 end
 
 directory "/var/chef/openid/cstore" do
   owner "chef"
-  group "chef"
-  mode 0755
+  group "admin"
+  mode 0775
 end
 
 template "/etc/chef/server.rb" do
   owner "chef"
-  group "chef"
-  mode 0644
+  group "admin"
+  mode 0664
   source "server.rb.erb"
   action :create
 end
 
 template "/etc/chef/client.rb" do
   owner "chef"
-  group "chef"
-  mode 0644
+  group "admin"
+  mode 0664
   source "client.rb.erb"
   action :create
 end
@@ -93,7 +93,7 @@ template "/etc/apache2/sites-available/chef-server" do
   action :create
   owner "root"
   group "www-data"
-  mode 0640
+  0664
   notifies :restart, resources(:service => "apache2")
 end
 
@@ -101,8 +101,8 @@ template "#{node[:chef][:server_path]}/lib/config.ru" do
   source 'config.ru.erb'
   action :create
   owner "root"
-  group "chef"
-  mode 0644
+  group "admin"
+  mode 0664
   notifies :restart, resources(:service => "apache2")
 end
 
