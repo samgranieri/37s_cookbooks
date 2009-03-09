@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -x
 
 cp $1/boot/grub/menu.lst $1/boot/grub/menu.lst.bak
 
