@@ -6,11 +6,11 @@
 .<%= network %>.in-addr.arpa:<%= @node[:djbdns][:tinydns_internal_ipaddress] %>:a
 <% end %>
 
-+chef.<%= @node[:domain] %>:<%= @node[:ipaddress] %>:300
-+chefadmin.<%= @node[:domain] %>:<%= @node[:ipaddress] %>:300
-+apt.<%= @node[:domain] %>:<%= @node[:ipaddress] %>:300
-+gems.<%= @node[:domain] %>:<%= @node[:ipaddress] %>:300
-+dist.<%= @node[:domain] %>:<%= @node[:ipaddress] %>:300
++chef.<%= @node[:domain] %>:<%= @chef_server_ip %>:300
++chefadmin.<%= @node[:domain] %>:<%= @chef_server_ip %>:300
++apt.<%= @node[:domain] %>:<%= @apt_server_ip %>:300
++gems.<%= @node[:domain] %>:<%= @gem_mirror_ip %>:300
++dist.<%= @node[:domain] %>:<%= @dist_ip %>:300
 <% @hosts.each do |host| %>
 =<%=host['fqdn']%>:<%= host['ipaddress'] %>:300
 <% end %>
