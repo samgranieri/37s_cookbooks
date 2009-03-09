@@ -8,10 +8,6 @@ def role
   @node[:roles][@node[:role]]
 end
 
-def role_groups
-  @node[:groups].find_all { |g| role[:groups].include?(g) }
-end
-
 # method name 'user' conflicts with chef, so we use 'get_user'
 def get_user(username)
   Chef::Log.info username

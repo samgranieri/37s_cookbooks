@@ -19,7 +19,7 @@ require_recipe "postfix"
 require_recipe "ssh::server"
 include_recipe "ssh_keys"
 
-role_groups.each do |group_name, group_conf|
+role[:groups].each do |group_name, group_conf|
 
   group group_name.to_s do
     gid group_conf[:gid]
