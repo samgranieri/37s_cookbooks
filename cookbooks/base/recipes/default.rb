@@ -58,6 +58,12 @@ role[:groups].each do |group_name|
   # end
 end
 
+# Remove the bootstrap ubuntu user if it exists
+
+user "ubuntu" do
+  action :remove
+end
+
 directory "/u" do
   action :create
   owner "root"
