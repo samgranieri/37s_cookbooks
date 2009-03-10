@@ -71,7 +71,7 @@ bash "update kvm userspace" do
   user "root"
   cwd "/tmp"
 
-  code <<~EOH
+  code <<-EOH
   curl http://dist/misc/kvm-84.tar.bz2 | tar -C /usr/local -xjf -
   mkdir /usr/bin/kvm-dist
   mv /usr/bin/kvm* /usr/bin/kvm-dist/.
