@@ -80,7 +80,7 @@ bash "update kvm userspace" do
   ln -sf /usr/local/kvm/bin/qemu-nbd /usr/bin/kvm-nbd
   EOH
   
-  not_if File.dir?("/usr/local/kvm")
+  not_if File.directory?("/usr/local/kvm")
 end
 
 execute "link kvm userspace" do
