@@ -83,10 +83,6 @@ bash "update kvm userspace" do
   not_if File.directory?("/usr/local/kvm")
 end
 
-execute "link kvm userspace" do
-
-end
-
 execute "modprobe" do
   command "/sbin/depmod -a"
   action :run
