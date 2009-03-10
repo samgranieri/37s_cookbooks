@@ -67,6 +67,26 @@ kvm_modules = Dir.glob("/lib/modules/#{@node[:kernel][:release]}/extra/kvm*.ko")
   end
 end
 
+bash "update kvm userspace" do
+  user "root"
+  cwd "/tmp"
+
+  code <<~EOH
+  curl http://dist/misc/kvm-84.tar.bz2 | tar -C /usr/local -xjf -
+  mkdir /usr/bin/kvm-dist
+  mv /usr/bin/kvm* /usr/bin/kvm-dist/.
+  ln -sf /usr/local/kvm/bin/qemu-system-x86_64 /usr/bin/kvm
+  ln -sf /usr/local/kvm/bin/qemu-img /usr/bin/kvm-img
+  ln -sf /usr/local/kvm/bin/qemu-nbd /usr/bin/kvm-nbd
+  EOH
+  
+  not_if File.dir?("/usr/local/kvm")
+end
+
+execute "link kvm userspace" do
+
+end
+
 execute "modprobe" do
   command "/sbin/depmod -a"
   action :run
