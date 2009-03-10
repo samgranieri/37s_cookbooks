@@ -27,7 +27,6 @@ echo <%= @validation_token %> > /etc/chef/validation_token
 wget -P /tmp http://dist/debs/intrepid/ruby/ruby-enterprise_1.8.6-20090201_amd64.deb
 dpkg -i /tmp/ruby-enterprise_1.8.6-20090201_amd64.deb
 gem sources -a http://gems
-gem sources -a http://gems.opscode.com
 gem install chef --no-rdoc --no-ri
 
 apt-get update
