@@ -15,8 +15,10 @@ logrotate "chef-client" do
 end
 
 execute "Register client node with chef server" do
-  command "#{node[:chef][:client_path]} -t #{`cat /etc/chef/validation_token`}"
-  not_if { File.exists?("/var/chef/cache/registration") }
+  command "#{node[:chef][:client_path]} -t \`cat /etc/chef/validation_token\`"
+  
+  only_if { File.exists?("/etc/chef/validation_token") }
+  not_if  { File.exists?("/var/chef/cache/registration") }
 end
 
 execute "Remove the validation token" do
