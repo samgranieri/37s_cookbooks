@@ -21,11 +21,12 @@ include_recipe "ssh_keys"
 
 role[:groups].each do |group_name|
 
+  users = node[:users].find_all { |u| u.last[:group] == group_name }
+
   group group_name.to_s do
     gid node[:groups][group_name][:gid]
+    members node[:groups]
   end
-
-  users = node[:users].find_all { |u| u.last[:group] == group_name }
 
   users.each do |u, config|
     user u do

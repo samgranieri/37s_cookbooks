@@ -29,7 +29,6 @@ if node[:active_applications]
   node[:active_applications].each do |app, conf|
   
     full_name = "#{app}_#{conf[:env]}"
-    config_path = "/u/apps/#{app}/current/config/apache/#{conf[:env]}.conf"
   
     if node[:applications][app][:gems]
       node[:applications][app][:gems].each do |gem_name|
@@ -51,12 +50,8 @@ if node[:active_applications]
       end      
     end
     
-    link "/etc/apache2/sites-available/#{full_name}" do
-      to config_path
-      only_if { File.exists?(config_path) }
-    end
-
     apache_site full_name do
+      config_path "/u/apps/#{app}/current/config/apache/#{conf[:env]}.conf"
       only_if { File.exists?("/etc/apache2/sites-available/#{full_name}") }
     end
 
