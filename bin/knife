@@ -20,6 +20,7 @@ class Knife < Thor
     @rest.register(options[:username], options[:password])
   end
   
+  
   desc "add_recipe", "Add a recipe to a node"
   method_options :recipe => :required, :after => :optional, :node => :required
   def add_recipe
