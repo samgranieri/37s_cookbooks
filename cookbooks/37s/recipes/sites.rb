@@ -1,3 +1,5 @@
+apache_module "php5"
+
 node[:active_sites].each do |site, conf|
 
   full_name = "#{site}_#{conf[:env]}"
