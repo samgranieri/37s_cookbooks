@@ -14,7 +14,7 @@ package "strace"
 package "host"
 package "lsof"
 package "gdb"
-g
+
 require_recipe "apt"
 require_recipe "git"
 require_recipe "postfix"
