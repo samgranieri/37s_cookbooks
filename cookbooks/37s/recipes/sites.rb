@@ -1,3 +1,4 @@
+package "php5"
 apache_module "php5"
 
 node[:active_sites].each do |site, conf|
