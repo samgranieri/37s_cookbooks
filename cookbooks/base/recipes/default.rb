@@ -12,6 +12,7 @@ package "curl"
 package "man-db"
 package "strace"
 package "host"
+package "lsof"
 
 require_recipe "apt"
 require_recipe "git"
