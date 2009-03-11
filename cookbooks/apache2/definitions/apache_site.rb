@@ -1,7 +1,7 @@
 define :apache_site, :enable => true do
   include_recipe "apache2"
 
-  link "#{node[:apache][:dir]}/sites-available/#{full_name}" do
+  link "#{node[:apache][:dir]}/sites-available/#{params[:name]}" do
     to params[:config_path]
     only_if { File.exists?(params[:config_path]) }
   end
