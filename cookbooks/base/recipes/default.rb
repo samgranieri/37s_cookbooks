@@ -25,7 +25,8 @@ role[:groups].each do |group_name|
 
   group group_name.to_s do
     gid node[:groups][group_name][:gid]
-    members node[:groups]
+    # TODO: add users to groups under their role
+    #members node[:groups]
   end
 
   users.each do |u, config|
