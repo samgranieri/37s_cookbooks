@@ -13,6 +13,7 @@ package "man-db"
 package "strace"
 package "host"
 package "lsof"
+package "gdb"
 
 require_recipe "apt"
 require_recipe "git"
