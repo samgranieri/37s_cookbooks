@@ -14,7 +14,7 @@ package "strace"
 package "host"
 package "lsof"
 package "gdb"
-
+g
 require_recipe "apt"
 require_recipe "git"
 require_recipe "postfix"
@@ -60,12 +60,6 @@ role[:groups].each do |group_name|
   #     action :remove
   #   end
   # end
-end
-
-# Remove the bootstrap ubuntu user if it exists
-
-user "ubuntu" do
-  action :remove
 end
 
 directory "/u" do
