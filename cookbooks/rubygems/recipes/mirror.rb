@@ -21,7 +21,7 @@ cron "gem mirror nightly update" do
   hour "5"
 end
 
-template "/etc/apache2/sites-available/gem-mirror" do
+template "/etc/rubygems/gem-mirror.vhost.conf" do
   source 'mirror-vhost.conf.erb'
   action :create
   owner "root"
@@ -29,4 +29,6 @@ template "/etc/apache2/sites-available/gem-mirror" do
   mode 0640
 end
 
-apache_site "gem-mirror"
+apache_site "gem-mirror" do
+  config_path "/etc/rubygems/gem-mirror.vhost.conf"
+end
