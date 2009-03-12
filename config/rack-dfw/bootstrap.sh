@@ -17,7 +17,7 @@ SOLO
 
 cat > /etc/chef/bootstrap.json <<BOOTSTRAP
 {
- "role": "<%= @role %>",
+ "role": "$1",
  "recipes": ["base", "chef::client"]
 }
 BOOTSTRAP
