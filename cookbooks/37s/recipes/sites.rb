@@ -1,6 +1,13 @@
 package "php5"
 apache_module "php5"
 
+directory "/u/logs/sites" do
+  action :create
+  mode 0775
+  owner "site"
+  group "www-data"
+end
+
 node[:active_sites].each do |site, conf|
 
   full_name = "#{site}_#{conf[:env]}"
