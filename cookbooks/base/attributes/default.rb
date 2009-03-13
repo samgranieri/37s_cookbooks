@@ -81,7 +81,7 @@ applications[:backpack] = {:gems => ['fast_xs', 'hpricot', 'aws-s3', 'ruby-prof'
 applications[:writeboard] = {:gems => ['fast_xs']}
 applications[:jobs] = {:gems => ['fast_xs']}
 applications[:extra_extra] = {:gems => ['fast_xs']}
-applications[:blogcabin] = {:gems => ['fast_xs']}
+applications[:blogcabin] = {:gems => ['fast_xs', 'memcache-client']}
 applications[:tadalist] = {:gems => ['fast_xs']}
 applications[:bookstore] = {:gems => ['fast_xs']}
 

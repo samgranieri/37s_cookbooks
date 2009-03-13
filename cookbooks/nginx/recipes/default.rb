@@ -6,11 +6,11 @@ service "nginx" do
 end
 
 file "/etc/nginx/sites-available/default" do
-  action :remove
+  action :delete
 end
 
 file "/etc/nginx/sites-enabled/default" do
-  action :remove
+  action :delete
 end
 
 service "nginx" do
