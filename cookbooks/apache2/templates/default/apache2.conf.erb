@@ -658,6 +658,10 @@ Keepalive On
 MaxKeepAliveRequests 12
 KeepAliveTimeout 1
 
+<Proxy *>
+	Order deny,allow
+	Allow from 127.0.0.1
+</Proxy>
+
 # Include the virtual host configurations:
 Include <%= @node[:apache][:dir] %>/sites-enabled/
-
