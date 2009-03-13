@@ -4,7 +4,7 @@ apache_module "php5"
 directory "/u/logs/sites" do
   action :create
   mode 0775
-  owner "site"
+  owner "app"
   group "www-data"
 end
 
