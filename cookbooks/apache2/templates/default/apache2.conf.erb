@@ -636,5 +636,28 @@ SetEnvIf User-Agent "^websitepulse.*" no-log
   BrowserMatch "MSIE 6.0" no-gzip
 </FilesMatch>
 
+# allow server-status from localhost
+
+<Location /server-status>
+        SetHandler server-status
+        order deny,allow
+        allow from localhost
+        allow from 192.168.0.0/255.255.252.0
+</Location>
+<Location /server-info>
+        SetHandler server-info
+        order deny,allow
+        allow from localhost
+        allow from 192.168.0.0/255.255.252.0
+</Location>
+
+ExtendedStatus On
+
+# reasonable keepalive settings
+Keepalive On
+MaxKeepAliveRequests 12
+KeepAliveTimeout 1
+
 # Include the virtual host configurations:
 Include <%= @node[:apache][:dir] %>/sites-enabled/
+
