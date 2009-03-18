@@ -13,7 +13,7 @@ source src {
     pipe("/proc/kmsg");
 };
 
-destination d_loghost { tcp("noc"); };
+destination d_loghost { udp("noc"); };
 destination d_null { file("/dev/null.syslog"); };
 destination messages { file("/var/log/messages"); };
 
