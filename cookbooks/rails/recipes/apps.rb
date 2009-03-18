@@ -31,8 +31,12 @@ if node[:active_applications]
     full_name = "#{app}_#{conf[:env]}"
   
     if node[:applications][app][:gems]
-      node[:applications][app][:gems].each do |gem_name|
-        gem_package gem_name
+      node[:applications][app][:gems].each do |g|
+        if g.is_a? Array
+          gem_package g.first, :version => g.last
+        else
+          gem_package g
+        end
       end
     end
     
