@@ -1,8 +1,3 @@
-template "/etc/apt/preferences" do
-  source 'preferences.erb'
-end
-
-
 %w{/var/cache/local /var/cache/local/preseeding}.each do |dirname|
   directory dirname do
     owner "root"
