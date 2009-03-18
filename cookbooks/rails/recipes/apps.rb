@@ -33,7 +33,9 @@ if node[:active_applications]
     if node[:applications][app][:gems]
       node[:applications][app][:gems].each do |g|
         if g.is_a? Array
-          gem_package g.first, :version => g.last
+          gem_package g.first do
+            version g.last
+          end
         else
           gem_package g
         end
