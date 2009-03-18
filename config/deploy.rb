@@ -3,7 +3,6 @@ set :scm_user, ENV['USER']
 set :repository, "ssh://#{scm_user}@dev.37signals.com/u/git/chef_recipes.git"
 set :deploy_to, "/var/chef_recipes"
 set :scm, :git
-set :gateway, "#{ENV['USER']}@dev.37signals.com"
 
 ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "id_rsa")]
 
