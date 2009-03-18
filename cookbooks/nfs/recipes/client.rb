@@ -1,3 +1,5 @@
+package "nfs-common"
+
 if node[:nfs_mounts]
   node[:nfs_mounts].each do |target, config|
     directory target do
