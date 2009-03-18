@@ -68,7 +68,13 @@ ssh_keys[:matt]    = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAtxvNj/M53kW5eWyyFc3ZiF
 ssh_keys[:jeff]    = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAx0iwu7QIsXx6xbvWdQgqtG/ywwvTAgoWJX0e5fhkI0EV8TP6ot75gg6NxuQtRsQi3BcIvFI6K7kGvbY+7Bc4Hw2shGibqT7GPaaNMZWO4NyRPG8CNJd/B4xJNMO+Sp3x7zm6apaHbWwJiKbn5UddWxZNxX+tpV2lKYa0SjyUdGiK7Sgipl1MD5BMVCQ0876j17K3C88BldEpExItxC/8WPNwbLRSEiZf5ECsVITPCYkl4Gw/w1bEe0mx6VKO4HlJSkvRzevpzAvXSSfgrwK86nQ2AC5AXkr8Rdsks6oElxwzBeA/9346nA8W0cU8MmMYJBBfjMv6bUtNvWNGMwif0w== jeff@brunswick.local"
 ssh_keys[:jeremy]  = "ssh-dss AAAAB3NzaC1kc3MAAAEBAOPInDq5qLyFJ0+I3hxYdD9S6oYQvE5xPXeqYz9S9daNf+SnqzKPmUXUd/YeY3WF9ZpTDRTns1TSGCIsLqLohbTSD9tAPlVICEWRBDsEm6m4HlScyEDaGtM9JpZvawlOSfeXzio9l+/fNMpa1VxIVf6r7VdA2sXuFtessjWyRdUU7ta6ag1GTxiQsfUHfQdpiX4C95ITCWa9W1qqly0thQFEx+e7UZTn1DwlICalSSzgjDtnoIPzjSt7XPO62rgrXvW6gwT6FlS4ejUP39FH3nf7370x8EDQ44xJPrS43PXVnNa+74IoJiRWiEvJT3ZMZroGEln3BPLLkHJ4pXd+bn0AAAAVAJH5Z7jsb8QDYbriWmYlv6puUj0jAAABAQCg3QJb4nb+g5lGTTdLsyrljTIOgGBCwjNTX+j8PmTdnWpG0OaLuGWiWt+LpW5UOnGCVb4y0iyWqfh1GLt3pcZFXzXOF6SOikHOu6gcmgwaDtRFzRGMMFOrUhZtHYnYEICTmeY1XXnr/r9E6cgBcQ+Kt/DCbvOG+teny/yXTNIyARdtCUsIYl9Q7RiZOwgcNhmFcARogRUWqjOp4xgJOoeoPanlewKWQ7PcTICP/agr69ZAD9AqhMJP47SeHGpVNy5lgGztcVAMt9Sv0OqIeGJOQ7cIMkYdABN/D7ajsPFnPGAazMlB9J4O/FAtosErAubs5xgFDszMOKFGKH3bSSPeAAABAEPHSZsmQB9Ob5dyzlm4YlYF/iGPSyddH2EoRSwiqT9CoQqwVXzpEz+hPQGJbGx7sjgbxh4jwIH2bX18S33OHJ215ZhYmBDRa7Ztb5sIesHNjtVM+NnlIK25zXRhWmTpDbyygL64aZmHzE4XujnH0ARMtp1rjM6ikKtNTxoHD/SPktaeCsciJtsmFCxvqFqX9/0eT7S2cbq7Ot8hsg7yMShtJfuUdnKNU/me0ZqpNFaSewuA+W00qR6SKXkiPqWskdsIGUXNfY0kfAHG0xVTp1j4HzeilMpOGzy89chxCi7hT9HYOHmvEoRqCe96doHkCqDZUOJkkPPcsjXVG2JzK9E= jeremy@geech.local"
 
-applications[:basecamp] = {:completed => true, :thumbnails => true, :logsort => true, :haproxy => true, :gems => ['fast_xs']}
+applications[:basecamp] = {:completed => true, :thumbnails => true, :logsort => true, :haproxy => true, :gems => ['fast_xs', 'hpricot', 'aws-s3', 'ruby-prof'],
+                           :packages => ['imagemagick', 'elinks'],
+                           :symlinks => {'/usr/local/bin/convert' => '/usr/bin/convert',
+                                         '/usr/local/bin/identify' => '/usr/bin/identify',
+                                         '/usr/local/bin/composite' => '/usr/bin/composite',
+                                         '/usr/local/bin/elinks' => '/usr/bin/elinks'}                         
+                          }
 applications[:highrise] = {:haproxy => true, :gems => ['fast_xs']}
 applications[:campfire] = {:haproxy => true, :gems => ['fast_xs']}
 applications[:open_bar] = {:gems => ['fast_xs']}
