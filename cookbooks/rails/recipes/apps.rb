@@ -49,6 +49,12 @@ if node[:active_applications]
         end
       end      
     end
+
+    if modules = node[:applications][app][:apache_modules]
+      modules.each do |mod|
+        apache_module mod
+      end      
+    end
     
     apache_site full_name do
       config_path "/u/apps/#{app}/current/config/apache/#{conf[:env]}.conf"
