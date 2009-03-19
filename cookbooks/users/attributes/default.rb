@@ -16,4 +16,4 @@ users[:jose] = {:password => "shadowpass", :comment => "José Amador", :uid => 4
 users[:francisco]   = {:password => "shadowpass", :comment => "Paco de Lucena",  :uid => 4002, :group => :admin}
 
 ssh_keys[:jose]   = "ssh-dss keydata"
-ssh_keys[:francisco]  = "ssh-rsa keydata'
+ssh_keys[:francisco]  = "ssh-rsa keydata"
