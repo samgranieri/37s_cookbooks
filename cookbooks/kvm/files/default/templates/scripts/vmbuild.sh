@@ -27,4 +27,5 @@ vmbuilder kvm ubuntu --suite=intrepid --flavour=virtual --arch=amd64 --hostname=
     --libvirt=qemu:///system --verbose --debug
 
 echo "Converting qcow2 image to LVM..."
-kvm-img convert /u/kvm/images/${NAME}/disk0.qcow2 -O raw /dev/mapper/VolGroupKVM-kvm_${VOLUME}
+kvm-img convert /u/kvm/images/${NAME}/disk0.qcow2 -O raw /u/kvm/images/${NAME}/disk0.raw
+dd if=/u/kvm/images/${NAME}/disk0.raw of=/dev/mapper/VolGroupKVM-kvm_${VOLUME} bs=1M
