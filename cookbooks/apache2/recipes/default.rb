@@ -140,6 +140,7 @@ include_recipe "apache2::mod_deflate"
 include_recipe "apache2::mod_expires"
 include_recipe "apache2::mod_headers"
 include_recipe "apache2::mod_ssl"
+include_recipe "apache2::mod_proxy_http"
 include_recipe "apache2::mod_log_config" if platform?("centos", "redhat", "suse")
 
 service "apache2" do

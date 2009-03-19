@@ -28,7 +28,7 @@ end
 ###
 
 # General settings
-apache[:listen_ports] = [ "80","443","444" ]#     unless apache.has_key?(:listen_ports)
+apache[:listen_ports] = [ "80","443","444" ]     unless apache.has_key?(:listen_ports)
 apache[:contact] = "sysadmins@37signals.com" unless apache.has_key?(:contact)
 apache[:timeout] = 300               unless apache.has_key?(:timeout)
 apache[:keepalive] = "On"            unless apache.has_key?(:keepalive)
@@ -40,7 +40,7 @@ apache[:prefork] = Mash.new unless apache.has_key?(:prefork)
 apache[:prefork][:startservers] = 16      unless apache[:prefork].has_key?(:prefork_startservers)
 apache[:prefork][:minspareservers] = 16   unless apache[:prefork].has_key?(:prefork_minspareservers)
 apache[:prefork][:maxspareservers] = 32   unless apache[:prefork].has_key?(:prefork_maxspareservers)
-apache[:prefork][:maxclients] = 400       unless apache[:prefork].has_key?(:prefork_maxclients)
+apache[:prefork][:maxclients] = 256       unless apache[:prefork].has_key?(:prefork_maxclients)
 apache[:prefork][:maxrequestsperchild] = 10000 unless apache[:prefork].has_key?(:prefork_maxrequestsperchild)
 
 # Worker Attributes
