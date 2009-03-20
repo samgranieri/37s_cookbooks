@@ -1,6 +1,6 @@
 ssh_options[:keys] = [File.join(ENV["HOME"], ".ec2", "ec2"), File.join(ENV["HOME"], ".ssh", "id_rsa")] 
-set :user, ENV["USER"]
-role :app, "noc.ec2-us.37signals.com"
+set :user, "root"
+role :app, "ec2-174-129-159-22.compute-1.amazonaws.com"
 
 require 'erb'
 require 'right_aws'
@@ -25,7 +25,7 @@ namespace :ec2 do
     output = ERB.new(File.read(File.dirname(__FILE__)+"/../bootstrap.erb")).result(binding)
     
     ec2 = RightAws::Ec2.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
-    result = ec2.launch_instances(config[:ami], :group_ids => ['default', @role], :instance_type => config[:type], :key_name => 'ec2', :user_data => output)
+    result = ec2.launch_instances(config[:ami], :group_ids => ['default', @role, @hostname], :instance_type => config[:type], :key_name => 'ec2', :user_data => output)
     puts result.inspect
   end
 end
