@@ -11,7 +11,7 @@ end
 
 user "chef" do
   comment "Chef user"
-  gid "chef"
+  gid "admin"
   uid 8000
   home "/var/chef"
   shell "/bin/bash"
@@ -88,7 +88,7 @@ end
 
 runit_service "chef-indexer"
 
-template "/etc/apache2/sites-available/chef-server" do
+template "/etc/chef/server-vhost.conf" do
   source 'chef-server-vhost.conf.erb'
   action :create
   owner "root"
@@ -110,4 +110,6 @@ link "/var/chef/public" do
   to "#{node[:chef][:server_path]}/lib/public"
 end
 
-apache_site "chef-server"
+apache_site "chef-server" do
+  config_path "/etc/chef/server-vhost.conf"
+end
