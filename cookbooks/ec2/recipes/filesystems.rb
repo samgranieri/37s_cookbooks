@@ -7,5 +7,6 @@ if node[:ebs_volumes]
       end
     else
       Chef::Log.info "Before mounting, you must attach volume #{name} to this instance #{node[:ec2][:instance_id]} at #{conf[:device]}"
+    end
   end
 end

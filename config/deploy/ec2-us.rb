@@ -1,6 +1,6 @@
 ssh_options[:keys] = [File.join(ENV["HOME"], ".ec2", "ec2"), File.join(ENV["HOME"], ".ssh", "id_rsa")] 
-set :user, "root"
-role :app, "ec2-174-129-159-22.compute-1.amazonaws.com"
+set :user, ENV['USER']
+role :app, "noc-01.ec2-us.37signals.com"
 
 require 'erb'
 require 'right_aws'
