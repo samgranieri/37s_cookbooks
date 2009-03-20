@@ -5,7 +5,7 @@ service "memcached" do
   supports :restart => true, :reload => true
 end
 
-template node[:memory][:config_path] do
+template node[:memcached][:config_path] do
   source "memcached.conf.erb"  
   notifies :restart, resources(:service => "memcached")
 end
