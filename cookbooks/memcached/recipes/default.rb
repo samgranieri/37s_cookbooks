@@ -11,7 +11,8 @@ end
   end
   execute "install #{f}" do
     command "dpkg -i /tmp/#{f}"
-    not_if "dpkg -l | grep #{f.split("_")[1]} | grep ii"
+    package, version, arch = f.split("_")
+    not_if "dpkg -l | grep #{package} | grep #{version} | grep ii"
   end
 end
 
