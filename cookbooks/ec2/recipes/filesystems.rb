@@ -1,6 +1,6 @@
 if node[:ebs_volumes]
   node[:ebs_volumes].each do |name, conf|
-    if File.exists?(device)
+    if File.exists?(conf[:device])
       mount conf[:mount_point] do
         fstype conf[:type]
         device conf[:device]
