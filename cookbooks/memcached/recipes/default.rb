@@ -11,7 +11,7 @@ end
   end
   execute "install #{f}" do
     command "dpkg -i /tmp/#{f}"
-    not_if "dpkg -l | grep #{f.match(/.+-(.+).deb/)[1]} | grep ii"
+    not_if "dpkg -l | grep #{f.split("_")[1]} | grep ii"
   end
 end
 
