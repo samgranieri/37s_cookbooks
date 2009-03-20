@@ -10,7 +10,7 @@ end
     source f
   end
   execute "install #{f}" do
-    code "dpkg -i /tmp/#{f}"
+    command "dpkg -i /tmp/#{f}"
     not_if "dpkg -l | grep #{f.match(/.+-(.+).deb/)[1]} | grep ii"
   end
 end
