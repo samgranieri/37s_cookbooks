@@ -6,7 +6,7 @@ service "memcached" do
 end
 
 %w(libevent1_1.4.9-1ubuntu1_amd64.deb memcached_1.2.6-1ubuntu2_amd64.deb).each do |f|
-  file "/tmp/#{f}" do
+  remote_file "/tmp/#{f}" do
     source f
   end
   execute "install #{f}" do
