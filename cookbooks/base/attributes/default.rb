@@ -32,7 +32,7 @@ case domain
   when "rack-dfw-int.37signals.com"
     nameservers ['192.168.2.63', '192.168.2.65', '192.168.1.157']
   when "ec2-us-int.37signals.com"
-    nameservers ['']
+    nameservers ['10.253.127.127']
 end
 
 groups[:app]   = {:gid => 1003}
