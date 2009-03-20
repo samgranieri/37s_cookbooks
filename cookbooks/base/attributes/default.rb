@@ -23,9 +23,17 @@ host_keys Mash.new unless attribute?("host_keys")
 sudo Mash.new unless attribute?("sudo")
 roles Mash.new unless attribute?("roles")
 applications Mash.new unless attribute?("applications")
+nameservers Mash.new unless attribute?("nameservers")
 
 ddclient[:dyndns_login] = "883mhi-ec2dyn"
 ddclient[:dyndns_password] = "5SkR2hJiNsQP"
+
+case domain
+  when "rack-dfw-int.37signals.com"
+    nameservers ['192.168.2.63', '192.168.2.65', '192.168.1.157']
+  when "ec2-us-int.37signals.com"
+    nameservers ['']
+end
 
 groups[:app]   = {:gid => 1003}
 groups[:site]  = {:gid => 3001}
