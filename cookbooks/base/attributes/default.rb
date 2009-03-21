@@ -30,11 +30,10 @@ ddclient[:dyndns_password] = "5SkR2hJiNsQP"
 
 case domain
   when "rack-dfw-int.37signals.com"
-    # dns-01, dns-02, noc2
+    # dns-01, dns-02, noc
     nameservers ['192.168.2.63', '192.168.2.65', '192.168.1.157']
   when "ec2-us-int.37signals.com"
-    # noc elastic IP
-    nameservers ['75.101.162.74']
+    nameservers ['10.253.127.127']
 end
 
 groups[:app]   = {:gid => 1003}
