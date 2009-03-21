@@ -40,7 +40,7 @@ PassengerDefaultUser chef
 		AuthBasicProvider yubikey
 		AuthName "Login"
 		AuthYubiKeyTmpFile conf.d/yubikey_tmp
-		AuthYubiKeyUserFile conf.d/yubikey_user
+		AuthYubiKeyUserFile /var/chef_recipes/config/yubikey.user
 		AuthYubiKeyRequireSecure On
 		AuthYubiKeyExternalErrorPage Off
 		Require valid-user
