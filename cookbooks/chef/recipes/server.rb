@@ -113,3 +113,8 @@ end
 apache_site "chef-server" do
   config_path "/etc/chef/server-vhost.conf"
 end
+
+cron "compact chef couchDB" do
+  command "curl -X POST http://localhost:5984/chef/_compact >> /var/log/cron.log 2>&1"
+  hour "5"
+end
