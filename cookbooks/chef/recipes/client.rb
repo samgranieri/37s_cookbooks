@@ -1,6 +1,10 @@
 require_recipe "runit"
 include_recipe "logrotate"
 
+gem_package "chef" do
+  version node[:chef][:client_version]
+end
+
 template "/etc/chef/client.rb" do
   mode 0644
   source "client.rb.erb"

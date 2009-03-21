@@ -1,9 +1,15 @@
 include_recipe "runit"
 include_recipe "apache2"
 include_recipe "passenger"
-require_recipe "apache2::mod_authn_yubikey"
+#require_recipe "apache2::mod_authn_yubikey"
 
-gem_package "chef-server"
+gem_package "chef-server-slice" do
+  version node[:chef][:server_version]
+end
+
+gem_package "chef-server" do
+  version node[:chef][:server_version]
+end
 
 group "admin" do
   gid 8000
@@ -73,13 +79,17 @@ gem_package "stompserver" do
 end
 runit_service "stompserver"
 
-package "couchdb"
-
-directory "/var/lib/couchdb" do
+directory "/var/chef/couchdb" do
   owner "couchdb"
   group "couchdb"
   recursive true
 end
+
+link "/var/lib/couchdb" do
+  to "/var/chef/couchdb"
+end
+
+package "couchdb"
 
 service "couchdb" do
   supports :restart => true, :status => true
@@ -107,7 +117,7 @@ template "#{node[:chef][:server_path]}/lib/config.ru" do
 end
 
 link "/var/chef/public" do
-  to "#{node[:chef][:server_path]}/lib/public"
+  to "#{node[:chef][:server_path]}/public"
 end
 
 apache_site "chef-server" do
