@@ -24,7 +24,7 @@ template "/etc/apt/mirror.list" do
 end
 
 cron "apt mirror nightly update" do
-  command "/usr/bin/apt-mirror > /var/log/apt-mirror.log 2>&1"
+  command "/usr/bin/apt-mirror >> /var/log/apt-mirror.log 2>&1"
   hour "5"
   only_if  { File.exist?(node[:apt][:mirror][:base_path]+"/mirror") }
 end
