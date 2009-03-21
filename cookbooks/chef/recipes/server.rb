@@ -77,6 +77,7 @@ end
 gem_package "stompserver" do
   action :install
 end
+
 runit_service "stompserver"
 
 directory "/var/chef/couchdb" do

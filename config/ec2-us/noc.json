@@ -1,5 +1,7 @@
-{"recipes": ["base", "ec2", "ddclient", "chef::server", "djbdns::cache", "djbdns::internal_server", "djbdns::autozone"],
- "assigned_hostname": "noc",
- "assigned_domain": "ec2-us.37signals.com",
- "ebs_volumes": {"logs": {"id": "vol-9eae4af7", "mount_point": "/u/logs", "device": "/dev/sdi", "type": "ext3"}}
+{"role": "noc",
+ "recipes": ["ec2::filesystems", "base", "djbdns::cache", "djbdns::internal_server", "syslog::server", "nagios::server", "djbdns::autozone"],
+ "ebs_volumes": {"logs": {"id": "vol-37af4b5e", "mount_point": "/u/logs", "device": "/dev/sdf", "type": "ext3"},
+  							 "mirrors": {"id": "vol-37af4b5e", "mount_point": "/u/mirrors", "device": "/dev/sdg", "type": "ext3"},
+  							 "mirrors": {"id": "vol-fbd73092", "mount_point": "/var/chef", "device": "/dev/sdj", "type": "ext3"}
+ }
 }
