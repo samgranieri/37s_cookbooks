@@ -53,9 +53,13 @@ apache_site "apt-mirror" do
   config_path "/etc/apt/mirror.vhost.conf"
 end
 
-directory node[:apache][:sites][:dist][:document_root]
+directory node[:apache][:sites][:dist][:document_root] do
+  owner "admin"
+  group "admin"
+  mode 0775
+end
 
-template "/u/sites/dist.vhost.conf" do
+template "/u/mirrors/dist.vhost.conf" do
   source 'dist-vhost.conf.erb'
   action :create
   owner "root"
@@ -64,5 +68,5 @@ template "/u/sites/dist.vhost.conf" do
 end
 
 apache_site "dist" do
-  config_path "/u/sites/dist.vhost.conf"
+  config_path "/u/mirrors/dist.vhost.conf"
 end
