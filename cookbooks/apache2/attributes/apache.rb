@@ -31,7 +31,7 @@ end
 apache[:listen_ports] = [ "80","443","444" ]     unless apache.has_key?(:listen_ports)
 apache[:contact] = "sysadmins@37signals.com" unless apache.has_key?(:contact)
 apache[:timeout] = 300               unless apache.has_key?(:timeout)
-apache[:keepalive] = "On"            unless apache.has_key?(:keepalive)
+apache[:keepalive] = "Off"            unless apache.has_key?(:keepalive)
 apache[:keepaliverequests] = 12     unless apache.has_key?(:keepaliverequests)
 apache[:keepalivetimeout] = 2        unless apache.has_key?(:keepalivetimeout)
 
