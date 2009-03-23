@@ -32,8 +32,8 @@ apache[:listen_ports] = [ "80","443","444" ]     unless apache.has_key?(:listen_
 apache[:contact] = "sysadmins@37signals.com" unless apache.has_key?(:contact)
 apache[:timeout] = 300               unless apache.has_key?(:timeout)
 apache[:keepalive] = "On"            unless apache.has_key?(:keepalive)
-apache[:keepaliverequests] = 100     unless apache.has_key?(:keepaliverequests)
-apache[:keepalivetimeout] = 5        unless apache.has_key?(:keepalivetimeout)
+apache[:keepaliverequests] = 12     unless apache.has_key?(:keepaliverequests)
+apache[:keepalivetimeout] = 2        unless apache.has_key?(:keepalivetimeout)
 
 # Prefork Attributes
 apache[:prefork] = Mash.new unless apache.has_key?(:prefork)
