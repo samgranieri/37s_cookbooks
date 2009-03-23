@@ -49,7 +49,7 @@ end
 
 desc "Create tarball for chef solo"
 task :create_tarball do
-  run "cd /var/chef && tar czvf /u/sites/dist/cookbooks.tgz cookbooks"
+  run "cd /var/chef && tar czvf /u/mirrors/dist/cookbooks.tgz cookbooks"
 end
 
 desc "Run chef solo"
