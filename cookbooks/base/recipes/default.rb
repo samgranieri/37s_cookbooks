@@ -15,9 +15,11 @@ package "host"
 package "lsof"
 package "gdb"
 
+require_recipe "timezone"
 require_recipe "apt"
 require_recipe "git"
 require_recipe "postfix"
+
 require_recipe "ssh::server"
 include_recipe "ssh_keys"
 
