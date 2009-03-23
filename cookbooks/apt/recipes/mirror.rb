@@ -54,7 +54,6 @@ apache_site "apt-mirror" do
 end
 
 directory node[:apache][:sites][:dist][:document_root] do
-  owner "admin"
   group "admin"
   mode 0775
 end
