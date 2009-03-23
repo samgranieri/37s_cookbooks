@@ -108,7 +108,7 @@ template "/etc/chef/server-vhost.conf" do
   notifies :restart, resources(:service => "apache2")
 end
 
-template "#{node[:chef][:server_path]}/lib/config.ru" do
+template "#{node[:chef][:server_path]}/config.ru" do
   source 'config.ru.erb'
   action :create
   owner "root"
