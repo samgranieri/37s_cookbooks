@@ -27,9 +27,7 @@ PidFile logs/httpd.pid
 <% end -%>
 
 Timeout <%= @node[:apache][:timeout] %>
-KeepAlive <%= @node[:apache][:keepalive] %>
-MaxKeepAliveRequests <%= @node[:apache][:keepaliverequests] %>
-KeepAliveTimeout <%= @node[:apache][:keepalivetimeout] %>
+KeepAlive Off
 
 <IfModule mpm_prefork_module>
     StartServers          <%= @node[:apache][:prefork][:startservers] %>
