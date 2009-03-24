@@ -26,6 +26,7 @@ PidFile /var/run/apache2.pid
 PidFile logs/httpd.pid
 <% end -%>
 
+TraceEnable Off
 Timeout <%= @node[:apache][:timeout] %>
 KeepAlive <%= @node[:apache][:keepalive] %>
 MaxKeepAliveRequests <%= @node[:apache][:keepaliverequests] %>
@@ -78,6 +79,7 @@ LogFormat "%{User-agent}i" agent
 	<Location /server-status>
 		 SetHandler server-status
 		 order deny,allow
+		 deny from all
 		 allow from localhost
 		 allow from 192.168.0.0/255.255.252.0
 	</Location>
@@ -103,6 +105,8 @@ SetEnvIf User-Agent "^websitepulse.*" no-log
   BrowserMatch "MSIE 6.0" no-gzip
 </FilesMatch>
 
+# Only include the mtime and size in the ETag by default
+FileETag MTime Size
 
 <IfModule mod_proxy.c>   
 	<Proxy *>
