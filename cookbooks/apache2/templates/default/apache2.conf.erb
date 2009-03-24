@@ -26,6 +26,7 @@ PidFile /var/run/apache2.pid
 PidFile logs/httpd.pid
 <% end -%>
 
+TraceEnable Off
 Timeout <%= @node[:apache][:timeout] %>
 KeepAlive <%= @node[:apache][:keepalive] %>
 MaxKeepAliveRequests <%= @node[:apache][:keepaliverequests] %>
