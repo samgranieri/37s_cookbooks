@@ -117,7 +117,7 @@ template "#{node[:chef][:server_path]}/config.ru" do
   notifies :restart, resources(:service => "apache2")
 end
 
-template "#{node[:chef][:server_path]}/config/production.rb" do
+template "#{node[:chef][:server_path]}/config/environments/production.rb" do
   source 'merb-production.rb.erb'
   action :create
   owner "root"
