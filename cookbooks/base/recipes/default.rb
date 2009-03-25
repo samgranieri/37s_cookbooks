@@ -15,6 +15,7 @@ package "host"
 package "lsof"
 package "gdb"
 
+require_recipe "rubygems::client"
 require_recipe "timezone"
 require_recipe "apt"
 require_recipe "git"
