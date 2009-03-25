@@ -12,7 +12,13 @@ define :add_keys do
       end
     end
   end
-    
+  
+  if node[:extra_ssh_keys]
+    node[:extra_ssh_keys].each do |username|
+      keys[username] = node[:ssh_keys][username]
+    end
+  end
+  
   template "/home/#{name}/.ssh/authorized_keys" do
     source "authorized_keys.erb"
     action :create
