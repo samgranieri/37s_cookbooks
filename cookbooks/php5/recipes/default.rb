@@ -24,5 +24,5 @@ tar -C /#{node[:php5][:path].split("/")[1..-2].join("/")} -xpf #{node[:php5][:ta
 EOC
   user "root"
   cwd "/tmp"
-  not_if File.directory?(node[:php5][:path])
+  not_if { File.directory?(node[:php5][:path]) }
 end
