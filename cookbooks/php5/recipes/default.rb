@@ -1,4 +1,4 @@
-unless platform == "ubuntu"
+unless node[:platform] == "ubuntu"
   Chef::Log.warn("This recipe is only available for Ubuntu systems.")
   return
 end
@@ -30,7 +30,7 @@ script "install_php" do
   user "root"
   cwd "/tmp"
   code <<-EOC
-wget #{php5[:dist_url]}
-tar -C /usr/local -xpf #{php5[:tar_pkg]}
+wget #{node[:php5][:dist_url]}
+tar -C /usr/local -xpf #{node[:php5][:tar_pkg]}
   EOC
 end
