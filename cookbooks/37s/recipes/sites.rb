@@ -1,5 +1,5 @@
-package "php5"
-apache_module "php5"
+
+require_recipe "php5"
 
 directory "/u/logs/sites" do
   action :create
