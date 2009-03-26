@@ -31,6 +31,7 @@ script "install_php" do
   cwd "/tmp"
   code <<-EOC
 wget #{node[:php5][:dist_url]}
-tar -C /usr/local -xpf #{node[:php5][:tar_pkg]}
+tar -C /#{node[:php5][:path].split("/")[1..-2].join("/")} -xpf #{node[:php5][:tar_pkg]}
   EOC
+  not_if File.directory?(node[:php5][:path])
 end
