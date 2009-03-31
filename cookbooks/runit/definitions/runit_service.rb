@@ -22,13 +22,13 @@ define :runit_service, :directory => nil, :only_if => false, :options => {} do
   template "#{sv_dir_name}/run" do
     mode 0755
     source "sv-#{params[:tempate_name] || params[:name]}-run.erb"
-    variables(options)
+    variables(params[:options])
   end
   
   template "#{sv_dir_name}/log/run" do
     mode 0755
     source "sv-#{params[:tempate_name] || params[:name]}-log-run.erb"
-    variables(options)
+    variables(params[:options])
   end
   
   link "/etc/init.d/#{params[:name]}" do
