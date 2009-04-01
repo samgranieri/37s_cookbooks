@@ -110,6 +110,14 @@ nagios_service_template "local" do
   retry_check_interval    60
 end
 
+tempate "/etc/nagios3/apache2.conf" do
+  source "apache2.conf.erb"
+end
+
+apache_site "nagios" do
+  config_path "/etc/nagios3/apache2.conf"
+end
+
 service "nagios3" do
   action :start
 end

@@ -1,0 +1,27 @@
+<VirtualHost *:444>
+  ServerAdmin     <%= @node[:base][:sysadmin_email] %>
+  ServerName      nagios.<%= @node[:domain] %>
+	ServerAlias			nagios
+  DocumentRoot    <%= @node[:nagios][:webroot]%>
+  ErrorLog        /var/log/nagios3/apache_error.log
+	SSLEngine       On
+
+  ScriptAlias /cgi-bin/nagios3 /usr/lib/cgi-bin/nagios3
+  ScriptAlias /nagios3/cgi-bin /usr/lib/cgi-bin/nagios3
+  Alias /nagios3/stylesheets /etc/nagios3/stylesheets
+
+	# Enforce a decent level of encryption
+	SSLProtocol -ALL +SSLv3 +TLSv1
+	SSLCipherSuite ALL:!aNULL:!ADH:!eNULL:!LOW:!EXP:RC4+RSA:+HIGH:+MEDIUM
+
+	SSLCertificateFile       /var/chef/certificates/chef.<%= @node[:domain] %>.crt
+	SSLCertificateKeyFile    /var/chef/certificates/chef.<%= @node[:domain] %>.key
+
+	<Location />
+    AuthType Basic
+    AuthName "Chef Server"
+    AuthUserFile /var/chef_recipes/config/htpasswd.user
+		Require valid-user
+	</Location>
+
+</VirtualHost>
