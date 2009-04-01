@@ -80,17 +80,19 @@ end
 
 runit_service "stompserver"
 
-directory "/var/chef/couchdb" do
-  owner "couchdb"
-  group "couchdb"
-  recursive true
-end
+directory "/var/chef/couchdb"
 
 link "/var/lib/couchdb" do
   to "/var/chef/couchdb"
 end
 
 package "couchdb"
+
+directory "/var/chef/couchdb" do
+  owner "couchdb"
+  group "couchdb"
+  recursive true
+end
 
 service "couchdb" do
   supports :restart => true, :status => true
