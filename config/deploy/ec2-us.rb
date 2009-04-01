@@ -29,3 +29,8 @@ namespace :ec2 do
     puts result.inspect
   end
 end
+
+# noc rebuild steps
+# gem install merb-core merb-haml merb-helpers merb-slices -v 1.0.10 --no-rdoc --no-rdoc
+# gem install cucumber rspec --no-rdoc --no-ri
+# ln -s /var/chef/couchdb /var/lib/couchdb
