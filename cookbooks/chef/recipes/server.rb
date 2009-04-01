@@ -1,7 +1,6 @@
 include_recipe "runit"
 include_recipe "apache2"
 include_recipe "passenger"
-#require_recipe "apache2::mod_authn_yubikey"
 
 gem_package "chef-server-slice" do
   version node[:chef][:server_version]
