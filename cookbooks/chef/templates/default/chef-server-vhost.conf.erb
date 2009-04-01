@@ -36,13 +36,9 @@ PassengerDefaultUser chef
 	SSLCertificateKeyFile    /var/chef/certificates/chef.<%= @node[:domain] %>.key
 
 	<Location />
-		AuthType Basic
-		AuthBasicProvider yubikey
-		AuthName "Login"
-		AuthYubiKeyTmpFile conf.d/yubikey_tmp
-		AuthYubiKeyUserFile /var/chef_recipes/config/yubikey.user
-		AuthYubiKeyRequireSecure On
-		AuthYubiKeyExternalErrorPage Off
+    AuthType Basic
+    AuthName "Chef Server"
+    AuthUserFile /var/chef_recipes/config/htpasswd.user
 		Require valid-user
 	</Location>
 
