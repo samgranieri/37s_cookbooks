@@ -83,7 +83,8 @@ applications[:basecamp] = {:completed => true, :thumbnails => true, :logsort => 
                            :symlinks => {'/usr/local/bin/convert' => '/usr/bin/convert',
                                          '/usr/local/bin/identify' => '/usr/bin/identify',
                                          '/usr/local/bin/composite' => '/usr/bin/composite',
-                                         '/usr/local/bin/elinks' => '/usr/bin/elinks'}                         
+                                         '/usr/local/bin/elinks' => '/usr/bin/elinks',
+                                         '/u/depot' => '/u/nfs/file1/depot'}                         
                           }
 applications[:highrise] = {:haproxy => true, :gems => ['fast_xs']}
 applications[:campfire] = {:haproxy => true, :gems => ['fast_xs']}
