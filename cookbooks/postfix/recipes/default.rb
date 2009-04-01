@@ -1,14 +1,9 @@
-#
-# Cookbook Name:: postfix
-# Recipe:: default
-#
-# Copyright 2009, 37signals
-#
-# All rights reserved - Do Not Redistribute
-#
-
 package "postfix" do
   action :upgrade
+end
+
+template "/etc/postfix.main.cf" do
+  source "main.cf.erb"
 end
 
 service "postfix" do

@@ -1,0 +1,1 @@
+postfix Mash.new unless attribute?("postfix")
