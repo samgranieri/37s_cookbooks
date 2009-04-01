@@ -110,7 +110,7 @@ nagios_service_template "local" do
   retry_check_interval    60
 end
 
-tempate "/etc/nagios3/apache2.conf" do
+template "/etc/nagios3/apache2.conf" do
   source "apache2.conf.erb"
 end
 
