@@ -89,7 +89,7 @@ remote_directory "/var/lib/nagios/notifiers" do
   files_backup 5
   files_owner "nagios"
   files_group "nagios"
-  files_mode 0644
+  files_mode 0755
   owner "nagios"
   group "nagios"
   mode 0755
