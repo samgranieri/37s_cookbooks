@@ -144,7 +144,7 @@ include_recipe "apache2::mod_proxy_http"
 include_recipe "apache2::mod_log_config" if platform?("centos", "redhat", "suse")
 
 apache_site "default" do
-  enable :false
+  enable false
 end
 
 service "apache2" do
