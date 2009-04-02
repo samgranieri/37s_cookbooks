@@ -13,7 +13,7 @@ mogilefs[:mogilefsd][:listener_jobs] = 10 unless mogilefs[:mogilefsd].has_key?(:
 mogilefs[:mogilefsd][:delete_jobs] = 1 unless mogilefs[:mogilefsd].has_key?(:delete_jobs)
 mogilefs[:mogilefsd][:replicate_jobs] = 5 unless mogilefs[:mogilefsd].has_key?(:replicate_jobs)
 mogilefs[:mogilefsd][:reaper_jobs] = 1 unless mogilefs[:mogilefsd].has_key?(:reaper_jobs)
-mogilefs[:mogilefsd][:mog_root] = "DBI:mysql:mogilefs:host=127.0.0.1" unless mogilefs[:mogilefsd].has_key?(:mog_root)
+mogilefs[:mogilefsd][:mog_root] = "/var/mogdata" unless mogilefs[:mogilefsd].has_key?(:mog_root)
 
 mogilefs[:mogstored] = Mash.new unless mogilefs.has_key?(:mogstored)
 mogilefs[:mogstored][:http_listen] = "0.0.0.0:7500" unless mogilefs[:mogstored].has_key?(:http_listen)
