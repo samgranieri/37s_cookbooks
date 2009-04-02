@@ -1,8 +1,8 @@
 <VirtualHost *:80>
   ServerName   <%= @node[:integrity][:server_name] %>
   DocumentRoot <%= @node[:integrity][:path] %>/public
-  ErrorLog     <%= @node[:integrity][:path]/log/error.log
-  CustomLog    <%= @node[:integrity][:path]/log/access.log combined
+  ErrorLog     <%= @node[:integrity][:path] %>/log/error.log
+  CustomLog    <%= @node[:integrity][:path] %>/log/access.log combined
 
   <Directory "<%= @node[:integrity][:path] %>/public">
     AllowOverride None
