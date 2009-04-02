@@ -1,6 +1,4 @@
 
-gem_package "integrity"
-gem_package "do_sqlite3"
 gem_package "defunkt-integrity-campfire" do
   source "http://gems.github.com"
 end
@@ -17,3 +15,18 @@ execute "setup_integrity" do
   group "app"
   not_if "test -e /u/apps/integrity"
 end
+
+template "#{node[:integrity][:path]}/config.ru" do
+  source "config.ru.erb"
+  owner "app"
+  group "app"
+  mode 0644
+end
+
+template "#{node[:integrity][:path]}/config.yml" do
+  source "config.yml.erb"
+  owner "app"
+  group "app"
+  mode 0644
+end
+
