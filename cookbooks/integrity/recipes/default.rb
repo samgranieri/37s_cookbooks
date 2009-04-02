@@ -47,7 +47,7 @@ apache_site "integrity" do
   not_if { File.exists?("/etc/apache2/sites-enabled/integrity") }
 end
 
-logrotate full_name do
+logrotate "integrity" do
   files "#{node[:integrity][:path]}/log/*.log"
   frequency "weekly"
   restart_command "/etc/init.d/apache2 reload > /dev/null"
