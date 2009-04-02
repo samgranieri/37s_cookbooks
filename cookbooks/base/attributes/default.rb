@@ -23,7 +23,7 @@ host_keys Mash.new unless attribute?("host_keys")
 sudo Mash.new unless attribute?("sudo")
 roles Mash.new unless attribute?("roles")
 applications Mash.new unless attribute?("applications")
-nameservers Mash.new unless attribute?("nameservers")
+nameservers Array.new unless attribute?("nameservers")
 postfix Mash.new unless attribute?("postfix")
 
 ddclient[:dyndns_login] = "883mhi-ec2dyn"
