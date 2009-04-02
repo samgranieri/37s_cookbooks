@@ -1,5 +1,6 @@
 integrity Mash.new unless attribute?(:integrity)
-integrity[:url] = "http://integrity.37signals.com/" unless integrity.has_key?(:url)
+integrity[:server_name] = "integrity.37signals.com" unless integrity.has_key?(:server_name)
+integrity[:url] = "http://#{integrity[:server_name]}/" unless integrity.has_key?(:url)
 integrity[:path] = "/u/apps/integrity" unless integrity.has_key?(:path)
 integrity[:db_uri] = "sqlite3://#{integrity[:path]}/integrity.db" unless integrity.has_key?(:db_uri)
 integrity[:export_dir] = "#{integrity[:path]}/builds" unless integrity.has_key?(:export_dir)
