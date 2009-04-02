@@ -19,3 +19,6 @@ mogilefs[:mogstored] = Mash.new unless mogilefs.has_key?(:mogstored)
 mogilefs[:mogstored][:http_listen] = "0.0.0.0:7500" unless mogilefs[:mogstored].has_key?(:http_listen)
 mogilefs[:mogstored][:mgmt_listen] = "0.0.0.0:7501" unless mogilefs[:mogstored].has_key?(:mgmt_listen)
 mogilefs[:mogstored][:doc_root] = "/var/mogdata" unless mogilefs[:mogstored].has_key?(:docroot)
+
+perlbal = Mash.new unless attribute?("perlbal")
+perlbal[:address] = "0.0.0.0:11200" unless perlbal.has_key?(:address)
