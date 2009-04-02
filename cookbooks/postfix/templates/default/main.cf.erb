@@ -1,4 +1,4 @@
-myorigin = /etc/mailname
+myorigin = <%= @node[:postfix][:myorigin] %>
 
 smtpd_banner = $myhostname ESMTP $mail_name (Ubuntu)
 biff = no

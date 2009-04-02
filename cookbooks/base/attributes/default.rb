@@ -24,6 +24,7 @@ sudo Mash.new unless attribute?("sudo")
 roles Mash.new unless attribute?("roles")
 applications Mash.new unless attribute?("applications")
 nameservers Mash.new unless attribute?("nameservers")
+postfix Mash.new unless attribute?("postfix")
 
 ddclient[:dyndns_login] = "883mhi-ec2dyn"
 ddclient[:dyndns_password] = "5SkR2hJiNsQP"
@@ -32,8 +33,13 @@ case domain
   when "rack-dfw-int.37signals.com"
     # dns-01, dns-02, noc
     nameservers ['192.168.2.63', '192.168.2.65', '192.168.1.157']
+    postfix[:myorigin] = "virt-gw.37signals.com"
+    
   when "ec2-us-int.37signals.com"
-    nameservers ['10.253.127.127']
+    nameservers ['10.252.194.239']
+    postfix[:myorigin] = fqdn
+  else
+    postfix[:myorigin] = fqdn
 end
 
 groups[:app]   = {:gid => 1003}
