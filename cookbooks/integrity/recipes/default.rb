@@ -7,7 +7,7 @@ gem_package "defunkt-integrity-campfire" do
   source "http://gems.github.com"
 end
 
-directory "/u/apps/integrity" do
+directory "/u/apps" do
   owner "app"
   group "app"
   mode 0755
