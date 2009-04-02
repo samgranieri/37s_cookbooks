@@ -5,7 +5,7 @@ set :deploy_to, "/var/chef_recipes"
 set :scm, :git
 
 ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "id_rsa")]
-
+set :group_writeable, true
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
