@@ -60,7 +60,7 @@ users[:joshua] = {:password => "$1$vRx7xHSn$xXL0.q9zIfV/p/sm9EDLQ/", :comment =>
 users[:mark]   = {:password => "$1$/Tksj8KW$Vqswv0AALCtHLMog3z6kk/", :comment => "Mark Imbriaco",  :uid => 3011, :group => :admin,  :yubikey_id => 'fffnfcuikinj', :http_digest => 'Dyil3x.G1g872'}
 
 users[:david]  = {:password => "$1$1EcOMWnu$E/TtE2ODkJKKiOgOq14Sq1", :comment => "DHH", :uid => 3012, :group => :app}
-users[:jamis]  = {:password => "$1$KXwTGx4Z$cJrqEqZ8DcsmIzXjz.nMH0", :comment => "Jamis Buck", :uid => 3013, :group => :app}
+users[:jamis]  = {:password => "$1$n7kJKJ7s$.Jtb56SLe8lhWxIekaqpN0", :comment => "Jamis Buck", :uid => 3013, :group => :app}
 users[:sam]    = {:password => "$1$6cIAM7hX$4w6vLIp2Wp8at6VksADJg0", :comment => "Sam Stephenson", :uid => 3014, :group => :app}
 users[:jeremy] = {:password => "$1$pphqNx4n$LS783nrUBTe4xH8ixpONw.", :comment => "Jeremy Kemper", :uid => 3015, :group => :app}
 users[:jeff]   = {:password => "$1$D5iSTU.m$9kri2Qq0UfUeLb9cjnn4E0", :comment => "Jeff Hardy", :uid => 3016, :group => :app}
