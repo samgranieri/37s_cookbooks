@@ -30,6 +30,19 @@ file "/etc/nagios3/htpasswd.users" do
   action :create
 end
 
+directory "/var/lib/nagios3" do
+  mode 0755
+end
+
+directory "/var/lib/nagios3/rw" do
+  mode 0755
+end
+
+file "/var/lib/nagios3/rw" do
+  group "www-data"
+  mode 0666
+end
+
 # Support our legacy nagios install
 directory "/usr/local/nagios"
 
