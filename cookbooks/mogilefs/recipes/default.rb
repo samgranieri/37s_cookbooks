@@ -15,6 +15,12 @@ template "#{node[:mogilefs][:path]}/etc/mogilefs.conf" do
   mode 0644
 end
 
+template "/etc/profile.d/mogilefs.sh" do
+  source "mogilefs.sh.erb"
+  owner "root"
+  mode 0644
+end
+
 link "/etc/mogilefs" do
   to "#{node[:mogilefs][:path]}/etc"
 end
