@@ -42,15 +42,16 @@ case domain
     postfix[:myorigin] = fqdn
 end
 
-groups[:app]   = {:gid => 1003}
-groups[:site]  = {:gid => 3001}
-groups[:admin] = {:gid => 4000}
+groups[:app]     = {:gid => 1003}
+groups[:site]    = {:gid => 3001}
+groups[:support] = {:gid => 3002}
+groups[:admin]   = {:gid => 4000}
 
 roles[:hypervisor]    = {:groups => [:admin], :sudo_groups => [:admin]}
 roles[:dns]           = {:groups => [:admin], :sudo_groups => [:admin]}
-roles[:noc]           = {:groups => [:admin, :app], :sudo_groups => [:admin]}
+roles[:noc]           = {:groups => [:admin, :app, :support], :sudo_groups => [:admin]}
 roles[:app]           = {:groups => [:admin, :app], :sudo_groups => [:admin, :app]}
-roles[:site]           = {:groups => [:admin, :app, :site], :sudo_groups => [:admin]}
+roles[:site]          = {:groups => [:admin, :app, :site], :sudo_groups => [:admin]}
 
 users[:app]    = {:password => "$1$hk40k332$wpSYJYlbbVo3AK/7thxO3.", :comment => "App User", :uid => 1003, :group => :app, :ssh_key_groups => [:app,:site,:admin]}
 users[:site]   = {:password => "$1$4k01kee3$tQkwp46/ngyG.iH4kIaTJ0", :comment => "Site User", :uid => 4000, :group => :site, :ssh_key_groups => [:app,:site,:admin]}
@@ -68,7 +69,11 @@ users[:josh]   = {:password => "$1$4NsbdsC2$qnPvm0nE0J2kNmHgqGfTO1", :comment =>
 users[:jamie]  = {:password => "$1$/cNS7YPq$Ko/qjme0ofsKIf2nZruZv1", :comment => "Jamie Dihiansan", :uid => 3018, :group => :site}
 users[:ryan]   = {:password => "$1$F4RLmWHq$SmMk24KYh/M0UPCqEfJ3s1", :comment => "Ryan Singer", :uid => 3019, :group => :site}
 users[:jason]  = {:password => "$1$uZBGnixP$IObtQbltwN/OMqYOvETgo.", :comment => "Jason Fried", :uid => 3020, :group => :site}
-users[:matt]   = {:password => "$1$uZBGnixP$IObtQbltwN/OMqYOvETgo.", :comment => "Jason Fried", :uid => 3021, :group => :site}
+users[:matt]   = {:password => "$1$uZBGnixP$IObtQbltwN/OMqYOvETgo.", :comment => "Matt Linderman", :uid => 3021, :group => :site}
+
+users[:sarah]   = {:password => "$1$U0cG83um$O2rd3ewKpBseLoy6OLLfg0", :comment => "Sarah Hatter", :uid => 3022, :group => :support}
+users[:michael] = {:password => "$1$vT.aW0Bk$dZ29mgu32LVuieh6w5z.4.", :comment => "Michael Berger", :uid => 3023, :group => :support}
+
 
 ssh_keys[:david]   = "ssh-dss AAAAB3NzaC1kc3MAAAEBAMz5mPUa2WubrwTgE1VXPdmPSkT0qoU71vh4elJRaj0VWypb2c3IPyyGSdWjsCBSHUSUBUR4VL5fSJfu1QKrHVpt0BIU7Nl+dvCwATAeL9j3k0cpzYrjPhXLZQ4UStfh+Tpo20QitzXQ2ceoFaiVNXf5upUP+Yz+jTqhLkcjWVlIdas/eiVldXVtLEUqUo6RUTcaVLbb8ksp6lhZp1iVV8k07OMButiCB3X3k5kQxCnCMzzWI5IDP6VSacu5gUwIjnS2hB0S3lSBSgJL+YBOBWqjBW4HCqPHMkphEyxUs0GtVia1qdhIs62m8tMMD6hWiqr7+ATJi0xf0iI31TjUxSUAAAAVAPS7EZNGzL+bknalDVdd5JpTFlqfAAABAD1fD+2u1fAh/pMeUnj7fwNGVEH0NwjePLyrZiCV1qvcqfR2FOH6pJS5ntQPgo+bi33MnkXqp/dnkEdpWar/CRo9FgIcyQ4NUSkXYwlhY6HM+PxTQvM5WhRMpJqfcfQKXdhV8hlf293p5roWYmbale4vq+Kz+bpVnIxO+UQqvb1nbnbzB9/ztWWjKwTKUPklvja52g3tWYH1tywzGVHukLoiedZGwqw3kHT8FQgORAr2AbE8Bn++cT6PUr78PXUl537OLVTwtNPK/taB8mm4Fwbriz9fiEdvgtfsji+1vqkJubeUmQi8TPq5iwsthE3TPyY6Ip1ZJlPO8LTXENGyvD8AAAEAUYs2ZCRntt59ryfOsXiu4J/vYpzbSbBqXmX5wBzbb23qmZGd8LBLzUY6NwgR6NbD41e0qx31IGK5KE8fFX/z+oaZfQBw/Vt72QuyypdMcqYXVN4/AOv4u8+pqb7q+m1qULgGoi+/DMKE61mxw0+iiFz+drUr3ZF+9weuVE+xWlBWIze+GOBxMDVrKjvK4wuGFl67gD8F5/wcA8pRDltYVYgwkuf22L+o1ZvYRt+4861kAUfqeP2HM24+swXgPOK1Mi/3AZupqTFTSB1NruDlvd2xBKAMqSMv9sIc0y89cATd9Divusb85zRJVsIGQz19l7UUgA0Ogvwdm0+t4zr2Kw== david@Envy5.local"
 ssh_keys[:joshua]  = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAw942jLhdXBPHljWtE42B1XeFuWSJU/+w4pVTwdID6KEf8KF1cx/Jc0EJnA2ipMgJtUCJolWyt0PdGcqf8oE7UbrkzCW78g+zLa8muxUdHF6JK0b/nQW0plj8rg3rTxTz4lIi46AgW1iC9XXKlcX1IRC3w0Y9Lu+RMyGxdifFNHSj3g+Vd2QfHJBQkQz4Nx1ngT+y6y/966K/AIJHej67MmuCHRTxMKxX5vxmbvHP8WgSvylgx+mkTuYhUzGaQtvopM6zzXLfIsicnxVIu1hWjXlle55t0EamGysjGrJFbYiunbWDlwRfZOBe/ZKec5rBPLxwBC1xQ2F4sOJFUE+iUQ== jsierles@MacAir.local"
@@ -83,6 +88,8 @@ ssh_keys[:matt]    = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAtxvNj/M53kW5eWyyFc3ZiF
 ssh_keys[:jeff]    = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAx0iwu7QIsXx6xbvWdQgqtG/ywwvTAgoWJX0e5fhkI0EV8TP6ot75gg6NxuQtRsQi3BcIvFI6K7kGvbY+7Bc4Hw2shGibqT7GPaaNMZWO4NyRPG8CNJd/B4xJNMO+Sp3x7zm6apaHbWwJiKbn5UddWxZNxX+tpV2lKYa0SjyUdGiK7Sgipl1MD5BMVCQ0876j17K3C88BldEpExItxC/8WPNwbLRSEiZf5ECsVITPCYkl4Gw/w1bEe0mx6VKO4HlJSkvRzevpzAvXSSfgrwK86nQ2AC5AXkr8Rdsks6oElxwzBeA/9346nA8W0cU8MmMYJBBfjMv6bUtNvWNGMwif0w== jeff@brunswick.local"
 ssh_keys[:jeremy]  = "ssh-dss AAAAB3NzaC1kc3MAAAEBAOPInDq5qLyFJ0+I3hxYdD9S6oYQvE5xPXeqYz9S9daNf+SnqzKPmUXUd/YeY3WF9ZpTDRTns1TSGCIsLqLohbTSD9tAPlVICEWRBDsEm6m4HlScyEDaGtM9JpZvawlOSfeXzio9l+/fNMpa1VxIVf6r7VdA2sXuFtessjWyRdUU7ta6ag1GTxiQsfUHfQdpiX4C95ITCWa9W1qqly0thQFEx+e7UZTn1DwlICalSSzgjDtnoIPzjSt7XPO62rgrXvW6gwT6FlS4ejUP39FH3nf7370x8EDQ44xJPrS43PXVnNa+74IoJiRWiEvJT3ZMZroGEln3BPLLkHJ4pXd+bn0AAAAVAJH5Z7jsb8QDYbriWmYlv6puUj0jAAABAQCg3QJb4nb+g5lGTTdLsyrljTIOgGBCwjNTX+j8PmTdnWpG0OaLuGWiWt+LpW5UOnGCVb4y0iyWqfh1GLt3pcZFXzXOF6SOikHOu6gcmgwaDtRFzRGMMFOrUhZtHYnYEICTmeY1XXnr/r9E6cgBcQ+Kt/DCbvOG+teny/yXTNIyARdtCUsIYl9Q7RiZOwgcNhmFcARogRUWqjOp4xgJOoeoPanlewKWQ7PcTICP/agr69ZAD9AqhMJP47SeHGpVNy5lgGztcVAMt9Sv0OqIeGJOQ7cIMkYdABN/D7ajsPFnPGAazMlB9J4O/FAtosErAubs5xgFDszMOKFGKH3bSSPeAAABAEPHSZsmQB9Ob5dyzlm4YlYF/iGPSyddH2EoRSwiqT9CoQqwVXzpEz+hPQGJbGx7sjgbxh4jwIH2bX18S33OHJ215ZhYmBDRa7Ztb5sIesHNjtVM+NnlIK25zXRhWmTpDbyygL64aZmHzE4XujnH0ARMtp1rjM6ikKtNTxoHD/SPktaeCsciJtsmFCxvqFqX9/0eT7S2cbq7Ot8hsg7yMShtJfuUdnKNU/me0ZqpNFaSewuA+W00qR6SKXkiPqWskdsIGUXNfY0kfAHG0xVTp1j4HzeilMpOGzy89chxCi7hT9HYOHmvEoRqCe96doHkCqDZUOJkkPPcsjXVG2JzK9E= jeremy@geech.local"
 ssh_keys[:app]     = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvcJRSTTh9LUTF2Z52hwsoL05NxXgjBwTl7ZkrCW/QPvQlw39zfzwz9AYI7YxuLaqhQK2i9JHt9Cop1yTsXFfzKEMHEF5g2mL9MUv2tDVy1+5EudjVx6NlNwY+4A1aS1K/467m0vrUnWzPhUhb9Z299oMNxd4JGCengjJY/MnwfoVndVL9g5XkcGLnC7pS/WmB+tqeeERc78vM3lPcraJmoU6p4RRG7SPrrX/ePPDCV4XPc815fmOArkTXTXXZyAFgeIkss2i5dq9O87CPBhx/nJB6bsGFd/j6leNa7ogJK22gLuN9rxEzZyurBj5QuguJzz4XdvrjHOfRkP+LcnFAQ== app@37s-app-01"
+ssh_keys[:sarah]   = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwMnlTXspEIgOYmdntSgwCjOH0w3RqfoBZ8FRBxTiQIvHZJJonTxukwA6zPuaH9CfAq7swAQUzQrnmFsQ++7TFtC0NQdSldnyO6oRAIpAAUCauG9LaLwhr3LgOSySAJfETxZeesCnLHvSs/rWT0TIPXcqgADuvZcrYepLmTk+FDnHTS09j+070UMjwTuBjbEouFmJcWHI5Uu2Y8Bc5/MgGEwBh5epNBrU9vNAgad9P1Av1CKv1bYY7av92CYEOWainyP3clTC4fdJYFHgCDkbK9aMCtPcXKjsvLmHQt4ukO7EGzWAzNvHmXlORVJg7gTVEFZi0pJ0TqBfzHOulamcFw== sarah@dev.37signals.com"
+ssh_keys[:michael] = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA53phCOgf54FyqE2TwtTSzIRpnMHZ75Dt8xC6luL3nKXlCeb/daD3PMhN/Ymu2XUFe17d579cygUjeYp9G8hBIbLqJndXmuVbap8hYmaScGXYuCnHsvC1PAKwh+i66p8JdqK8hRgs29rsA737R+N3g7V08kcfPZ0PtIvl49TlfAw9z/OkCEch8RKTqUEKBn6RrshADEgg91IUN6cBBFgAzFHUa3W/ihvJHOfkrUS+rC80SpI9RjD0sLXoeRv3IE/uG1Nc6Fe4fmX6ezNcYFP3IQkP79KDgHuPO4Oalp7QMXcJZGLh5tjlhNYVAMZmzRhcDHY3rDZbbKMGM2totg3tFQ== michael@dev.37signals.com"
 
 applications[:basecamp] = {:completed => true, :thumbnails => true, :logsort => true, :haproxy => true, :gems => ['fast_xs', 'hpricot', 'aws-s3', 'ruby-prof', ['net-ssh', '1.1.4'], ['net-sftp', '1.1.1'], ['tzinfo', '0.3.9']],
                            :packages => ['imagemagick', 'elinks'],
