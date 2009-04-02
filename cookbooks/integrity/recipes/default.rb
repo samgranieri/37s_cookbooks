@@ -1,0 +1,11 @@
+
+gem_package "integrity"
+gem_package "do_sqlite3"
+gem_package "defunkt-integrity-campfire" do
+  source "http://gems.github.com"
+end
+
+execute "setup_integrity" do
+  command "integrity install #{node[:integrity][:path]} --passenger"
+  not_if "test -e /u/apps/integrity"
+end
