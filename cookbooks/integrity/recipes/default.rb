@@ -79,6 +79,20 @@ template "#{node[:integrity][:path]}/vhost.conf" do
   mode 0644
 end
 
+remote_file "#{node[:integrity][:path]}/integrity_build.rb" do
+  source "integrity_build.rb"
+  owner "app"
+  group "app"
+  mode 0700
+end
+
+cron "integrity_build" do
+  user "app"
+  minute "*/10"
+  command "#{node[:integrity][:path]}/integrity_build.rb"
+  only_if { File.exist?(File.join(node[:integrity][:path], "integrity_build.rb")) }
+end
+
 apache_site "integrity" do
   config_path "#{node[:integrity][:path]}/vhost.conf"
   not_if { File.exists?("/etc/apache2/sites-enabled/integrity") }
