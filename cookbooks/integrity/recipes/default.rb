@@ -1,12 +1,12 @@
 
 require_recipe "passenger"
 
-gem_package "imbriaco-integrity" do
-  source "http://gems.github.com"
+gem_package "integrity" do
+  source "http://localgems"
 end
 
-gem_package "defunkt-integrity-campfire" do
-  source "http://gems.github.com"
+gem_package "integrity-campfire" do
+  source "http://localgems"
 end
   
 gem_package "do_sqlite3"
