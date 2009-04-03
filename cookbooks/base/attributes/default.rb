@@ -106,7 +106,8 @@ applications[:backpack] = {:gems => ['fast_xs', 'hpricot', 'aws-s3', 'ruby-prof'
                            :symlinks => {'/usr/local/bin/convert' => '/usr/bin/convert',
                                          '/usr/local/bin/identify' => '/usr/bin/identify',
                                          '/usr/local/bin/composite' => '/usr/bin/composite',
-                                         '/usr/local/bin/elinks' => '/usr/bin/elinks'}
+                                         '/usr/local/bin/elinks' => '/usr/bin/elinks',
+                                         '/u/depot' => '/u/nfs/file1/depot'}
                           }
 applications[:writeboard] = {:gems => ['fast_xs']}
 applications[:jobs] = {:gems => ['fast_xs']}
