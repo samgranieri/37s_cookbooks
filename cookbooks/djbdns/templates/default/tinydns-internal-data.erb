@@ -10,6 +10,7 @@
 +chefadmin.<%= @node[:domain] %>:<%= @chef_server_ip %>:300
 +apt.<%= @node[:domain] %>:<%= @apt_mirror_ip %>:300
 +gems.<%= @node[:domain] %>:<%= @gem_mirror_ip %>:300
++localgems.<%= @node[:domain] %>:<%= @gem_mirror_ip %>:300
 +dist.<%= @node[:domain] %>:<%= @dist_ip %>:300
 <% @hosts.each do |host| %>
 =<%=host['fqdn']%>:<%= host['ipaddress'] %>:300
