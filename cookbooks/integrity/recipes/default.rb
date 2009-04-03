@@ -12,6 +12,9 @@ end
 gem_package "do_sqlite3"
 gem_package "do_mysql"
 gem_package "mocha"
+gem_package "rcov"
+gem_package "ruby-debug"
+gem_package "quietbacktrace"
 gem_package "tinder"
 
 if node[:integrity][:projects]
