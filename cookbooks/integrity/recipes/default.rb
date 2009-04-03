@@ -8,6 +8,10 @@ end
 gem_package "integrity-campfire" do
   source "http://localgems"
 end
+
+gem_package "fiveruns-dash-rails" do
+  source "http://gems.github.com"
+end
   
 gem_package "do_sqlite3"
 gem_package "do_mysql"
