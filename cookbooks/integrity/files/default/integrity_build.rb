@@ -4,6 +4,7 @@
 # Original: http://gist.github.com/88432
 
 ENV["RAILS_ENV"] = "test"
+ENV["PATH"] = "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
  
 require 'rubygems'
 require 'integrity'
