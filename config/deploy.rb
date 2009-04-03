@@ -61,4 +61,5 @@ after "deploy", "update_recipes"
 after "update_recipes", "create_tarball"
 deploy.task :default, :except => {:no_release => true} do
   run "cd #{deploy_to} && git config remote.origin.url #{repository} && git pull"
+  sudo "chmod -R g+w #{deploy_to}"
 end
