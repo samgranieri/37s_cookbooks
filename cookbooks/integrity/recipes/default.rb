@@ -1,10 +1,46 @@
 
 require_recipe "passenger"
 
-gem_package "integrity"
-gem_package "do_sqlite3"
+gem_package "foca-integrity" do
+  source "http://gems.github.com"
+end
+
 gem_package "defunkt-integrity-campfire" do
   source "http://gems.github.com"
+end
+  
+gem_package "do_sqlite3"
+gem_package "do_mysql"
+gem_package "mocha"
+
+if node[:integrity][:projects]
+  node[:integrity][:projects].each do |app|
+    if node[:applications][app][:gems]
+      node[:applications][app][:gems].each do |g|
+        if g.is_a? Array
+          gem_package g.first do
+            version g.last
+          end
+        else
+          gem_package g
+        end
+      end
+    end
+    
+    if node[:applications][app][:packages]
+      node[:applications][app][:packages].each do |package_name|
+        package package_name
+      end      
+    end
+    
+    if node[:applications][app][:symlinks]
+      node[:applications][app][:symlinks].each do |target, source|
+        link target do
+          to source
+        end
+      end      
+    end
+  end
 end
 
 directory "/u/apps" do
