@@ -1,7 +1,7 @@
 
 require_recipe "passenger"
 
-gem_package "foca-integrity" do
+gem_package "imbriaco-integrity" do
   source "http://gems.github.com"
 end
 
@@ -12,6 +12,7 @@ end
 gem_package "do_sqlite3"
 gem_package "do_mysql"
 gem_package "mocha"
+gem_package "tinder"
 
 if node[:integrity][:projects]
   node[:integrity][:projects].each do |app|
