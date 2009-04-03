@@ -89,7 +89,7 @@ end
 cron "integrity_build" do
   user "app"
   minute "*/10"
-  command "#{node[:integrity][:path]}/integrity_build.rb"
+  command "/usr/local/bin/ruby #{node[:integrity][:path]}/integrity_build.rb"
   only_if { File.exist?(File.join(node[:integrity][:path], "integrity_build.rb")) }
 end
 
