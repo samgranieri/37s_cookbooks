@@ -16,6 +16,6 @@ Integrity.new(File.dirname(__FILE__) + "/config.yml")
 Integrity::Project.all.each do |project|
   last_commit = project.commits.last
   build = last_commit ? project.send(:head_of_remote_repo) != last_commit.identifier : false
-  project.build if build
+  project.build if build || project.commits.last.nil?
 end
 
