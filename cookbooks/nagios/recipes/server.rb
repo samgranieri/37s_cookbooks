@@ -54,10 +54,6 @@ link "/usr/local/nagios/bin" do
   to "/u/nagios/current/bin"
 end
 
-file "/etc/apache2/conf.d/nagios3.conf" do
-  action :delete
-end
-
 # using the node object inside this block fails, so we assign for now
 userlist = node[:nagios][:users]
 
