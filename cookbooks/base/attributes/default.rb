@@ -1,6 +1,3 @@
-recipes << "dns::client"
-recipes << "nagios::client"
-
 base Mash.new unless attribute?("base")
 
 base[:sysadmin_email] = "sysadmins@37signals.com"
@@ -116,7 +113,8 @@ applications[:backpack] = {:gems => ['fast_xs', 'hpricot', 'aws-s3', 'ruby-prof'
                                          '/usr/local/bin/identify' => '/usr/bin/identify',
                                          '/usr/local/bin/composite' => '/usr/bin/composite',
                                          '/usr/local/bin/elinks' => '/usr/bin/elinks',
-                                         '/u/depot' => '/u/nfs/file1/depot'}
+                                         '/u/depot' => '/u/nfs/file1/depot'},
+                           :apache_modules => ["mod_auth_token", "mod_xsendfile"]
                           }
 applications[:writeboard] = {:gems => ['fast_xs']}
 applications[:jobs] = {:gems => ['fast_xs']}
