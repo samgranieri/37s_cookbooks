@@ -29,3 +29,8 @@ logrotate "applications" do
   files node[:applications].keys.collect{|name| root+"/#{name}/*.log" }
   frequency "daily"
 end
+
+logrotate "syslog-remote" do
+  restart_command "/etc/init.d/syslog-ng reload 2>&1 || true"
+  files ['/u/logs/syslog/messages', "/u/logs/syslog/secure", "/u/logs/syslog/maillog", "/u/logs/syslog/cron"]
+end
