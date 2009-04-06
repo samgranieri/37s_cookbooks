@@ -59,7 +59,7 @@ if node[:active_applications]
 
     if modules = node[:applications][app][:apache_modules]
       modules.each do |mod|
-        require_recipe "apache2::#{mod}"
+        require_recipe "apache2::mod_#{mod}"
         apache_module mod
       end      
     end

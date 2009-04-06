@@ -114,7 +114,7 @@ applications[:backpack] = {:gems => ['fast_xs', 'hpricot', 'aws-s3', 'ruby-prof'
                                          '/usr/local/bin/composite' => '/usr/bin/composite',
                                          '/usr/local/bin/elinks' => '/usr/bin/elinks',
                                          '/u/depot' => '/u/nfs/file1/depot'},
-                           :apache_modules => ["mod_auth_token", "mod_xsendfile"]
+                           :apache_modules => ["auth_token", "xsendfile"]
                           }
 applications[:writeboard] = {:gems => ['fast_xs']}
 applications[:jobs] = {:gems => ['fast_xs']}
