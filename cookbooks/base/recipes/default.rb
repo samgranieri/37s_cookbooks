@@ -15,6 +15,7 @@ package "host"
 package "lsof"
 package "gdb"
 
+require_recipe "hosts"
 require_recipe "dns::client"
 require_recipe "nagios::client"
 require_recipe "rubygems::client"
