@@ -25,6 +25,7 @@ roles Mash.new unless attribute?("roles")
 applications Mash.new unless attribute?("applications")
 nameservers Array.new unless attribute?("nameservers")
 postfix Mash.new unless attribute?("postfix")
+hosts Mash.new unless attribute?("hosts")
 
 ddclient[:dyndns_login] = "883mhi-ec2dyn"
 ddclient[:dyndns_password] = "5SkR2hJiNsQP"
@@ -37,6 +38,7 @@ case domain
     
   when "ec2-us-int.37signals.com"
     nameservers ['10.252.194.239']
+    hosts[:entries] = [['10.252.194.239', 'noc']]
     postfix[:myorigin] = fqdn
   else
     postfix[:myorigin] = fqdn
@@ -91,7 +93,8 @@ ssh_keys[:app]     = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvcJRSTTh9LUTF2Z52hwsoL
 ssh_keys[:sarah]   = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwMnlTXspEIgOYmdntSgwCjOH0w3RqfoBZ8FRBxTiQIvHZJJonTxukwA6zPuaH9CfAq7swAQUzQrnmFsQ++7TFtC0NQdSldnyO6oRAIpAAUCauG9LaLwhr3LgOSySAJfETxZeesCnLHvSs/rWT0TIPXcqgADuvZcrYepLmTk+FDnHTS09j+070UMjwTuBjbEouFmJcWHI5Uu2Y8Bc5/MgGEwBh5epNBrU9vNAgad9P1Av1CKv1bYY7av92CYEOWainyP3clTC4fdJYFHgCDkbK9aMCtPcXKjsvLmHQt4ukO7EGzWAzNvHmXlORVJg7gTVEFZi0pJ0TqBfzHOulamcFw== sarah@dev.37signals.com"
 ssh_keys[:michael] = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA53phCOgf54FyqE2TwtTSzIRpnMHZ75Dt8xC6luL3nKXlCeb/daD3PMhN/Ymu2XUFe17d579cygUjeYp9G8hBIbLqJndXmuVbap8hYmaScGXYuCnHsvC1PAKwh+i66p8JdqK8hRgs29rsA737R+N3g7V08kcfPZ0PtIvl49TlfAw9z/OkCEch8RKTqUEKBn6RrshADEgg91IUN6cBBFgAzFHUa3W/ihvJHOfkrUS+rC80SpI9RjD0sLXoeRv3IE/uG1Nc6Fe4fmX6ezNcYFP3IQkP79KDgHuPO4Oalp7QMXcJZGLh5tjlhNYVAMZmzRhcDHY3rDZbbKMGM2totg3tFQ== michael@dev.37signals.com"
 
-applications[:basecamp] = {:completed => true, :thumbnails => true, :logsort => true, :haproxy => true, :gems => ['fast_xs', 'hpricot', 'aws-s3', 'ruby-prof', ['net-ssh', '1.1.4'], ['net-sftp', '1.1.1'], ['tzinfo', '0.3.9']],
+applications[:basecamp] = {:completed => true, :thumbnails => true, :logsort => true, :haproxy => true,
+                           :gems => ['fast_xs', 'hpricot', 'aws-s3', 'ruby-prof', ['net-ssh', '1.1.4'], ['net-sftp', '1.1.1'], ['tzinfo', '0.3.9']],
                            :packages => ['imagemagick', 'elinks'],
                            :symlinks => {'/usr/local/bin/convert' => '/usr/bin/convert',
                                          '/usr/local/bin/identify' => '/usr/bin/identify',
@@ -108,7 +111,8 @@ applications[:highrise] = {:haproxy => true, :gems => ['fast_xs'],
     
 applications[:campfire] = {:haproxy => true, :gems => ['fast_xs']}
 applications[:open_bar] = {:gems => ['fast_xs']}
-applications[:backpack] = {:gems => ['fast_xs', 'hpricot', 'aws-s3', 'ruby-prof'], :packages => ['imagemagick', 'elinks'],
+applications[:backpack] = {:gems => ['fast_xs', 'hpricot', 'aws-s3', 'ruby-prof'],
+                           :packages => ['imagemagick', 'elinks'],
                            :symlinks => {'/usr/local/bin/convert' => '/usr/bin/convert',
                                          '/usr/local/bin/identify' => '/usr/bin/identify',
                                          '/usr/local/bin/composite' => '/usr/bin/composite',
@@ -124,6 +128,5 @@ applications[:tadalist] = {:gems => ['fast_xs']}
 applications[:bookstore] = {:gems => ['fast_xs']}
 applications[:forum] = {:gems => [['ruby-openid', '1.1.4'], 'RedCloth']}
 applications[:queenbee] = {:gems => ['fast_xs']}
-
 
 host_keys[:dev] = "|1|KvHRKrGy/30YCtj0Lc9M5HEwdu8=|b2VJ1rh2Ep44lRyaBSv/Ujrp7g8= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEArjrY9fx5IPyjawRtv1sOu5x8SRvPf+zek//zyPSDxL5up/AfxJZEVUDitJhKbIkSHADX4s9MMueh4QIxftaZPvxQiGG36PczkrxZ0Ob8aIz+pVUvxooe1AOTN/AxGA0AvPDVjJdy1d1PKbxb0w7o4jKFaitxlYp+WlgMBzXCnx7uXDxwtnID/0mICX9d9fnnA8Qf2biFcl2dhQWXiZccsZEaI85CRymNSPHuUOcbZg84No9lEeu5rnMqV8MoJ4VG6GFDdyZyiR/FkmwlTh4Ma9+klfImRQNdN//+fob/JoBpygxzuacT2tcXI/SCYfEoTSbpHE4CvxloRst9Gb8XlQ=="
