@@ -1,4 +1,5 @@
-recipes + ["dns::client", "nagios::client"]
+recipes << "dns::client"
+recipes << "nagios::client"
 
 base Mash.new unless attribute?("base")
 
