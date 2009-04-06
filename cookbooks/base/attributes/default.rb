@@ -1,3 +1,5 @@
+recipes + ["dns::client", "nagios::client"]
+
 base Mash.new unless attribute?("base")
 
 base[:sysadmin_email] = "sysadmins@37signals.com"
