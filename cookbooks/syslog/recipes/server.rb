@@ -34,3 +34,10 @@ logrotate "syslog-remote" do
   restart_command "/etc/init.d/syslog-ng reload 2>&1 || true"
   files ['/u/logs/syslog/messages', "/u/logs/syslog/secure", "/u/logs/syslog/maillog", "/u/logs/syslog/cron"]
 end
+
+
+cron "old logs cleanup" do
+  command "find /u/logs/basecamp -maxdepth 1 -type d -mtime +7 -exec rm -rf {} \;"
+  hour "10"
+end
+
