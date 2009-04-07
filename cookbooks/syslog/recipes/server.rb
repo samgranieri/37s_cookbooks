@@ -37,7 +37,7 @@ end
 
 
 cron "old logs cleanup" do
-  command "find /u/logs/basecamp -maxdepth 1 -type d -mtime +7 -exec rm -rf {} \;"
+  command "find /u/logs/basecamp -maxdepth 1 -type d -mtime +7 -exec rm -rf {} \\;"
   hour "10"
   minute "0"
 end
