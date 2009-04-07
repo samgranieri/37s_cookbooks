@@ -18,7 +18,8 @@ end
 
 cron "gem mirror nightly update" do
   command "rsync -av rsync://master.mirror.rubyforge.org/gems #{node[:rubygems][:mirror][:base_path]}/gems && find #{node[:rubygems][:mirror][:base_path]}/gems -name \"*win32*\" -delete && gem generate_index -d /u/mirrors/gems > /var/log/gem-mirror.log 2>&1"
-  hour "5"
+  hour "2"
+  minute "0"
 end
 
 template "/etc/rubygems/gem-mirror.vhost.conf" do

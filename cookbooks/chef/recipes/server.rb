@@ -147,4 +147,5 @@ end
 cron "compact chef couchDB" do
   command "curl -X POST http://localhost:5984/chef/_compact >> /var/log/cron.log 2>&1"
   hour "5"
+  minute "0"
 end
