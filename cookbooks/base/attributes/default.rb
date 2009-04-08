@@ -93,42 +93,60 @@ ssh_keys[:app]     = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvcJRSTTh9LUTF2Z52hwsoL
 ssh_keys[:sarah]   = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwMnlTXspEIgOYmdntSgwCjOH0w3RqfoBZ8FRBxTiQIvHZJJonTxukwA6zPuaH9CfAq7swAQUzQrnmFsQ++7TFtC0NQdSldnyO6oRAIpAAUCauG9LaLwhr3LgOSySAJfETxZeesCnLHvSs/rWT0TIPXcqgADuvZcrYepLmTk+FDnHTS09j+070UMjwTuBjbEouFmJcWHI5Uu2Y8Bc5/MgGEwBh5epNBrU9vNAgad9P1Av1CKv1bYY7av92CYEOWainyP3clTC4fdJYFHgCDkbK9aMCtPcXKjsvLmHQt4ukO7EGzWAzNvHmXlORVJg7gTVEFZi0pJ0TqBfzHOulamcFw== sarah@dev.37signals.com"
 ssh_keys[:michael] = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA53phCOgf54FyqE2TwtTSzIRpnMHZ75Dt8xC6luL3nKXlCeb/daD3PMhN/Ymu2XUFe17d579cygUjeYp9G8hBIbLqJndXmuVbap8hYmaScGXYuCnHsvC1PAKwh+i66p8JdqK8hRgs29rsA737R+N3g7V08kcfPZ0PtIvl49TlfAw9z/OkCEch8RKTqUEKBn6RrshADEgg91IUN6cBBFgAzFHUa3W/ihvJHOfkrUS+rC80SpI9RjD0sLXoeRv3IE/uG1Nc6Fe4fmX6ezNcYFP3IQkP79KDgHuPO4Oalp7QMXcJZGLh5tjlhNYVAMZmzRhcDHY3rDZbbKMGM2totg3tFQ== michael@dev.37signals.com"
 
-applications[:basecamp] = {:completed => true, :thumbnails => true, :logsort => true, :haproxy => true,
-                           :gems => ['fast_xs', 'hpricot', 'aws-s3', 'ruby-prof', ['net-ssh', '1.1.4'], ['net-sftp', '1.1.1'], ['tzinfo', '0.3.9']],
-                           :packages => ['imagemagick', 'elinks'],
-                           :symlinks => {'/usr/local/bin/convert' => '/usr/bin/convert',
-                                         '/usr/local/bin/identify' => '/usr/bin/identify',
-                                         '/usr/local/bin/composite' => '/usr/bin/composite',
-                                         '/usr/local/bin/elinks' => '/usr/bin/elinks',
-                                         '/u/depot' => '/u/nfs/file1/depot'}                         
-                          }
-applications[:highrise] = {:haproxy => true, :gems => ['fast_xs'],
-                           :packages => ['imagemagick', 'zip'],
-                           :symlinks => {'/usr/local/bin/convert' => '/usr/bin/convert',
-                                         '/usr/local/bin/identify' => '/usr/bin/identify',
-                                         '/usr/local/bin/composite' => '/usr/bin/composite',
-                                         '/usr/local/bin/zip' => '/usr/bin/zip'} }
-    
-applications[:campfire] = {:haproxy => true, :gems => ['fast_xs'],
-                           :packages => ['imagemagick'],
-                           :symlinks => {'/usr/local/bin/convert' => '/usr/bin/convert',
-                                         '/usr/local/bin/identify' => '/usr/bin/identify',
-                                         '/usr/local/bin/composite' => '/usr/bin/composite'}}
+applications[:basecamp] = {
+  :completed => true, :thumbnails => true, :logsort => true, :haproxy => true,
+  :gems => ['fast_xs', 'hpricot', 'aws-s3', 'ruby-prof', ['net-ssh', '1.1.4'], ['net-sftp', '1.1.1'], ['tzinfo', '0.3.9']],
+  :packages => ['imagemagick', 'elinks'],
+  :symlinks => {
+    '/usr/local/bin/convert' => '/usr/bin/convert',
+    '/usr/local/bin/identify' => '/usr/bin/identify',
+    '/usr/local/bin/composite' => '/usr/bin/composite',
+    '/usr/local/bin/elinks' => '/usr/bin/elinks',
+    '/u/depot' => '/u/nfs/file1/depot'}                        
+}
+
+applications[:highrise] = {
+  :haproxy => true, :gems => ['fast_xs'],
+  :packages => ['imagemagick', 'zip'],
+  :symlinks => {
+    '/usr/local/bin/convert' => '/usr/bin/convert',
+    '/usr/local/bin/identify' => '/usr/bin/identify',
+    '/usr/local/bin/composite' => '/usr/bin/composite',
+    '/usr/local/bin/zip' => '/usr/bin/zip'
+  }
+}
+
+applications[:campfire] = {
+  :haproxy => true, :gems => ['fast_xs', 'hpricot', 'mime-types', ['tzinfo', '0.3.9']],
+  :packages => ['imagemagick'],
+  :symlinks => {
+    '/usr/local/bin/convert' => '/usr/bin/convert',
+    '/usr/local/bin/identify' => '/usr/bin/identify',
+    '/usr/local/bin/composite' => '/usr/bin/composite',
+    '/u/depot' => '/u/nfs/file1/depot'
+  }
+}
 
 applications[:open_bar] = {:gems => ['fast_xs']}
-applications[:backpack] = {:gems => ['fast_xs', 'hpricot', 'aws-s3', 'ruby-prof'],
-                           :packages => ['imagemagick', 'elinks'],
-                           :symlinks => {'/usr/local/bin/convert' => '/usr/bin/convert',
-                                         '/usr/local/bin/identify' => '/usr/bin/identify',
-                                         '/usr/local/bin/composite' => '/usr/bin/composite',
-                                         '/usr/local/bin/elinks' => '/usr/bin/elinks',
-                                         '/u/depot' => '/u/nfs/file1/depot'},
-                           :apache_modules => ["auth_token", "xsendfile"]
-                          }
-applications[:writeboard] = {:gems => ['fast_xs'],
-                            :packages => ['elinks'],
-                            :symlinks => {'/usr/local/bin/elinks' => '/usr/bin/elinks'}  
-                            }
+
+applications[:backpack] = {
+  :gems => ['fast_xs', 'hpricot', 'aws-s3', 'ruby-prof'],
+  :packages => ['imagemagick', 'elinks'],
+  :symlinks => {
+    '/usr/local/bin/convert' => '/usr/bin/convert',
+    '/usr/local/bin/identify' => '/usr/bin/identify',
+    '/usr/local/bin/composite' => '/usr/bin/composite',
+    '/usr/local/bin/elinks' => '/usr/bin/elinks',
+    '/u/depot' => '/u/nfs/file1/depot'},
+  :apache_modules => ["auth_token", "xsendfile"]
+}
+
+applications[:writeboard] = {
+  :gems => ['fast_xs'],
+  :packages => ['elinks'],
+  :symlinks => {'/usr/local/bin/elinks' => '/usr/bin/elinks'}  
+}
+
 applications[:jobs] = {:gems => ['fast_xs']}
 applications[:extra_extra] = {:gems => ['fast_xs']}
 applications[:blogcabin] = {:gems => ['fast_xs', 'memcache-client'], :apache_modules => ['proxy_http']}
