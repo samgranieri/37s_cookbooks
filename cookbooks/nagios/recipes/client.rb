@@ -8,6 +8,7 @@ end
 directory "/u/nagios" do
   owner "nagios"
   group "nagios"
+  recursive true
 end
 
 remote_directory "/u/nagios/plugins" do
