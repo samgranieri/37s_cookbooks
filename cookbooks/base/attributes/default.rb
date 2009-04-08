@@ -109,7 +109,12 @@ applications[:highrise] = {:haproxy => true, :gems => ['fast_xs'],
                                          '/usr/local/bin/composite' => '/usr/bin/composite',
                                          '/usr/local/bin/zip' => '/usr/bin/zip'} }
     
-applications[:campfire] = {:haproxy => true, :gems => ['fast_xs']}
+applications[:campfire] = {:haproxy => true, :gems => ['fast_xs'],
+                           :packages => ['imagemagick'],
+                           :symlinks => {'/usr/local/bin/convert' => '/usr/bin/convert',
+                                         '/usr/local/bin/identify' => '/usr/bin/identify',
+                                         '/usr/local/bin/composite' => '/usr/bin/composite'}}
+
 applications[:open_bar] = {:gems => ['fast_xs']}
 applications[:backpack] = {:gems => ['fast_xs', 'hpricot', 'aws-s3', 'ruby-prof'],
                            :packages => ['imagemagick', 'elinks'],
