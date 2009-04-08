@@ -120,7 +120,10 @@ applications[:backpack] = {:gems => ['fast_xs', 'hpricot', 'aws-s3', 'ruby-prof'
                                          '/u/depot' => '/u/nfs/file1/depot'},
                            :apache_modules => ["auth_token", "xsendfile"]
                           }
-applications[:writeboard] = {:gems => ['fast_xs']}
+applications[:writeboard] = {:gems => ['fast_xs'],
+                            :packages => ['elinks'],
+                            :symlinks => {'/usr/local/bin/elinks' => '/usr/bin/elinks'}  
+                            }
 applications[:jobs] = {:gems => ['fast_xs']}
 applications[:extra_extra] = {:gems => ['fast_xs']}
 applications[:blogcabin] = {:gems => ['fast_xs', 'memcache-client'], :apache_modules => ['proxy_http']}
