@@ -1,6 +1,6 @@
 
-if node[:base][:active_applications]
-  node[:base][:active_applications].each do |app|
+if node[:active_applications]
+  node[:active_applications].each do |app, conf|
     if node[:applications][app][:gems]
       node[:applications][app][:gems].each do |g|
         if g.is_a? Array
