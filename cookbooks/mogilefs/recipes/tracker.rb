@@ -1,5 +1,6 @@
 
 require_recipe "mogilefs"
+require_recipe "runit"
 
 template "#{node[:mogilefs][:path]}/etc/mogilefsd.conf" do
   source "mogilefsd.conf.erb"
@@ -7,3 +8,4 @@ template "#{node[:mogilefs][:path]}/etc/mogilefsd.conf" do
   mode 0600
 end
 
+runit_service "mogilefsd"
