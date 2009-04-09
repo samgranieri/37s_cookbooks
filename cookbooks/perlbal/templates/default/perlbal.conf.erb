@@ -1,0 +1,14 @@
+<% @node[:perlbal][:pools].each do |pool| %>
+CREATE POOL <%= pool[:name] =>
+  POOL web_proxy_pool ADD <%= pool[:ip] %>:<%= pool[:port] %>
+<% end %>
+
+<% @node[:perbal][:proxies].each do |proxy| %>
+CREATE SERVICE <%= proxy[:name] %>
+  SET role = <%= proxy[:role] %>
+  SET pool = <%= proxy[:pool] %>
+  SET enable_reproxy = <%= proxy[:reproxy] %>
+  SET listen = <%= proxy[:ip] %>:<%= proxy[:port] %>
+  SET always_trusted = <%= proxy[:always_trusted] %>
+ENABLE <%= proxy[:name] %>
+<% end %>
