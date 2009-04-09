@@ -1,5 +1,5 @@
+require_recipe "base::appserver"
 require_recipe "passenger"
-require_recipe "syslog::client"
 
 directory "/u/apps" do
   action :create
@@ -28,34 +28,7 @@ if node[:active_applications]
   # passenger_monitor "All apps" 
   
   node[:active_applications].each do |app, conf|
-  
     full_name = "#{app}_#{conf[:env]}"
-  
-    if node[:applications][app][:gems]
-      node[:applications][app][:gems].each do |g|
-        if g.is_a? Array
-          gem_package g.first do
-            version g.last
-          end
-        else
-          gem_package g
-        end
-      end
-    end
-    
-    if node[:applications][app][:packages]
-      node[:applications][app][:packages].each do |package_name|
-        package package_name
-      end      
-    end
-    
-    if node[:applications][app][:symlinks]
-      node[:applications][app][:symlinks].each do |target, source|
-        link target do
-          to source
-        end
-      end      
-    end
 
     if modules = node[:applications][app][:apache_modules]
       modules.each do |mod|
