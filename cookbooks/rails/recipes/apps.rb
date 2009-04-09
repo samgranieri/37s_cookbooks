@@ -1,13 +1,6 @@
 require_recipe "base::appserver"
 require_recipe "passenger"
 
-directory "/u/apps" do
-  action :create
-  owner "app"
-  group "app"
-  mode 0775
-end
-
 directory "/u/logs" do
   action :create
   mode 0755
