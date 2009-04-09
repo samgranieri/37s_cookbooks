@@ -1,6 +1,6 @@
 <% @node[:perlbal][:pools].each do |pool| %>
 CREATE POOL <%= pool[:name] %>
-  POOL web_proxy_pool ADD <%= pool[:ip] %>:<%= pool[:port] %>
+  POOL <%= pool[:name] %> ADD <%= pool[:ip] %>:<%= pool[:port] %>
 <% end %>
 
 <% @node[:perlbal][:proxies].each do |proxy| %>
