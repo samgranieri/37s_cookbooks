@@ -1,5 +1,5 @@
 <% @node[:perlbal][:pools].each do |pool| %>
-CREATE POOL <%= pool[:name] =>
+CREATE POOL <%= pool[:name] %>
   POOL web_proxy_pool ADD <%= pool[:ip] %>:<%= pool[:port] %>
 <% end %>
 
