@@ -13,6 +13,6 @@ template node[:keepalived][:config_path] do
   owner "root"
   group "root"
   mode 0400
-  notifies :reload, resources(:service => "keepalived")
+  notifies :restart, resources(:service => "keepalived")
 end
 
