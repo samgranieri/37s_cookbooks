@@ -1,9 +1,6 @@
 
-package "keepalived"
-
-directory File.dirname(node[:keepalived][:config_path]) do
-  owner "root"
-  group "root"
+package "keepalived" do
+  action :install
 end
 
 template node[:keepalived][:config_path] do 
@@ -11,6 +8,10 @@ template node[:keepalived][:config_path] do
   owner "root"
   group "root"
   mode 0400
+  notifies :reload, resources(:service => "keepalived")
 end
 
-service "keepalived"
+service "keepalived" do
+  supports :restart => true
+  action [:enable, :start]
+end
