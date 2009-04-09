@@ -1,0 +1,8 @@
+keepalived Mash.new unless attribute?(:keepalived)
+keepalived[:config_path] = "/etc/keepalived/keepalived.conf" unless keepalived.has_key?(:config_path)
+keepalived[:notification_email] = "sysadmins@37signals.com" unless keepalived.has_key?(:notification_email)
+keepalived[:email_from] = "root@37signals.com" unless keepalived.has_key?(:email_from)
+keepalived[:smtp_host] = "192.168.2.40" unless keepalived.has_key?(:smtp_host)
+keepalived[:smtp_timeout] = 30 unless keepalived.has_key?(:smtp_timeout)
+keepalived[:lvs_id] = hostname unless keepalived.has_key?(:lvs_id)
+keepalived[:vrrp_instances] = [] unless keepalived.has_key?(:vrrp_instances)
