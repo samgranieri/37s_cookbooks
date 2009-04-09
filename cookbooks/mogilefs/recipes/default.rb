@@ -1,4 +1,11 @@
 
+directory "/u/apps" do
+  owner "app"
+  group "app"
+  mode 0755
+  recursive true
+end
+
 remote_file "/tmp/mogilefs.tar.bz2" do
   source node[:mogilefs][:pkg]
   not_if "test -e #{node[:mogilefs][:path]}"
