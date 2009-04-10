@@ -120,7 +120,7 @@ nagios_template "local" do
 end
 
 nagios_template "frequent" do
-  type "service"
+  template_type "service"
 	use "generic-service"
 	max_check_attempts    3
   normal_check_interval 1
