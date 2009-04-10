@@ -10,10 +10,6 @@ gem_package "chef-server" do
   version node[:chef][:server_version]
 end
 
-group "admin" do
-  gid 8000
-end
-
 user "chef" do
   comment "Chef user"
   gid "admin"
