@@ -1,7 +1,7 @@
 package "nagios-nrpe-server"
 
 service "nagios-nrpe-server" do
-  action [:enable, :start]
+  action :enable
   supports :restart => true, :reload => true
 end
 
