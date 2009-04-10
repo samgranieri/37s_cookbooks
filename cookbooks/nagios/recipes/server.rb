@@ -109,7 +109,7 @@ nagios_conf "hostgroups" do
 end
 
 nagios_conf "hosts" do
-  variables({:nodes => hosts})
+  variables({:hosts => hosts})
 end
 
 nagios_template "local" do
