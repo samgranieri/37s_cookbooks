@@ -62,8 +62,8 @@ userlist = node[:nagios][:users]
 #   users userlist
 # end
 
-hosts = []
-search(:node, "*") {|n| hosts << n }
+nodes = []
+search(:node, "*") {|n| nodes << n }
 
 service "nagios3" do
   supports :status => true, :restart => true, :reload => true
@@ -104,20 +104,33 @@ remote_directory "/var/lib/nagios/notifiers" do
   mode 0755
 end
 
-nagios_conf "commands"
-nagios_conf "contacts"
-nagios_conf "templates"
-nagios_conf "timeperiods"
-
-nagios_conf "hosts" do
-  variables({:hosts => hosts})
+nagios_conf "hostgroups" do
+  variables({:roles => node[:roles]})
 end
 
-nagios_service_template "local" do
+nagios_conf "hosts" do
+  variables({:nodes => hosts})
+end
+
+nagios_template "local" do
+  type "service"
   max_check_attempts      4
   normal_check_interval   300
   retry_check_interval    60
 end
+
+nagios_template "frequent" do
+  type "service"
+	use "generic-service"
+	max_check_attempts    3
+  normal_check_interval 1
+  retry_check_interval  1
+end
+
+nagios_conf "templates"
+nagios_conf "commands"
+nagios_conf "contacts"
+nagios_conf "timeperiods"
 
 template "/etc/nagios3/apache2.conf" do
   source "apache2.conf.erb"
