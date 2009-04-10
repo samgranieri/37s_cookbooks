@@ -37,17 +37,19 @@ node[:haproxy][:instances].each do |instance|
       instance[:listeners][idx][key] = [] unless listener.has_key?(key)
     end
   end
+
+  template "/etc/init.d/#{instance[:name]}_haproxy" do
+    source "haproxy.init.erb"
+    variables(:instance => instance)
+    owner "root"
+    group "root"
+    mode 0755
+  end
   
   service "haproxy_#{instance[:name]}" do
     pattern "haproxy.*#{instance[:name]}"
-    
-    start_command   "start #{instance[:name]}"
-    stop_command    "stop #{instance[:name]}"
-    restart_command "restart #{instance[:name]}"
-    reload_command  "reload #{instance[:name]}"
-    
     supports [ :start, :stop, :restart, :reload ]
-    action :start
+    action [ :enable, :start ]
   end
 
   template "/etc/haproxy/#{instance[:name]}.cfg" do
