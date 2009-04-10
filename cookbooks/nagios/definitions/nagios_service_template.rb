@@ -1,3 +1,5 @@
-define :nagios_service_template do
-  node[:nagios][:service_templates]["#{params[:name]}-service"] = params
+define :nagios_template, :type => "service" do
+  type = params[:type]
+  params.delete(:type)
+  node[:nagios][:templates]["#{params[:name]}-#{type}"] = params
 end
