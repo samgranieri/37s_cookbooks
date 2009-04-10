@@ -32,7 +32,11 @@ remote_file "/etc/init.d/haproxy" do
 end
 
 node[:haproxy][:instances].each do |instance|
-  [ :options, :errorfiles, :backends ].each { |key| instance[key] = [] unless instance.has_key?(key) }
+  instance[:listeners].each do |listener|
+    [ :options, :errorfiles, :backends ].each do |key|
+      instance[:listeners][listener] = [] unless listener.has_key?(key)
+    end
+  end
   
   service "haproxy_#{instance[:name]}" do
     pattern "haproxy.*#{instance[:name]}"
