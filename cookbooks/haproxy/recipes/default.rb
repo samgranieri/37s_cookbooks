@@ -17,6 +17,13 @@ directory "/var/log/haproxy" do
   mode 0750
 end
 
+directory "/var/run/haproxy" do
+  action :create
+  owner node[:haproxy][:user]
+  group node[:haproxy][:user]
+  mode 0750
+end
+
 remote_file "/etc/init.d/haproxy" do
   source "haproxy.init"
   owner "root"
