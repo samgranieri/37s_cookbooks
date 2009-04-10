@@ -34,7 +34,7 @@ end
 node[:haproxy][:instances].each do |instance|
   service "haproxy_#{instance[:name]}" do
     pattern "haproxy.*#{instance[:name]}"
-    running :true
+    running true
     
     start_command   "start #{instance[:name]}"
     stop_command    "stop #{instance[:name]} /var/run/#{instance[:name]}.pid"
