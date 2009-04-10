@@ -13,3 +13,7 @@ end
 def nagios_attr(name)
   @node[:nagios][name]
 end
+
+def hostgroups_for(host)
+  "servers, #{host[:role]}"
+end
