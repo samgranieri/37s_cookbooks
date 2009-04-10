@@ -330,16 +330,6 @@ define host {
 
 define host {
   use linux-server
-  address 192.168.2.32
-  host_name bpmu-app-01
-  alias bpmu-app-01
-  
-  hostgroups slices, bp-app
-  
-}
-
-define host {
-  use linux-server
   address 192.168.2.33
   host_name bpmu-app-02
   alias bpmu-app-02
@@ -585,23 +575,6 @@ define host {
   alias web-02
   hostgroups slices, web-general
 }
-
-define host {
-  use linux-server
-  address 192.168.2.67
-  host_name 37s-app-01
-  alias 37s-app-01
-  hostgroups slices, app-general
-}
-
-define host {
-  use linux-server
-  address 192.168.2.68
-  host_name 37s-app-02
-  alias 37s-app-02
-  hostgroups slices, app-general
-}
-
 
 define host {
   use linux-server
