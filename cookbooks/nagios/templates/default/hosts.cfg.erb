@@ -14,30 +14,6 @@ define host {
 
 define host {
   use linux-server
-  address 192.168.1.72
-  host_name xen1
-  alias xen1
-  hostgroups linux_boxes
-}
-
-define host {
-  use linux-server
-  address 192.168.1.148
-  host_name xen11
-  alias xen11
-  hostgroups linux_boxes
-}
-
-define host {
-  use linux-server
-  address 192.168.1.149
-  host_name xen12
-  alias xen12
-  hostgroups linux_boxes
-}
-
-define host {
-  use linux-server
   address 192.168.1.151
   host_name bc-db-01
   alias bc-db-01
@@ -401,14 +377,6 @@ define host {
 #   
 # }
 
-define host {
-  use linux-server
-  address 192.168.2.62
-  host_name bpmu-app-05
-  alias bpmu-app-05  
-  hostgroups slices, bp-app
-  
-}
 
 define host {
   use linux-server
@@ -442,31 +410,6 @@ define host {
 
 define host {
   use linux-server
-  address 192.168.2.39
-  host_name bc-app-08
-  alias bc-app-08
-  hostgroups slices, bc-app
-
-}
-
-define host {
-  use linux-server
-  address 192.168.2.69
-  host_name bc-app-09
-  alias bc-app-09
-  hostgroups slices, bc-app
-}
-
-define host {
-  use linux-server
-  address 192.168.2.72
-  host_name bc-app-10
-  alias bc-app-10
-  hostgroups slices, bc-app
-}
-
-define host {
-  use linux-server
   address 192.168.2.40
   host_name mail-01
   alias mail-01
@@ -482,26 +425,6 @@ define host {
   alias mail-02
   
   hostgroups slices
-  
-}
-
-define host {
-  use linux-server
-  address 192.168.2.42
-  host_name wb-app-01
-  alias wb-app-01
-  
-  hostgroups slices, wb-app
-  
-}
-
-define host {
-  use linux-server
-  address 192.168.2.43
-  host_name wb-app-02
-  alias wb-app-02
-  
-  hostgroups slices, wb-app
   
 }
 
