@@ -80,7 +80,7 @@ directory "#{node[:nagios][:root]}/dist" do
   mode 0755
 end
 
-%(templates contacts commands).each do |dir|
+%w(templates contacts commands).each do |dir|
   directory "#{node[:nagios][:root]}/conf.d/#{dir}" do
     owner "nagios"
     group "nagios"
@@ -109,7 +109,7 @@ nagios_conf "hostgroups" do
 end
 
 nagios_conf "hosts" do
-  variables({:hosts => hosts})
+  variables({:hosts => nodes})
 end
 
 nagios_template "local" do

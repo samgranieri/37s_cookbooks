@@ -25,11 +25,6 @@ define command {
   command_line    $USER1$/check_by_ssh -H $HOSTADDRESS$ -C "/usr/lib64/nagios/plugins/check_log -F $ARG1$ -O /tmp/nagios.logcheck.processed -q $ARG2$" -l root
 }
 
-define command {
-  command_name    check_mysqlrep
-  command_line    $USER3$/check-mysql-slave.pl --host $HOSTADDRESS$ --port $ARG1$ --user replcheck --password $ARG2$ --warn $ARG3$ --crit $ARG4$
-}
-
 define command { 
   command_name    check_solr
   command_line    $USER3$/check_solr.rb -c 10 -h $HOSTADDRESS$ -r 10 -p $ARG1$
@@ -203,11 +198,6 @@ define command{
 	command_name    check_traffic
 	command_line    $USER1$/check_nrpe -H $HOSTADDRESS$ -c traffic -t 20
 }
-
-define command{ 
-	command_name    check_mem
-	command_line    $USER1$/check_nrpe -H $HOSTADDRESS$ -c check_mem -t 20
-} 
 
 define command{ 
 	command_name    check_mysqlhealth
