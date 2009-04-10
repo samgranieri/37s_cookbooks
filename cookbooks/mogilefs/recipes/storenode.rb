@@ -1,5 +1,6 @@
 
 require_recipe "mogilefs"
+require_recipe "runit"
 
 template "#{node[:mogilefs][:path]}/etc/mogstored.conf" do
   source "mogstored.conf.erb"
@@ -13,3 +14,4 @@ directory "#{node[:mogilefs][:mogstored][:doc_root]}" do
   mode 0755
 end
 
+runit_service "mogstored"

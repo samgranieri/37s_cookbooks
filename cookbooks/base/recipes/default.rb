@@ -68,6 +68,15 @@ role[:groups].each do |group_name|
   # end
 end
 
+# Remove initial setup user and group.
+user  "ubuntu" do
+  action :remove
+end
+
+group "ubuntu" do
+  action :remove
+end
+
 directory "/u" do
   action :create
   owner "root"
