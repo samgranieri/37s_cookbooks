@@ -7,13 +7,5 @@ define hostgroup {
   alias <%= conf[:alias] || name %>
 }
 
-
-define service{
-    use                     notify-on-critical
-    hostgroup_name          slices, linux_boxes
-    service_description     Free Memory
-		check_command			check_mem
-}
-
 <% end %>
 
