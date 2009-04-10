@@ -39,7 +39,7 @@ node[:haproxy][:instances].each do |instance|
     mode 0755
   end
   
-  service "haproxy_#{instance[:name]}" do
+  service "#{instance[:name]}" do
     pattern "haproxy.*#{instance[:name]}"
     supports [ :start, :stop, :restart, :reload ]
     action [ :enable ]
