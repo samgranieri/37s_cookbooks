@@ -40,7 +40,6 @@ node[:haproxy][:instances].each do |instance|
   
   service "haproxy_#{instance[:name]}" do
     pattern "haproxy.*#{instance[:name]}"
-    running true
     
     start_command   "start #{instance[:name]}"
     stop_command    "stop #{instance[:name]}"
@@ -48,6 +47,7 @@ node[:haproxy][:instances].each do |instance|
     reload_command  "reload #{instance[:name]}"
     
     supports [ :start, :stop, :restart, :reload ]
+    action :start
   end
 
   template "/etc/haproxy/#{instance[:name]}.cfg" do
