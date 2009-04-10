@@ -6,7 +6,7 @@ HAPROXY_BIN=/usr/sbin/haproxy
 HAPROXY_DIR=/etc/haproxy
 NAME=$2
 PID_FILE=$3
-CONFIG=${NAME}.cfg
+CONFIG=${HAPROXY_DIR}/${NAME}.cfg
 
 test -f ${HAPROXY_DIR}/${CONFIG} || echo "Unable to find HAproxy configuration for ${NAME}. Aborting." && exit 0
 

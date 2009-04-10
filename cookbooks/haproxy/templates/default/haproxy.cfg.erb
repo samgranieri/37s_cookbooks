@@ -3,8 +3,8 @@ global
   maxconn 2048
   user <%= @node[:haproxy][:user] %>
   group <%= @node[:haproxy][:user] %>
-  pidfile /var/run/<%= @instance[:name] %>.pid
-  stats socket /var/run/<%= @instance[:name] %>.stats
+  pidfile /var/run/haproxy/<%= @instance[:name] %>.pid
+  stats socket /var/run/haproxy/<%= @instance[:name] %>.stats
 
 defaults
   log global
