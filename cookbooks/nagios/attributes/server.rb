@@ -8,7 +8,6 @@ nagios[:users]["nagiosadmin"] = "k5402krb03"
 nagios[:notifications_enabled] = true unless nagios.has_key?(:notifications_enabled)
 nagios[:check_external_commands] = true
 nagios[:default_contact_groups] = %w(admins)
-#nagios[:service_templates] = Mash.new
 
 # This setting is effectively sets the minimum interval (in seconds) nagios can handle.
 # Other interval settings provided in seconds will calculate their actual from this value, since nagios works in 'time units' rather than allowing definitions everywhere in seconds
@@ -16,7 +15,7 @@ nagios[:default_contact_groups] = %w(admins)
 nagios[:interval_length] = 1
 
 # Provide all interval values in seconds
-%w(default_host default_service hosts services service_templates).each do |var|
+%w(default_host default_service hosts services templates).each do |var|
 nagios[var.to_sym] = Mash.new
 end
 
