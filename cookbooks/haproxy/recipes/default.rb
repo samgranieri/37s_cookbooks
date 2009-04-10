@@ -31,7 +31,7 @@ node[:haproxy][:instances].each do |instance|
     end
   end
 
-  template "/etc/init.d/#{instance[:name]}_haproxy" do
+  template "/etc/init.d/#{instance[:name]}" do
     source "haproxy.init.erb"
     variables(:instance => instance)
     owner "root"
