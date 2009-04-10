@@ -1,20 +1,20 @@
 #!/bin/sh
-# Manage HAproxy for <%= instance[:name] %>
+# Manage HAproxy for <%= @instance[:name] %>
 #
 ### BEGIN INIT INFO
-# Provides:          <%= instance[:name] %>
+# Provides:          <%= @instance[:name] %>
 # Required-Start:    $remote_fs
 # Required-Stop:     $remote_fs
 # Default-Start:     2 3 4 5
 # Default-Stop:      1
-# Short-Description: HAproxy server for <%= instance[:name] %>
-# Description:       HAproxy server for <%= instance[:name] %>
+# Short-Description: HAproxy server for <%= @instance[:name] %>
+# Description:       HAproxy server for <%= @instance[:name] %>
 ### END INIT INFO
 
 
 . /lib/lsb/init-functions
 
-NAME=<%= instance[:name] %>
+NAME=<%= @instance[:name] %>
 HAPROXY_BIN=/usr/sbin/haproxy
 HAPROXY_DIR=/etc/haproxy
 PID_FILE=/var/run/haproxy/${NAME}.pid
