@@ -10,3 +10,11 @@ end
 execute "apt-get-update" do
   command "apt-get update"
 end
+
+remote_file "/etc/apt/sources.list" do
+  source "sources.list"
+  owner "root"
+  group "root"
+  mode "0644"
+end
+

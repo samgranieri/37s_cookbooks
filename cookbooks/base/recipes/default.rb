@@ -3,6 +3,7 @@ raise RuntimeError, "The node requires a role, one of: #{node[:roles].keys.join(
 case node[:platform]
 when "debian", "ubuntu"
   package "emacs22-nox"
+  require_recipe "apt"
 else 
   package "emacs-nox"
 end
@@ -20,7 +21,6 @@ require_recipe "dns::client"
 require_recipe "nagios::client"
 require_recipe "rubygems::client"
 require_recipe "timezone"
-require_recipe "apt"
 require_recipe "git"
 require_recipe "postfix"
 
