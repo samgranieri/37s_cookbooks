@@ -134,16 +134,6 @@ define host {
 
 define host {
   use linux-server
-  address 192.168.2.7
-  host_name bpmu-staging
-  alias bpmu-staging
-  
-  hostgroups slices
-  
-}
-
-define host {
-  use linux-server
   address 192.168.2.8
   host_name cf-solr-01
   alias cf-solr-01
