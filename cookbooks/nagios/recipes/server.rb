@@ -113,7 +113,7 @@ nagios_conf "hosts" do
 end
 
 nagios_template "local" do
-  type "service"
+  template_type "service"
   max_check_attempts      4
   normal_check_interval   300
   retry_check_interval    60
