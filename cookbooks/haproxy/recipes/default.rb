@@ -32,15 +32,6 @@ remote_file "/etc/init.d/haproxy" do
 end
 
 node[:haproxy][:instances].each do |instance|
-  template "/etc/haproxy/#{instance[:name]}.cfg" do
-    source "haproxy.cfg.erb"
-    variables(:instance => instance)
-    owner node[:haproxy][:user]
-    group node[:haproxy][:group]
-    mode 0640
-    notifies :reload, resources(:service => "haproxy_#{instance[:name]}")
-  end
-
   service "haproxy_#{instance[:name]}" do
     pattern "haproxy.*#{instance[:name]}"
     running :true
@@ -51,5 +42,14 @@ node[:haproxy][:instances].each do |instance|
     reload_command  "reload #{instance[:name]} /var/run/#{instance[:name]}.pid"
     
     supports [ :start, :stop, :restart, :reload ]
+  end
+
+  template "/etc/haproxy/#{instance[:name]}.cfg" do
+    source "haproxy.cfg.erb"
+    variables(:instance => instance)
+    owner node[:haproxy][:user]
+    group node[:haproxy][:group]
+    mode 0640
+    notifies :reload, resources(:service => "haproxy_#{instance[:name]}")
   end
 end
