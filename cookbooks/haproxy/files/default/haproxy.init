@@ -1,0 +1,32 @@
+#!/bin/sh
+
+. /lib/lsb/init-functions
+
+HAPROXY_BIN=/usr/sbin/haproxy
+HAPROXY_DIR=/etc/haproxy
+NAME=$2
+PID_FILE=$3
+CONFIG=${NAME}.cfg
+
+test -f ${HAPROXY_DIR}/${CONFIG} || echo "Unable to find HAproxy configuration for ${NAME}. Aborting." && exit 0
+
+case "$1" in
+start)
+  log_daemon_msg "Starting HAproxy (${NAME})"
+  ${HAPROXY_BIN} -D -f ${CONFIG}
+  log_end_msg $?
+  ;;
+stop)
+  log_daemon_msg "Starting HAproxy (${NAME})"
+  kill `cat ${PID_FILE}`
+  log_end_msg $?
+  ;;
+restart)
+  log_daemon_msg "Starting HAproxy (${NAME})"
+  ${HAPROXY_BIN} -D -f ${CONFIG} -st `cat ${PID_FILE}`
+  log_end_msg $?
+  ;;
+reload)
+  log_daemon_msg "Starting HAproxy (${NAME})"
+  ${HAPROXY_BIN} -D -f ${CONFIG} -sf `cat ${PID_FILE}`
+  log_end_msg $?
