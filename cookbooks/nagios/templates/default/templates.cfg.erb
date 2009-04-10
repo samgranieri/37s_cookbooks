@@ -64,8 +64,8 @@ define service {
   is_volatile                     0
   check_period                    24x7
   max_check_attempts              <%= nagios_attr(:default_service)[:max_check_attempts] %>
-  check_interval           				<%= nagios_interval(nagios_attr(:default_service)[:check_interval]) %>
-  retry_interval            			<%= nagios_interval(nagios_attr(:default_service)[:retry_interval]) %>
+  check_interval                  <%= nagios_interval(nagios_attr(:default_service)[:check_interval]) %>
+  retry_interval                  <%= nagios_interval(nagios_attr(:default_service)[:retry_interval]) %>
   contact_groups                  <%= nagios_attr(:default_contact_groups).join(",") %>
   notification_options            w,u,c,r
   notification_interval           <%= nagios_interval(nagios_attr(:default_service)[:notification_interval]) %>
@@ -75,10 +75,10 @@ define service {
 
 <% @node[:nagios][:service_templates].each do |name, params| %>
 define service {
-  use                     default-service
+  use default-service
   register                0
-	<% params.each do |n, v| %>
-	<%= n %>								<%= v %>
-	<% end %>
+  <% params.each do |n, v| %>
+  <%= n %>                <%= v %>
+  <% end %>
 }
 <% end %>

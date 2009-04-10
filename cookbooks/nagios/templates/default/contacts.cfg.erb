@@ -1,17 +1,17 @@
 define contact {
-	contact_name                    root
-	alias                           Root
-	service_notification_period     24x7
-	host_notification_period        24x7
-	service_notification_options    w,u,c,r
-	host_notification_options       d,r
-	service_notification_commands   service-notify-by-email
-	host_notification_commands      host-notify-by-email
-	email                           root@localhost
+  contact_name                    root
+  alias                           Root
+  service_notification_period     24x7
+  host_notification_period        24x7
+  service_notification_options    w,u,c,r
+  host_notification_options       d,r
+  service_notification_commands   service-notify-by-email
+  host_notification_commands      host-notify-by-email
+  email                           root@localhost
 }
 
 define contactgroup {
-	contactgroup_name       admins
-	alias                   Nagios Administrators
-	members                 root
+  contactgroup_name       admins
+  alias                   Nagios Administrators
+  members                 root
 }
