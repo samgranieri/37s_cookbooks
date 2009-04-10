@@ -46,9 +46,9 @@ node[:haproxy][:instances].each do |instance|
     running :true
     
     start_command   "start #{instance[:name]}"
-    stop_command    "stop #{instance[:name]} #{instance[:pid_file]}"
-    restart_command "restart #{instance[:name]} #{instance[:pid_file]}"
-    reload_command  "reload #{instance[:name]} #{instance[:pid_file]}"
+    stop_command    "stop #{instance[:name]} /var/run/#{instance[:name]}.pid"
+    restart_command "restart #{instance[:name]} /var/run/#{instance[:name]}.pid"
+    reload_command  "reload #{instance[:name]} /var/run/#{instance[:name]}.pid"
     
     supports [ :start, :stop, :restart, :reload ]
   end

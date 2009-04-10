@@ -3,7 +3,7 @@ global
   maxconn 2048
   user <%= @node[:haproxy][:user] %>
   group <%= @node[:haproxy][:user] %>
-  pidfile <%= @instance[:pid_file] %>
+  pidfile /var/run/<%= @instance[:name] %>.pid
   <% if @instance.has_key?(:stats_socket) -%>  
   stats socket <%= @instance[:stats_socket] %>
   <% end -%>
