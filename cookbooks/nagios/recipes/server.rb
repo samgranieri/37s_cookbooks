@@ -131,6 +131,7 @@ nagios_conf "templates"
 nagios_conf "commands"
 nagios_conf "contacts"
 nagios_conf "timeperiods"
+nagios_conf "services"
 
 template "/etc/nagios3/apache2.conf" do
   source "apache2.conf.erb"
