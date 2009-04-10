@@ -77,7 +77,7 @@ define service {
 define <%= params[:template_type] %> {
   register  0
   <% params.each do |n, v| %>
-  <% next if n == :template_type %>
+  <% next if n == 'template_type' %>
   <%= n %>  <%= v %>
   <% end %>
 }
