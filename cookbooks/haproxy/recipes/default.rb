@@ -24,13 +24,6 @@ directory "/var/run/haproxy" do
   mode 0750
 end
 
-remote_file "/etc/init.d/haproxy" do
-  source "haproxy.init"
-  owner "root"
-  group "root"
-  mode 0700
-end
-
 node[:haproxy][:instances].each do |instance|
   instance[:listeners].each_with_index do |listener, idx|
     [ :options, :errorfiles, :backends ].each do |key|
@@ -49,7 +42,7 @@ node[:haproxy][:instances].each do |instance|
   service "haproxy_#{instance[:name]}" do
     pattern "haproxy.*#{instance[:name]}"
     supports [ :start, :stop, :restart, :reload ]
-    action [ :enable, :start ]
+    action [ :enable ]
   end
 
   template "/etc/haproxy/#{instance[:name]}.cfg" do
