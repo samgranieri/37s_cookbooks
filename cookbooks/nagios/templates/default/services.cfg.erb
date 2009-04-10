@@ -93,10 +93,10 @@ define hostgroup{
 	alias hr-web
 }
 
-define hostgroup {
-	hostgroup_name wb-app
-	alias Writeboard App
-}
+#define hostgroup {
+#	hostgroup_name wb-app
+#	alias Writeboard App
+#}
 
 define hostgroup {
 	hostgroup_name bp-app
@@ -263,12 +263,12 @@ define service {
 		check_command			check_http_content!37s.backpackit.com!/login!/session/create
 }
 
-define service {
-		use frequent-service
-		hostgroup_name wb-app
-		service_description	WB HTTP content
-		check_command			check_http_content!123.writeboard.com!/find!/p/list
-}
+#define service {
+#		use frequent-service
+#		hostgroup_name wb-app
+#		service_description	WB HTTP content
+#		check_command			check_http_content!123.writeboard.com!/find!/p/list
+#}
 
 define service {
 		use frequent-service

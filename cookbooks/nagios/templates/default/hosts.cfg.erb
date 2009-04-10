@@ -390,6 +390,16 @@ define host {
 
 define host {
   use linux-server
+  address 192.168.2.39
+  host_name bc-app-08
+  alias bc-app-08
+  
+  hostgroups slices, bc-app
+  
+}
+
+define host {
+  use linux-server
   address 192.168.2.40
   host_name mail-01
   alias mail-01
