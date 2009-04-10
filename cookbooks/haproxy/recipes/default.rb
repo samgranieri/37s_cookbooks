@@ -32,6 +32,8 @@ remote_file "/etc/init.d/haproxy" do
 end
 
 node[:haproxy][:instances].each do |instance|
+  [ :options, :errorfiles, :backends ].each { |key| instance[key] = [] unless instance.has_key?(key) }
+  
   service "haproxy_#{instance[:name]}" do
     pattern "haproxy.*#{instance[:name]}"
     running true
@@ -50,8 +52,6 @@ node[:haproxy][:instances].each do |instance|
     owner node[:haproxy][:user]
     group node[:haproxy][:group]
     mode 0640
-
-    [ :options, :errorfiles, :backends ].each { |key| instance[key] = [] unless instance.has_key?(key) }
     notifies :reload, resources(:service => "haproxy_#{instance[:name]}")
   end
 end
