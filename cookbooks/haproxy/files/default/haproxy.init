@@ -8,7 +8,7 @@ NAME=$2
 PID_FILE=$3
 CONFIG=${HAPROXY_DIR}/${NAME}.cfg
 
-test -f ${CONFIG} || echo "Unable to find HAproxy configuration for ${NAME}. Aborting." && exit 0
+test -f ${CONFIG} || ( echo "Unable to find HAproxy configuration for ${NAME}. Aborting." && exit 0 )
 
 case "$1" in
 start)
@@ -30,3 +30,5 @@ reload)
   log_daemon_msg "Starting HAproxy (${NAME})"
   ${HAPROXY_BIN} -D -f ${CONFIG} -sf `cat ${PID_FILE}`
   log_end_msg $?
+  ;;
+esac
