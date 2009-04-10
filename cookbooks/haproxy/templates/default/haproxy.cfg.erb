@@ -5,7 +5,7 @@ global
   group <%= @node[:haproxy][:user] %>
   pidfile /var/run/<%= @instance[:name] %>.pid
   <% if @instance.has_key?(:stats_socket) -%>  
-  stats socket <%= @instance[:stats_socket] %>
+  stats socket /var/run/<%= @instance[:name] %>.stats
   <% end -%>
 
 defaults
