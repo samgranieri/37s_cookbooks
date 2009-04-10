@@ -31,7 +31,7 @@ node[:haproxy][:instances].each do |instance|
     end
   end
 
-  template "/etc/init.d/#{instance[:name]}" do
+  template "/etc/init.d/haproxy_#{instance[:name]}" do
     source "haproxy.init.erb"
     variables(:instance => instance)
     owner "root"
@@ -39,7 +39,7 @@ node[:haproxy][:instances].each do |instance|
     mode 0755
   end
   
-  service "#{instance[:name]}" do
+  service "haproxy_#{instance[:name]}" do
     pattern "haproxy.*#{instance[:name]}"
     supports [ :start, :stop, :restart, :reload ]
     action [ :enable ]
