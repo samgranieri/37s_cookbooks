@@ -23,11 +23,9 @@ listen <%= listener[:name] %> <%= listener[:ip] %>:<%= listener[:port] -%>
   <% listener[:options].each do |option| -%>
   option <%= option %>
   <% end -%>
-  
   <% listener[:errorfiles].each do |error| -%>
   errorfile <%= error[:code] %> <%= error[:file_path] %>
   <% end -%>
-
   <% listener[:backends].each do |backend| %>
   server <%= backend[:name] %>_<%= backend[:port] %> <%= backend[:ip] %>:<%= backend[:port] %> <%= backend[:options] %>
   <% end -%>
