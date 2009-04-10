@@ -17,17 +17,17 @@ start)
   log_end_msg $?
   ;;
 stop)
-  log_daemon_msg "Starting HAproxy (${NAME})"
+  log_daemon_msg "Stopping HAproxy (${NAME})"
   kill `cat ${PID_FILE}`
   log_end_msg $?
   ;;
 restart)
-  log_daemon_msg "Starting HAproxy (${NAME})"
+  log_daemon_msg "Forcefully restarting HAproxy (${NAME})"
   ${HAPROXY_BIN} -D -f ${CONFIG} -st `cat ${PID_FILE}`
   log_end_msg $?
   ;;
 reload)
-  log_daemon_msg "Starting HAproxy (${NAME})"
+  log_daemon_msg "Gracefully restarting HAproxy (${NAME})"
   ${HAPROXY_BIN} -D -f ${CONFIG} -sf `cat ${PID_FILE}`
   log_end_msg $?
   ;;
