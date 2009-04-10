@@ -73,12 +73,12 @@ define service {
   register                        0
 }
 
-<% @node[:nagios][:service_templates].each do |name, params| %>
-define service {
-  use default-service
-  register                0
+<% @node[:nagios][:templates].each do |name, params| %>
+define <%= params[:template_type] %> {
+  register  0
   <% params.each do |n, v| %>
-  <%= n %>                <%= v %>
+  <% next if n == :template_type %>
+  <%= n %>  <%= v %>
   <% end %>
 }
 <% end %>
