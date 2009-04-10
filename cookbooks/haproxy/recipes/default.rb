@@ -34,7 +34,7 @@ end
 node[:haproxy][:instances].each do |instance|
   instance[:listeners].each_with_index do |listener, idx|
     [ :options, :errorfiles, :backends ].each do |key|
-      instance[:listeners][idx] = [] unless listener.has_key?(key)
+      instance[:listeners][idx][key] = [] unless listener.has_key?(key)
     end
   end
   
