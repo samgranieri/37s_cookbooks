@@ -1,7 +1,7 @@
 mogilefs Mash.new unless attribute?("mogilefs")
 
 mogilefs[:path] = "/u/apps/mogilefs" unless mogilefs.has_key?(:path)
-mogilefs[:trackers] = [ '192.168.0.7:6001' ] unless mogilefs.has_key?(:trackers)
+mogilefs[:trackers] = [ 'mogilefs:6001' ] unless mogilefs.has_key?(:trackers)
 mogilefs[:pkg] = "http://dist/packages/mogilefs.tar.bz2" unless mogilefs.has_key?(:pkg)
 
 mogilefs[:mogilefsd] = Mash.new unless mogilefs.has_key?(:mogilefsd)
