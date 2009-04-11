@@ -13,6 +13,7 @@
 +localgems.<%= @node[:domain] %>:<%= @gem_mirror_ip %>:300
 +dist.<%= @node[:domain] %>:<%= @dist_ip %>:300
 +nagios.<%= @node[:domain] %>:<%= @dist_ip %>:300
++mogile.<%= @node[:domain] %>:192.168.0.7:300
 +mogile-db.<%= @node[:domain] %>:192.168.0.20:300
 <% @hosts.each do |host| %>
 =<%=host['fqdn']%>:<%= host['ipaddress'] %>:300
