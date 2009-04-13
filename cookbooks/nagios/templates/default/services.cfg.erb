@@ -15,7 +15,6 @@ define service {
 define service {
 	use                     default-service
 	hostgroup_name          servers
-	host_name               !<%= @node[:fqdn] %>
 	service_description     Load Average
 	check_command			      check_load
 }
