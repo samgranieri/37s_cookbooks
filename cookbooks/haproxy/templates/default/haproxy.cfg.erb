@@ -18,7 +18,7 @@ defaults
   srvtimeout <%= @instance.has_key?(:server_timeout) ? @instance[:server_timeout] : "60s" %>
 
 <% @instance[:listeners].each do |listener| -%>
-listen <%= listener[:name] %> <%= listener[:ip] %>:<%= listener[:port] -%>
+listen <%= listener[:name] %> <%= listener[:ip] %>:<%= listener[:port] %>
   mode <%= listener[:mode] %>
   <% listener[:options].each do |option| -%>
   option <%= option %>
