@@ -2,7 +2,7 @@
   ServerAdmin     <%= @node[:base][:sysadmin_email] %>
   ServerName      nagios.<% @node[:domain] %>
   ServerAlias     nagios <% if @node[:public_domain] %>nagios.<%= @node[:public_domain] %><% end %>
-  DocumentRoot    <%= @node[:nagios][:webroo%>
+  DocumentRoot    <%= @node[:nagios][:webroot] %>
   ErrorLog        /var/log/nagios3/apache_error.log
   SSLEngine       On
 
