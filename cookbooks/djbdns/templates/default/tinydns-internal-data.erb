@@ -17,4 +17,9 @@
 +mogile-db.<%= @node[:domain] %>:192.168.0.20:300
 <% @hosts.each do |host| %>
 =<%=host['fqdn']%>:<%= host['ipaddress'] %>:300
+<% if aliases = host['dns_aliases'] %>
+<% aliases.each do |al| %>
++<%= al %>.<%= @node[:domain] %>:<%= host['ipaddress'] %>:300
+<% end %>
+<% end %>
 <% end %>
