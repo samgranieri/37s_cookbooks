@@ -1,0 +1,607 @@
+# host definitions
+
+<% @hosts.each do |host| %>
+define host {
+  use server
+  address <%= host['ipaddress'] %>
+  host_name <%= host['hostname'] %>
+  hostgroups <%= hostgroups_for(host) %>
+}
+
+<% end %>
+
+# old hosts
+
+define host {
+  use linux-server
+  address 192.168.1.151
+  host_name bc-db-01
+  alias bc-db-01
+  hostgroups linux_boxes, db_master
+}
+
+define host {
+  use linux-server
+  address 192.168.1.196
+  host_name hr-db-01
+  alias hr-db-01
+  hostgroups linux_boxes, db_master
+}
+
+define host {
+  use linux-server
+  address 192.168.1.165
+  host_name db6
+  alias db6
+  hostgroups linux_boxes, db_master
+}
+
+define host {
+  use linux-server
+  address 192.168.1.152
+  host_name bc-db-02
+  alias bc-db-02
+  hostgroups linux_boxes, db_slave
+}
+
+define host {
+  use linux-server
+  address 192.168.1.127
+  host_name db3
+  alias db3
+  hostgroups linux_boxes
+}
+
+define host {
+  use linux-server
+  address 192.168.1.120
+  host_name db4
+  alias db4
+  hostgroups freebsd_boxes
+}
+
+define host {
+  use linux-server
+  address 192.168.1.122
+  host_name search1
+  alias search1
+}
+
+# this is the NEW dbslave
+define host {
+  use linux-server
+  address 192.168.1.156
+  host_name db-slave
+  alias db-slave
+  hostgroups linux_boxes, db_slave
+}
+
+# These hosts are scheduled for migration to xen
+
+define host {
+	use linux-server
+	address 172.28.2.4
+	host_name netapp-01
+	hostgroups netapp
+}
+
+define host {
+	use linux-server
+	address 172.28.2.6
+	host_name netapp-02
+	hostgroups netapp
+}
+
+define host {
+	use linux-server
+	address 67.192.52.125
+	host_name cc1
+	hostgroups passive_boxes
+}
+
+define host {
+	use linux-server
+	address 67.192.52.124
+	host_name cc2
+	hostgroups passive_boxes
+}
+
+define host {
+	use linux-server
+	address 67.192.52.123
+	host_name billing
+}
+
+define host {
+  use linux-server
+  address 192.168.2.2
+  host_name bpmu-cron
+  alias bpmu-cron
+  
+  hostgroups slices
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.6
+  host_name bc-cron
+  alias bc-cron
+  
+  hostgroups slices
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.8
+  host_name cf-solr-01
+  alias cf-solr-01
+  
+  hostgroups slices, cf_solr
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.9
+  host_name cf-solr-02
+  alias cf-solr-02
+  
+  hostgroups slices, cf_solr
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.10
+  host_name proxy-01
+  alias proxy-01
+  
+  hostgroups slices
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.11
+  host_name proxy-02
+  alias proxy-02
+  
+  hostgroups slices
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.14
+  host_name cf-app-01
+  alias cf-app-01
+  
+  hostgroups slices, cf-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.15
+  host_name cf-app-02
+  alias cf-app-02
+  
+  hostgroups slices, cf-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.16
+  host_name cf-app-03
+  alias cf-app-03
+  
+  hostgroups slices, cf-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.17
+  host_name cf-app-04
+  alias cf-app-04
+  
+  hostgroups slices, cf-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.18
+  host_name bc-app-01
+  alias bc-app-01
+  
+  hostgroups slices, bc-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.19
+  host_name bc-app-02
+  alias bc-app-02
+  
+  hostgroups slices, bc-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.20
+  host_name bc-app-03
+  alias bc-app-03
+  
+  hostgroups slices, bc-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.21
+  host_name bc-app-04
+  alias bc-app-04
+  
+  hostgroups slices, bc-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.22
+  host_name bc-solr-01
+  alias bc-solr-01
+  hostgroups slices, bc_solr
+}
+
+define host {
+  use linux-server
+  address 192.168.2.23
+  host_name bc-solr-02
+  alias bc-solr-02
+  hostgroups slices, bc_solr
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.24
+  host_name cf-app-05
+  alias cf-app-05
+  hostgroups slices, cf-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.25
+  host_name cf-app-06
+  alias cf-app-06
+  
+  hostgroups slices, cf-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.26
+  host_name cf-app-07
+  alias cf-app-07
+  
+  hostgroups slices, cf-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.27
+  host_name cf-app-08
+  alias cf-app-08
+  
+  hostgroups slices, cf-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.28
+  host_name live-01
+  alias live-01
+  
+  hostgroups slices, live-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.29
+  host_name live-02
+  alias live-02
+  
+  hostgroups slices, live-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.33
+  host_name bpmu-app-02
+  alias bpmu-app-02
+  
+  hostgroups slices, bp-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.34
+  host_name bpmu-app-03
+  alias bpmu-app-03
+  
+  hostgroups slices, bp-app
+  
+}
+
+# define host {
+#   use linux-server
+#   address 192.168.2.35
+#   host_name bpmu-app-04
+#   alias bpmu-app-04
+#   hostgroups slices, bp-app
+#   
+# }
+
+
+define host {
+  use linux-server
+  address 192.168.2.36
+  host_name bc-app-05
+  alias bc-app-05
+  
+  hostgroups slices, bc-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.37
+  host_name bc-app-06
+  alias bc-app-06
+  
+  hostgroups slices, bc-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.38
+  host_name bc-app-07
+  alias bc-app-07
+  
+  hostgroups slices, bc-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.39
+  host_name bc-app-08
+  alias bc-app-08
+  
+  hostgroups slices, bc-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.40
+  host_name mail-01
+  alias mail-01
+  
+  hostgroups slices
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.41
+  host_name mail-02
+  alias mail-02
+  
+  hostgroups slices
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.44
+  host_name ob-app-01
+  alias ob-app-01
+  
+  hostgroups slices
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.45
+  host_name ob-app-02
+  alias ob-app-02
+  
+  hostgroups slices
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.46
+  host_name bc-staging
+  alias bc-staging
+  
+  hostgroups slices
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.47
+  host_name ob-staging
+  alias ob-staging
+  
+  hostgroups slices
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.48
+  host_name hr-staging
+  alias hr-staging
+  
+  hostgroups slices
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.49
+  host_name hr-app-01
+  alias hr-app-01
+  
+  hostgroups slices, hr-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.50
+  host_name hr-app-02
+  alias hr-app-02
+  
+  hostgroups slices, hr-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.51
+  host_name hr-app-03
+  alias hr-app-03
+  
+  hostgroups slices, hr-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.52
+  host_name hr-app-04
+  alias hr-app-04
+  
+  hostgroups slices, hr-app
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.53
+  host_name hr-cron
+  alias hr-cron
+  
+  hostgroups slices
+  
+}
+
+# define host {
+#   use linux-server
+#   address 192.168.2.54
+#   host_name tada-app-01
+#   alias tada-app-01
+#   
+#   hostgroups slices
+#   
+# }
+# 
+# define host {
+#   use linux-server
+#   address 192.168.2.55
+#   host_name tada-app-02
+#   alias tada-app-02
+#  
+#   hostgroups slices
+#   
+# }
+
+define host {
+  use linux-server
+  address 192.168.2.56
+  host_name bc-web-01
+  alias bc-web-01
+  hostgroups slices, bc-web
+}
+
+define host {
+  use linux-server
+  address 192.168.2.57
+  host_name bc-web-02
+  alias bc-web-02
+  hostgroups slices, bc-web
+}
+
+define host {
+  use linux-server
+  address 192.168.2.58
+  host_name hr-web-01
+  alias hr-web-01
+  hostgroups slices, hr-web
+}
+
+define host {
+  use linux-server
+  address 192.168.2.59
+  host_name hr-web-02
+  alias hr-web-02
+  hostgroups slices, hr-web
+}
+
+define host {
+  use linux-server
+  address 192.168.2.3
+  host_name web-01
+  alias web-01
+  hostgroups slices, web-general
+}
+
+define host {
+  use linux-server
+  address 192.168.2.4
+  host_name web-02
+  alias web-02
+  hostgroups slices, web-general
+}
+
+define host {
+  use linux-server
+  address 192.168.2.12
+  host_name hr-solr-01
+  alias hr-solr-01
+  
+  hostgroups slices, hr_solr
+  
+}
+
+define host {
+  use linux-server
+  address 192.168.2.13
+  host_name hr-solr-02
+  alias hr-solr-02
+  
+  hostgroups slices, hr_solr
+  
+}
