@@ -27,6 +27,7 @@ sites Mash.new unless attribute?("sites")
 nameservers Array.new unless attribute?("nameservers")
 postfix Mash.new unless attribute?("postfix")
 hosts Mash.new unless attribute?("hosts")
+public_domain String.new unless attribute?("public_domain")
 
 ddclient[:dyndns_login] = "883mhi-ec2dyn"
 ddclient[:dyndns_password] = "5SkR2hJiNsQP"
@@ -36,11 +37,13 @@ case domain
     # dns-01, dns-02, noc
     nameservers ['192.168.2.63', '192.168.2.65', '192.168.1.157']
     postfix[:myorigin] = "virt-gw.37signals.com"
+    public_domain "rack-dfw.37signals.com"
     
   when "ec2-us-int.37signals.com"
     nameservers ['10.252.194.239']
     hosts[:entries] = [['10.252.194.239', 'noc']]
     postfix[:myorigin] = fqdn
+    public_domain "ec2-us.37signals.com"
   else
     postfix[:myorigin] = fqdn
 end

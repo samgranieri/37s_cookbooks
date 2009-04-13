@@ -7,7 +7,7 @@ remote_file "/etc/apt/packages.gpg" do
 end
 
 remote_file "/etc/apt/sources.list" do
-  source "sources.list"
+  source "sources.list.#{node[:domain].split(".").first}"
   owner "root"
   group "root"
   mode 0644
