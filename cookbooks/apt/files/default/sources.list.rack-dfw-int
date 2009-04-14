@@ -8,7 +8,6 @@ deb http://apt/archive-ubuntu/ubuntu intrepid-updates multiverse
 deb http://apt/security-ubuntu/ubuntu intrepid-security multiverse
 deb http://apt/security-ubuntu/ubuntu intrepid-security universe
 deb http://apt/security-ubuntu/ubuntu intrepid-security main restricted
-deb http://apt/archive-canonical/ubuntu intrepid partner
 
 # Local Apt mirror of Hardy.
 deb http://apt/archive-ubuntu/ubuntu hardy main restricted
@@ -20,7 +19,6 @@ deb http://apt/archive-ubuntu/ubuntu hardy-updates multiverse
 deb http://apt/security-ubuntu/ubuntu hardy-security multiverse
 deb http://apt/security-ubuntu/ubuntu hardy-security universe
 deb http://apt/security-ubuntu/ubuntu hardy-security main restricted
-deb http://apt/archive-canonical/ubuntu hardy partner
 
 # Hardy and Intrepid sources on Rackspace mirror.
 deb-src http://mirror.rackspace.com/ubuntu intrepid main restricted universe
