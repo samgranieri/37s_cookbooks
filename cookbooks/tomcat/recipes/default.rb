@@ -15,8 +15,23 @@ template "/etc/default/tomcat6" do
   notifies :restart, resources(:service => "tomcat6")
 end
 
-directory "/etc/tomcat6/Catalina/localhost" do
-  owner "root"
-  group "app"
+directory "/etc/tomcat6" do
+  owner node[:tomcat][:user]
+  group "admin"
+  recursive true
   mode 0775
+end
+
+directory "/var/log/tomcat6" do
+  owner node[:tomcat][:user]
+  group "admin"
+  recursive true
+  mode 0750
+end
+
+directory "/var/lib/tomcat6" do
+  owner node[:tomcat][:user]
+  group "admin"
+  recursive true
+  mode 0750
 end
