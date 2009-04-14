@@ -14,3 +14,9 @@ template "/etc/default/tomcat6" do
   
   notifies :restart, resources(:service => "tomcat6")
 end
+
+directory "/etc/tomcat6/Catalina/localhost" do
+  owner "root"
+  group "app"
+  mode 0775
+end
