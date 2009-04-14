@@ -16,6 +16,6 @@ template "/etc/default/tomcat6" do
 end
 
 execute "fix_permissions" do
-  command "chown -R #{node[:tomcat][:user]}:admin /etc/tomcat6 /var/log/tomcat6 /var/lib/tomcat6 && touch /etc/tomcat6/perms.ok"
+  command "chown -R #{node[:tomcat][:user]}:admin /etc/tomcat6 /var/log/tomcat6 /var/lib/tomcat6 /var/cache/tomcat6 && touch /etc/tomcat6/perms.ok"
   creates "/etc/tomcat6/perms.ok"
 end  
