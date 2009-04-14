@@ -7,7 +7,7 @@ package "tomcat6"
 service "tomcat6"
 
 template "/etc/default/tomcat6" do
-  source "default.tomcat6"
+  source "default.tomcat6.erb"
   owner "root"
   group "root"
   mode 0644
