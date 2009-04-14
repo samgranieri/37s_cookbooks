@@ -24,7 +24,7 @@ JAVA_OPTS="-Djava.awt.headless=true -Xmx<%= @node[:tomcat][:heap_size] %> -Xss<%
 # Use the Java security manager? (yes/no, default: yes)
 # WARNING: Do not disable the security manager unless you understand
 # the consequences!
-#TOMCAT6_SECURITY=yes
+TOMCAT6_SECURITY=no
 
 # Number of days to keep logfiles in /var/log/tomcat6. Default is 14 days.
 #LOGFILE_DAYS=14
