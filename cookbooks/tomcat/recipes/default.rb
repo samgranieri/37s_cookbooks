@@ -33,8 +33,9 @@ directory "/var/lib/tomcat6" do
 end
 
 [ "lib", "temp", "webapps" ].each do |dir|
-  directory "/var/lib/tomcat6/#{dir}"
-  owner node[:tomcat][:user]
-  group "admin"
-  mode 0750
+  directory "/var/lib/tomcat6/#{dir}" do
+    owner node[:tomcat][:user]
+    group "admin"
+    mode 0750
+  end
 end
