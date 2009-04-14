@@ -13,7 +13,7 @@ TOMCAT6_USER=<%= @node[:tomcat][:user] %>
 #CATALINA_BASE=/var/lib/tomcat6
 
 # Arguments to pass to the Java virtual machine (JVM).
-#JAVA_OPTS="-Djava.awt.headless=true -Xmx128M"
+JAVA_OPTS="-Djava.awt.headless=true -Xmx<%= @node[:tomcat][:heap_size] %>-Xss<%= @node[:tomcat][:stack_size] %>"
 
 # Java compiler to use for translating JavaServer Pages (JSPs). You can use all
 # compilers that are accepted by Ant's build.compiler property.
