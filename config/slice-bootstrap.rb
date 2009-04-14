@@ -1,6 +1,6 @@
 
 set  :gateway,   "#{ENV['USER']}@dev.37signals.com"
-set  :user,      "ubuntu"
+set  :user,      ENV['BOOTSTRAP_USER'] || "ubuntu"
 role :client,    Capistrano::CLI.ui.ask("Host:  ")
 
 set :token,      Proc.new { Capistrano::CLI.ui.ask("Token: ") }
