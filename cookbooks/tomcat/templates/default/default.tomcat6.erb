@@ -5,7 +5,9 @@ TOMCAT6_USER=<%= @node[:tomcat][:user] %>
 # The home directory of the Java development kit (JDK). You need at least
 # JDK version 1.5. If JAVA_HOME is not set, some common directories for 
 # OpenJDK, the Sun JDK, and various J2SE 1.5 versions are tried.
+<% if @node[:tomcat].has_key?(:java_home) -%>
 JAVA_HOME=<%= @node[:tomcat][:java_home] %>
+<% end -%>
 
 # Directory for per-instance configuration files and webapps. It contains the
 # directories conf, logs, webapps, work and temp. See RUNNING.txt for details.
@@ -13,7 +15,7 @@ JAVA_HOME=<%= @node[:tomcat][:java_home] %>
 #CATALINA_BASE=/var/lib/tomcat6
 
 # Arguments to pass to the Java virtual machine (JVM).
-JAVA_OPTS="-Djava.awt.headless=true -Xmx<%= @node[:tomcat][:heap_size] %>-Xss<%= @node[:tomcat][:stack_size] %>"
+JAVA_OPTS="-Djava.awt.headless=true -Xmx<%= @node[:tomcat][:heap_size] %> -Xss<%= @node[:tomcat][:stack_size] %>"
 
 # Java compiler to use for translating JavaServer Pages (JSPs). You can use all
 # compilers that are accepted by Ant's build.compiler property.
