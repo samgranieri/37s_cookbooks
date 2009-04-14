@@ -16,26 +16,6 @@ template "/etc/default/tomcat6" do
 end
 
 execute "fix_permissions" do
-  command "chown -R #{node[:tomcat][:user]}:admin /etc/tomcat6 && touch /etc/tomcat6/perms.ok"
+  command "chown -R #{node[:tomcat][:user]}:admin /etc/tomcat6 /var/log/tomcat6 /var/lib/tomcat6 && touch /etc/tomcat6/perms.ok"
   creates "/etc/tomcat6/perms.ok"
 end  
-
-directory "/var/log/tomcat6" do
-  owner node[:tomcat][:user]
-  group "admin"
-  mode 0750
-end
-
-directory "/var/lib/tomcat6" do
-  owner node[:tomcat][:user]
-  group "admin"
-  mode 0750
-end
-
-[ "lib", "temp", "webapps" ].each do |dir|
-  directory "/var/lib/tomcat6/#{dir}" do
-    owner node[:tomcat][:user]
-    group "admin"
-    mode 0750
-  end
-end
