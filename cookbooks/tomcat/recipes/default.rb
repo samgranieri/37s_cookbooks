@@ -15,23 +15,26 @@ template "/etc/default/tomcat6" do
   notifies :restart, resources(:service => "tomcat6")
 end
 
-directory "/etc/tomcat6" do
-  owner node[:tomcat][:user]
-  group "admin"
-  recursive true
-  mode 0775
-end
+exec "fix_permissions" do
+  command "chown -R #{node[:tomcat][:user]}:admin /etc/tomcat6 && touch /etc/tomcat6/perms.ok"
+  not_if { File.exists?("/etc/tomcat6/perms.ok") }
+end  
 
 directory "/var/log/tomcat6" do
   owner node[:tomcat][:user]
   group "admin"
-  recursive true
   mode 0750
 end
 
 directory "/var/lib/tomcat6" do
   owner node[:tomcat][:user]
   group "admin"
-  recursive true
+  mode 0750
+end
+
+[ "lib", "temp", "webapps" ].each do |dir|
+  directory "/var/lib/tomcat6/#{dir}"
+  owner node[:tomcat][:user]
+  group "admin"
   mode 0750
 end
