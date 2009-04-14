@@ -15,9 +15,9 @@ template "/etc/default/tomcat6" do
   notifies :restart, resources(:service => "tomcat6")
 end
 
-exec "fix_permissions" do
+execute "fix_permissions" do
   command "chown -R #{node[:tomcat][:user]}:admin /etc/tomcat6 && touch /etc/tomcat6/perms.ok"
-  not_if { File.exists?("/etc/tomcat6/perms.ok") }
+  creates "/etc/tomcat6/perms.ok"
 end  
 
 directory "/var/log/tomcat6" do
