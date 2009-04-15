@@ -59,8 +59,10 @@ roles[:noc]           = {:groups => [:admin, :app, :support], :sudo_groups => [:
 roles[:app]           = {:groups => [:admin, :app], :sudo_groups => [:admin, :app]}
 roles[:site]          = {:groups => [:admin, :app, :site], :sudo_groups => [:admin]}
 roles[:proxy]         = {:groups => [:admin], :sudo_groups => [:admin]}
-roles[:memcache]         = {:groups => [:admin], :sudo_groups => [:admin]}
-roles[:solr]         = {:groups => [:admin, :app], :sudo_groups => [:admin, :app]}
+roles[:memcache]      = {:groups => [:admin], :sudo_groups => [:admin]}
+roles[:solr]          = {:groups => [:admin, :app], :sudo_groups => [:admin, :app]}
+roles[:mogilefs]      = {:groups => [:admin, :app], :sudo_groups => [:admin, :app]}
+roles[:mysql]         = {:groups => [:admin, :app], :sudo_groups => [:admin, :app]}
 
 users[:app]    = {:password => "$1$hk40k332$wpSYJYlbbVo3AK/7thxO3.", :comment => "App User", :uid => 1003, :group => :app, :ssh_key_groups => [:app,:site,:admin]}
 users[:site]   = {:password => "$1$4k01kee3$tQkwp46/ngyG.iH4kIaTJ0", :comment => "Site User", :uid => 4000, :group => :site, :ssh_key_groups => [:app,:site,:admin]}
