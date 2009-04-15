@@ -1,6 +1,10 @@
 require_recipe "runit"
 include_recipe "logrotate"
 
+gem_package "chef" do
+  version node[:chef][:client_version]
+end
+
 template "/etc/chef/client.rb" do
   mode 0644
   source "client.rb.erb"
@@ -15,9 +19,10 @@ logrotate "chef-client" do
 end
 
 execute "Register client node with chef server" do
-  command "#{node[:chef][:client_path]} -t #{`cat /etc/chef/validation_token`}"
-  only_if { File.exists? "/etc/chef/validation_token" }
-  not_if { File.exists?("/var/chef/cache/registration") }
+  command "#{node[:chef][:client_path]} -t \`cat /etc/chef/validation_token\`"
+  
+  only_if { File.exists?("/etc/chef/validation_token") }
+  not_if  { File.exists?("/var/chef/cache/registration") }
 end
 
 execute "Remove the validation token" do
@@ -26,3 +31,7 @@ execute "Remove the validation token" do
 end
 
 runit_service "chef-client"
+
+service "chef-client" do
+  action :enable
+end

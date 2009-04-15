@@ -2,7 +2,7 @@ require 'rubygems'
 require 'merb-core'
  
 Merb::Config.setup(:merb_root   => File.expand_path(File.dirname(__FILE__)),
-                   :environment => ENV['RACK_ENV'], :init_file => File.dirname(__FILE__) / "init.rb")
+                   :environment => ENV['RACK_ENV'], :init_file => File.dirname(__FILE__) / "config/init.rb")
 Merb.environment = "production" #Merb::Config[:environment]
 Merb.root = Merb::Config[:merb_root]
 Merb::BootLoader.run

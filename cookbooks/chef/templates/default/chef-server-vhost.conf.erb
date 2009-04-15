@@ -5,7 +5,7 @@ PassengerDefaultUser chef
   ServerAdmin     <%= @node[:base][:sysadmin_email] %>
   ServerName      chef.<%= @node[:domain] %>
   ServerAlias			chef
-  DocumentRoot    <%= @node[:chef][:server_path]%>/lib/public
+  DocumentRoot    <%= @node[:chef][:server_path]%>/public
   ErrorLog        /var/log/chef/apache_error.log
 	SSLEngine       On
 
@@ -24,7 +24,7 @@ PassengerDefaultUser chef
   ServerAdmin     <%= @node[:base][:sysadmin_email] %>
   ServerName      chefadmin.<%= @node[:domain] %>
 	ServerAlias			chefadmin
-  DocumentRoot    <%= @node[:chef][:server_path]%>/lib/public
+  DocumentRoot    <%= @node[:chef][:server_path]%>/public
   ErrorLog        /var/log/chef/apache_error.log
 	SSLEngine       On
 
@@ -34,5 +34,12 @@ PassengerDefaultUser chef
 
 	SSLCertificateFile       /var/chef/certificates/chef.<%= @node[:domain] %>.crt
 	SSLCertificateKeyFile    /var/chef/certificates/chef.<%= @node[:domain] %>.key
+
+	<Location />
+    AuthType Basic
+    AuthName "Chef Server"
+    AuthUserFile /var/chef_recipes/config/htpasswd.user
+		Require valid-user
+	</Location>
 
 </VirtualHost>
