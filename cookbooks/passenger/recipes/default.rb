@@ -4,7 +4,7 @@ require_recipe "apache2"
 package "apache2-prefork-dev"
 
 gem_package "passenger" do
-  version node[:passenger_version]
+  version node[:passenger][:version]
 end
 
 execute "passenger_module" do
