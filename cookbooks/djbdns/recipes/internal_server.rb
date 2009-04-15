@@ -4,25 +4,33 @@ execute "/usr/bin/tinydns-conf tinydns dnslog /etc/tinydns-internal #{node[:djbd
   only_if "/usr/bin/test ! -d /etc/tinydns-internal"
 end
 
-execute "build-tinydns-internal-data" do
-  cwd "/etc/tinydns-internal/root"
-  command "make"
-  action :nothing
+directory "/etc/tinydns-internal/root/zones" do
+  mode 0755
 end
 
-# create dns entries for all nodes; requires chef-client (as opposed to chef-solo)
-hosts = []
-search(:node, "*") {|n| hosts << n }
+directory "/etc/tinydns-internal/root/backup_data" do
+  mode 0755
+end
 
-template "/etc/tinydns-internal/root/data" do
-  source "tinydns-internal-data.erb"
-  mode 644
-  variables(:hosts => hosts)
-  notifies :run, resources("execute[build-tinydns-internal-data]")
+execute "build-tinydns-internal-data" do
+  cwd "/etc/tinydns-internal/root"
+  command "./update_from_zones && make"
+  action :nothing
+  notifies :restart, resources(:service => "public-dnscache")
 end
 
 template "/etc/tinydns-internal/run" do
   source "sv-server-run.erb"
+  mode 0755
+end
+
+template "/etc/tinydns-internal/root/update_from_zones" do
+  source "update_from_zones.sh.erb"
+  mode 0755
+end
+
+remote_file "/etc/tinydns-internal/root/valtz" do
+  source "valtz"
   mode 0755
 end
 
