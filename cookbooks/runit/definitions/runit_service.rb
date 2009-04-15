@@ -1,4 +1,4 @@
-define :runit_service, :directory => nil, :only_if => false do
+define :runit_service, :directory => nil, :only_if => false, :options => {} do
   
   params[:directory] ||= node[:runit_sv_dir]
   
@@ -21,12 +21,14 @@ define :runit_service, :directory => nil, :only_if => false do
   
   template "#{sv_dir_name}/run" do
     mode 0755
-    source "sv-#{params[:name]}-run.erb"
+    source "sv-#{params[:tempate_name] || params[:name]}-run.erb"
+    variables(params[:options])
   end
   
   template "#{sv_dir_name}/log/run" do
     mode 0755
-    source "sv-#{params[:name]}-log-run.erb"
+    source "sv-#{params[:tempate_name] || params[:name]}-log-run.erb"
+    variables(params[:options])
   end
   
   link "/etc/init.d/#{params[:name]}" do
