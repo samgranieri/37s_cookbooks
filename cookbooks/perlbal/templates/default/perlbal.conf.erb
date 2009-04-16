@@ -1,3 +1,8 @@
+CREATE SERVICE mgmt
+  SET role = management
+  SET listen = 127.0.0.1:8065
+ENABLE mgmt
+
 <% @node[:perlbal][:pools].each do |pool| %>
 CREATE POOL <%= pool[:name] %>
   <% pool[:backends].each do |backend| %>

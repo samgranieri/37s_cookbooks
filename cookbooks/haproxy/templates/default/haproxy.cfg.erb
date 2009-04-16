@@ -1,5 +1,5 @@
 global
-  log noc local1 info
+  log noc local1 warning
   maxconn 2048
   user <%= @node[:haproxy][:user] %>
   group <%= @node[:haproxy][:user] %>
@@ -9,7 +9,6 @@ global
 defaults
   log global
   balance roundrobin
-  option httplog
   option dontlognull
   retries 3
   redispatch
