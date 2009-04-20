@@ -157,7 +157,7 @@ applications[:writeboard] = {
   :symlinks => {'/usr/local/bin/elinks' => '/usr/bin/elinks'}  
 }
 
-applications[:jobs] = {:gems => ['fast_xs']}
+applications[:jobs] = {:gems => ['fast_xs', 'RedCloth', 'mime-types', "xml-simple"]}
 applications[:extra_extra] = {:gems => ['fast_xs']}
 applications[:blogcabin] = {:gems => ['fast_xs', 'memcache-client'], :apache_modules => ['proxy_http']}
 applications[:tadalist] = {:gems => ['fast_xs']}
