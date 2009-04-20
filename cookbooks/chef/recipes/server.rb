@@ -53,7 +53,7 @@ directory "/var/chef/openid/cstore" do
   mode 0775
 end
 
-file "/usr/local/bin/chef-api" do
+remote_file "/usr/local/bin/chef-api" do
   source "chef-api"
   mode 0755
 end
