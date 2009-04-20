@@ -53,6 +53,11 @@ directory "/var/chef/openid/cstore" do
   mode 0775
 end
 
+remote_file "/usr/local/bin/chef-api" do
+  source "chef-api"
+  mode 0755
+end
+
 template "/etc/chef/server.rb" do
   owner "chef"
   group "admin"

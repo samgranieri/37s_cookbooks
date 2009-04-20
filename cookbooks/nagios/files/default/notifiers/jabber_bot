@@ -14,7 +14,7 @@ DRb.start_service("druby://127.0.0.1:10370", jabber)
 STATES = {0 => 'OK', 1 => "WARN", 2 => "CRIT"}
 
 def parse_nagios_status
-  status = File.read("/usr/local/nagios/var/status.dat")
+  status = File.read("/var/cache/nagios3/status.dat")
   objects = status.split("\n\n")
   all_objects = objects.collect do |o|
     values_hash = {}
