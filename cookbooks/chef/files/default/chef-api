@@ -234,7 +234,7 @@ class Knife < Thor
 end
 
   def expand_node(name)
-    ENV['CHEF_DOMAIN'] || `hostname -d`.chomp.gsub(".", "_")
+    name + "_" + (ENV['CHEF_DOMAIN'] || `hostname -d`.chomp.gsub(".", "_"))
   end
   
 Knife.start
