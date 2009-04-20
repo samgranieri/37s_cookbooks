@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 require 'rubygems'
 require 'thor'
@@ -155,7 +155,7 @@ end
 Chef::Config.from_file("/etc/chef/server.rb")
 
 API_USERNAME=ENV['CHEF_USERNAME']
-API_PASSWORD=ENV=['CHEF_PASSWORD']
+API_PASSWORD=ENV['CHEF_PASSWORD']
 
 raise StandardError, "Please set CHEF_USERNAME and CHEF_PASSWORD" unless ENV['CHEF_USERNAME'] && ENV['CHEF_PASSWORD']
 
@@ -173,9 +173,9 @@ class Knife < Thor
   method_options :recipe => :required, :after => :optional, :node => :required
   def add_recipe
     authenticate
-    node = @rest.get_rest("nodes/#{options[:node]}")
+    node = @rest.get_rest("nodes/#{expand_node(options[:node])}")
     node.recipes << options[:recipe] if !node.recipes.include?(options[:recipe])
-    @rest.put_rest("nodes/#{options[:node]}", node)
+    @rest.put_rest("nodes/#{expand_node(options[:node])}", node)
     list_recipes
   end
 
@@ -183,9 +183,9 @@ class Knife < Thor
   method_options :recipe => :required, :node => :required
   def remove_recipe
     authenticate
-    node = @rest.get_rest("nodes/#{options[:node]}")
+    node = @rest.get_rest("nodes/#{expand_node(options[:node])}")
     node.recipes.delete(options[:recipe]) if node.recipes.include?(options[:recipe])
-    @rest.put_rest("nodes/#{options[:node]}", node)
+    @rest.put_rest("nodes/#{expand_node(options[:node])}", node)
     list_recipes
   end
 
@@ -193,7 +193,7 @@ class Knife < Thor
   method_options :node => :required, :attr => :required
   def show_attr
     authenticate
-    node = @rest.get_rest("nodes/#{options[:node]}")
+    node = @rest.get_rest("nodes/#{expand_node(options[:node])}")
     puts JsonPrinter.render(node[options[:attr]])
   end
 
@@ -203,16 +203,16 @@ class Knife < Thor
     editor = ENV['EDITOR'] || "vi"
     puts "Authenticating..."
     authenticate
-    puts "Fetching node data for #{options[:node]}..."
-    node = @rest.get_rest("nodes/#{options[:node]}")
+    puts "Fetching node data for #{expand_node(options[:node])}..."
+    node = @rest.get_rest("nodes/#{expand_node(options[:node])}")
     filename = "/tmp/.chef-#{node[:hostname]}"
     File.open(filename, "w") {|f| f.write(JsonPrinter.render(node[options[:attr]])) }
     system("#{editor} #{filename}") or raise StandardError, "Error communicating with #{editor}"
     node[options[:attr]] = JSON.parse(File.read(filename))
-    puts "Storing node data for #{options[:node]}..."
+    puts "Storing node data for #{expand_node(options[:node])}..."
     begin
       retries = 5
-      @rest.put_rest("nodes/#{options[:node]}", node)    
+      @rest.put_rest("nodes/#{expand_node(options[:node])}", node)    
     rescue Net::HTTPFatalError 
       retry if (retries -= 1) > 0
     end
@@ -223,7 +223,7 @@ class Knife < Thor
   method_options :node => :required
   def list_recipes
     authenticate
-    node = @rest.get_rest("nodes/#{options[:node]}")
+    node = @rest.get_rest("nodes/#{expand_node(options[:node])}")
     puts node.recipes.inspect
   end
 
@@ -233,4 +233,8 @@ class Knife < Thor
   end
 end
 
+  def expand_node(name)
+    ENV['CHEF_DOMAIN'] || `hostname -d`.chomp.gsub(".", "_")
+  end
+  
 Knife.start
