@@ -31,4 +31,4 @@ kvm-img convert /u/kvm/images/${NAME}/disk0.qcow2 -O raw /u/kvm/images/${NAME}/d
 dd if=/u/kvm/images/${NAME}/disk0.raw of=/dev/mapper/VolGroupKVM-kvm_${VOLUME} bs=1M
 
 echo "Cleaning up temporary files/directories..."
-rm -vf /u/kvm/images/${NAME}
+rm -rvf /u/kvm/images/${NAME}
