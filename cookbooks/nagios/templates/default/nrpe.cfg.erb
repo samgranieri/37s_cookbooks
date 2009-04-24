@@ -9,4 +9,4 @@ command_timeout=60
 # loadavg, disk space
 command[check_load]=/usr/lib/nagios/plugins/check_load -w 15,10,5 -c 30,20,10
 command[check_all_disks]=/usr/lib/nagios/plugins/check_disk -w 8% -c 5% -A -x /dev/shm -X nfs -i /boot
-command[check_mem]=/u/nagios/plugins/check_mem.sh -w 0 -c 0 -p
+command[check_mem]=/u/nagios/plugins/check_mem.sh -w 250 -c 150 -p
