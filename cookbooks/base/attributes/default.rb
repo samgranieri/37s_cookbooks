@@ -135,7 +135,7 @@ applications[:campfire] = {
     '/usr/local/bin/composite' => '/usr/bin/composite',
     '/u/depot' => '/u/nfs/file1/depot'
   },
-  :apache_modules => ["auth_token", "xsendfile", "cgid", "fastcgi"]
+  :apache_modules => ["auth_token", "xsendfile", "fastcgi"]
 }
 
 applications[:open_bar] = {:gems => ['fast_xs']}
