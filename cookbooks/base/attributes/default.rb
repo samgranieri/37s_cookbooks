@@ -128,13 +128,14 @@ applications[:highrise] = {
 
 applications[:campfire] = {
   :haproxy => true, :gems => ['fast_xs', 'hpricot', 'mime-types', ['tzinfo', '0.3.9']],
-  :packages => ['imagemagick'],
+  :packages => ['imagemagick', 'libfcgi-dev'],
   :symlinks => {
     '/usr/local/bin/convert' => '/usr/bin/convert',
     '/usr/local/bin/identify' => '/usr/bin/identify',
     '/usr/local/bin/composite' => '/usr/bin/composite',
     '/u/depot' => '/u/nfs/file1/depot'
-  }
+  },
+  :apache_modules => ["auth_token", "xsendfile", "cgid"]
 }
 
 applications[:open_bar] = {:gems => ['fast_xs']}
