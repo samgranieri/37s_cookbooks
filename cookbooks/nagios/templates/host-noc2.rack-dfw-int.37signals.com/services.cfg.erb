@@ -260,13 +260,6 @@ define service {
 		check_command			check_http_content!live.37signals.com!/!Live
 }
 
-define service {
-		use frequent-service
-		hostgroup_name bp-app
-		service_description	BP HTTP content
-		check_command			check_http_content!37s.backpackit.com!/login!/session/create
-}
-
 #define service {
 #		use frequent-service
 #		hostgroup_name wb-app
