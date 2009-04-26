@@ -18,7 +18,11 @@ NAME=<%= @instance[:name] %>
 HAPROXY_BIN=/usr/sbin/haproxy
 HAPROXY_DIR=/etc/haproxy
 PID_FILE=/var/run/haproxy/${NAME}.pid
+PID_DIR=`dirname $PID_FILE`
 CONFIG=${HAPROXY_DIR}/${NAME}.cfg
+
+mkdir -p $PID_DIR
+chown <%= @node[:haproxy][:user] %>:<%= @node[:haproxy][:group] %> $PID_DIR
 
 test -f ${CONFIG} || ( echo "Unable to find HAproxy configuration for ${NAME}. Aborting." && exit 0 )
 
