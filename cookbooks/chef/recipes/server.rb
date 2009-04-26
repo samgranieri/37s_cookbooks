@@ -141,6 +141,16 @@ link "/var/chef/public" do
   to "#{node[:chef][:server_path]}/public"
 end
 
+directory "#{node[:chef][:server_path]}/public/slices" do
+  owner "root"
+  group "admin"
+  mode "0755"
+end
+
+link "#{node[:chef][:server_slice_path]}/public" do
+  to "#{node[:chef][:server_path]}/public/slices/chef-server-slice"
+end
+
 apache_site "chef-server" do
   config_path "/etc/chef/server-vhost.conf"
 end
