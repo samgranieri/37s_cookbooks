@@ -1,6 +1,5 @@
 PassengerDefaultUser chef
-PassengerMaxPoolSize 14
-PassengerMaxInstancesPerApp 10
+PassengerMaxPoolSize 20
 
 # This virtual host is for chef-client use. It only authenticates by IP address (chef-server uses openid)
 <VirtualHost *:443>
@@ -8,6 +7,7 @@ PassengerMaxInstancesPerApp 10
   ServerName    chef.<%= @node[:domain] %>
   ServerAlias   chef
   DocumentRoot  <%= @node[:chef][:server_path]%>/public
+  CustomLog     /var/log/chef/access.log combined
   ErrorLog      /var/log/chef/apache_error.log
   SSLEngine     On
 
@@ -17,10 +17,6 @@ PassengerMaxInstancesPerApp 10
 
   SSLCertificateFile     /var/chef/certificates/chef.<%= @node[:domain] %>.crt
   SSLCertificateKeyFile  /var/chef/certificates/chef.<%= @node[:domain] %>.key
-
-  # Send OpenID requests to a separate vhost so we don't get deadlocked.
-  RewriteEngine On
-  RewriteRule ^/(openid.*)$ http://localhost:445/$1 [P,L]
 </VirtualHost>
 
 # This virtual host is for chef adminstrator use. It authenticates with username/password and a yubikey
@@ -29,6 +25,7 @@ PassengerMaxInstancesPerApp 10
   ServerName    chefadmin.<%= @node[:domain] %>
   ServerAlias   chefadmin
   DocumentRoot  <%= @node[:chef][:server_path]%>/public
+  CustomLog     /var/log/chef/access.log combined
   ErrorLog      /var/log/chef/apache_error.log
   SSLEngine     On
 
@@ -45,13 +42,4 @@ PassengerMaxInstancesPerApp 10
     AuthUserFile /var/chef_recipes/config/htpasswd.user
     Require valid-user
   </Location>
-</VirtualHost>
-
-# This virtual host is for OpenID authentication only.
-<VirtualHost 127.0.0.1:445>
-  ServerAdmin   <%= @node[:base][:sysadmin_email] %>
-  ServerName    chef-openid.<%= @node[:domain] %>
-  ServerAlias   chef-openid
-  DocumentRoot  <%= @node[:chef][:server_path]%>/public
-  ErrorLog      /var/log/chef/apache_error.log
 </VirtualHost>
