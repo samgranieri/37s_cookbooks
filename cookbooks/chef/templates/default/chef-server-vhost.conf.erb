@@ -7,7 +7,6 @@ PassengerMaxPoolSize 20
   ServerName    chef.<%= @node[:domain] %>
   ServerAlias   chef
   DocumentRoot  <%= @node[:chef][:server_path]%>/public
-  CustomLog     /var/log/chef/access.log combined
   ErrorLog      /var/log/chef/apache_error.log
   SSLEngine     On
 
@@ -32,7 +31,6 @@ PassengerMaxPoolSize 20
   ServerName    chefadmin.<%= @node[:domain] %>
   ServerAlias   chefadmin
   DocumentRoot  <%= @node[:chef][:server_path]%>/public
-  CustomLog     /var/log/chef/access.log combined
   ErrorLog      /var/log/chef/apache_error.log
   SSLEngine     On
 
