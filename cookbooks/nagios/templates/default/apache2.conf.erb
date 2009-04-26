@@ -1,4 +1,4 @@
-<VirtualHost *:444>
+<VirtualHost *:445>
   ServerAdmin     <%= @node[:base][:sysadmin_email] %>
   ServerName      nagios.<% @node[:domain] %>
   ServerAlias     nagios <% if @node[:public_domain] %>nagios.<%= @node[:public_domain] %><% end %>
@@ -24,5 +24,4 @@
     AuthUserFile /etc/nagios3/htpasswd.users
     Require valid-user
   </Location>
-
 </VirtualHost>
