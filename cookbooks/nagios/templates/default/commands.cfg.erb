@@ -82,11 +82,6 @@ define command {
 }
 
 define command{
-      command_name    check_local_users
-      command_line    $USER1$/check_log -w $ARG1$ -c $ARG2$
-      }
-
-define command{
         command_name    check_dns
         command_line    $USER1$/check_dns -H $ARG1$ -s $HOSTADDRESS$
         }

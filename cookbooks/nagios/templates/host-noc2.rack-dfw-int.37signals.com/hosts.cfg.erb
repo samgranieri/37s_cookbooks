@@ -1,5 +1,12 @@
 # host definitions
 
+define host {
+  use                     server
+  host_name               localhost
+  alias                   localhost
+  address                 127.0.0.1
+}
+
 <% @hosts.each do |host| %>
 define host {
   use server
