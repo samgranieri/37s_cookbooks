@@ -36,7 +36,7 @@ end
 
 directory "/var/lib/nagios3/rw" do
   group "www-data"
-  mode 0755
+  mode 2775
 end
 
 # Support our legacy nagios install
