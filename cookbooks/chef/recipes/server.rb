@@ -88,7 +88,7 @@ end
 
 package "couchdb"
 
-directory "/var/chef/couchdb" do
+directory "/var/chef/couchdb/0.8.0" do
   owner "couchdb"
   group "couchdb"
   recursive true
