@@ -381,13 +381,6 @@ define service {
 }
 
 define service {
-		use generic-service
-		host_name noc2.rack-dfw-int.37signals.com
-		service_description	CF proxy errors
-		check_command			check_log!/u/apps/campfire/current/log/apache.log!proxy
-}
-
-define service {
     use                generic-service
     host_name          cc1,cc2
     service_description   Free Disk Space
