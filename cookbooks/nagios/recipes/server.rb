@@ -63,7 +63,7 @@ userlist = node[:nagios][:users]
 # end
 
 nodes = []
-search(:node, "*") {|n| nodes << n }
+search(:node, "*", %w(ipaddress hostname)) {|n| nodes << n }
 
 service "nagios3" do
   supports :status => true, :restart => true, :reload => true
