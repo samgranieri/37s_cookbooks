@@ -110,33 +110,6 @@ template "/etc/chef/server-vhost.conf" do
   notifies :restart, resources(:service => "apache2")
 end
 
-template "#{node[:chef][:server_path]}/config.ru" do
-  source 'config.ru.erb'
-  action :create
-  owner "root"
-  group "admin"
-  mode 0664
-  notifies :restart, resources(:service => "apache2")
-end
-
-template "#{node[:chef][:server_path]}/config/environments/production.rb" do
-  source 'merb-production.rb.erb'
-  action :create
-  owner "root"
-  group "admin"
-  mode 0664
-  notifies :restart, resources(:service => "apache2")
-end
-
-template "#{node[:chef][:server_path]}/config/init.rb" do
-  source 'chef-server.init.rb.erb'
-  action :create
-  owner "root"
-  group "admin"
-  mode 0664
-  notifies :restart, resources(:service => "apache2")
-end
-
 link "/var/chef/public" do
   to "#{node[:chef][:server_path]}/public"
 end
