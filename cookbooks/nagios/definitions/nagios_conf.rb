@@ -13,6 +13,6 @@ define :nagios_conf, :variables => {}, :config_subdir => true do
     mode 0644
     variables params[:variables]
     notifies :restart, resources(:service => "nagios3")
-    backup false
+    backup 0
   end
 end
