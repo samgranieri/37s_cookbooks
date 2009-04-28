@@ -57,6 +57,7 @@ roles[:hypervisor]    = {:groups => [:admin], :sudo_groups => [:admin]}
 roles[:dns]           = {:groups => [:admin], :sudo_groups => [:admin]}
 roles[:noc]           = {:groups => [:admin, :app, :support], :sudo_groups => [:admin]}
 roles[:app]           = {:groups => [:admin, :app], :sudo_groups => [:admin, :app]}
+roles[:web]           = {:groups => [:admin, :app], :sudo_groups => [:admin, :app]}
 roles[:site]          = {:groups => [:admin, :app, :site], :sudo_groups => [:admin]}
 roles[:proxy]         = {:groups => [:admin], :sudo_groups => [:admin]}
 roles[:memcache]      = {:groups => [:admin], :sudo_groups => [:admin]}

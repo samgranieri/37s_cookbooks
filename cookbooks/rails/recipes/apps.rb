@@ -22,7 +22,9 @@ if node[:active_applications]
   
   node[:active_applications].each do |app, conf|
     full_name = "#{app}_#{conf[:env]}"
-
+    filename = conf[:type] == "web" ? "#{conf[:env]}_web.conf" : "#{conf[:env]}.conf"
+    path = "/u/apps/#{app}/current/config/apache/#{filename}"
+    
     if modules = node[:applications][app][:apache_modules]
       modules.each do |mod|
         require_recipe "apache2::mod_#{mod}"
@@ -31,7 +33,7 @@ if node[:active_applications]
     end
     
     apache_site full_name do
-      config_path "/u/apps/#{app}/current/config/apache/#{conf[:env]}.conf"
+      config_path path
       only_if { File.exists?("/etc/apache2/sites-available/#{full_name}") }
     end
 
