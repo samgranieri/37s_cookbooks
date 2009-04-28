@@ -11,6 +11,7 @@ remote_file "/etc/apt/sources.list" do
   owner "root"
   group "root"
   mode 0644
+  not_if { node[:domain] == 'localdomain' || node[:domain] == 'ubuntu' }
 end
 
 %w{/var/cache/local /var/cache/local/preseeding}.each do |dirname|
