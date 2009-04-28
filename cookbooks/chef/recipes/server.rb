@@ -1,6 +1,8 @@
 include_recipe "runit"
 include_recipe "apache2"
 include_recipe "passenger"
+include_recipe "openssl"
+require_recipe "couchdb"
 
 gem_package "chef-server-slice" do
   version node[:chef][:server_version]
@@ -80,15 +82,11 @@ end
 
 runit_service "stompserver"
 
-directory "/var/chef/couchdb"
-
 link "/var/lib/couchdb" do
   to "/var/chef/couchdb"
 end
 
-package "couchdb"
-
-directory "/var/chef/couchdb/0.8.0" do
+directory "/var/chef/couchdb/#{node[:couchdb][:version]}" do
   owner "couchdb"
   group "couchdb"
   recursive true
@@ -120,8 +118,12 @@ directory "#{node[:chef][:server_path]}/public/slices" do
   mode "0755"
 end
 
-link "#{node[:chef][:server_slice_path]}/public" do
-  to "#{node[:chef][:server_path]}/public/slices/chef-server-slice"
+link "#{node[:chef][:server_path]}/public/slices/chef-server-slice" do
+  to "#{node[:chef][:server_slice_path]}/public"
+end
+
+ssl_cert "/var/chef/certificates" do
+  fqdn "chef.#{node[:domain]}"
 end
 
 apache_site "chef-server" do
