@@ -141,7 +141,7 @@ applications[:campfire] = {
 applications[:open_bar] = {:gems => ['fast_xs']}
 
 applications[:backpack] = {
-  :gems => ['fast_xs', 'hpricot', 'aws-s3', 'ruby-prof'],
+  :gems => ['fast_xs', ['hpricot', '0.7'], 'aws-s3', 'ruby-prof'],
   :packages => ['imagemagick', 'elinks'],
   :symlinks => {
     '/usr/local/bin/convert' => '/usr/bin/convert',
