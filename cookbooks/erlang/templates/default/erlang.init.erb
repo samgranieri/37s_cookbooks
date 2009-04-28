@@ -1,0 +1,47 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:        <%= @app[:name] %>
+# Required-Start:  $network $remote_fs $syslog
+# Required-Stop:   $network $remote_fs $syslog
+# Default-Start:   2 3 4 5
+# Default-Stop:    1
+# Short-Description: <%= @app[:description] %>
+### END INIT INFO
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+RUN_ERL=/usr/bin/run_erl
+TO_ERL=/usr/lib/erlang/erts-5.6.3/bin/to_erl
+ERLANG=/usr/bin/erl
+
+. /lib/lsb/init-functions
+
+NAME=<%= @app[:name] %>
+DESCRIPTION="<%= @app[:description] %>"
+USER=app
+APP_DIR=<%= @app[:base_dir] %>
+BEAM_DIR=${APP_DIR}/ebin
+LOG_DIR=${APP_DIR}/log
+PIPE_DIR=${APP_DIR}/tmp/
+NODE=`hostname -s`
+COOKIE=`cat /home/app/.erlang.cookie`
+
+case $1 in
+    start)
+	mkdir -p ${LOG_DIR} ${PIPE_DIR}
+	chown -R ${USER} ${LOG_DIR} ${PIPE_DIR}
+	log_daemon_msg "Starting $DESCRIPTION" "$NAME"
+	sudo -u ${USER} $RUN_ERL -daemon ${PIPE_DIR} ${LOG_DIR} "$ERLANG -boot start_sasl -sname ${NAME} -pa ${BEAM_DIR} -setcookie ${COOKIE} -s poller start"
+	log_end_msg $status
+  	;;
+    attach)
+	sudo -u ${USER} ${TO_ERL} ${PIPE_DIR}
+	;;
+    stop)
+	log_daemon_msg "Stopping $DESCRIPTION" "$NAME"
+	log_end_msg 0
+  	;;
+    restart|force-reload)
+	$0 stop && sleep 2 && $0 start
+  	;;
+esac
