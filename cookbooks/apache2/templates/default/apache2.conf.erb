@@ -41,6 +41,7 @@ KeepAliveTimeout <%= @node[:apache][:keepalivetimeout] %>
 </IfModule>
 
 <IfModule mpm_worker_module>
+    ServerLimit           <%= @node[:apache][:worker][:serverlimit] %>
     StartServers          <%= @node[:apache][:worker][:startservers] %>
     MaxClients            <%= @node[:apache][:worker][:maxclients] %>
     MinSpareThreads       <%= @node[:apache][:worker][:minsparethreads] %>

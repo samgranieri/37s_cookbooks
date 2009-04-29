@@ -45,6 +45,7 @@ apache[:prefork][:maxrequestsperchild] = 10000 unless apache[:prefork].has_key?(
 
 # Worker Attributes
 apache[:worker] = Mash.new unless apache.has_key?(:worker)
+apache[:worker][:serverlimit] = 16        unless apache[:worker].has_key?(:serverlimit)
 apache[:worker][:startservers] = 4        unless apache[:worker].has_key?(:startservers)
 apache[:worker][:maxclients] = 1024       unless apache[:worker].has_key?(:maxclients)
 apache[:worker][:minsparethreads] = 64    unless apache[:worker].has_key?(:minsparethreads)
