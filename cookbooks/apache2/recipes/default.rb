@@ -93,6 +93,7 @@ template "apache2.conf" do
   owner "root"
   group "root"
   mode 0644
+  notifies :reload, resources(:service => "apache2")
 end
 
 template "#{node[:apache][:dir]}/ports.conf" do
