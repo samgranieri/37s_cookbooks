@@ -1,5 +1,8 @@
 require_recipe "base::appserver"
-require_recipe "passenger"
+
+if node[:role] == "app"
+  require_recipe "passenger"
+end
 
 directory "/u/logs" do
   action :create
