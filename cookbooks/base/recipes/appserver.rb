@@ -1,6 +1,4 @@
 
-require_recipe "syslog::client"
-
 if node[:active_applications]
   node[:active_applications].each do |app, conf|
     if node[:applications][app][:gems]
