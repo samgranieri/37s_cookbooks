@@ -5,7 +5,7 @@
 
 define command {
   command_name    check-host-alive
-  command_line    $USER1$/check_ping -H $HOSTADDRESS$ -w 100,80% -c 200,100% -p 1
+  command_line    $USER1$/check_ping -H $HOSTADDRESS$ -w 500,80% -c 800,100% -p 1
 }
 
 # Service checks
