@@ -42,7 +42,7 @@ if node[:active_applications]
 
     logrotate full_name do
       files "/u/apps/#{app}/current/log/*.log"
-      frequency "weekly"
+      frequency node[:role] == "web" ? "daily" : "weekly"
       restart_command "/etc/init.d/apache2 reload > /dev/null"
     end
   end
