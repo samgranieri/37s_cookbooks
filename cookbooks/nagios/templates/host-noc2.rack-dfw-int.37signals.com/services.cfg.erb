@@ -2,7 +2,7 @@ define service {
   use default-service
   host_name *
   service_description ping
-  check_command check_ping!100.0,20%!500.0,60%
+  check_command check_ping!50.0,5%!150.0,10%
 }
 
 define service {
