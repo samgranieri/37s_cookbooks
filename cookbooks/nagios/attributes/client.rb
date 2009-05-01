@@ -7,5 +7,5 @@ nagios[:checks][:memory] = Mash.new unless nagios[:checks].has_key(:memory)
 nagios[:checks[:memory][:critical] = 150
 nagios[:checks[:memory][:warning] = 250
 
-nagios[:checks[:load][:critical] = "30,20,10"
-nagios[:checks[:load][:warning] = "15,10,5"
+nagios[:checks][:load][:critical] = "30,20,10"
+nagios[:checks][:load][:warning] = "15,10,5"
