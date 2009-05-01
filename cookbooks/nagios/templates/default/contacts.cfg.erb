@@ -1,0 +1,79 @@
+define contact {
+  contact_name                    root
+  alias                           Root
+  service_notification_period     24x7
+  host_notification_period        24x7
+  service_notification_options    w,u,c,r
+  host_notification_options       d,r
+  service_notification_commands   service-notify-by-email
+  host_notification_commands      host-notify-by-email
+  email                           root@localhost
+}
+
+define contactgroup {
+  contactgroup_name       admins
+  alias                   Nagios Administrators
+  members                 root
+}
+
+define contactgroup {
+	contactgroup_name		sysadmin
+	alias					Sysadmins
+}
+
+define contactgroup {
+	contactgroup_name		sysadmin-sms
+	alias					Sysadmin SMS
+}
+
+
+define contact{
+  use			 generic-contact
+  contact_name markimbriaco
+  alias 		 Mark Imbriaco	
+  email 		 mark@37signals.com
+  pager		 17576170935
+  address1	mark.imbriaco@gmail.com
+  contactgroups	admins
+}
+
+define contact{
+  contact_name markimbriaco-sms
+  use			 sms-contact
+  alias 		 Mark Imbriaco	
+  email 		 mark@37signals.com
+  pager		 17576170935
+  address1	mark.imbriaco@gmail.com
+  contactgroups	sysadmin-sms
+}
+
+
+define contact{
+  contact_name joshuasierles
+  use			 generic-contact
+  alias 		 Joshua Sierles
+  email 		 joshua@37signals.com
+  pager		 34626971353
+  contactgroups	admins
+  address1	jsierles@gmail.com
+}
+
+define contact{
+  contact_name joshuasierles-sms
+  use			 sms-contact
+  alias 		 Joshua Sierles
+  email 		 joshua@37signals.com
+  pager		 34626971353
+  contactgroups	sysadmin-sms
+  address1	jsierles@gmail.com
+}
+
+define contact{
+  contact_name campfire
+  use			 generic-contact
+  alias 		 Campfire
+  service_notification_commands   service-notify-by-campfire
+  host_notification_commands      host-notify-by-campfire
+  email 		 monitoring@37signals.com
+  contactgroups	admins
+}
