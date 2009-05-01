@@ -105,7 +105,7 @@ ssh_keys[:sarah]   = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwMnlTXspEIgOYmdntSgwCj
 ssh_keys[:michael] = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA53phCOgf54FyqE2TwtTSzIRpnMHZ75Dt8xC6luL3nKXlCeb/daD3PMhN/Ymu2XUFe17d579cygUjeYp9G8hBIbLqJndXmuVbap8hYmaScGXYuCnHsvC1PAKwh+i66p8JdqK8hRgs29rsA737R+N3g7V08kcfPZ0PtIvl49TlfAw9z/OkCEch8RKTqUEKBn6RrshADEgg91IUN6cBBFgAzFHUa3W/ihvJHOfkrUS+rC80SpI9RjD0sLXoeRv3IE/uG1Nc6Fe4fmX6ezNcYFP3IQkP79KDgHuPO4Oalp7QMXcJZGLh5tjlhNYVAMZmzRhcDHY3rDZbbKMGM2totg3tFQ== michael@dev.37signals.com"
 
 applications[:basecamp] = {
-  :completed => true, :thumbnails => true, :logsort => true, :haproxy => true,
+  :completed => true, :thumbnails => true, :logsort => true, :haproxy => true, :memcache => true,
   :gems => ['fast_xs', 'hpricot', 'aws-s3', 'ruby-prof', ['net-ssh', '1.1.4'], ['net-sftp', '1.1.1'], ['tzinfo', '0.3.9']],
   :packages => ['imagemagick', 'elinks'],
   :symlinks => {
