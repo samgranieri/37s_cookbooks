@@ -1,8 +1,8 @@
 nagios Mash.new unless attribute?("nagios")
 
-nagios[:checks] = Mash.new unless nagios.has_key(:checks)
-nagios[:checks][:load] = Mash.new unless nagios[:checks].has_key(:load)
-nagios[:checks][:memory] = Mash.new unless nagios[:checks].has_key(:memory)
+nagios[:checks] = Mash.new unless nagios.has_key?(:checks)
+nagios[:checks][:load] = Mash.new unless nagios[:checks].has_key?(:load)
+nagios[:checks][:memory] = Mash.new unless nagios[:checks].has_key?(:memory)
 
 nagios[:checks][:memory][:critical] = 150
 nagios[:checks][:memory][:warning] = 250
