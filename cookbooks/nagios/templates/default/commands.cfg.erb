@@ -282,7 +282,7 @@ define command{
 
 define command {
   command_name  service-notify-by-campfire
-  command_line  /usr/local/nagios/bin/campfire -s 37s -r "<%= @node[:base][:monitoring_campfire_room] %>" -S -l <%= @node[:base][:campfire_email] %> -p <%= @node[:base][:campfire_password] %> -m "$SERVICEDESC$ $SERVICESTATE$ $HOSTALIAS$ (ssh://$HOSTNAME$) $NOTIFICATIONTYPE$ $SERVICEOUTPUT$"
+  command_line  /usr/local/nagios/bin/campfire -s subdomain -r "<%= @node[:base][:monitoring_campfire_room] %>" -S -l <%= @node[:base][:campfire_email] %> -p <%= @node[:base][:campfire_password] %> -m "$SERVICEDESC$ $SERVICESTATE$ $HOSTALIAS$ (ssh://$HOSTNAME$) $NOTIFICATIONTYPE$ $SERVICEOUTPUT$"
 
 }
 
