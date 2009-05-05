@@ -60,9 +60,9 @@ end
 kvm_modules = Dir.glob("/lib/modules/#{@node[:kernel][:release]}/extra/kvm*.ko").map { |f| File.basename(f) }
 %W(drivers/kvm arch/x86/kvm).each do |module_dir|
   Dir.glob("/lib/modules/#{@node[:kernel][:release]}/kernel/#{module_dir}/*.ko").each do |old_module|
-    if kvm_modules.include?(File.basename(old_module))
-      FileUtils.mv(old_module, "#{old_module}.orig")
-      updated_modules = true
+    execute "backup old kvm module: #{old_module}" do
+      command "mv #{old_module} #{old_module}.orig"
+      only_if { kvm_modules.include?(File.basename(old_module)) && File.exist?(old_module) }
     end
   end
 end
