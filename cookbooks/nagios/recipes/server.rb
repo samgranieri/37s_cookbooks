@@ -144,3 +144,5 @@ end
 service "nagios3" do
   action :start
 end
+
+runit_service "nagios-bot"
