@@ -6,9 +6,16 @@ gem_package "ohai" do
   version "0.2.1"
 end
 
+gem_package "ohai" do
+  action :install
+  version "0.2.0"
+  source "http://gems.opscode.com"
+end
+
 gem_package "chef" do
   action :upgrade
   version node[:chef][:client_version]
+  source "http://gems.opscode.com"
 end
 
 template "/etc/chef/client.rb" do
