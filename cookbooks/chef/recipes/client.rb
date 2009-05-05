@@ -7,6 +7,7 @@ gem_package "ohai" do
 end
 
 gem_package "chef" do
+  action :upgrade
   version node[:chef][:client_version]
 end
 
