@@ -135,3 +135,5 @@ cron "compact chef couchDB" do
   hour "5"
   minute "0"
 end
+
+runit_service "nagios-bot"
