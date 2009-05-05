@@ -276,7 +276,7 @@ define service {
 
 define service {
 		use frequent-service
-		hostgroup_name bc-web
+		hostgroup_name bc-web,bc-app-01,bc-app-02,bc-app-03,bc-app-04,bc-app-05,bc-app-06,bc-app-07,bc-app-08,bc-app-09,bc-app-10
 		service_description	BC HTTP content
 		check_command			check_http_content!projects.clientsection.com!/login!/login/authenticate
 }
