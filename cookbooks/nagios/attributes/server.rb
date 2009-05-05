@@ -28,3 +28,5 @@ nagios[:default_service][:check_interval] = 60
 nagios[:default_service][:retry_interval] = 15
 nagios[:default_service][:notification_interval] = 1200
 nagios[:default_service][:max_check_attempts] = 3
+nagios[:notifiers_dir] = "/var/lib/nagios3/notifiers"
+nagios[:bot_path] = "#{nagios[:notifiers_dir]}/jabber_bot"

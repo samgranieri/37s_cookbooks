@@ -93,7 +93,7 @@ execute "archive default nagios object definitions" do
   not_if { Dir.glob(node[:nagios][:root] + "/conf.d/*_nagios*.cfg").empty? }
 end
 
-remote_directory "/var/lib/nagios/notifiers" do
+remote_directory node[:nagios][:notifiers_dir] do
   source "notifiers"
   files_backup 5
   files_owner "nagios"
