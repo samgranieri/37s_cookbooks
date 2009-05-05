@@ -22,5 +22,6 @@ task :provision do
   run "wget -qO /tmp/ohai.gem #{ohai_gem}"
   sudo "gem install /tmp/ohai.gem /tmp/chef.gem"
   sudo "wget -qO /etc/chef/node.json #{slice_json}"
+  sudo "mkdir -p /var/log/chef"
   sudo "chef-client -j /etc/chef/node.json -t #{token}"
 end
