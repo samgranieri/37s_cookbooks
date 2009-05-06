@@ -68,7 +68,7 @@ userlist = node[:nagios][:users]
 # end
 
 nodes = []
-search(:node, "*", %w(ipaddress hostname)) {|n| nodes << n }
+search(:node, "*", %w(ipaddress hostname)) {|n| nodes << n } unless Chef::Config[:solo]
 
 runit_service "nagios3"
 
