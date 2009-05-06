@@ -1,4 +1,4 @@
-erlang Mash.new
+erlang Mash.new unless attribute?(:erlang)
 erlang[:applications] = [] unless erlang.has_key?(:applications)
 
 unless erlang.has_key?(:cookie)
