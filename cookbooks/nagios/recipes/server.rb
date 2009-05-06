@@ -17,6 +17,11 @@ user "nagios" do
   shell "/bin/bash"
 end
 
+execute "copy distribution init.d script" do
+  command "mv /etc/init.d/nagios3 /etc/init.d/nagios3.dist"
+  creates "/etc/init.d/nagios3.dist"
+end
+
 directory "/etc/nagios3/.ssh" do
   mode 0700
   owner "nagios"
@@ -63,12 +68,9 @@ userlist = node[:nagios][:users]
 # end
 
 nodes = []
-search(:node, "*", %w(ipaddress hostname)) {|n| nodes << n }
+search(:node, "*", %w(ipaddress hostname)) {|n| nodes << n } unless Chef::Config[:solo]
 
-service "nagios3" do
-  supports :status => true, :restart => true, :reload => true
-  action :enable
-end
+runit_service "nagios3"
 
 nagios_conf "nagios" do
   config_subdir false
@@ -141,8 +143,5 @@ apache_site "nagios" do
   config_path "/etc/nagios3/apache2.conf"
 end
 
-service "nagios3" do
-  action :start
-end
 
 runit_service "nagios-bot"
