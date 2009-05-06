@@ -1,4 +1,5 @@
 erlang Mash.new
+erlang[:applications] = [] unless erlang.has_key?(:applications)
 
 unless erlang.has_key?(:cookie)
   cookie = ""
