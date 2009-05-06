@@ -2,6 +2,8 @@ nagios Mash.new unless attribute?("nagios")
 
 nagios[:root] = "/etc/nagios3"
 nagios[:webroot] = "/usr/share/nagios3/htdocs"
+nagios[:bin_path] = "/usr/sbin/nagios3"
+nagios[:config_path] = "/etc/nagios3/nagios.cfg"
 nagios[:config_subdir] = "conf.d"
 nagios[:users] = Mash.new
 nagios[:users]["nagiosadmin"] = "k5402krb03"
