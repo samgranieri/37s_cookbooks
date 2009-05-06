@@ -1,4 +1,4 @@
 #!/bin/sh
-# set memory limit to 250MB
+
 exec 2>&1
-exec chpst -U nagios -u nagios -m 262144000 <%= @node[:nagios][:bin_path] %> <%= @node[:nagios][:config_path] %>
+exec  <%= @node[:nagios][:bin_path] %> <%= @node[:nagios][:config_path] %>
