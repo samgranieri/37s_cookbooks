@@ -1,6 +1,8 @@
 include_recipe "runit"
 include_recipe "apache2"
 include_recipe "passenger"
+include_recipe "openssl"
+require_recipe "couchdb"
 
 gem_package "chef-server-slice" do
   version node[:chef][:server_version]
@@ -53,6 +55,11 @@ directory "/var/chef/openid/cstore" do
   mode 0775
 end
 
+remote_file "/usr/local/bin/chef-api" do
+  source "chef-api"
+  mode 0755
+end
+
 template "/etc/chef/server.rb" do
   owner "chef"
   group "admin"
@@ -75,15 +82,11 @@ end
 
 runit_service "stompserver"
 
-directory "/var/chef/couchdb"
-
 link "/var/lib/couchdb" do
   to "/var/chef/couchdb"
 end
 
-package "couchdb"
-
-directory "/var/chef/couchdb" do
+directory "/var/chef/couchdb/#{node[:couchdb][:version]}" do
   owner "couchdb"
   group "couchdb"
   recursive true
@@ -105,35 +108,22 @@ template "/etc/chef/server-vhost.conf" do
   notifies :restart, resources(:service => "apache2")
 end
 
-template "#{node[:chef][:server_path]}/config.ru" do
-  source 'config.ru.erb'
-  action :create
-  owner "root"
-  group "admin"
-  mode 0664
-  notifies :restart, resources(:service => "apache2")
-end
-
-template "#{node[:chef][:server_path]}/config/environments/production.rb" do
-  source 'merb-production.rb.erb'
-  action :create
-  owner "root"
-  group "admin"
-  mode 0664
-  notifies :restart, resources(:service => "apache2")
-end
-
-template "#{node[:chef][:server_path]}/config/init.rb" do
-  source 'chef-server.init.rb.erb'
-  action :create
-  owner "root"
-  group "admin"
-  mode 0664
-  notifies :restart, resources(:service => "apache2")
-end
-
 link "/var/chef/public" do
   to "#{node[:chef][:server_path]}/public"
+end
+
+directory "#{node[:chef][:server_path]}/public/slices" do
+  owner "root"
+  group "admin"
+  mode "0755"
+end
+
+link "#{node[:chef][:server_path]}/public/slices/chef-server-slice" do
+  to "#{node[:chef][:server_slice_path]}/public"
+end
+
+ssl_cert "/var/chef/certificates" do
+  fqdn "chef.#{node[:domain]}"
 end
 
 apache_site "chef-server" do
