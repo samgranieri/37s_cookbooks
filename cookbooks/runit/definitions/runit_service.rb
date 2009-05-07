@@ -29,7 +29,7 @@ define :runit_service, :directory => nil, :only_if => false, :options => {} do
     mode 0755
     cookbook(params[:cookbook]) if params[:cookbook]
     source "sv-#{template_source}-run.erb"
-    variables(params[:options]
+    variables(params[:options])
     notifies :restart, resources(:service => params[:name])
   end
   
