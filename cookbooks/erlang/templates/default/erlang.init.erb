@@ -13,7 +13,7 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin
 RUN_ERL=/usr/bin/run_erl
 TO_ERL=/usr/lib/erlang/erts-5.6.3/bin/to_erl
 ERLANG=/usr/bin/erl
-
+ERLANG_ARGS="<%= @app[:erlang_args] %>"
 . /lib/lsb/init-functions
 
 NAME=<%= @app[:name] %>
@@ -31,7 +31,7 @@ case $1 in
         mkdir -p ${LOG_DIR} ${PIPE_DIR}
         chown -R ${USER} ${LOG_DIR} ${PIPE_DIR}
         log_daemon_msg "Starting $DESCRIPTION"
-        sudo -u ${USER} $RUN_ERL -daemon ${PIPE_DIR} ${LOG_DIR} "$ERLANG -boot start_sasl -sname ${NAME} -pa ${BEAM_DIR} -setcookie ${COOKIE} -s poller start"
+        sudo -u ${USER} $RUN_ERL -daemon ${PIPE_DIR} ${LOG_DIR} "$ERLANG -boot start_sasl -sname ${NAME} -pa ${BEAM_DIR} -setcookie ${COOKIE} ${ERLANG_ARGS} -s <%= @app[:supervisor_name] %> start"
         log_end_msg $?
         ;;
     attach)
