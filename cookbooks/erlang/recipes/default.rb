@@ -29,5 +29,6 @@ node[:erlang][:applications].each do |app|
     owner "root"
     group "root"
     mode 00755
+    backup false
   end  
 end
