@@ -19,6 +19,8 @@ define :runit_service, :directory => nil, :only_if => false, :options => {} do
     mode 0755
     action :create
   end
+
+  service params[:name]
   
   template "#{sv_dir_name}/run" do
     mode 0755
