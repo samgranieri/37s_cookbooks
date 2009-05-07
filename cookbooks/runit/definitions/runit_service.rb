@@ -3,7 +3,7 @@ define :runit_service, :directory => nil, :only_if => false, :options => {} do
   params[:directory] ||= node[:runit_sv_dir]
   
   sv_dir_name = "#{params[:directory]}/#{params[:name]}"
-  template_source = params[:tempate_name] || params[:name]
+  template_source = params[:template_name] || params[:name]
   
   directory sv_dir_name do
     mode 0755
