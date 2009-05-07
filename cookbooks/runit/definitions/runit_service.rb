@@ -3,6 +3,7 @@ define :runit_service, :directory => nil, :only_if => false, :options => {} do
   params[:directory] ||= node[:runit_sv_dir]
   
   sv_dir_name = "#{params[:directory]}/#{params[:name]}"
+  template_source = params[:tempate_name] || params[:name]
   
   directory sv_dir_name do
     mode 0755
@@ -21,13 +22,15 @@ define :runit_service, :directory => nil, :only_if => false, :options => {} do
   
   template "#{sv_dir_name}/run" do
     mode 0755
-    source "sv-#{params[:tempate_name] || params[:name]}-run.erb"
+    cookbook(params[:cookbook]) if params[:cookbook]
+    source "sv-#{template_source}-run.erb"
     variables(params[:options])
   end
   
   template "#{sv_dir_name}/log/run" do
     mode 0755
-    source "sv-#{params[:tempate_name] || params[:name]}-log-run.erb"
+    cookbook(params[:cookbook]) if params[:cookbook]
+    source "sv-#{template_source}-log-run.erb"
     variables(params[:options])
   end
   
