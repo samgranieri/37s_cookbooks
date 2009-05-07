@@ -32,7 +32,7 @@ case $1 in
         chown -R ${USER} ${LOG_DIR} ${PIPE_DIR}
         log_daemon_msg "Starting $DESCRIPTION"
         sudo -u ${USER} $RUN_ERL -daemon ${PIPE_DIR} ${LOG_DIR} "$ERLANG -boot start_sasl -sname ${NAME} -pa ${BEAM_DIR} -setcookie ${COOKIE} -s poller start"
-        log_end_msg $status
+        log_end_msg $?
         ;;
     attach)
         sudo -u ${USER} ${TO_ERL} ${PIPE_DIR}
@@ -40,9 +40,11 @@ case $1 in
     stop)
         log_daemon_msg "Stopping $DESCRIPTION"
 	echo "q()." | sudo -u ${USER} ${TO_ERL} ${PIPE_DIR} > /dev/null 2>&1
-        log_end_msg $status
+        log_end_msg $?
         ;;
     restart|force-reload)
-        $0 stop && sleep 2 && $0 start
+        $0 stop
+	sleep 2
+	$0 start
         ;;
 esac
