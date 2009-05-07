@@ -1,4 +1,9 @@
 require_recipe "memcached"
+include_recipe "runit"
+
+service "memcached" do
+  action [:stop, :disable]
+end
 
 if node[:memcached][:instances]
   node[:memcached][:instances].each do |name, instance|
