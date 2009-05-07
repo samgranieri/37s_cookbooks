@@ -13,7 +13,7 @@ if node[:memcached][:instances]
       cookbook "memcached"
       options({:max_memory => node[:memcached][:max_memory],
                :port => node[:memcached][:port], :user => node[:memcached][:user],
-               :max_connections => node[:memcached][:port]}.merge(instance))
+               :max_connections => node[:memcached][:max_connections]}.merge(instance))
     end
 
     service "memcached-#{name}" do
