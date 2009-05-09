@@ -105,7 +105,7 @@ define command{
 
 define command{
         command_name    check_campfire_poller
-        command_line    $USER1$/check_http -I $HOSTADDRESS$ -p 2345 -s /stats -w 2 -c 3 
+        command_line    $USER1$/check_http -I $HOSTADDRESS$ -p 2345 -s /stats -w 2 -c 3 -r '[0-9]+'
 	}
 
 define command{
