@@ -1,4 +1,4 @@
-collectd Mash.new unless attribute?(:collectd)
+collectd Mash.new unless attribute?("collectd")
 collectd[:base_dir] = "/var/lib/collectd" unless collectd.has_key?(:base_dir)
 collectd[:plugin_dir] = "/usr/lib/collectd" unless collectd.has_key?(:plugin_dir)
 collectd[:types_db] = ["/usr/lib/collectd/types.db", "/etc/collectd/my_types.db"] unless collectd.has_key?(:types_db)

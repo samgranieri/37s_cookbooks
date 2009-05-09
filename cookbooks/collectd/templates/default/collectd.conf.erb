@@ -8,20 +8,24 @@
 
 Hostname "<%= @node[:fqdn] %>"
 FQDNLookup true
-BaseDir "<% @node[:collectd][:base_dir] %>"
+BaseDir "<%= @node[:collectd][:base_dir] %>"
 PluginDir "<%= @node[:collectd][:plugin_dir] %>"
-TypesDB <%= @node[:collectd][:types_db].each do |td| %>"<%= td %> "<% end %>
+TypesDB "<%= @node[:collectd][:types_db].join('", "') %>"
 Interval <%= @node[:collectd][:interval] %>
 ReadThreads <%= @node[:collectd][:read_threads] %>
 
 <% @node[:collectd][:plugins].each do |plugin| %>
 LoadPlugin <%= plugin[:name] %>
-<% if plugin.has_key?[:config] %>
+<% end %>
+
+<% @node[:collectd][:plugins].each do |plugin| %>
+<% if plugin[:options] %>
 <Plugin <%= plugin[:name] %>>
   <% plugin[:options].each do |opt| %>
-  <%= opt.keys.first %> <%= opt[opt.keys.first] %>
+  <%= opt.keys.first %> <%= format_option(opt[opt.keys.first]) %>
   <% end %>
 </Plugin>
+
 <% end %>
 <% end %>
 
