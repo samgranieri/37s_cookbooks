@@ -18,7 +18,7 @@ ReadThreads <%= @node[:collectd][:read_threads] %>
 LoadPlugin <%= plugin[:name] %>
 <% if plugin.has_key?[:config] %>
 <Plugin <%= plugin[:name] %>>
-  <% plugin[:config].each do |option, value| %>
+  <% plugin[:options].each do |option, value| %>
   <%= option %> <%= value %>
   <% end %>
 </Plugin>
