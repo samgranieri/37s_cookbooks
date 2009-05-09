@@ -15,7 +15,7 @@ Interval <%= @node[:collectd][:interval] %>
 ReadThreads <%= @node[:collectd][:read_threads] %>
 
 <% @node[:collectd][:plugins].each do |plugin| %>
-LoadPlugin <%= plugin[:name] %>
+LoadPlugin "<%= plugin[:name] %>"
 <% end %>
 
 <% @node[:collectd][:plugins].each do |plugin| %>
@@ -28,6 +28,11 @@ LoadPlugin <%= plugin[:name] %>
 
 <% end %>
 <% end %>
+
+LoadPlugin "network"
+<Plugin "network">
+  <%= @node[:collectd][:server] ? "Listen" : "Server" %> "<%= @node[:collectd][:server_address] %>"
+</Plugin>
 
 Include "/etc/collectd/thresholds.conf"
 
