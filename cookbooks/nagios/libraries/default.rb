@@ -15,5 +15,5 @@ def nagios_attr(name)
 end
 
 def hostgroups_for(host)
-  "servers, #{host[:role]}"
+  "servers, #{host["role"]}"
 end
