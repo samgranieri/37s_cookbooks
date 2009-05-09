@@ -260,6 +260,13 @@ define service {
 		check_command			check_http_content!live.37signals.com!/!Live
 }
 
+define service {
+                use                 frequent-service
+                hostgroup_name      cf_poll
+                service_description Campfire Poller
+                check_command       check_campfire_poller
+}
+
 #define service {
 #		use frequent-service
 #		hostgroup_name wb-app

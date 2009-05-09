@@ -104,6 +104,11 @@ define command{
         }
 
 define command{
+        command_name    check_campfire_poller
+        command_line    $USER1$/check_http -I $HOSTADDRESS$ -p 2345 -s /stats -w 2 -c 3 
+	}
+
+define command{
        command_name    check_mongrel_http_content
        command_line    $USER1$/check_http -I $HOSTADDRESS$ -H $ARG1$ -u $ARG2$ -s $ARG3$ -p $ARG4$
        }
