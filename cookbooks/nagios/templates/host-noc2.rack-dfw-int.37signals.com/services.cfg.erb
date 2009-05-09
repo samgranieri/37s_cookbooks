@@ -262,7 +262,7 @@ define service {
 
 define service {
                 use                 frequent-service
-                hostgroup_name      cf_poll
+		host_name	    cf-poll-01,cf-poll-02,cf-poll-03
                 service_description Campfire Poller
                 check_command       check_campfire_poller
 }
