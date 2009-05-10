@@ -34,7 +34,7 @@ LoadPlugin "network"
   <% @node[:collectd][:server_address].each do |address| -%>
   Server "<%= address %>"
   <% end -%>
-  <% if @node[:collectd][:listen_address] %>Listen "<%= @node[:collectd][:listen_address] %><% end -%>
+  <% if @node[:collectd][:listen_address] %>Listen "<%= @node[:collectd][:listen_address] %>"<% end -%>
 </Plugin>
 
 Include "/etc/collectd/thresholds.conf"
