@@ -16,7 +16,7 @@ if !collectd.has_key?(:plugins)
      { "name" => "disk", "options" => [{ "Disk" => "vda1" }]},
      { "name" => "interface", "options" => [{ "Interface" => "eth0" }, { "Interface" => "eth1"}]},
      { "name" => "memory" },
-     { "name" => "rrdtool", "options" => [{ "DataDir" => "/var/lib/collectd/rrd" }]},
+     { "name" => "rrdtool", "options" => [{ "DataDir" => "/var/lib/collectd/rrd" }, { "CacheFlush" => 120 }, { "WritesPerSecond" => 75 }]},
      { "name" => "swap" }
     ];
 end
