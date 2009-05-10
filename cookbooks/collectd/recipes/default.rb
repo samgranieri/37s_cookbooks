@@ -1,6 +1,9 @@
 
 package "collectd"
-service "collectd"
+
+service "collectd" do
+  supports :restart => true, :status => true
+end
 
 %w(collectd collection thresholds).each do |file|
   template "/etc/collectd/#{file}.conf" do
