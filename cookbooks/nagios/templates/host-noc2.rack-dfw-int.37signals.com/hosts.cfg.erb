@@ -221,16 +221,6 @@ define host {
 
 define host {
   use linux-server
-  address 192.168.2.18
-  host_name bc-app-01
-  alias bc-app-01
-  
-  hostgroups slices, bc-app
-  
-}
-
-define host {
-  use linux-server
   address 192.168.2.19
   host_name bc-app-02
   alias bc-app-02
