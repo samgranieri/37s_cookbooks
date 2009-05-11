@@ -241,13 +241,6 @@ define service {
 
 define service {
 		use generic-service
-		host_name bc-app-01,bc-app-02,bc-app-03,bc-app-04,bc-app-05,bc-app-06,bc-app-07,bc-app-08
-		service_description	BC Memcached
-		check_command			check_tcp!11211
-}
-
-define service {
-		use generic-service
 		host_name ob-app-01,ob-app-02
 		service_description	OB Memcached
 		check_command			check_tcp!11211
