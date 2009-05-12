@@ -2,6 +2,7 @@ raise RuntimeError, "The node requires a role, one of: #{node[:roles].keys.join(
 
 case node[:platform]
 when "debian", "ubuntu"
+  package "policykit"
   package "emacs22-nox"
   require_recipe "apt"
 else 
