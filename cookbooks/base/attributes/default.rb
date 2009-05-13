@@ -125,8 +125,8 @@ applications[:highrise] = {
     '/usr/local/bin/convert' => '/usr/bin/convert',
     '/usr/local/bin/identify' => '/usr/bin/identify',
     '/usr/local/bin/composite' => '/usr/bin/composite',
-    '/usr/local/bin/zip' => '/usr/bin/zip'
-  }
+    '/usr/local/bin/zip' => '/usr/bin/zip'},
+  :apache_modules => ["auth_token", "xsendfile"]
 }
 
 applications[:campfire] = {
