@@ -119,7 +119,7 @@ applications[:basecamp] = {
 }
 
 applications[:highrise] = {
-  :haproxy => true, :gems => ['fast_xs'],
+  :haproxy => true, :gems => ['fast_xs','hpricot'],
   :packages => ['imagemagick', 'zip'],
   :symlinks => {
     '/usr/local/bin/convert' => '/usr/bin/convert',
