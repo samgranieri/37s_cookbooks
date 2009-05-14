@@ -115,7 +115,7 @@ applications[:basecamp] = {
     '/usr/local/bin/composite' => '/usr/bin/composite',
     '/usr/local/bin/elinks' => '/usr/bin/elinks',
     '/u/depot' => '/u/nfs/file1/depot'},
-  :apache_modules => ["auth_token", "xsendfile"]
+  :apache_modules => ["auth_token", "xsendfile", "rewrite"]
 }
 
 applications[:highrise] = {
@@ -125,8 +125,9 @@ applications[:highrise] = {
     '/usr/local/bin/convert' => '/usr/bin/convert',
     '/usr/local/bin/identify' => '/usr/bin/identify',
     '/usr/local/bin/composite' => '/usr/bin/composite',
-    '/usr/local/bin/zip' => '/usr/bin/zip'},
-  :apache_modules => ["auth_token", "xsendfile"]
+    '/usr/local/bin/zip' => '/usr/bin/zip',
+    '/u/depot' => '/u/nfs/file1/depot'},
+  :apache_modules => ["auth_token", "xsendfile", "rewrite"]
 }
 
 applications[:campfire] = {
@@ -138,7 +139,7 @@ applications[:campfire] = {
     '/usr/local/bin/composite' => '/usr/bin/composite',
     '/u/depot' => '/u/nfs/file1/depot'
   },
-  :apache_modules => ["auth_token", "xsendfile", "fastcgi"]
+  :apache_modules => ["auth_token", "xsendfile", "fastcgi", "rewrite"]
 }
 
 applications[:open_bar] = {:gems => ['fast_xs']}
@@ -152,7 +153,7 @@ applications[:backpack] = {
     '/usr/local/bin/composite' => '/usr/bin/composite',
     '/usr/local/bin/elinks' => '/usr/bin/elinks',
     '/u/depot' => '/u/nfs/file1/depot'},
-  :apache_modules => ["auth_token", "xsendfile"]
+  :apache_modules => ["auth_token", "xsendfile", "rewrite"]
 }
 
 applications[:writeboard] = {
