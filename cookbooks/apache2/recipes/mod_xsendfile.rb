@@ -1,3 +1,5 @@
+require_recipe "apache2"
+
 remote_directory "/usr/local/build/mod_xsendfile" do
   source "mod_xsendfile"
 end

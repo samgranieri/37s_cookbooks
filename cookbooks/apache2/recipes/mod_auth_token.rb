@@ -1,3 +1,5 @@
+require_recipe "apache2"
+
 remote_directory "/usr/local/build/mod_auth_token" do
   source "mod_auth_token"
 end
