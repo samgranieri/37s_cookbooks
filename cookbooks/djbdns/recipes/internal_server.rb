@@ -29,6 +29,11 @@ template "/etc/tinydns-internal/root/update_from_zones" do
   mode 0755
 end
 
+remote_file "/etc/tinydns-internal/root/zones/old.zone" do
+  source "old.zone"
+  notifies :run, resources("execute[build-tinydns-internal-data]")
+end
+
 remote_file "/etc/tinydns-internal/root/valtz" do
   source "valtz"
   mode 0755
