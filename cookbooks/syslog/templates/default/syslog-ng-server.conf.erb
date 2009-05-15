@@ -108,17 +108,17 @@ log { source(s_sys); filter(f_filter8); destination(d_cron); };
 
 # Cisco Loadbalancer
 
-destination d_cisco { file("/u/logs/syslog/cisco", owner(root), group(admin), perm(0640)); };
+destination d_cisco { file("/u/logs/syslog/cisco", owner(root), group(app), perm(0640)); };
 log { source(s_remote); filter(f_local6); destination(d_cisco); flags(final); };
 
 # Remote system logging
 
-destination d_mesg_remote { file("/u/logs/syslog/messages", owner(root), group(admin), perm(0640)); };
-destination d_auth_remote { file("/u/logs/syslog/secure", owner(root), group(admin), perm(0640)); };
-destination d_mail_remote { file("/u/logs/syslog/maillog", owner(root), group(admin), perm(0640), sync(10)); };
-destination d_spol_remote { file("/u/logs/syslog/spooler", owner(root), group(admin), perm(0640)); };
-destination d_boot_remote { file("/u/logs/syslog/boot.log", owner(root), group(admin), perm(0640)); };
-destination d_cron_remote { file("/u/logs/syslog/cron", owner(root), group(admin), perm(0640)); };
+destination d_mesg_remote { file("/u/logs/syslog/messages", owner(root), group(app), perm(0640)); };
+destination d_auth_remote { file("/u/logs/syslog/secure", owner(root), group(app), perm(0640)); };
+destination d_mail_remote { file("/u/logs/syslog/maillog", owner(root), group(app), perm(0640), sync(10)); };
+destination d_spol_remote { file("/u/logs/syslog/spooler", owner(root), group(app), perm(0640)); };
+destination d_boot_remote { file("/u/logs/syslog/boot.log", owner(root), group(app), perm(0640)); };
+destination d_cron_remote { file("/u/logs/syslog/cron", owner(root), group(app), perm(0640)); };
 
 log { source(s_remote); filter(f_filter2); destination(d_mesg_remote); };
 log { source(s_remote); filter(f_filter3); destination(d_auth_remote); };
