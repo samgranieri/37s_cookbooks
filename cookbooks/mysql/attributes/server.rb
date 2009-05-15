@@ -1,4 +1,5 @@
 mysql Mash.new unless attribute?(:mysql)
+mysql[:server] = Mash.new
 
 mysql[:server][:root] = "/u/mysql"
 mysql[:server][:log_root] = "#{mysql[:server][:root]}/logs"
