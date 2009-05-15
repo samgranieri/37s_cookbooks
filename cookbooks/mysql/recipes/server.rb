@@ -5,17 +5,17 @@ service "mysql" do
   supports [:restart, :reload]
 end
 
-directory mysql[:server][:root] do
+directory node[:mysql][:server][:root] do
   owner "mysql"
   group "mysql"
 end
 
-directory mysql[:server][:log_root] do
+directory node[:mysql][:server][:log_root] do
   owner "mysql"
   group "mysql"  
 end
 
-directory mysql[:server][:binlog_dir] do
+directory node[:mysql][:server][:binlog_dir] do
   owner "mysql"
   group "mysql"  
 end
