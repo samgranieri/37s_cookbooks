@@ -389,31 +389,11 @@ define host {
 
 define host {
   use linux-server
-  address 192.168.2.46
-  host_name bc-staging
-  alias bc-staging
-  
-  hostgroups slices
-  
-}
-
-define host {
-  use linux-server
   address 192.168.2.47
   host_name ob-staging
   alias ob-staging
   
   hostgroups slices
-  
-}
-
-define host {
-  use linux-server
-  address 192.168.2.49
-  host_name hr-app-01
-  alias hr-app-01
-  
-  hostgroups slices, hr-app
   
 }
 
@@ -498,14 +478,6 @@ define host {
   address 192.168.2.58
   host_name hr-web-01
   alias hr-web-01
-  hostgroups slices, hr-web
-}
-
-define host {
-  use linux-server
-  address 192.168.2.59
-  host_name hr-web-02
-  alias hr-web-02
   hostgroups slices, hr-web
 }
 
