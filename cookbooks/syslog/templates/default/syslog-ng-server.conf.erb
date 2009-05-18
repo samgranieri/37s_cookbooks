@@ -21,8 +21,8 @@ source s_sys {
 
 source s_remote {
     udp(ip(0.0.0.0) port(514));
+    tcp(ip(0.0.0.0) port(5140));
 };
-
 
 destination d_cons { file("/dev/console"); };
 destination d_mesg { file("/var/log/messages"); };
@@ -60,8 +60,6 @@ filter f_thumbnail_build { match("thumbnail\.build"); };
 filter f_memcache { match("MemCacheStore"); };
 
 <% @applications.each do |app, config| %>
-
-
 <% if config[:haproxy] %>
 destination d_<%= app %>_haproxy { file("/u/logs/<%= app %>/haproxy.log", owner(app), group(app), perm(0640)); };
 filter f_<%= app %>_haproxy { program("haproxy") and match("<%= app %>"); };
@@ -92,12 +90,9 @@ log { source(s_remote); filter(f_<%= app %>); destination(<%= app %>_logsort); f
 destination <%= app %> { file("/u/logs/<%= app %>/rails.log", owner(app), group(app), perm(0640)); };
 log { source(s_remote); filter(f_<%= app %>); destination(<%= app %>); flags(final); };
 <% end %>
-
 <% end %>
 
 # Standard system logging
-
-#log { source(s_sys); filter(f_filter1); destination(d_cons); };
 log { source(s_sys); filter(f_filter2); destination(d_mesg); };
 log { source(s_sys); filter(f_filter3); destination(d_auth); };
 log { source(s_sys); filter(f_filter4); destination(d_mail); };
@@ -106,13 +101,11 @@ log { source(s_sys); filter(f_filter6); destination(d_spol); };
 log { source(s_sys); filter(f_filter7); destination(d_boot); };
 log { source(s_sys); filter(f_filter8); destination(d_cron); };
 
-# Cisco Loadbalancer
-
+# Cisco Load Balancer
 destination d_cisco { file("/u/logs/syslog/cisco", owner(root), group(app), perm(0640)); };
 log { source(s_remote); filter(f_local6); destination(d_cisco); flags(final); };
 
 # Remote system logging
-
 destination d_mesg_remote { file("/u/logs/syslog/messages", owner(root), group(app), perm(0640)); };
 destination d_auth_remote { file("/u/logs/syslog/secure", owner(root), group(app), perm(0640)); };
 destination d_mail_remote { file("/u/logs/syslog/maillog", owner(root), group(app), perm(0640), sync(10)); };
@@ -126,3 +119,4 @@ log { source(s_remote); filter(f_filter4); destination(d_mail_remote); };
 log { source(s_remote); filter(f_filter6); destination(d_spol_remote); };
 log { source(s_remote); filter(f_filter7); destination(d_boot_remote); };
 log { source(s_remote); filter(f_filter8); destination(d_cron_remote); };
+
