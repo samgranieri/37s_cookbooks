@@ -2,6 +2,7 @@ mysql Mash.new unless attribute?(:mysql)
 mysql[:server] = Mash.new
 
 mysql[:server][:root] = "/u/mysql"
+mysql[:server][:datadir] = "#{mysql[:server][:root]}/data"
 mysql[:server][:log_root] = "#{mysql[:server][:root]}/logs"
 mysql[:server][:mysqld_error_log] = "#{mysql[:server][:root]}/logs/mysql.err"
 mysql[:server][:socket_path] = "/tmp/mysql.sock"
