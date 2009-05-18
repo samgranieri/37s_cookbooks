@@ -30,6 +30,11 @@ template "/etc/mysql/my.cnf" do
   notifies :reload, resources(:service => "mysql")
 end
 
+execute "Initiilize mysql database" do
+  command "mysql_install_db --user=mysql"
+  creates "#{node[:mysql][:server][:datadir]}/mysql"
+end
+
 service "mysql" do
   action :start
 end
