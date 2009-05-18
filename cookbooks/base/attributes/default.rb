@@ -126,7 +126,8 @@ applications[:highrise] = {
     '/usr/local/bin/identify' => '/usr/bin/identify',
     '/usr/local/bin/composite' => '/usr/bin/composite',
     '/usr/local/bin/zip' => '/usr/bin/zip',
-    '/u/depot' => '/u/nfs/file1/depot'},
+    '/u/depot' => '/u/nfs/file1/depot',
+    '/usr/local/bin/iconv' => '/usr/bin/iconv'},
   :apache_modules => ["auth_token", "xsendfile", "rewrite"]
 }
 
