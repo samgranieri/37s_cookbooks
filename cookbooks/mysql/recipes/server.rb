@@ -10,6 +10,11 @@ directory node[:mysql][:server][:root] do
   group "mysql"
 end
 
+directory node[:mysql][:server][:datadir] do
+  owner "mysql"
+  group "mysql"
+end
+
 directory node[:mysql][:server][:log_root] do
   owner "mysql"
   group "mysql"  
