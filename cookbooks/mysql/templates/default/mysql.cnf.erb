@@ -1,29 +1,29 @@
 [safe_mysqld]
-err-log = <%= node[:mysql][:server][:mysqld_error_log] %>
+err-log = <%= @node[:mysql][:server][:mysqld_error_log] %>
 
 [mysqld]
-datadir = <%= node[:mysql][:server][:datadir] %>
-socket = <%= node[:mysql][:server][:socket_path] %>
-log-slow-queries = <%= node[:mysql][:server][:slow_query_log] %>
-log-error = <%= node[:mysql][:server][:error_logs] %>
-log-bin = <%= node[:mysql][:server][:binlog_dir] %>
-pid-file = <%= node[:mysql][:server][:pidfile] %>
-server-id = <%= node[:mysql][:server][:server_id] %>
-<% if node[:mysql][:server][:binlogs_enabled] %>
+datadir = <%= @node[:mysql][:server][:datadir] %>
+socket = <%= @node[:mysql][:server][:socket_path] %>
+log-slow-queries = <%= @node[:mysql][:server][:slow_query_log] %>
+log-error = <%= @node[:mysql][:server][:error_logs] %>
+log-bin = <%= @node[:mysql][:server][:binlog_dir] %>
+pid-file = <%= @node[:mysql][:server][:pidfile] %>
+server-id = <%= @node[:mysql][:server][:server_id] %>
+<% if @node[:mysql][:server][:binlogs_enabled] %>
 log-bin
 binlog-ignore-db = mysql
 <% end %>
-port = <%= node[:mysql][:server][:port] %>
+port = <%= @node[:mysql][:server][:port] %>
 
-innodb_data_home_dir = <%= node[:mysql][:server][:datadir] %>
-<% if node[:mysql][:server][:innodb_file_per_table] %>
+innodb_data_home_dir = <%= @node[:mysql][:server][:datadir] %>
+<% if @node[:mysql][:server][:innodb_file_per_table] %>
 innodb_file_per_table
 <% end %>
 
 innodb_data_file_path = ibdata1:10M:autoextend
 
-innodb_log_group_home_dir = <%= node[:mysql][:binlog_dir] %>
-innodb_log_arch_dir = <%= node[:mysql][:binlog_dir] %>
+innodb_log_group_home_dir = <%= @node[:mysql][:binlog_dir] %>
+innodb_log_arch_dir = <%= @node[:mysql][:binlog_dir] %>
 innodb_log_files_in_group = 2
 innodb_log_file_size = 200M
 innodb_log_buffer_size = 8M
@@ -41,5 +41,5 @@ max_allowed_packet = 16M
 query_cache_size = 100M
 max_connect_errors = 99999999
 skip-locking
-innodb_buffer_pool_size = <%= node[:mysql][:innodb_buffer_pool_size] %>
+innodb_buffer_pool_size = <%= @node[:mysql][:innodb_buffer_pool_size] %>
 innodb_thread_concurrency = 4
