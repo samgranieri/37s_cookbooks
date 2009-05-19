@@ -93,3 +93,9 @@ execute "modprobe" do
         File.mtime("/lib/modules/#{@node[:kernel][:release]}/modules.dep") )
   end
 end
+
+gem_package "thor"
+
+remote_file "/usr/local/bin/kvmtool" do
+  source "kvmtool"
+end
