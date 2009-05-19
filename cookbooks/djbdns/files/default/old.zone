@@ -76,7 +76,6 @@
 =hr-solr-01.rack-dfw-int.37signals.com:192.168.2.12:300
 =hr-solr-02.rack-dfw-int.37signals.com:192.168.2.13:300
 =cf-app-01.rack-dfw-int.37signals.com:192.168.2.14:300
-=cf-app-02.rack-dfw-int.37signals.com:192.168.2.15:300
 =cf-app-03.rack-dfw-int.37signals.com:192.168.2.16:300
 =cf-app-04.rack-dfw-int.37signals.com:192.168.2.17:300
 =bc-app-01.rack-dfw-int.37signals.com:192.168.2.18:300
