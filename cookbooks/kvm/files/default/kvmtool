@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'thor'
+require 'yaml'
+class KvmTool < Thor
+
+  desc "list", "More useful list of kvm guests"
+  def list
+    total_allocated_mem = 0
+    list = `virsh list 2>&1`
+    lines = list.split("\n")[3..-1]
+    lines.each do |line|
+      num, name, state = line.split
+      info = `virsh dominfo #{name} 2>/dev/null | grep -v Connecting`
+      infoz = YAML.load(info)
+      cpu = infoz['CPU(s)']
+      memory = infoz["Max memory"].split.first.to_i
+      total_allocated_mem += memory
+      memory_in_gb = memory / 1024 / 1024
+      puts "#{num} #{name} #{state} #{cpu} #{memory_in_gb}GB"
+    end
+    
+    puts "Total allocated memory: #{total_allocated_mem / 1024} MB"
+  end
+
+end
+
+KvmTool.start
