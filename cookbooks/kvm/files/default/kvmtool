@@ -7,7 +7,7 @@ class KvmTool < Thor
   desc "list", "More useful list of kvm guests"
   def list
     @total_allocated_mem = 0
-    list = `virsh list 2>&1`
+    list = `virsh list --all 2>&1`
     lines = list.split("\n")[3..-1]
     lines.each do |line|
       num, name, state = line.split
