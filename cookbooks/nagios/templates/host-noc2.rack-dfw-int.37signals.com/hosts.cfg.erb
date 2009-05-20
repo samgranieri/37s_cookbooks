@@ -131,16 +131,6 @@ define host {
 
 define host {
   use linux-server
-  address 192.168.2.6
-  host_name bc-cron
-  alias bc-cron
-  
-  hostgroups slices
-  
-}
-
-define host {
-  use linux-server
   address 192.168.2.8
   host_name cf-solr-01
   alias cf-solr-01
