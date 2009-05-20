@@ -14,4 +14,4 @@ mysql[:server][:server_id] = "1"
 mysql[:server][:binlogs_enabled] = false
 mysql[:server][:port] = "3306"
 mysql[:server][:innodb_file_per_table] = true
-mysql[:server][:innodb_buffer_pool_size] = "2G"
+mysql[:server][:innodb_buffer_pool_size] = "500M"
