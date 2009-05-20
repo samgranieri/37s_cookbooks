@@ -67,7 +67,6 @@
 =web-01.rack-dfw-int.37signals.com:192.168.2.3:300
 =web-02.rack-dfw-int.37signals.com:192.168.2.4:300
 =intrepid.rack-dfw-int.37signals.com:192.168.2.5:300
-=bc-cron.rack-dfw-int.37signals.com:192.168.2.6:300
 =bpmu-staging.rack-dfw-int.37signals.com:192.168.2.7:300
 =cf-solr-01.rack-dfw-int.37signals.com:192.168.2.8:300
 =cf-solr-02.rack-dfw-int.37signals.com:192.168.2.9:300
