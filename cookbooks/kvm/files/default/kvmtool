@@ -20,7 +20,7 @@ class KvmTool < Thor
       puts "#{num} #{name} #{state} #{cpu} #{memory_in_gb}GB"
     end
     
-    puts "Total allocated memory: #{total_allocated_mem / 1024} MB"
+    puts "Total allocated memory: #{@total_allocated_mem / 1024} MB"
   end
 
   desc "build", "Build a new KVM guest"

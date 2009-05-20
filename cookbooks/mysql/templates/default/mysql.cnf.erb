@@ -6,11 +6,11 @@ datadir = <%= @node[:mysql][:server][:datadir] %>
 socket = <%= @node[:mysql][:server][:socket_path] %>
 log-slow-queries = <%= @node[:mysql][:server][:slow_query_log] %>
 log-error = <%= @node[:mysql][:server][:mysqld_error_log] %>
-log-bin = <%= @node[:mysql][:server][:binlog_dir] %>
 pid-file = <%= @node[:mysql][:server][:pidfile] %>
 server-id = <%= @node[:mysql][:server][:server_id] %>
 <% if @node[:mysql][:server][:binlogs_enabled] %>
 log-bin
+log-bin = <%= @node[:mysql][:server][:binlog_dir] %>
 binlog-ignore-db = mysql
 <% end %>
 port = <%= @node[:mysql][:server][:port] %>
