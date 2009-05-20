@@ -109,7 +109,7 @@ ssh_keys[:michael] = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA53phCOgf54FyqE2TwtTSzI
 applications[:basecamp] = {
   :completed => true, :thumbnails => true, :logsort => true, :haproxy => true, :memcache => true,
   :gems => ['fast_xs', 'hpricot', 'aws-s3', 'ruby-prof', ['net-ssh', '1.1.4'], ['net-sftp', '1.1.1'], ['tzinfo', '0.3.9']],
-  :packages => ['imagemagick', 'elinks'],
+  :packages => ['imagemagick', 'elinks', 'zip'],
   :symlinks => {
     '/usr/local/bin/convert' => '/usr/bin/convert',
     '/usr/local/bin/identify' => '/usr/bin/identify',
