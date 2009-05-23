@@ -129,7 +129,7 @@ nagios_template "frequent" do
   retry_check_interval  20
 end
 
-nagios_template "frequent-with-sms" do
+nagios_template "frequent-service-with-sms" do
   template_type "service"
 	use "default-service"
 	max_check_attempts    3
