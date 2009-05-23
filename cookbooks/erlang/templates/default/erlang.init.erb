@@ -25,6 +25,7 @@ LOG_DIR=${APP_DIR}/log
 PIPE_DIR=${APP_DIR}/tmp/
 NODE=`hostname -s`
 COOKIE=`cat /home/app/.erlang.cookie`
+<% if @app[:fullsweep_after] -%>export ERL_FULLSWEEP_AFTER=<%= @app[:fullsweep_after] %><% end -%>
 
 case $1 in
     start)
