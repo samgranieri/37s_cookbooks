@@ -174,13 +174,6 @@ define serviceescalation{
 	contact_groups		sysadmin-sms
 	}
 
-define service{
-	use                     notify-on-critical
-	hostgroup_name          slices, linux_boxes, freebsd_boxes
-	service_description     Load Average
-	check_command			check_load
-}
-
 define service {
 		use generic-service
 		host_name netapp-01
