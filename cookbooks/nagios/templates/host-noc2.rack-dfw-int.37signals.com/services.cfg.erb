@@ -12,6 +12,16 @@ define service {
   check_command			      check_all_disks
 }
 
+define serviceescalation {
+  hostgroup_name          servers, linux_boxes, freebsd_boxes, slices
+	service_description	Free Space All Disks
+	first_notification	10
+	last_notification	0
+	notification_interval	0
+	escalation_options c,u,r
+	contact_groups		sysadmin-sms
+}
+	
 define service {
 	use                     default-service
 	hostgroup_name          servers
@@ -257,6 +267,7 @@ define service {
   use                 frequent-service-with-sms
   host_name	    cf-poll-01,cf-poll-02,cf-poll-03
   service_description Campfire Poller
+  process_perf_data 0
   check_command       check_campfire_poller
 }
 
