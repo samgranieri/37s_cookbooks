@@ -19,8 +19,8 @@ innodb_data_home_dir = <%= @node[:mysql][:server][:datadir] %>
 innodb_file_per_table
 <% end -%>
 innodb_data_file_path = ibdata1:10M:autoextend
-innodb_log_group_home_dir = <%= @node[:mysql][:server][:binlog_dir] %>
-innodb_log_arch_dir = <%= @node[:mysql][:server][:binlog_dir] %>
+innodb_log_group_home_dir = <%= @node[:mysql][:server][:innodb_log_dir] %>
+innodb_log_arch_dir = <%= @node[:mysql][:server][:innodb_log_dir] %>
 innodb_log_files_in_group = 2
 innodb_log_file_size = 200M
 innodb_log_buffer_size = 8M
