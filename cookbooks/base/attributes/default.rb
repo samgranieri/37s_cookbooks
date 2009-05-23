@@ -57,6 +57,7 @@ roles[:hypervisor]    = {:groups => [:admin], :sudo_groups => [:admin]}
 roles[:dns]           = {:groups => [:admin], :sudo_groups => [:admin]}
 roles[:noc]           = {:groups => [:admin, :app, :support], :sudo_groups => [:admin]}
 roles[:app]           = {:groups => [:admin, :app], :sudo_groups => [:admin, :app]}
+roles[:cron]           = {:groups => [:admin, :app], :sudo_groups => [:admin, :app]}
 roles[:web]           = {:groups => [:admin, :app], :sudo_groups => [:admin, :app]}
 roles[:site]          = {:groups => [:admin, :app, :site], :sudo_groups => [:admin]}
 roles[:proxy]         = {:groups => [:admin], :sudo_groups => [:admin]}
@@ -108,7 +109,7 @@ ssh_keys[:michael] = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA53phCOgf54FyqE2TwtTSzI
 applications[:basecamp] = {
   :completed => true, :thumbnails => true, :logsort => true, :haproxy => true, :memcache => true,
   :gems => ['fast_xs', 'hpricot', 'aws-s3', 'ruby-prof', ['net-ssh', '1.1.4'], ['net-sftp', '1.1.1'], ['tzinfo', '0.3.9']],
-  :packages => ['imagemagick', 'elinks'],
+  :packages => ['imagemagick', 'elinks', 'zip'],
   :symlinks => {
     '/usr/local/bin/convert' => '/usr/bin/convert',
     '/usr/local/bin/identify' => '/usr/bin/identify',
@@ -126,7 +127,8 @@ applications[:highrise] = {
     '/usr/local/bin/identify' => '/usr/bin/identify',
     '/usr/local/bin/composite' => '/usr/bin/composite',
     '/usr/local/bin/zip' => '/usr/bin/zip',
-    '/u/depot' => '/u/nfs/file1/depot'},
+    '/u/depot' => '/u/nfs/file1/depot',
+    '/usr/local/bin/iconv' => '/usr/bin/iconv'},
   :apache_modules => ["auth_token", "xsendfile", "rewrite"]
 }
 

@@ -131,16 +131,6 @@ define host {
 
 define host {
   use linux-server
-  address 192.168.2.6
-  host_name bc-cron
-  alias bc-cron
-  
-  hostgroups slices
-  
-}
-
-define host {
-  use linux-server
   address 192.168.2.8
   host_name cf-solr-01
   alias cf-solr-01
@@ -184,16 +174,6 @@ define host {
   address 192.168.2.14
   host_name cf-app-01
   alias cf-app-01
-  
-  hostgroups slices, cf-app
-  
-}
-
-define host {
-  use linux-server
-  address 192.168.2.15
-  host_name cf-app-02
-  alias cf-app-02
   
   hostgroups slices, cf-app
   
@@ -389,31 +369,11 @@ define host {
 
 define host {
   use linux-server
-  address 192.168.2.46
-  host_name bc-staging
-  alias bc-staging
-  
-  hostgroups slices
-  
-}
-
-define host {
-  use linux-server
   address 192.168.2.47
   host_name ob-staging
   alias ob-staging
   
   hostgroups slices
-  
-}
-
-define host {
-  use linux-server
-  address 192.168.2.49
-  host_name hr-app-01
-  alias hr-app-01
-  
-  hostgroups slices, hr-app
   
 }
 
@@ -498,14 +458,6 @@ define host {
   address 192.168.2.58
   host_name hr-web-01
   alias hr-web-01
-  hostgroups slices, hr-web
-}
-
-define host {
-  use linux-server
-  address 192.168.2.59
-  host_name hr-web-02
-  alias hr-web-02
   hostgroups slices, hr-web
 }
 
