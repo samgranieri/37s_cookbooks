@@ -298,6 +298,13 @@ define service {
 
 define service {
 		use frequent-service
+		host_name bpmu-app-01, bpmu-app-02, bpmu-app-03, bpmu-app-05
+		service_description	BP HTTP content
+		check_command			check_http_content!37s.backpackit.com!/login!/session
+}
+
+define service {
+		use frequent-service
 		hostgroup_name bc-web
 		host_name bc-app-09,bc-app-10,bc-app-11,bc-app-12
 		service_description	BC HTTP content
