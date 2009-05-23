@@ -135,7 +135,7 @@ nagios_template "frequent-service-with-sms" do
 	max_check_attempts    3
   normal_check_interval 5
   retry_check_interval  20
-  notification_interval 300
+  notification_interval 0
   contact_groups "admins, sysadmin-sms"
 end
 
