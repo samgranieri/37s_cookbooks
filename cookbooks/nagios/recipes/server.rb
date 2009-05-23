@@ -123,10 +123,20 @@ end
 
 nagios_template "frequent" do
   template_type "service"
-	use "generic-service"
+	use "default-service"
 	max_check_attempts    3
-  normal_check_interval 1
-  retry_check_interval  1
+  normal_check_interval 10
+  retry_check_interval  20
+end
+
+nagios_template "frequent-service-with-sms" do
+  template_type "service"
+	use "default-service"
+	max_check_attempts    3
+  normal_check_interval 10
+  retry_check_interval  20
+  notification_interval 300
+  contact_groups "admins, sysadmin-sms"
 end
 
 nagios_conf "templates"
@@ -142,6 +152,5 @@ end
 apache_site "nagios" do
   config_path "/etc/nagios3/apache2.conf"
 end
-
 
 runit_service "nagios-bot"

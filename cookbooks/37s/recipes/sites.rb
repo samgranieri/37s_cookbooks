@@ -27,7 +27,7 @@ if node[:active_sites]
     end
 
     logrotate full_name do
-      files "/u/sites/#{site}/current/log/*.log"
+      files "/u/sites/#{site}/shared/log/*.log"
       frequency "weekly"
       restart_command "/etc/init.d/apache2 reload > /dev/null"
     end
