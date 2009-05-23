@@ -24,7 +24,7 @@ define serviceescalation {
 	
 define service {
 	use                     default-service
-	hostgroup_name          servers
+	hostgroup_name          servers, linux_boxes, freebsd_boxes, slices
 	host_name               !<%= @node[:fqdn] %>
 	service_description     Load Average
 	check_command			      check_load
@@ -32,10 +32,21 @@ define service {
 
 define service{
   use                     default-service
-  hostgroup_name          servers
+  hostgroup_name          servers, linux_boxes, freebsd_boxes, slices
   service_description     Free Memory
   check_command			      check_mem
 }
+
+define serviceescalation {
+  hostgroup_name          servers, linux_boxes, freebsd_boxes, slices
+	service_description	Free Memory
+	first_notification	5
+	last_notification	0
+	notification_interval	0
+	escalation_options c,u,r
+	contact_groups		sysadmin-sms
+}
+
 
 
 # application checks
