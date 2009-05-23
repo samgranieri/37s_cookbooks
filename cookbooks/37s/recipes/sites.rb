@@ -9,6 +9,13 @@ directory "/u/logs/sites" do
   group "www-data"
 end
 
+
+logrotate "website_logs" do
+  files "/u/logs/sites/*.log"
+  frequency "weekly"
+  restart_command "/etc/init.d/apache2 reload > /dev/null"
+end
+
 if node[:active_sites]
   node[:active_sites].each do |site, conf|
 
