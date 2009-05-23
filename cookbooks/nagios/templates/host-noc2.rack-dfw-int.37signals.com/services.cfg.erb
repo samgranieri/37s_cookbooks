@@ -267,7 +267,7 @@ define service {
   use                 frequent-service-with-sms
   host_name	    cf-poll-01,cf-poll-02,cf-poll-03
   service_description Campfire Poller
-  process_perfdata 0
+  process_perf_data 0
   check_command       check_campfire_poller
 }
 
