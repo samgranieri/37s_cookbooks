@@ -23,12 +23,22 @@ execute "install mochiweb library" do
 end
 
 node[:erlang][:applications].each do |app|
-  template "/etc/init.d/erlang_#{app[:name]}" do
+  template "/usr/local/bin//erlang_#{app[:name]}" do
     source "erlang.init.erb"
     variables(:app => app)
     owner "root"
     group "root"
     mode 00755
     backup false
+  end
+
+  runit_service "erlang_#{app[:name]}" do
+    template_name "erlang"
+    options({ :app => app })
+  end
+
+  service "erlang_#{app[:name]}" do
+    action :enable
   end  
 end
+
