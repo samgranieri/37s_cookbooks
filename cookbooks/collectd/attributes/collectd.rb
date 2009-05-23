@@ -7,7 +7,7 @@ collectd[:read_threads] = 5 unless collectd.has_key?(:read_threads)
 collectd[:server_address] = %w(192.168.1.153 192.168.1.159)
 collectd[:server] = false unless collectd.has_key?(:server)
 
-if !collectd.has_key?(:plugins)
+# if !collectd.has_key?(:plugins)
   collectd[:plugins] =
     [
      { "name" => "syslog", "options" => [{ "LogLevel" => "Info"  }]},
@@ -19,4 +19,4 @@ if !collectd.has_key?(:plugins)
      { "name" => "rrdtool", "options" => [{ "DataDir" => "/var/lib/collectd/rrd" }, { "CacheFlush" => 120 }, { "WritesPerSecond" => 75 }]},
      { "name" => "swap" }
     ];
-end
+# end
