@@ -293,7 +293,7 @@ define command {
 
 define command {
   command_name  service-notify-by-sms-gateway
-  command_line  /usr/local/nagios/bin/clickatell -n $CONTACTPAGER$ -u <%= @node[:base][:clickatell_username] %> -p <%= @node[:base][:clickatell_password] %> -a <%= @node[:base][:clickatell_api_id] %> -m "$SERVICEDESC$ $SERVICESTATE$ $NOTIFICATIONTYPE$ $SERVICEOUTPUT$" 
+  command_line  /usr/local/nagios/bin/clickatell -n $CONTACTPAGER$ -u <%= @node[:base][:clickatell_username] %> -p <%= @node[:base][:clickatell_password] %> -a <%= @node[:base][:clickatell_api_id] %> -m "$SERVICEDESC$ $SERVICESTATE$ $HOSTALIAS$ $NOTIFICATIONTYPE$ $SERVICEOUTPUT$" 
 
 }
 
