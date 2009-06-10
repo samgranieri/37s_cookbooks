@@ -17,7 +17,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
+require 'chef'
 require File.join(File.dirname(__FILE__), 'config', 'rake')
 
 require 'tempfile'
@@ -177,4 +177,62 @@ EOH
   sh("(cd #{CADIR} && openssl x509 -noout -fingerprint -text < #{fqdn}.crt > #{fqdn}.info)")
   sh("(cd #{CADIR} && cat #{fqdn}.crt #{fqdn}.key > #{fqdn}.pem)")
   sh("(cd #{CADIR} && chmod 644 #{fqdn}.pem)")
+end
+
+desc "Create metadata.rb for each cookbook"
+task :cookbook_metadata do 
+  Chef::Config[:cookbook_path] = [ File.join(File.dirname(__FILE__), "cookbooks") ]
+  cl = Chef::CookbookLoader.new
+  cl.each do |cookbook|
+    if ENV['COOKBOOK']
+      next unless cookbook.name.to_s == ENV['COOKBOOK']
+    end
+ 
+    Chef::Config.cookbook_path.each do |cdir|
+      metadata_rb_file = File.open(File.join(cdir, cookbook.name.to_s, 'metadata.rb'), "w")
+      puts "* Creating the metadata.rb for #{cookbook.name}"
+ 
+      # If the cookbook has a README.rdoc, then it should be the long_description
+      if File.exists?(File.join(cdir, cookbook.name.to_s, 'README.rdoc'))
+        long_description = "IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))"
+        puts "** #{cookbook.name} has README.rdoc"
+      else
+        long_description = %w{"Configures #{cookbook.name}"}
+      end
+      metadata = <<-EOH
+maintainer        "37signals"
+maintainer_email  "sysadmins@37signals.com"
+description       "Configures #{cookbook.name}"
+long_description  #{long_description}
+version           "0.1"
+EOH
+      # Load up the recipes
+      if cookbook.recipe_files.nitems > 1
+        cookbook.recipe_files.each do |rfile|
+          unless rfile =~ /default/
+            recipe_name = "#{cookbook.name}::#{File.basename(rfile, ".rb")}"
+            metadata << "recipe            \"#{recipe_name}\"\n" 
+            puts "** #{cookbook.name} has recipe, #{recipe_name}"
+          end
+        end
+      end
+ 
+      # Load up attributes
+      if cookbook.attribute_files.nitems > 0
+        cookbook.attribute_files.each do |afile|
+          attribute_name = File.basename(afile, ".rb")
+          metadata << %Q{
+attribute         "#{attribute_name}",
+  :display_name => "",
+  :description => "",
+  :recipes => [ "#{cookbook.name}" ],
+  :default => ""
+}
+          puts "** #{cookbook.name} has attributes, #{attribute_name}"
+        end
+      end
+ 
+      metadata_rb_file.puts metadata
+    end
+  end
 end
