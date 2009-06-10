@@ -1,5 +1,3 @@
-require_recipe "base::appserver"
-
 if node[:role] == "app"
   require_recipe "passenger"
 end

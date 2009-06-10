@@ -25,6 +25,13 @@ end
 
 gem_package "git_remote_branch"
 
+directory "/usr/local/build" do
+  action :create
+  owner "root"
+  group "admin"
+  mode 0775
+end
+
 if node[:build]
   node[:build].each do |name, config|
     config[:packages].each do |pack|
