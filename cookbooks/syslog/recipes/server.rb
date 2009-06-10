@@ -47,4 +47,3 @@ cron "old logs cleanup" do
   hour "10"
   minute "0"
 end
-
