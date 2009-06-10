@@ -1,12 +1,4 @@
 maintainer        "37signals"
 maintainer_email  "sysadmins@37signals.com"
-description       "Configures base"
-long_description  "Configures#{cookbook.name}"
+description       "Configures base prerequisites for all nodes"
 version           "0.1"
-recipe            "base::appserver"
-
-attribute         "default",
-  :display_name => "",
-  :description => "",
-  :recipes => [ "base" ],
-  :default => ""
