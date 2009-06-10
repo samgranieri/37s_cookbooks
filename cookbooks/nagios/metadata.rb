@@ -6,15 +6,5 @@ version           "0.1"
 recipe            "nagios::checks"
 recipe            "nagios::client"
 recipe            "nagios::server"
-
-attribute         "client",
-  :display_name => "",
-  :description => "",
-  :recipes => [ "nagios" ],
-  :default => ""
-
-attribute         "server",
-  :display_name => "",
-  :description => "",
-  :recipes => [ "nagios" ],
-  :default => ""
+depends           "apache2"
+depends           "runit"

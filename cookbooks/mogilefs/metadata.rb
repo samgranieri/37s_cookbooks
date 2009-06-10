@@ -5,9 +5,4 @@ long_description  "Configures#{cookbook.name}"
 version           "0.1"
 recipe            "mogilefs::storenode"
 recipe            "mogilefs::tracker"
-
-attribute         "mogilefs",
-  :display_name => "",
-  :description => "",
-  :recipes => [ "mogilefs" ],
-  :default => ""
+depends           "runit"

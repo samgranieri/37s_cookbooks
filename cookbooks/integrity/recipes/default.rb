@@ -1,4 +1,3 @@
-
 require_recipe "passenger"
 
 gem_package "integrity" do

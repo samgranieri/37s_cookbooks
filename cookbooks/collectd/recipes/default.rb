@@ -1,4 +1,3 @@
-
 package "collectd"
 
 service "collectd" do

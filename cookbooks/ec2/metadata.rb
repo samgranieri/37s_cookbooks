@@ -1,7 +1,6 @@
 maintainer        "37signals"
 maintainer_email  "sysadmins@37signals.com"
-description       "Configures ec2"
-long_description  "Configures#{cookbook.name}"
+description       "Configures EC2 environment"
 version           "0.1"
 recipe            "ec2::filesystems"
 

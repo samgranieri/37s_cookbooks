@@ -1,5 +1,4 @@
 maintainer        "37signals"
 maintainer_email  "sysadmins@37signals.com"
-description       "Configures kvm"
-long_description  "Configures#{cookbook.name}"
+description       "Configures KVM virtualization environment"
 version           "0.1"
