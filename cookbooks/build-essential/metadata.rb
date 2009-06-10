@@ -1,0 +1,5 @@
+maintainer        "37signals"
+maintainer_email  "sysadmins@37signals.com"
+description       "Configures build-essential"
+long_description  "Configures#{cookbook.name}"
+version           "0.1"
