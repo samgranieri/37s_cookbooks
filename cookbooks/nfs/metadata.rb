@@ -1,6 +1,5 @@
 maintainer        "37signals"
 maintainer_email  "sysadmins@37signals.com"
-description       "Configures nfs"
-long_description  "Configures#{cookbook.name}"
+description       "Configures NFS"
 version           "0.1"
 recipe            "nfs::client"
