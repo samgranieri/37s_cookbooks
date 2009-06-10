@@ -24,7 +24,6 @@ smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
 myhostname = <%= @node[:postfix][:myorigin] %>
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
-myorigin = /etc/mailname
 mydestination = <%= @node[:fqdn] %>, localhost.<%= @node[:domain] %>, localhost
 relayhost = <%= @node[:postfix][:relay_host] || "" %>
 mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
