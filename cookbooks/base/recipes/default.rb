@@ -1,5 +1,3 @@
-raise RuntimeError, "The node requires a role, one of: #{node[:roles].keys.join(',')}" unless node[:role] and node[:roles].has_key?(node[:role])
-
 case node[:platform]
 when "debian", "ubuntu"
   package "policykit"
@@ -17,16 +15,6 @@ package "host"
 package "lsof"
 package "gdb"
 
-require_recipe "hosts"
-require_recipe "syslog::client"
-require_recipe "dns::client"
-require_recipe "nagios::client"
-require_recipe "rubygems::client"
-require_recipe "timezone"
-require_recipe "git"
-require_recipe "postfix"
-
-require_recipe "ssh::server"
 include_recipe "ssh_keys"
 
 role[:groups].each do |group_name|
