@@ -1,4 +1,3 @@
-
 directory "/u/apps" do
   owner "app"
   group "app"

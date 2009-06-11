@@ -10,4 +10,3 @@ template "/etc/sudoers" do
   owner "root"
   group "root"
   variables(:sudoers_groups => node[:roles][node[:role]][:sudo_groups])
-end

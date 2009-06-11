@@ -7,7 +7,7 @@ end
 
 template "/etc/ejabberd/ejabberd.cfg" do
   source "ejabberd.cfg.erb"
-  variables(:jabber_domain => node[:base][:jabber_domain])
+  variables(:jabber_domain => node[:jabber_domain])
   notifies :restart, resources(:service => "ejabberd")
 end
 

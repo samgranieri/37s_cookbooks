@@ -1,4 +1,3 @@
-
 require_recipe "mogilefs"
 require_recipe "runit"
 
