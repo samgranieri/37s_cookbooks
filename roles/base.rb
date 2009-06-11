@@ -1,6 +1,6 @@
 name "base"
 description "Base role that applies to all servers"
-recipes "hosts", "syslog::client", "dns::client", "nagios::client", "rubygems::client", "timezone", "git", "postfix", "ssh::server", "users", "sudos"
+recipes "hosts", "syslog::client", "dns::client", "nagios::client", "rubygems::client", "timezone", "git", "postfix", "ssh::server", "users", "sudos", "sysadmin"
 override_attributes :sysadmin_email => "sysadmins@37signals.com",
                     :sysadmin_sms_email => "sysadmins@37signals.com",
                     :campfire_subdomain => "37s",
