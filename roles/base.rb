@@ -1,6 +1,10 @@
 name "base"
 description "Base role that applies to all servers"
 recipes "hosts", "syslog::client", "dns::client", "nagios::client", "rubygems::client", "timezone", "git", "postfix", "ssh::server", "users", "sudos", "sysadmin"
+
+default_attributes :active_groups => [:admin, :app],
+                   :active_sudo_groups => [:admin, :app]
+
 override_attributes :sysadmin_email => "sysadmins@37signals.com",
                     :sysadmin_sms_email => "sysadmins@37signals.com",
                     :campfire_subdomain => "37s",
@@ -16,15 +20,14 @@ override_attributes :sysadmin_email => "sysadmins@37signals.com",
                     :jabber_domain => "37signals.com",
                     :jabber_admin_password => "x9CR0!7#z3ux7P",
                     :dyndns_login => "883mhi-ec2dyn",
-                    :dyndns_password => "5SkR2hJiNsQP",
+                    :dyndns_password => "5SkR2hJiNsQP",                    
                     :groups => {:app => {:gid => 1003},
                                :site => {:gid => 3001},
                                :support => {:gid => 3002},
-                               :admin   => {:gid => 4000}},
+                               :admin   => {:gid => 4000}},                               
                     :roles => {:hypervisor => {:groups => [:admin], :sudo_groups => [:admin]},
                                :dns => {:groups => [:admin], :sudo_groups => [:admin]},
                                :noc => {:groups => [:admin, :app, :support], :sudo_groups => [:admin]},
-                               :app => {:groups => [:admin, :app], :sudo_groups => [:admin, :app]},
                                :cron => {:groups => [:admin, :app], :sudo_groups => [:admin, :app]},
                                :web => {:groups => [:admin, :app], :sudo_groups => [:admin, :app]},
                                :site => {:groups => [:admin, :app, :site], :sudo_groups => [:admin]},
