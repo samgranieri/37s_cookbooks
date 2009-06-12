@@ -1,9 +1,10 @@
 name "base"
 description "Base role that applies to all servers"
-recipes "hosts", "syslog::client", "dns::client", "nagios::client", "rubygems::client", "timezone", "git", "postfix", "ssh::server", "users", "sudos", "sysadmin"
+recipes "hosts", "syslog::client", "dns::client", "nagios::client", "rubygems::client", "timezone",
+        "git", "postfix", "ssh::server", "users", "sudos", "sysadmin", "mysql::client", "chef::client"
 
-default_attributes :active_groups => [:admin],
-                   :active_sudo_groups => [:admin]
+default_attributes :active_groups => {:admin => {:enabled => true}},
+                   :active_sudo_groups => {:admin => {:enabled => true}}
 
 override_attributes :sysadmin_email => "sysadmins@37signals.com",
                     :sysadmin_sms_email => "sysadmins@37signals.com",
@@ -26,14 +27,8 @@ override_attributes :sysadmin_email => "sysadmins@37signals.com",
                                :support => {:gid => 3002},
                                :admin   => {:gid => 4000}},                               
                     :roles => {:hypervisor => {:groups => [:admin], :sudo_groups => [:admin]},
-                               :dns => {:groups => [:admin], :sudo_groups => [:admin]},
-                               :noc => {:groups => [:admin, :app, :support], :sudo_groups => [:admin]},
-                               :cron => {:groups => [:admin, :app], :sudo_groups => [:admin, :app]},
                                :web => {:groups => [:admin, :app], :sudo_groups => [:admin, :app]},
                                :site => {:groups => [:admin, :app, :site], :sudo_groups => [:admin]},
-                               :proxy => {:groups => [:admin], :sudo_groups => [:admin]},
-                               :memcache => {:groups => [:admin], :sudo_groups => [:admin]},
-                               :solr => {:groups => [:admin, :app], :sudo_groups => [:admin, :app]},
                                :mogilefs => {:groups => [:admin, :app], :sudo_groups => [:admin, :app]},
                                :mysql => {:groups => [:admin, :app], :sudo_groups => [:admin, :app]},
                                :proxy => {:groups => [:admin, :app], :sudo_groups => [:admin, :app]},
@@ -72,4 +67,3 @@ override_attributes :sysadmin_email => "sysadmins@37signals.com",
                        :app => "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvcJRSTTh9LUTF2Z52hwsoL05NxXgjBwTl7ZkrCW/QPvQlw39zfzwz9AYI7YxuLaqhQK2i9JHt9Cop1yTsXFfzKEMHEF5g2mL9MUv2tDVy1+5EudjVx6NlNwY+4A1aS1K/467m0vrUnWzPhUhb9Z299oMNxd4JGCengjJY/MnwfoVndVL9g5XkcGLnC7pS/WmB+tqeeERc78vM3lPcraJmoU6p4RRG7SPrrX/ePPDCV4XPc815fmOArkTXTXXZyAFgeIkss2i5dq9O87CPBhx/nJB6bsGFd/j6leNa7ogJK22gLuN9rxEzZyurBj5QuguJzz4XdvrjHOfRkP+LcnFAQ== app@37s-app-01",
                        :sarah => "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwMnlTXspEIgOYmdntSgwCjOH0w3RqfoBZ8FRBxTiQIvHZJJonTxukwA6zPuaH9CfAq7swAQUzQrnmFsQ++7TFtC0NQdSldnyO6oRAIpAAUCauG9LaLwhr3LgOSySAJfETxZeesCnLHvSs/rWT0TIPXcqgADuvZcrYepLmTk+FDnHTS09j+070UMjwTuBjbEouFmJcWHI5Uu2Y8Bc5/MgGEwBh5epNBrU9vNAgad9P1Av1CKv1bYY7av92CYEOWainyP3clTC4fdJYFHgCDkbK9aMCtPcXKjsvLmHQt4ukO7EGzWAzNvHmXlORVJg7gTVEFZi0pJ0TqBfzHOulamcFw== sarah@dev.37signals.com",
                        :michael => "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA53phCOgf54FyqE2TwtTSzIRpnMHZ75Dt8xC6luL3nKXlCeb/daD3PMhN/Ymu2XUFe17d579cygUjeYp9G8hBIbLqJndXmuVbap8hYmaScGXYuCnHsvC1PAKwh+i66p8JdqK8hRgs29rsA737R+N3g7V08kcfPZ0PtIvl49TlfAw9z/OkCEch8RKTqUEKBn6RrshADEgg91IUN6cBBFgAzFHUa3W/ihvJHOfkrUS+rC80SpI9RjD0sLXoeRv3IE/uG1Nc6Fe4fmX6ezNcYFP3IQkP79KDgHuPO4Oalp7QMXcJZGLh5tjlhNYVAMZmzRhcDHY3rDZbbKMGM2totg3tFQ== michael@dev.37signals.com"}
-              

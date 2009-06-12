@@ -1,6 +1,6 @@
 include_recipe "ssh_keys"
 
-node[:active_groups].each do |group_name|
+node[:active_groups].each do |group_name, config|
 
   users = node[:users].find_all { |u| u.last[:group] == group_name }
 
