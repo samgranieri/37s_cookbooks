@@ -2,8 +2,8 @@ name "base"
 description "Base role that applies to all servers"
 recipes "hosts", "syslog::client", "dns::client", "nagios::client", "rubygems::client", "timezone", "git", "postfix", "ssh::server", "users", "sudos", "sysadmin"
 
-default_attributes :active_groups => [:admin, :app],
-                   :active_sudo_groups => [:admin, :app]
+default_attributes :active_groups => [:admin],
+                   :active_sudo_groups => [:admin]
 
 override_attributes :sysadmin_email => "sysadmins@37signals.com",
                     :sysadmin_sms_email => "sysadmins@37signals.com",
