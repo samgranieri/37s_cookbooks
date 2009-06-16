@@ -219,9 +219,10 @@ define service {
 
 define service{
         use                     generic-service
-		hostgroup_name			bc_solr
+	hostgroup_name		bc_solr
+	host_name		bc-solr-01, bc-solr-02
         service_description     BC Solr
-		check_command			check_solr!basecamp
+	check_command		check_solr!basecamp
 }
 
 define service{
