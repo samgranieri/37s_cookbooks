@@ -43,8 +43,12 @@ execute "Remove the validation token" do
   only_if { File.exists? "/etc/chef/validation_token" }
 end
 
-runit_service "chef-client"
-
-service "chef-client" do
-  action :enable
+execute "Disable chef-client runit service" do
+  command <<-EOC
+/etc/init.d/chef-client stop
+rm -rf /etc/sv/chef-client
+/usr/sbin/update-rc.d -f chef-client remove
+EOC
+  only_if { File.exists?("/etc/sv/chef-client") }
 end
+
