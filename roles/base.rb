@@ -26,12 +26,10 @@ override_attributes :sysadmin_email => "sysadmins@37signals.com",
                                :site => {:gid => 3001},
                                :support => {:gid => 3002},
                                :admin   => {:gid => 4000}},                               
-                    :roles => {:hypervisor => {:groups => [:admin], :sudo_groups => [:admin]},
+                    :roles => {
                                :web => {:groups => [:admin, :app], :sudo_groups => [:admin, :app]},
                                :site => {:groups => [:admin, :app, :site], :sudo_groups => [:admin]},
-                               :mogilefs => {:groups => [:admin, :app], :sudo_groups => [:admin, :app]},
                                :mysql => {:groups => [:admin, :app], :sudo_groups => [:admin, :app]},
-                               :proxy => {:groups => [:admin, :app], :sudo_groups => [:admin, :app]},
                                :cf_poll => {:groups => [:admin, :app], :sudo_groups => [:admin, :app]}},
                      
                     :users => {:app => {:password => "$1$hk40k332$wpSYJYlbbVo3AK/7thxO3.", :comment => "App User", :uid => 1003, :group => :app, :ssh_key_groups => [:app,:site,:admin]},
