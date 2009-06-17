@@ -85,6 +85,7 @@ users[:jamie]  = {:password => "$1$/cNS7YPq$Ko/qjme0ofsKIf2nZruZv1", :comment =>
 users[:ryan]   = {:password => "$1$F4RLmWHq$SmMk24KYh/M0UPCqEfJ3s1", :comment => "Ryan Singer", :uid => 3019, :group => :site}
 users[:jason]  = {:password => "$1$uZBGnixP$IObtQbltwN/OMqYOvETgo.", :comment => "Jason Fried", :uid => 3020, :group => :site}
 users[:matt]   = {:password => "$1$uZBGnixP$IObtQbltwN/OMqYOvETgo.", :comment => "Matt Linderman", :uid => 3021, :group => :site}
+users[:jz]     = {:password => "$1$uZBGnixP$IObtQbltwN/OMqYOvETgo.", :comment => "Jason Zimdars", :uid => 3022, :group => :site}
 
 users[:sarah]   = {:password => "$1$U0cG83um$O2rd3ewKpBseLoy6OLLfg0", :comment => "Sarah Hatter", :uid => 3022, :group => :support}
 users[:michael] = {:password => "$1$vT.aW0Bk$dZ29mgu32LVuieh6w5z.4.", :comment => "Michael Berger", :uid => 3023, :group => :support}
@@ -105,6 +106,7 @@ ssh_keys[:jeremy]  = "ssh-dss AAAAB3NzaC1kc3MAAAEBAOPInDq5qLyFJ0+I3hxYdD9S6oYQvE
 ssh_keys[:app]     = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvcJRSTTh9LUTF2Z52hwsoL05NxXgjBwTl7ZkrCW/QPvQlw39zfzwz9AYI7YxuLaqhQK2i9JHt9Cop1yTsXFfzKEMHEF5g2mL9MUv2tDVy1+5EudjVx6NlNwY+4A1aS1K/467m0vrUnWzPhUhb9Z299oMNxd4JGCengjJY/MnwfoVndVL9g5XkcGLnC7pS/WmB+tqeeERc78vM3lPcraJmoU6p4RRG7SPrrX/ePPDCV4XPc815fmOArkTXTXXZyAFgeIkss2i5dq9O87CPBhx/nJB6bsGFd/j6leNa7ogJK22gLuN9rxEzZyurBj5QuguJzz4XdvrjHOfRkP+LcnFAQ== app@37s-app-01"
 ssh_keys[:sarah]   = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwMnlTXspEIgOYmdntSgwCjOH0w3RqfoBZ8FRBxTiQIvHZJJonTxukwA6zPuaH9CfAq7swAQUzQrnmFsQ++7TFtC0NQdSldnyO6oRAIpAAUCauG9LaLwhr3LgOSySAJfETxZeesCnLHvSs/rWT0TIPXcqgADuvZcrYepLmTk+FDnHTS09j+070UMjwTuBjbEouFmJcWHI5Uu2Y8Bc5/MgGEwBh5epNBrU9vNAgad9P1Av1CKv1bYY7av92CYEOWainyP3clTC4fdJYFHgCDkbK9aMCtPcXKjsvLmHQt4ukO7EGzWAzNvHmXlORVJg7gTVEFZi0pJ0TqBfzHOulamcFw== sarah@dev.37signals.com"
 ssh_keys[:michael] = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA53phCOgf54FyqE2TwtTSzIRpnMHZ75Dt8xC6luL3nKXlCeb/daD3PMhN/Ymu2XUFe17d579cygUjeYp9G8hBIbLqJndXmuVbap8hYmaScGXYuCnHsvC1PAKwh+i66p8JdqK8hRgs29rsA737R+N3g7V08kcfPZ0PtIvl49TlfAw9z/OkCEch8RKTqUEKBn6RrshADEgg91IUN6cBBFgAzFHUa3W/ihvJHOfkrUS+rC80SpI9RjD0sLXoeRv3IE/uG1Nc6Fe4fmX6ezNcYFP3IQkP79KDgHuPO4Oalp7QMXcJZGLh5tjlhNYVAMZmzRhcDHY3rDZbbKMGM2totg3tFQ== michael@dev.37signals.com"
+ssh_keys[:jasonz]  = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAmNmWYknwlKaGedM+58hKQG1dIjh2xYH9ut9JVyNidlTzfl1szhobGiZ2FwkMJyTKh2W9dmU1dUeZGzTHGiZuLor+MAESAMRjBwRXGeEW9sLQrIAxUdqunps5LEuWJlRJAwoqMOQW/IcybUIo1PwFznmIfuiBrJ5vukbXOTUpdxly4zMqxKdxNxt0sHOlixH1Zw4oJ0r1Qk59qxc2NuAW3JVe4yUUPWanZUNnAqGuOfQ6Bd0bDBy0FPq5LVV8NJuKIOZXHuD6E8KTYhjc4g0SEM/DIFvwzI9FJt01UyL1tpfLbS/Y0eCBc6xjCTFl9hv+nYZ41+Z8x6A8vdi9h9tEFw== jzimdars@jason-zimdarss-macbook-pro.local"
 
 applications[:basecamp] = {
   :completed => true, :thumbnails => true, :logsort => true, :haproxy => true, :memcache => true,
