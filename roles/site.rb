@@ -1,3 +1,3 @@
-name "kvm"
-description "KVM host srever"
-recipes "djbdns::cache", "djbdns::internal_server", "djbdns::autozone"
+name "site"
+description "HTML/PHP Sites"
+recipes "apache2::php5"
