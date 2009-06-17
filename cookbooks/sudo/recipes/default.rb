@@ -9,4 +9,6 @@ template "/etc/sudoers" do
   mode 0440
   owner "root"
   group "root"
-  variables(:sudoers_groups => node[:roles][node[:role]][:sudo_groups])
+  sudogroups = 
+  variables(:sudoers_groups => node[:active_sudo_groups])
+end
