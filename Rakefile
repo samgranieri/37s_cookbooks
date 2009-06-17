@@ -84,6 +84,9 @@ task :install => [ :test, :roles, :metadata ] do
   end
   puts "* Installing new Cookbooks"
   sh "rsync -rlP --delete --exclude '.svn' cookbooks/ #{COOKBOOK_PATH}"
+  puts "* Installing new Node Roles"
+  sh "rsync -rlP --delete --exclude '.svn' roles/ #{ROLE_PATH}"
+  
   #puts "* Installing new Site Cookbooks"
   #sh "rsync -rlP --delete --exclude '.svn' site-cookbooks/ #{SITE_COOKBOOK_PATH}"
   # puts "* Installing new Chef Server Config"
