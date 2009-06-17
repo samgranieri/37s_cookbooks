@@ -1,4 +1,4 @@
 maintainer        "37signals"
 maintainer_email  "sysadmins@37signals.com"
-description       "Configures ssh_keys"
+description       "Configures users and groups"
 version           "0.1"
