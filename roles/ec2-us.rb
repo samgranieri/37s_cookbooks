@@ -1,4 +1,4 @@
-name "ec2"
+name "ec2-us"
 description "Servers in the EC2 environment"
 default_attributes :nameservers => ['10.252.194.239'],
                    :public_domain => "ec2-us.37signals.com",
