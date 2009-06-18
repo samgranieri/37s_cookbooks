@@ -22,18 +22,17 @@ if node[:applications]
       mode 0750
     end
   end
+  logrotate "applications" do
+    restart_command "/etc/init.d/syslog-ng reload 2>&1 || true"
+    files node[:applications].keys.collect{|name| root+"/#{name}/*.log" }
+    frequency "daily"
+  end
 end
 
 directory node[:syslog_ng][:root] + "syslog" do
   owner "root"
   group "app"
   mode 0750
-end
-
-logrotate "applications" do
-  restart_command "/etc/init.d/syslog-ng reload 2>&1 || true"
-  files node[:applications].keys.collect{|name| root+"/#{name}/*.log" }
-  frequency "daily"
 end
 
 logrotate "syslog-remote" do
