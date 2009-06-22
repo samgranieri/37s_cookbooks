@@ -4,7 +4,7 @@ require_recipe "apache2"
 package "apache2-prefork-dev"
 
 gem_package "passenger" do
-  action :upgrade
+  action :install
   version node[:passenger][:version]
 end
 
@@ -18,7 +18,7 @@ template node[:passenger][:apache_load_path] do
   owner "root"
   group "root"
   mode 0755
-  notifies :reload, resources(:service => "apache2")
+  notifies :restart, resources(:service => "apache2")
 end
 
 template node[:passenger][:apache_conf_path] do
@@ -26,7 +26,7 @@ template node[:passenger][:apache_conf_path] do
   owner "root"
   group "root"
   mode 0755
-  notifies :reload, resources(:service => "apache2")
+  notifies :restart, resources(:service => "apache2")
 end
 
 apache_module "passenger"
