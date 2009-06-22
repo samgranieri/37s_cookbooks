@@ -453,22 +453,6 @@ define host {
 
 define host {
   use linux-server
-  address 192.168.2.3
-  host_name web-01
-  alias web-01
-  hostgroups slices, web-general
-}
-
-define host {
-  use linux-server
-  address 192.168.2.4
-  host_name web-02
-  alias web-02
-  hostgroups slices, web-general
-}
-
-define host {
-  use linux-server
   address 192.168.2.12
   host_name hr-solr-01
   alias hr-solr-01
