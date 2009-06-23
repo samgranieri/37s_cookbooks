@@ -60,6 +60,7 @@ filter f_thumbnail_build { match("thumbnail\.build"); };
 filter f_memcache { match("MemCacheStore"); };
 
 <% @applications.each do |app, config| %>
+<% config[:syslog_files] ||= Mash.new %>
 <% if config[:syslog_files][:haproxy] %>
 destination d_<%= app %>_haproxy { file("/u/logs/<%= app %>/haproxy.log", owner(app), group(app), perm(0640)); };
 filter f_<%= app %>_haproxy { program("haproxy") and match("<%= app %>"); };
