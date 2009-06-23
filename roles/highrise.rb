@@ -6,7 +6,8 @@ default_attributes :active_applications =>  {"basecamp" =>  {"env" =>  "producti
                     "/u/nfs/file2/depot"  =>  {"device" => "172.28.1.67:/u/depot",  "owner"  => "app"},
                     "/u/nfs/file3/depot"  =>  {"device" => "172.28.1.70:/u/depot",  "owner"  => "app"},
                     "/u/nfs/netapp/depot" =>  {"device" => "172.28.2.6:/vol/depot", "owner" => "app"}},
-                    :haproxy => true, :gems => ['fast_xs','hpricot'],
+                    :syslog_files => {:haproxy => true},
+                    :gems => ['fast_xs','hpricot'],
                     :packages => ['imagemagick', 'zip'],
                     :symlinks => {
                       '/usr/local/bin/convert' => '/usr/bin/convert',
