@@ -1,7 +1,12 @@
-require_recipe "base::appserver"
-
 if node[:role] == "app"
   require_recipe "passenger"
+end
+
+directory "/u/apps" do
+  owner "app"
+  group "app"
+  mode 0755
+  recursive true
 end
 
 directory "/u/logs" do
@@ -22,7 +27,7 @@ if node[:active_applications]
 
   # TODO: install the passenger app monitor which will kill any bloating processes
   # passenger_monitor "All apps" 
-  
+
   node[:active_applications].each do |app, conf|
     full_name = "#{app}_#{conf[:env]}"
     filename = node[:role] == "web" ? "#{conf[:env]}_web.conf" : "#{conf[:env]}.conf"
@@ -32,6 +37,32 @@ if node[:active_applications]
       modules.each do |mod|
         require_recipe "apache2::mod_#{mod}"
         apache_module mod
+      end      
+    end
+
+    if node[:applications][app][:gems]
+      node[:applications][app][:gems].each do |g|
+        if g.is_a? Array
+          gem_package g.first do
+            version g.last
+          end
+        else
+          gem_package g
+        end
+      end
+    end
+    
+    if node[:applications][app][:packages]
+      node[:applications][app][:packages].each do |package_name|
+        package package_name
+      end      
+    end
+    
+    if node[:applications][app][:symlinks]
+      node[:applications][app][:symlinks].each do |target, source|
+        link target do
+          to source
+        end
       end      
     end
     

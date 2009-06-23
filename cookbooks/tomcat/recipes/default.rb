@@ -1,4 +1,3 @@
-
 require_recipe "java"
 
 return unless ["ubuntu", "debian"].include?(node[:platform])

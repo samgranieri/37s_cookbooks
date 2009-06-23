@@ -3,7 +3,7 @@ PassengerMaxPoolSize 20
 
 # This virtual host is for chef-client use. It only authenticates by IP address (chef-server uses openid)
 <VirtualHost *:443>
-  ServerAdmin   <%= @node[:base][:sysadmin_email] %>
+  ServerAdmin   <%= @node[:sysadmin_email] %>
   ServerName    chef.<%= @node[:domain] %>
   ServerAlias   chef
   DocumentRoot  <%= @node[:chef][:server_path]%>/public
@@ -17,6 +17,12 @@ PassengerMaxPoolSize 20
   SSLCertificateFile     /var/chef/certificates/chef.<%= @node[:domain] %>.crt
   SSLCertificateKeyFile  /var/chef/certificates/chef.<%= @node[:domain] %>.key
 
+  Alias /facebox <%= @params[:gems_path] %>/gems/chef-server-slice-<%= @params[:version] %>/public/facebox
+  Alias /images <%= @params[:gems_path] %>/gems/chef-server-slice-<%= @params[:version] %>/public/images
+  Alias /javascripts <%= @params[:gems_path] %>/gems/chef-server-slice-<%= @params[:version] %>/public/javascripts
+  Alias /stylesheets <%= @params[:gems_path] %>/gems/chef-server-slice-<%= @params[:version] %>/public/stylesheets
+  Alias /web-app-theme <%= @params[:gems_path] %>/gems/chef-server-slice-<%= @params[:version] %>/public/web-app-theme
+
   # Asset Rewrites
   RewriteEngine On
   RewriteRule ^/(facebox/.*)$     /slices/chef-server-slice/$1
@@ -27,12 +33,18 @@ PassengerMaxPoolSize 20
 
 # This virtual host is for chef adminstrator use. It authenticates with username/password and a yubikey
 <VirtualHost *:444>
-  ServerAdmin   <%= @node[:base][:sysadmin_email] %>
+  ServerAdmin   <%= @node[:sysadmin_email] %>
   ServerName    chefadmin.<%= @node[:domain] %>
   ServerAlias   chefadmin
   DocumentRoot  <%= @node[:chef][:server_path]%>/public
   ErrorLog      /var/log/chef/apache_error.log
   SSLEngine     On
+
+  Alias /facebox <%= @params[:gems_path] %>/gems/chef-server-slice-<%= @params[:version] %>/public/facebox
+  Alias /images <%= @params[:gems_path] %>/gems/chef-server-slice-<%= @params[:version] %>/public/images
+  Alias /javascripts <%= @params[:gems_path] %>/gems/chef-server-slice-<%= @params[:version] %>/public/javascripts
+  Alias /stylesheets <%= @params[:gems_path] %>/gems/chef-server-slice-<%= @params[:version] %>/public/stylesheets
+  Alias /web-app-theme <%= @params[:gems_path] %>/gems/chef-server-slice-<%= @params[:version] %>/public/web-app-theme
 
   # Enforce a decent level of encryption
   SSLProtocol -ALL +SSLv3 +TLSv1

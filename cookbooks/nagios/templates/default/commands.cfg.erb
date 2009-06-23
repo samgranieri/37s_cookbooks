@@ -257,7 +257,7 @@ define command {
 
 define command{
   command_name  host-notify-by-campfire
-  command_line  /usr/local/nagios/bin/campfire -r "<%= @node[:base][:monitoring_campfire_room] %>" -S -l <%= @node[:base][:campfire_email] %> -p <%= @node[:base][:campfire_password] %> -m "$HOSTALIAS$ (ssh://$HOSTNAME$) $HOSTSTATE$ $NOTIFICATIONTYPE$ $HOSTSTATE$ $HOSTOUTPUT$"
+  command_line  /usr/local/nagios/bin/campfire -r "<%= @node[:monitoring_campfire_room] %>" -S -l <%= @node[:campfire_email] %> -p <%= @node[:campfire_password] %> -m "$HOSTALIAS$ (ssh://$HOSTNAME$) $HOSTSTATE$ $NOTIFICATIONTYPE$ $HOSTSTATE$ $HOSTOUTPUT$"
 
 }
 
@@ -274,7 +274,7 @@ define command{
 
 define command{
   command_name  host-notify-by-sms-gateway
-  command_line  /usr/local/nagios/bin/clickatell -n $CONTACTPAGER$ -u <%= @node[:base][:clickatell_username] %> -p <%= @node[:base][:clickatell_password] %> -a <%= @node[:base][:clickatell_api_id] %> -m "$HOSTALIAS$ $HOSTSTATE$ $NOTIFICATIONTYPE$ $HOSTOUTPUT$" 
+  command_line  /usr/local/nagios/bin/clickatell -n $CONTACTPAGER$ -u <%= @node[:clickatell_username] %> -p <%= @node[:clickatell_password] %> -a <%= @node[:clickatell_api_id] %> -m "$HOSTALIAS$ $HOSTSTATE$ $NOTIFICATIONTYPE$ $HOSTOUTPUT$" 
 
 }
 
@@ -287,13 +287,13 @@ define command{
 
 define command {
   command_name  service-notify-by-campfire
-  command_line  /usr/local/nagios/bin/campfire -s 37s -r "<%= @node[:base][:monitoring_campfire_room] %>" -S -l <%= @node[:base][:campfire_email] %> -p <%= @node[:base][:campfire_password] %> -m "$SERVICEDESC$ $SERVICESTATE$ $HOSTALIAS$ (ssh://$HOSTNAME$) $NOTIFICATIONTYPE$ $SERVICEOUTPUT$"
+  command_line  /usr/local/nagios/bin/campfire -s 37s -r "<%= @node[:monitoring_campfire_room] %>" -S -l <%= @node[:campfire_email] %> -p <%= @node[:campfire_password] %> -m "$SERVICEDESC$ $SERVICESTATE$ $HOSTALIAS$ (ssh://$HOSTNAME$) $NOTIFICATIONTYPE$ $SERVICEOUTPUT$"
 
 }
 
 define command {
   command_name  service-notify-by-sms-gateway
-  command_line  /usr/local/nagios/bin/clickatell -n $CONTACTPAGER$ -u <%= @node[:base][:clickatell_username] %> -p <%= @node[:base][:clickatell_password] %> -a <%= @node[:base][:clickatell_api_id] %> -m "$SERVICEDESC$ $SERVICESTATE$ $HOSTNAME$ $NOTIFICATIONTYPE$ $SERVICEOUTPUT$" 
+  command_line  /usr/local/nagios/bin/clickatell -n $CONTACTPAGER$ -u <%= @node[:clickatell_username] %> -p <%= @node[:clickatell_password] %> -a <%= @node[:clickatell_api_id] %> -m "$SERVICEDESC$ $SERVICESTATE$ $HOSTNAME$ $NOTIFICATIONTYPE$ $SERVICEOUTPUT$" 
 
 }
 

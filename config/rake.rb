@@ -36,6 +36,8 @@ COOKBOOK_PATH = "/var/chef/cookbooks"
 # Where to find site-local modifications to upstream cookbooks
 SITE_COOKBOOK_PATH = "/var/chef/site-cookbooks"
 
+ROLE_PATH = "/var/chef/roles"
+
 # Chef Config Path
 CHEF_CONFIG_PATH = "/etc/chef"
 
@@ -54,3 +56,4 @@ TOPDIR = File.expand_path(File.join(File.dirname(__FILE__), ".."))
 
 # Where to store certificates generated with ssl_cert
 CADIR = File.expand_path(File.join(CHEF_BASEPATH, "certificates"))
+

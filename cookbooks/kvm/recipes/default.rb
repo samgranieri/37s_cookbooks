@@ -1,12 +1,3 @@
-#
-# Cookbook Name:: kvm
-# Recipe:: default
-#
-# Copyright 2009, 37signals
-#
-# All rights reserved - Do Not Redistribute
-#
-
 # custom vmbuilder debs
 %W(kvm debootstrap kpartx python-cheetah devscripts python-libvirt).each { |pkg| package pkg }
 %W(python-vm-builder_0.9-0ubuntu6_all.deb

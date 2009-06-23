@@ -17,7 +17,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
+require 'chef'
+require 'chef/role'
 require File.join(File.dirname(__FILE__), 'config', 'rake')
 
 require 'tempfile'
@@ -70,7 +71,7 @@ task :test do
 end
 
 desc "Install the latest copy of the repository on this Chef Server"
-task :install => [ :test ] do
+task :install => [ :test, :roles, :metadata ] do
   puts "** Installing your cookbooks"  
   directories = [ 
     COOKBOOK_PATH,
@@ -83,6 +84,9 @@ task :install => [ :test ] do
   end
   puts "* Installing new Cookbooks"
   sh "rsync -rlP --delete --exclude '.svn' cookbooks/ #{COOKBOOK_PATH}"
+  puts "* Installing new Node Roles"
+  sh "rsync -rlP --delete --exclude '.svn' roles/ #{ROLE_PATH}"
+  
   #puts "* Installing new Site Cookbooks"
   #sh "rsync -rlP --delete --exclude '.svn' site-cookbooks/ #{SITE_COOKBOOK_PATH}"
   # puts "* Installing new Chef Server Config"
@@ -178,3 +182,99 @@ EOH
   sh("(cd #{CADIR} && cat #{fqdn}.crt #{fqdn}.key > #{fqdn}.pem)")
   sh("(cd #{CADIR} && chmod 644 #{fqdn}.pem)")
 end
+
+desc "Create metadata.rb for each cookbook"
+task :cookbook_metadata do 
+  Chef::Config[:cookbook_path] = [ File.join(File.dirname(__FILE__), "cookbooks") ]
+  cl = Chef::CookbookLoader.new
+  cl.each do |cookbook|
+    if ENV['COOKBOOK']
+      next unless cookbook.name.to_s == ENV['COOKBOOK']
+    end
+ 
+    Chef::Config.cookbook_path.each do |cdir|
+      metadata_rb_file = File.open(File.join(cdir, cookbook.name.to_s, 'metadata.rb'), "w")
+      puts "* Creating the metadata.rb for #{cookbook.name}"
+ 
+      # If the cookbook has a README.rdoc, then it should be the long_description
+      if File.exists?(File.join(cdir, cookbook.name.to_s, 'README.rdoc'))
+        long_description = "IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))"
+        puts "** #{cookbook.name} has README.rdoc"
+      else
+        long_description = %w{"Configures #{cookbook.name}"}
+      end
+      metadata = <<-EOH
+maintainer        "37signals"
+maintainer_email  "sysadmins@37signals.com"
+description       "Configures #{cookbook.name}"
+long_description  #{long_description}
+version           "0.1"
+EOH
+      # Load up the recipes
+      if cookbook.recipe_files.nitems > 1
+        cookbook.recipe_files.each do |rfile|
+          unless rfile =~ /default/
+            recipe_name = "#{cookbook.name}::#{File.basename(rfile, ".rb")}"
+            metadata << "recipe            \"#{recipe_name}\"\n" 
+            puts "** #{cookbook.name} has recipe, #{recipe_name}"
+          end
+        end
+      end
+ 
+      # Load up attributes
+      if cookbook.attribute_files.nitems > 0
+        cookbook.attribute_files.each do |afile|
+          attribute_name = File.basename(afile, ".rb")
+          metadata << %Q{
+attribute         "#{attribute_name}",
+  :display_name => "",
+  :description => "",
+  :recipes => [ "#{cookbook.name}" ],
+  :default => ""
+}
+          puts "** #{cookbook.name} has attributes, #{attribute_name}"
+        end
+      end
+ 
+      metadata_rb_file.puts metadata
+    end
+  end
+end
+
+desc "Build cookbook metadata.json from metadata.rb"
+task :metadata do
+  Chef::Config[:cookbook_path] = [ File.join(TOPDIR, 'cookbooks'), File.join(TOPDIR, 'site-cookbooks') ]
+  cl = Chef::CookbookLoader.new
+  cl.each do |cookbook|
+    if ENV['COOKBOOK']
+      next unless cookbook.name.to_s == ENV['COOKBOOK']
+    end
+    cook_meta = Chef::Cookbook::Metadata.new(cookbook)
+    Chef::Config.cookbook_path.each do |cdir|
+      metadata_rb_file = File.join(cdir, cookbook.name.to_s, 'metadata.rb')
+      metadata_json_file = File.join(cdir, cookbook.name.to_s, 'metadata.json')
+      if File.exists?(metadata_rb_file)
+        puts "Generating metadata for #{cookbook.name}"
+        cook_meta.from_file(metadata_rb_file)
+        File.open(metadata_json_file, "w") do |f| 
+          f.write(JSON.pretty_generate(cook_meta))
+        end
+      end
+    end
+  end
+end
+
+desc "Build roles from roles/role_name.json from role_name.rb"
+task :roles do
+  Chef::Config[:role_path] = File.join(TOPDIR, 'roles')
+  Dir[File.join(TOPDIR, 'roles', '**', '*.rb')].each do |role_file|
+    short_name = File.basename(role_file, '.rb')
+    puts "Generating role JSON for #{short_name}"
+    File.delete("#{short_name}.json") if File.exists?("#{short_name}.json") # required until CHEF-386 is fixed
+    role = Chef::Role.from_disk(short_name, "ruby")
+    File.open(File.join(TOPDIR, 'roles', "#{short_name}.json"), "w") do |f|
+      f.write(JSON.pretty_generate(role))
+    end
+  end
+end
+
