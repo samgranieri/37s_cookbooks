@@ -1,0 +1,11 @@
+{
+ "active_applications": {"basecamp": {"env": "staging"}},
+ "mysql": {
+   "server": {
+     "binlogs_enabled": true,
+     "binlog_dir": "/u/mysql/binlogs/basecamp/basecamp",
+     "innodb_log_dir": "/u/mysql/binlogs/basecamp",
+     "innodb_buffer_pool_size": "1G"
+   }
+ }
+}
