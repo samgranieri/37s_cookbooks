@@ -60,7 +60,7 @@ filter f_thumbnail_build { match("thumbnail\.build"); };
 filter f_memcache { match("MemCacheStore"); };
 
 <% @applications.each do |app, config| %>
-<% if config[:haproxy] %>
+<% if config[:syslog_files][:haproxy] %>
 destination d_<%= app %>_haproxy { file("/u/logs/<%= app %>/haproxy.log", owner(app), group(app), perm(0640)); };
 filter f_<%= app %>_haproxy { program("haproxy") and match("<%= app %>"); };
 log { source(s_remote); filter(f_local1); filter(f_haproxy); filter(f_<%= app %>_haproxy); destination(d_<%= app %>_haproxy); flags(final); };
@@ -68,22 +68,22 @@ log { source(s_remote); filter(f_local1); filter(f_haproxy); filter(f_<%= app %>
 
 filter f_<%= app %> { program("<%= app %>"); };
 
-<% if config[:completed] %>
+<% if config[:syslog_files][:completed] %>
 destination <%= app %>_completed { file("/u/logs/<%= app %>/completed.log", owner(app), group(app), perm(0640)); };
 log { source(s_remote); filter(f_<%= app %>); filter(f_completed_in); destination(<%= app %>_completed); };
 <% end %>
 
-<% if config[:thumbnails] %>
+<% if config[:syslog_files][:thumbnails] %>
 destination <%= app %>_thumbnails { file("/u/logs/<%= app %>/thumbnails.log", owner(app), group(app), perm(0640)); };
 log { source(s_remote); filter(f_<%= app %>); filter(f_thumbnail_build); destination(<%= app %>_thumbnails); };
 <% end %>
 
-<% if config[:memcache] %>
+<% if config[:syslog_files][:memcache] %>
 destination <%= app %>_memcache { file("/u/logs/<%= app %>/memcache.log", owner(app), group(app), perm(0640)); };
 log { source(s_remote); filter(f_<%= app %>); filter(f_memcache); destination(<%= app %>_memcache); };
 <% end %>
 
-<% if config[:logsort] %>
+<% if config[:syslog_files][:logsort] %>
 destination <%= app %>_logsort { program("/usr/local/bin/logsort", log_fifo_size(30000)); };
 log { source(s_remote); filter(f_<%= app %>); destination(<%= app %>_logsort); flags(final); };	
 <% else %>
