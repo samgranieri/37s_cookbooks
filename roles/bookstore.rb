@@ -1,3 +1,7 @@
 name "bookstore"
 description "Bookstore"
-default_attributes :gems => ['fast_xs']
+default_attributes :applications => {
+                     :bookstore => {
+                      :gems => ['fast_xs'] 
+                     }
+                   }
