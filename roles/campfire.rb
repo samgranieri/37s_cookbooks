@@ -1,4 +1,4 @@
-name "cf-app"
+name "campfire"
 description "Campfire production"
 default_attributes :active_applications =>  {"campfire" =>  {"env" =>  "production"}},
                    :applications => {
