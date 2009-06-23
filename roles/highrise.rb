@@ -1,5 +1,5 @@
-name "bc-app"
-description "Basecamp production"
+name "highrise"
+description "Highrise production"
 default_attributes :active_applications =>  {"basecamp" =>  {"env" =>  "production"}},
                    :nfs_mounts => {
                     "/u/nfs/file1/depot"  =>  {"device" => "172.28.1.66:/u/depot",  "owner"  => "app"},
