@@ -17,11 +17,11 @@ PassengerMaxPoolSize 20
   SSLCertificateFile     /var/chef/certificates/chef.<%= @node[:domain] %>.crt
   SSLCertificateKeyFile  /var/chef/certificates/chef.<%= @node[:domain] %>.key
 
-  Alias /facebox <%= @params[:gems_path] %>/gems/chef-server-slice-<%= @params[:version] %>/public/facebox
-  Alias /images <%= @params[:gems_path] %>/gems/chef-server-slice-<%= @params[:version] %>/public/images
-  Alias /javascripts <%= @params[:gems_path] %>/gems/chef-server-slice-<%= @params[:version] %>/public/javascripts
-  Alias /stylesheets <%= @params[:gems_path] %>/gems/chef-server-slice-<%= @params[:version] %>/public/stylesheets
-  Alias /web-app-theme <%= @params[:gems_path] %>/gems/chef-server-slice-<%= @params[:version] %>/public/web-app-theme
+  Alias /facebox <%= @node[:chef][:server_slice_path] %>/public/facebox
+  Alias /images <%= @node[:chef][:server_slice_path] %>/public/images
+  Alias /javascripts <%= @node[:chef][:server_slice_path] %>/public/javascripts
+  Alias /stylesheets <%= @node[:chef][:server_slice_path] %>/public/stylesheets
+  Alias /web-app-theme <%= @node[:chef][:server_slice_path] %>/public/web-app-theme
 
   # Asset Rewrites
   RewriteEngine On
@@ -40,11 +40,11 @@ PassengerMaxPoolSize 20
   ErrorLog      /var/log/chef/apache_error.log
   SSLEngine     On
 
-  Alias /facebox <%= @params[:gems_path] %>/gems/chef-server-slice-<%= @params[:version] %>/public/facebox
-  Alias /images <%= @params[:gems_path] %>/gems/chef-server-slice-<%= @params[:version] %>/public/images
-  Alias /javascripts <%= @params[:gems_path] %>/gems/chef-server-slice-<%= @params[:version] %>/public/javascripts
-  Alias /stylesheets <%= @params[:gems_path] %>/gems/chef-server-slice-<%= @params[:version] %>/public/stylesheets
-  Alias /web-app-theme <%= @params[:gems_path] %>/gems/chef-server-slice-<%= @params[:version] %>/public/web-app-theme
+  Alias /facebox <%= @node[:chef][:server_slice_path] %>/public/facebox
+  Alias /images <%= @node[:chef][:server_slice_path] %>/public/images
+  Alias /javascripts <%= @node[:chef][:server_slice_path] %>/public/javascripts
+  Alias /stylesheets <%= @node[:chef][:server_slice_path] %>/public/stylesheets
+  Alias /web-app-theme <%= @node[:chef][:server_slice_path] %>/public/web-app-theme
 
   # Enforce a decent level of encryption
   SSLProtocol -ALL +SSLv3 +TLSv1
