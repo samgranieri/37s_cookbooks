@@ -1,0 +1,27 @@
+{ 
+  "run_list": ["role[rack-dfw]", "role[base]", "role[proxy]", "role[mogilefs]", "role[perlbal]"],
+  "mogilefs": {
+    "trackers": [ "mogile-staging:6001" ],
+    "mogilefsd": { "db_dsn": "DBI:mysql:mogilefs:host=127.0.0.1", "mog_root": "/var/mogdata" }
+  },
+
+  "perlbal": {
+    "pools": [
+      {
+        "name": "basecamp_pool",
+        "backends": [{"ip": "192.168.2.46", "port": "11000"}]
+      }
+    ],
+    "proxies": [
+      {
+        "name": "basecamp_proxy",
+        "role": "reverse_proxy",
+        "pool": "basecamp_pool",
+        "reproxy": "yes",
+        "ip": "0.0.0.0",
+        "port": "11000",
+        "always_trusted": "yes"
+      }
+    ]
+  }
+}
