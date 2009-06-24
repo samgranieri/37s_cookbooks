@@ -7,7 +7,6 @@ bash "install ruby shadow library" do
   user "root"
   cwd "/usr/local/src"
   code <<-EOH
-  tar -zxf shadow-1.4.1.tar.gz
   cd shadow-1.4.1
   ruby extconf.rb
   make install
