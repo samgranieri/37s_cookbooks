@@ -43,7 +43,7 @@ execute "Remove the validation token" do
   only_if { File.exists? "/etc/chef/validation_token" }
 end
 
-if node[:chef][:client][:enable]
+if node[:chef][:client_enable]
   runit_service "chef-client"
 
   service "chef-client" do
