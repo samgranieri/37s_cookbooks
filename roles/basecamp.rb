@@ -10,8 +10,7 @@ default_attributes  :active_applications =>  {"basecamp" =>  {"env" => "producti
                         '/usr/local/bin/convert' => '/usr/bin/convert',
                         '/usr/local/bin/identify' => '/usr/bin/identify',
                         '/usr/local/bin/composite' => '/usr/bin/composite',
-                        '/usr/local/bin/elinks' => '/usr/bin/elinks',
-                        '/u/depot' => '/u/nfs/file1/depot'},
+                        '/usr/local/bin/elinks' => '/usr/bin/elinks'},
                         :apache_modules => ["auth_token", "xsendfile", "rewrite"],
                       }
                     },
