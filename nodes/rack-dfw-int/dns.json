@@ -1,0 +1,6 @@
+{
+"run_list": ["role[rack-dfw]", "role[base]", "role[dns]"],
+"chef_server_ip": "192.168.1.157",
+ "gem_mirror_ip": "192.168.1.157",
+ "apt_mirror_ip": "192.168.1.157",
+ "dist_ip": "192.168.1.157"}
