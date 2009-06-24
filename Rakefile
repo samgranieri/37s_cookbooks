@@ -270,8 +270,9 @@ task :roles do
   Dir[File.join(TOPDIR, 'roles', '**', '*.rb')].each do |role_file|
     short_name = File.basename(role_file, '.rb')
     puts "Generating role JSON for #{short_name}"
-    File.delete("#{short_name}.json") if File.exists?("#{short_name}.json") # required until CHEF-386 is fixed
-    role = Chef::Role.from_disk(short_name, "ruby")
+    role = Chef::Role.new
+    role.name(short_name)
+    role.from_file(role_file)
     File.open(File.join(TOPDIR, 'roles', "#{short_name}.json"), "w") do |f|
       f.write(JSON.pretty_generate(role))
     end
