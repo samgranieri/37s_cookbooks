@@ -7,4 +7,6 @@ default_attributes :mogilefs => {
                        :listener_jobs => "10",
                        :delete_jobs => "2"
                      }
-                   }
+                   },
+                   :active_groups => {:app => {:enabled => true}},
+                   :active_sudo_groups => {:app => {:enabled => true}}
