@@ -3,7 +3,9 @@ node[:active_groups].each do |group_name, config|
   users = node[:users].find_all { |u| u.last[:group] == group_name }
 
   group group_name.to_s do
-    gid node[:groups][group_name][:gid]
+    Chef::Log.info "Adding group #{group_name}: #{node[:groups]}"
+    group = node[:groups][group_name]
+    gid group[:gid]
     # TODO: add users to groups under their role
     #members node[:groups]
   end
