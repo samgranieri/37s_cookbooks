@@ -42,3 +42,11 @@ execute "Remove the validation token" do
   command "rm /etc/chef/validation_token"
   only_if { File.exists? "/etc/chef/validation_token" }
 end
+
+if node[:chef][:client][:enable]
+  runit_service "chef-client"
+
+  service "chef-client" do
+    action :enable
+  end
+end
