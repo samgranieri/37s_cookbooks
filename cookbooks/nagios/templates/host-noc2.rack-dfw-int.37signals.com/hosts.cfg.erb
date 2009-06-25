@@ -201,26 +201,6 @@ define host {
 
 define host {
   use linux-server
-  address 192.168.2.20
-  host_name bc-app-03
-  alias bc-app-03
-  
-  hostgroups slices, bc-app
-  
-}
-
-define host {
-  use linux-server
-  address 192.168.2.21
-  host_name bc-app-04
-  alias bc-app-04
-  
-  hostgroups slices, bc-app
-  
-}
-
-define host {
-  use linux-server
   address 192.168.2.22
   host_name bc-solr-01
   alias bc-solr-01
@@ -273,37 +253,6 @@ define host {
   alias live-02
   
   hostgroups slices, live-app
-  
-}
-
-
-define host {
-  use linux-server
-  address 192.168.2.36
-  host_name bc-app-05
-  alias bc-app-05
-  
-  hostgroups slices, bc-app
-  
-}
-
-define host {
-  use linux-server
-  address 192.168.2.37
-  host_name bc-app-06
-  alias bc-app-06
-  
-  hostgroups slices, bc-app
-  
-}
-
-define host {
-  use linux-server
-  address 192.168.2.38
-  host_name bc-app-07
-  alias bc-app-07
-  
-  hostgroups slices, bc-app
   
 }
 
