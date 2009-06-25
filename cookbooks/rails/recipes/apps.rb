@@ -1,6 +1,4 @@
-if node[:role] == "app"
-  require_recipe "passenger"
-end
+require_recipe "passenger"
 
 directory "/u/apps" do
   owner "app"
