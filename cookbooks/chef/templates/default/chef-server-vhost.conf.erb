@@ -1,9 +1,6 @@
 PassengerDefaultUser chef
 PassengerMaxPoolSize 20
 
-Listen 443
-NameVirtualHost *:443
-
 <VirtualHost *:443>
   ServerAdmin   <%= @node[:sysadmin_email] %>
   ServerName    chef.<%= @node[:domain] %>
