@@ -61,6 +61,7 @@ LogLevel warn
 
 Include <%= @node[:apache][:dir] %>/mods-enabled/*.load
 Include <%= @node[:apache][:dir] %>/mods-enabled/*.conf
+Include <%= @node[:apache][:dir] %>/ports.conf
 Include <%= @node[:apache][:dir] %>/conf.d/*.conf
 
 LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" \"%{Host}i\"" combined
