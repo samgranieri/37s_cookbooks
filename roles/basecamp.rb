@@ -14,4 +14,4 @@ default_attributes  :active_applications =>  {"basecamp" =>  {"env" => "producti
                         :apache_modules => ["auth_token", "xsendfile", "rewrite"],
                       }
                     },
-                    :apache => {:listen_ports => []}
+                    :apache => {:listen_ports => [80]}
