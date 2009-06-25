@@ -28,7 +28,7 @@ if node[:active_applications]
 
   node[:active_applications].each do |app, conf|
     full_name = "#{app}_#{conf[:env]}"
-    filename = node[:role] == "web" ? "#{conf[:env]}_web.conf" : "#{conf[:env]}.conf"
+    filename = node.roles.include?("web") ? "#{conf[:env]}_web.conf" : "#{conf[:env]}.conf"
     path = "/u/apps/#{app}/current/config/apache/#{filename}"
     
     if modules = node[:applications][app][:apache_modules]
@@ -71,7 +71,7 @@ if node[:active_applications]
 
     logrotate full_name do
       files "/u/apps/#{app}/current/log/*.log"
-      frequency node[:role] == "web" ? "daily" : "weekly"
+      frequency node.roles.include?("web") ? "daily" : "weekly"
       restart_command "/etc/init.d/apache2 reload > /dev/null"
     end
   end
