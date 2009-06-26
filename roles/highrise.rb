@@ -1,5 +1,6 @@
 name "highrise"
 description "Highrise production"
+recipes "nfs::client"
 default_attributes  :active_applications =>  {"highrise" =>  {"env" =>  "production"}},
                     :applications => {
                       :highrise => {
