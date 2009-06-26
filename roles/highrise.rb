@@ -1,6 +1,6 @@
 name "highrise"
 description "Highrise production"
-default_attributes  :active_applications =>  {"basecamp" =>  {"env" =>  "production"}},
+default_attributes  :active_applications =>  {"highrise" =>  {"env" =>  "production"}},
                     :applications => {
                       :highrise => {
                         :nfs_mounts => {
