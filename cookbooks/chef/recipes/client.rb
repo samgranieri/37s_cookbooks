@@ -15,7 +15,7 @@ end
 gem_package "chef" do
   action :install
   version node[:chef][:client_version]
-  source "http://gems.opscode.com"
+  source "http://localgems"
 end
 
 template "/etc/chef/client.rb" do
