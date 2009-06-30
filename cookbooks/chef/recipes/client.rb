@@ -7,13 +7,13 @@ gem_package "ohai" do
 end
 
 gem_package "ohai" do
-  action :install
+  action :upgrade
   version "0.3.0"
   source "http://gems.opscode.com"
 end
 
 gem_package "chef" do
-  action :install
+  action :upgrade
   version node[:chef][:client_version]
   source "http://localgems"
 end
