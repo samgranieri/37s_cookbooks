@@ -1,0 +1,3 @@
+{ 
+"run_list": ["role[rack-dfw]", "role[base]", "role[basecamp]", "role[app]"]
+}

@@ -12,6 +12,7 @@ default_attributes  :active_applications =>  {"basecamp" =>  {"env" => "producti
                         '/usr/local/bin/composite' => '/usr/bin/composite',
                         '/usr/local/bin/elinks' => '/usr/bin/elinks'},
                         :apache_modules => ["auth_token", "xsendfile", "rewrite"],
+                        :disable_apache_modules => ["deflate"]
                       }
                     },
                     :apache => {:listen_ports => [80]}
