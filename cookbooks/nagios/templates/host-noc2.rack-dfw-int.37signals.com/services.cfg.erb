@@ -398,19 +398,19 @@ define service {
 #}
 
 
-define service {
-		use frequent-service-with-sms
-		host_name localhost
-		service_description	BC Haproxy FD errors
-		check_command			check_local_log!/u/logs/basecamp/haproxy.log!ulimit
-}
+#define service {
+#    use frequent-service-with-sms
+#    host_name localhost
+#   service_description BC Haproxy FD errors
+#    check_command     check_local_log!/u/logs/basecamp/haproxy.log!ulimit
+#}
 
-define service {
-		use frequent-service-with-sms
-		host_name localhost
-		service_description	CF HAProxy FD errors
-		check_command			check_local_log!/u/logs/campfire/haproxy.log!ulimit
-}
+#define service {
+#    use frequent-service-with-sms
+#    host_name localhost
+#    service_description CF HAProxy FD errors
+#    check_command     check_local_log!/u/logs/campfire/haproxy.log!ulimit
+#}
 
 define service {
 		use generic-service
