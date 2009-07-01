@@ -54,6 +54,11 @@ filter f_local7    { facility(local7); };
 # filter HAProxy logs
 filter f_haproxy { program("haproxy"); };
 
+# filter passenger monitor logs
+filter f_passenger { program("passenger"); };
+destination passenger_monitor { file("/u/logs/passenger_monitor.log", owner(app), group(app), perm(0640)); };
+log { source(s_remote); filter(f_passenger); destination(passenger_monitor); flags(final); };
+
 # filter Rails apps
 filter f_completed_in { match("Completed in"); };
 filter f_thumbnail_build { match("thumbnail\.build"); };
@@ -92,6 +97,7 @@ destination <%= app %> { file("/u/logs/<%= app %>/rails.log", owner(app), group(
 log { source(s_remote); filter(f_<%= app %>); destination(<%= app %>); flags(final); };
 <% end %>
 <% end %>
+
 
 # Standard system logging
 log { source(s_sys); filter(f_filter2); destination(d_mesg); };
