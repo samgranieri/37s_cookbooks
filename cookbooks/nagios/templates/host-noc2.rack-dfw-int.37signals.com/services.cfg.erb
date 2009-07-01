@@ -292,21 +292,21 @@ define service {
 #}
 
 define service {
-		use frequent-service
+		use frequent-service-with-sms
 		hostgroup_name hr-web
 		service_description	HR HTTP content
 		check_command			check_http_content!37s.highrisehq.com!/login!/session
 }
 
 define service {
-		use frequent-service
+		use frequent-service-with-sms
 		host_name bpmu-app-01, bpmu-app-02, bpmu-app-03, bpmu-app-05
 		service_description	BP HTTP content
 		check_command			check_http_content!37s.backpackit.com!/login!/session
 }
 
 define service {
-		use frequent-service
+		use frequent-service-with-sms
 		hostgroup_name bc-web
 		host_name bc-app-09,bc-app-10,bc-app-11,bc-app-12,bc-app-13,bc-app-14,bc-app-15,bc-app-16,bc-app-01,bc-app-02
 		service_description	BC HTTP content
@@ -314,7 +314,7 @@ define service {
 }
 
 define service {
-		use frequent-service
+		use frequent-service-with-sms
 		hostgroup_name cf-app
 		service_description	CF HTTP content
 		check_command			check_http_content!37s.campfirenow.com!/login!/login
@@ -335,28 +335,28 @@ define service {
 }
 
 define service {
-		use frequent-service
+		use frequent-service-with-sms
 		hostgroup_name web-general
 		service_description	Tadalist HTTP content
 		check_command			check_http_content!tadalist.com!/!Ta-da
 }
 
 define service {
-		use frequent-service
+		use frequent-service-with-sms
 		hostgroup_name web-general
 		service_description	Backpackit HTTP content
 		check_command			check_http_content!backpackit.com!/!Backpack
 }
 
 define service {
-		use frequent-service
+		use frequent-service-with-sms
 		hostgroup_name web-general
 		service_description	Writeboard HTTP content
 		check_command			check_http_content!writeboard!/!Writeboard
 }
 
 define service {
-		use frequent-service
+		use frequent-service-with-sms
 		hostgroup_name web-general
 		service_description	Extra Extra JS HTTP content
 		check_command			check_http_content!news.37signals.com!/feeds/highrise.js!document.write
