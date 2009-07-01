@@ -286,7 +286,7 @@ define service {
 
 define service {
   use                 frequent-service-with-sms
-  host_name	    lbal-01
+  host_name	    lbal-01, lbal-02
   service_description Perlbal proxy
   process_perf_data 0
   check_command       check_tcp!11000
