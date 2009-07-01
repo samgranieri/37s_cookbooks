@@ -13,6 +13,8 @@ execute "passenger_module" do
   creates node[:passenger][:module_path]
 end
 
+gem_package "SyslogLogger"
+
 template node[:passenger][:apache_load_path] do
   source "passenger.load.erb"
   owner "root"
@@ -27,6 +29,15 @@ template node[:passenger][:apache_conf_path] do
   group "root"
   mode 0755
   notifies :restart, resources(:service => "apache2")
+end
+
+remote_file "/usr/local/bin/passenger_monitor" do
+  source "passenger_monitor"
+  mode 0755
+end
+
+cron "passenger memory monitor" do
+  command "/usr/local/bin/passenger_monitor"
 end
 
 apache_module "passenger"

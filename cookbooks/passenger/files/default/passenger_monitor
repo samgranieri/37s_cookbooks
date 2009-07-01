@@ -4,14 +4,15 @@
 #
 
 require 'yaml'
+require 'rubygems'
+require 'syslog_logger'
+
+logger = SyslogLogger.new("passenger")
 
 # required by passenger
 ENV['HTTPD'] = 'apache2'
 
-config_path = File.dirname(__FILE__) + "/../config/passenger.yml"
-config = YAML.load(File.read(config_path)) if File.exists?(config_path)
-
-MEM_LIMIT = config['memory_limit'] || ARGV[0] || 500
+MEM_LIMIT = ARGV[0] || 350
 
 module Process
   def self.running?(pid)
@@ -26,18 +27,18 @@ end
 `passenger-memory-stats`.each_line do |line|
   if line =~ /Rails: /
     parts = line.split
-    pid, private_dirty_rss = parts[0].to_i, parts[4].to_f
+    pid, private_dirty_rss = parts[0].to_i, parts[4].to_f, parts[7]
     if private_dirty_rss > MEM_LIMIT.to_i
-      puts "Found bloater #{pid} with size #{private_dirty_rss.to_s}"
-      puts "Killing with SIGUSR1 (graceful)..."
+      logger.info "Found process #{pid} with size #{private_dirty_rss.to_s} at path #{path}"
+      logger.info "Gracefully killing with SIGUSR1..."
       Process.kill("SIGUSR1", pid)
-      puts "Finished kill attempt. Sleeping for 8 seconds..."
+      logger.info "Finished kill attempt. Sleeping for 8 seconds..."
       sleep 8
       if Process.running?(pid)
-        puts "Process is still running, so killing with extreme predjudice!"
+        logger.info "Process is still running. Killing with extreme predjudice (SIGTERM)!"
         Process.kill("TERM", pid)
       end
-      puts "Done!"
+      logger.info "Done."
     end
   end
 end
