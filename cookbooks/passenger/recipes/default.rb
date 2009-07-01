@@ -37,7 +37,7 @@ remote_file "/usr/local/bin/passenger_monitor" do
 end
 
 cron "passenger memory monitor" do
-  command "/usr/local/bin/passenger_monitor"
+  command "/usr/local/bin/passenger_monitor 280"
 end
 
 apache_module "passenger"
