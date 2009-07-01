@@ -38,14 +38,6 @@ if node[:active_applications]
       end      
     end
 
-    if modules = node[:applications][app][:disable_apache_modules]
-      modules.each do |mod|
-        apache_module mod do
-          enable false
-        end
-      end      
-    end
-
     if node[:applications][app][:gems]
       node[:applications][app][:gems].each do |g|
         if g.is_a? Array
