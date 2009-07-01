@@ -17,4 +17,4 @@
 # limitations under the License.
 #
 
-apache_module "deflate"
+#apache_module "deflate"
