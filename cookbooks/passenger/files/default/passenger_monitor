@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/usr/local/bin/ruby
 #
 # watch for bloating passengers and kill them gracefully if possible (SIGUSR), then with extreme prejudice (SIGTERM)
 #
