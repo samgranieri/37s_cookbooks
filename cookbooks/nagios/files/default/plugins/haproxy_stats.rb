@@ -61,7 +61,7 @@ if c[:warn] && c[:crit]
   if c[:type] == 'backlog'
     perfdata = "backlog=%d;#{c[:warn]};#{c[:crit]}"
     message = "%d backlogged connections exceeds %d|#{perfdata}"
-    ok_message = "Backlogged connections %d OK|#{perfdata}"
+    ok_message = "%d backlogged connections OK|#{perfdata}"
     backends = `echo "show stat" | socat #{c[:path]} stdio | grep BACKEND`.split("\n")
     be = backends.detect {|b| b.split(",").first == c[:backend] }
     parts = be.split(",")
