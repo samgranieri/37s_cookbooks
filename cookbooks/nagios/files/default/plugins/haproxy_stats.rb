@@ -62,9 +62,10 @@ if c[:warn] && c[:crit]
     perfdata = "backlog=%d;#{c[:warn]};#{c[:crit]}"
     message = "%d backlogged connections exceeds %d|#{perfdata}"
     ok_message = "Backlogged connections %d OK|#{perfdata}"
-    parts = `echo "show stat" | socat #{c[:path]} stdio | grep BACKEND | grep #{c[:backend]}`.split(",")
+    backends = `echo "show stat" | socat #{c[:path]} stdio | grep BACKEND`.split("\n")
+    be = backends.detect {|b| b.split(",").first == c[:backend] }
+    parts = be.split(",")
     # qcur value from stats output
-    puts parts.inspect
     value = parts[2].to_i
   end
   

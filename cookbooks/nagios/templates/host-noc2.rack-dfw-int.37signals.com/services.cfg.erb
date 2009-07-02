@@ -321,6 +321,20 @@ define service {
 		check_command			check_http_content!projects.clientsection.com!/login!/login/authenticate
 }
 
+def service {
+  use frequent-service
+  hostgroup_name bc-web
+	service_description	BC Haproxy queue
+	check_command			check_haproxy_queue!bc
+}
+
+def service {
+  use frequent-service
+  hostgroup_name bc-web
+	service_description	BC Upload Haproxy queue
+	check_command			check_haproxy_queue!bc_upload
+}
+
 define service {
 		use frequent-service-with-sms
 		hostgroup_name cf-app

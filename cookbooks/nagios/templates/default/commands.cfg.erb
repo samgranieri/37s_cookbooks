@@ -11,6 +11,11 @@ define command {
 # Service checks
 
 define command {
+  command_name    check_haproxy_queue
+  command_line    $USER1$/check_nrpe -H $HOSTADDRESS$ -c check_$ARG1$_haproxy_queue -t 20
+}
+
+define command {
   command_name    check_file_age
   command_line    $USER1$/check_by_ssh -H $HOSTADDRESS$ -C "/usr/local/bin/check_file -i -p $ARG1$ -w $ARG2$ -c $ARG3$" -l root
 }
