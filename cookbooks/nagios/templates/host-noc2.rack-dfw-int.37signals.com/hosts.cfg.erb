@@ -151,26 +151,6 @@ define host {
 
 define host {
   use server
-  address 192.168.2.10
-  host_name proxy-01
-  alias proxy-01
-  
-  hostgroups slices
-  
-}
-
-define host {
-  use server
-  address 192.168.2.11
-  host_name proxy-02
-  alias proxy-02
-  
-  hostgroups slices
-  
-}
-
-define host {
-  use server
   address 192.168.2.14
   host_name cf-app-01
   alias cf-app-01
