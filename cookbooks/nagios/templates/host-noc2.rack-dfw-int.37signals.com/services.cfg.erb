@@ -321,14 +321,14 @@ define service {
 		check_command			check_http_content!projects.clientsection.com!/login!/login/authenticate
 }
 
-def service {
+define service {
   use frequent-service
   host_name bc-web-03,bc-web-04
 	service_description	BC Haproxy queue
 	check_command			check_haproxy_queue!bc
 }
 
-def service {
+define service {
   use frequent-service
   host_name bc-web-03,bc-web-04
 	service_description	BC Upload Haproxy queue
