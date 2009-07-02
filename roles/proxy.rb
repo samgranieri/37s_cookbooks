@@ -1,3 +1,3 @@
 name "proxy"
 description "Proxy server"
-recipes "haproxy"
+recipes "haproxy", "keepalived"

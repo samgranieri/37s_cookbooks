@@ -1,6 +1,5 @@
 name "highrise"
 description "Highrise production"
-recipes "nfs::client"
 default_attributes  :active_applications =>  {"highrise" =>  {"env" =>  "production"}},
                     :nfs_mounts => {
                     "/u/nfs/file1/depot"  =>  {"device" => "172.28.1.66:/u/depot",  "owner"  => "app"},
