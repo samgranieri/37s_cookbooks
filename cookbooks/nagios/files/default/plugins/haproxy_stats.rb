@@ -35,11 +35,17 @@ Choice.options do
     desc 'Path to socket file'
   end
 
+  option :backend do
+    short '-b'
+    long '--backend=VALUE'
+    desc 'Backend name'
+  end
+
   option :type do
     short '-t'
     long '--type=VALUE'
-    desc 'Valid options are: connections'
-    valid %w(connections)
+    desc 'Valid options are: backlog'
+    valid %w(backlog)
   end
   
 end
@@ -52,11 +58,14 @@ c = Choice.choices
 
 if c[:warn] && c[:crit]
 
-  if c[:type] == 'connections'
-    perfdata = "connections=%d;#{c[:warn]};#{c[:crit]}"
-    message = "%d active connections exceeds %d|#{perfdata}"
-    ok_message = "Connections %d OK|#{perfdata}"
-    value = `socat #{c[:path]} stdio | grep CurrConns | awk '{ print $2 }'`.to_i
+  if c[:type] == 'backlog'
+    perfdata = "backlog=%d;#{c[:warn]};#{c[:crit]}"
+    message = "%d backlogged connections exceeds %d|#{perfdata}"
+    ok_message = "Backlogged connections %d OK|#{perfdata}"
+    parts = `echo "show stat" | socat #{c[:path]} stdio | grep BACKEND | grep #{c[:backend]}`.split(",")
+    # qcur value from stats output
+    puts parts.inspect
+    value = parts[2].to_i
   end
   
   if value >= c[:crit]
