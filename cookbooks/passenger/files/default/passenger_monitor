@@ -32,8 +32,8 @@ end
       logger.info "Found process #{pid} with size #{private_dirty_rss.to_s} at path #{path}"
       logger.info "Gracefully killing with SIGUSR1..."
       Process.kill("SIGUSR1", pid)
-      logger.info "Finished kill attempt. Sleeping for 8 seconds..."
-      sleep 8
+      logger.info "Finished kill attempt. Sleeping for 15 seconds..."
+      sleep 15
       if Process.running?(pid)
         logger.info "Process is still running. Killing with extreme predjudice (SIGTERM)!"
         Process.kill("TERM", pid)
