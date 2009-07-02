@@ -20,7 +20,7 @@ define host {
 # old hosts
 
 define host {
-  use linux-server
+  use server
   address 192.168.1.151
   host_name bc-db-01
   alias bc-db-01
@@ -28,7 +28,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.1.196
   host_name hr-db-01
   alias hr-db-01
@@ -36,7 +36,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.1.165
   host_name db6
   alias db6
@@ -44,7 +44,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.1.152
   host_name bc-db-02
   alias bc-db-02
@@ -52,7 +52,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.1.127
   host_name db3
   alias db3
@@ -60,7 +60,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.1.120
   host_name db4
   alias db4
@@ -68,7 +68,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.1.122
   host_name search1
   alias search1
@@ -76,7 +76,7 @@ define host {
 
 # this is the NEW dbslave
 define host {
-  use linux-server
+  use server
   address 192.168.1.156
   host_name db-slave
   alias db-slave
@@ -86,41 +86,41 @@ define host {
 # These hosts are scheduled for migration to xen
 
 define host {
-	use linux-server
+	use server
 	address 172.28.2.4
 	host_name netapp-01
 	hostgroups netapp
 }
 
 define host {
-	use linux-server
+	use server
 	address 172.28.2.6
 	host_name netapp-02
 	hostgroups netapp
 }
 
 define host {
-	use linux-server
+	use server
 	address 67.192.52.125
 	host_name cc1
 	hostgroups passive_boxes
 }
 
 define host {
-	use linux-server
+	use server
 	address 67.192.52.124
 	host_name cc2
 	hostgroups passive_boxes
 }
 
 define host {
-	use linux-server
+	use server
 	address 67.192.52.123
 	host_name billing
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.2
   host_name bpmu-cron
   alias bpmu-cron
@@ -130,7 +130,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.8
   host_name cf-solr-01
   alias cf-solr-01
@@ -140,7 +140,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.9
   host_name cf-solr-02
   alias cf-solr-02
@@ -150,7 +150,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.10
   host_name proxy-01
   alias proxy-01
@@ -160,7 +160,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.11
   host_name proxy-02
   alias proxy-02
@@ -170,7 +170,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.14
   host_name cf-app-01
   alias cf-app-01
@@ -180,7 +180,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.16
   host_name cf-app-03
   alias cf-app-03
@@ -190,7 +190,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.17
   host_name cf-app-04
   alias cf-app-04
@@ -200,7 +200,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.22
   host_name bc-solr-01
   alias bc-solr-01
@@ -208,7 +208,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.24
   host_name cf-app-05
   alias cf-app-05
@@ -217,7 +217,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.25
   host_name cf-app-06
   alias cf-app-06
@@ -227,7 +227,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.26
   host_name cf-app-07
   alias cf-app-07
@@ -237,7 +237,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.28
   host_name live-01
   alias live-01
@@ -247,7 +247,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.29
   host_name live-02
   alias live-02
@@ -258,7 +258,7 @@ define host {
 
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.40
   host_name mail-01
   alias mail-01
@@ -268,7 +268,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.41
   host_name mail-02
   alias mail-02
@@ -278,7 +278,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.44
   host_name ob-app-01
   alias ob-app-01
@@ -288,7 +288,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.45
   host_name ob-app-02
   alias ob-app-02
@@ -298,7 +298,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.47
   host_name ob-staging
   alias ob-staging
@@ -308,7 +308,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.50
   host_name hr-app-02
   alias hr-app-02
@@ -318,7 +318,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.51
   host_name hr-app-03
   alias hr-app-03
@@ -328,7 +328,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.52
   host_name hr-app-04
   alias hr-app-04
@@ -338,7 +338,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.53
   host_name hr-cron
   alias hr-cron
@@ -348,7 +348,7 @@ define host {
 }
 
 # define host {
-#   use linux-server
+#   use server
 #   address 192.168.2.54
 #   host_name tada-app-01
 #   alias tada-app-01
@@ -358,7 +358,7 @@ define host {
 # }
 # 
 # define host {
-#   use linux-server
+#   use server
 #   address 192.168.2.55
 #   host_name tada-app-02
 #   alias tada-app-02
@@ -368,7 +368,7 @@ define host {
 # }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.56
   host_name bc-web-01
   alias bc-web-01
@@ -376,7 +376,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.58
   host_name hr-web-01
   alias hr-web-01
@@ -384,7 +384,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.12
   host_name hr-solr-01
   alias hr-solr-01
@@ -394,7 +394,7 @@ define host {
 }
 
 define host {
-  use linux-server
+  use server
   address 192.168.2.13
   host_name hr-solr-02
   alias hr-solr-02
