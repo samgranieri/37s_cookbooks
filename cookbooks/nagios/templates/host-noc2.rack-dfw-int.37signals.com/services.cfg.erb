@@ -323,14 +323,14 @@ define service {
 
 define service {
   use frequent-service
-  host_name bc-web-03,bc-web-04
+  host_name proxy01,proxy02
 	service_description	BC Haproxy queue
 	check_command			check_haproxy_queue!bc
 }
 
 define service {
   use frequent-service
-  host_name bc-web-03,bc-web-04
+  host_name proxy01,proxy02
 	service_description	BC Upload Haproxy queue
 	check_command			check_haproxy_queue!bc_upload
 }
