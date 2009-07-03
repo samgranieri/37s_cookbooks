@@ -312,7 +312,6 @@ define service {
 		service_description	BP HTTP content
 		check_command			check_http_content!37s.backpackit.com!/login!/session
 }
-
 define service {
 		use frequent-service-with-sms
 		host_name bc-app-09,bc-app-10,bc-app-11,bc-app-12,bc-app-13,bc-app-14,bc-app-15,bc-app-16,bc-app-01,bc-app-02
