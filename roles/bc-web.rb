@@ -1,6 +1,6 @@
 name "bc-web"
 description "Basecamp web server"
-recipes "syslog::client"
+recipes "syslog::client", "rails::apps"
 default_attributes :active_groups => {:app => {:enabled => true}},
                    :active_sudo_groups => {:app => {:enabled => true}},
                    :web_only => true,
