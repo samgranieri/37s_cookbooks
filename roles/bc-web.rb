@@ -3,6 +3,7 @@ description "Basecamp web server"
 recipes "syslog::client"
 default_attributes :active_groups => {:app => {:enabled => true}},
                    :active_sudo_groups => {:app => {:enabled => true}},
+                   :web_only => true,
                    :apache => {
                      :listen_ports => [],
                      :worker => {:startservers => 30,

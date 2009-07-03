@@ -23,9 +23,6 @@ end
 
 if node[:active_applications]
 
-  # TODO: install the passenger app monitor which will kill any bloating processes
-  # passenger_monitor "All apps" 
-
   node[:active_applications].each do |app, conf|
     full_name = "#{app}_#{conf[:env]}"
     filename = node[:web_only] ? "#{conf[:env]}_web.conf" : "#{conf[:env]}.conf"
