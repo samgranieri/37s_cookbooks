@@ -315,10 +315,51 @@ define service {
 
 define service {
 		use frequent-service-with-sms
-		hostgroup_name bc-web
 		host_name bc-app-09,bc-app-10,bc-app-11,bc-app-12,bc-app-13,bc-app-14,bc-app-15,bc-app-16,bc-app-01,bc-app-02
-		service_description	BC HTTP content
+		service_description	BC app server HTTP content
 		check_command			check_http_content!projects.clientsection.com!/login!/login/authenticate
+}
+
+define service {
+		use frequent-service-with-sms
+		host_name bc-web-03,bc-web-04
+		service_description	BC clientsection HTTP content
+		check_command			check_http_content!projects.clientsection.com!/login!/login/authenticate
+}
+
+define service {
+		use frequent-service-with-sms
+		host_name bc-web-03,bc-web-04
+		service_description	BC basecamphq HTTP content
+		check_command			check_http_content!projects.basecamphq.com!/login!/login/authenticate
+}
+
+define service {
+		use frequent-service-with-sms
+		host_name bc-web-03,bc-web-04
+		service_description	BC seework HTTP content
+		check_command			check_http_content!projects.seework.com!/login!/login/authenticate
+}
+
+define service {
+		use frequent-service-with-sms
+		host_name bc-web-03,bc-web-04
+		service_description	BC projectpath HTTP content
+		check_command			check_http_content!projects.projectpath.com!/login!/login/authenticate
+}
+
+define service {
+		use frequent-service-with-sms
+		host_name bc-web-03,bc-web-04
+		service_description	BC grouphub HTTP content
+		check_command			check_http_content!projects.grouphub.com!/login!/login/authenticate
+}
+
+define service {
+		use frequent-service-with-sms
+		host_name bc-web-03,bc-web-04
+		service_description	BC updatelog HTTP content
+		check_command			check_http_content!projects.updatelog.com!/login!/login/authenticate
 }
 
 define service {

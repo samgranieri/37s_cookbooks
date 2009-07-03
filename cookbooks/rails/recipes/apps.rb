@@ -1,4 +1,4 @@
-require_recipe "passenger"
+require_recipe "passenger" unless node[:web_only]
 
 directory "/u/apps" do
   owner "app"
