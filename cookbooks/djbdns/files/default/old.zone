@@ -112,7 +112,6 @@
 =tada-app-01.rack-dfw-int.37signals.com:192.168.2.54:300
 =tada-app-02.rack-dfw-int.37signals.com:192.168.2.55:300
 =bc-web-01.rack-dfw-int.37signals.com:192.168.2.56:300
-=bc-web-02.rack-dfw-int.37signals.com:192.168.2.57:300
 =hr-web-01.rack-dfw-int.37signals.com:192.168.2.58:300
 =web-staging.rack-dfw-int.37signals.com:192.168.2.60:300
 =qb-staging.rack-dfw-int.37signals.com:192.168.2.61:300
