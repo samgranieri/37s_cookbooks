@@ -20,11 +20,10 @@ define host {
 # external BC IPs
 
 define hostgroup {
-  name bc_external
+  hostgroup_name bc_external
 }
 
-define host
- {
+define host {
   use server
   address 72.32.33.206
   host_name clientsection
