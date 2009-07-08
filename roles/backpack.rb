@@ -1,6 +1,7 @@
 name "backpack"
 description "Backpack"
 default_attributes  :active_applications =>  {"backpack" =>  {"env" =>  "production"}},
+                    :passenger => {:tune_gc => true},
                     :applications => {
                       :backpack => {      
                         :nfs_mounts => {
