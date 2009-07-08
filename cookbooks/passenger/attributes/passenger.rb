@@ -8,7 +8,7 @@ passenger[:module_path]      = "#{passenger[:root_path]}/ext/apache2/mod_passeng
 passenger[:apache_load_path] = '/etc/apache2/mods-available/passenger.load'
 passenger[:apache_conf_path] = '/etc/apache2/mods-available/passenger.conf'
 
-ruby_gc = Mash.new unless attribute?("ruby_gc")
+ruby_gc Mash.new unless attribute?("ruby_gc")
 ruby_gc[:heap_min_slots] = 500000
 ruby_gc[:heap_slots_increment] = 250000
 ruby_gc[:heap_slots_growth_factor] = 1
