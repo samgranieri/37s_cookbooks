@@ -21,4 +21,5 @@ default_attributes  :active_applications =>  {"backpack" =>  {"env" =>  "product
                         },
                         :apache_modules => ["auth_token", "xsendfile", "rewrite"]
                       }
-                    }
+                    },
+                    :apache => {:listen_ports => [80,443]}
