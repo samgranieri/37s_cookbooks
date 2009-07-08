@@ -1,6 +1,7 @@
 name "basecamp"
 description "Basecamp"
 default_attributes  :active_applications =>  {"basecamp" =>  {"env" => "production"}},
+                    :passenger => {:tune_gc => true},
                     :applications => {
                       :basecamp => {
                         :syslog_files => {:completed => true, :thumbnails => true, :logsort => true, :haproxy => true, :memcache => true},
