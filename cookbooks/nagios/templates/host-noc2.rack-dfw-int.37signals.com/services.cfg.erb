@@ -569,6 +569,7 @@ define service {
 define service {
 	use default-service
 	host_name *, !netapp-01, !netapp-02, !cc1, !cc2, !search1, !db-slave, !billing
+	hostrgroup_name !bc-external
 	service_description Postfix port 25
 	check_command check_smtp
 }
