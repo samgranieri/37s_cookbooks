@@ -37,7 +37,7 @@ remote_file "/usr/local/bin/passenger_monitor" do
 end
 
 template "/usr/local/bin/ruby_gc_wrapper" do
-  source "ruby_gc_wrapper"
+  source "ruby_gc_wrapper.sh.erb"
   mode 0755
 end
 
