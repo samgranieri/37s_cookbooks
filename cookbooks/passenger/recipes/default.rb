@@ -42,7 +42,7 @@ template "/usr/local/bin/ruby_gc_wrapper" do
 end
 
 cron "passenger memory monitor" do
-  command "/usr/local/bin/passenger_monitor 280"
+  command "/usr/local/bin/passenger_monitor 280 550"
 end
 
 apache_module "passenger"

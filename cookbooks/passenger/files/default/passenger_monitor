@@ -12,7 +12,7 @@ logger = SyslogLogger.new("passenger")
 # required by passenger
 ENV['HTTPD'] = 'apache2'
 
-WARN_MEM_LIMIT = ARGV[0] || 270
+WARN_MEM_LIMIT = ARGV[0] || 280
 CRIT_MEM_LIMIT = ARGV[1] || 550
 
 module Process
