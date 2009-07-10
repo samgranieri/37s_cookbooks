@@ -1,7 +1,6 @@
 name "backpack"
 description "Backpack"
 default_attributes  :active_applications =>  {"backpack" =>  {"env" =>  "production"}},
-                    :passenger => {:tune_gc => true},
                     :applications => {
                       :backpack => {      
                         :nfs_mounts => {
@@ -23,4 +22,5 @@ default_attributes  :active_applications =>  {"backpack" =>  {"env" =>  "product
                       }
                     }
                     
-override_attributes :apache => {:listen_ports => [80,443]}
+override_attributes :apache => {:listen_ports => [80,443]},
+                    :passenger => {:tune_gc => true}
