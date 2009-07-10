@@ -20,3 +20,4 @@ default_attributes :active_applications =>  {"campfire" =>  {"env" =>  "producti
                         :apache_modules => ["auth_token", "xsendfile", "fastcgi", "rewrite"]
                       }
                     }
+override_attributes :apache => {:ports => [80,443]}
