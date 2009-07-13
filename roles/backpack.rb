@@ -3,12 +3,6 @@ description "Backpack"
 default_attributes  :active_applications =>  {"backpack" =>  {"env" =>  "production"}},
                     :applications => {
                       :backpack => {      
-                        :nfs_mounts => {
-                          "/u/nfs/file1/depot"  =>  {"device" => "172.28.1.66:/u/depot",  "owner"  => "app"},
-                          "/u/nfs/file2/depot"  =>  {"device" => "172.28.1.67:/u/depot",  "owner"  => "app"},
-                          "/u/nfs/file3/depot"  =>  {"device" => "172.28.1.70:/u/depot",  "owner"  => "app"},
-                          "/u/nfs/netapp/depot" =>  {"device" => "172.28.2.6:/vol/depot", "owner" => "app"}
-                        },
                         :gems => ['fast_xs', ['hpricot', '0.7'], 'aws-s3', 'ruby-prof'],
                         :packages => ['imagemagick', 'elinks'],
                         :symlinks => {
@@ -20,6 +14,12 @@ default_attributes  :active_applications =>  {"backpack" =>  {"env" =>  "product
                         },
                         :apache_modules => ["auth_token", "xsendfile", "rewrite"]
                       }
+                    },
+                    :nfs_mounts => {
+                      "/u/nfs/file1/depot"  =>  {"device" => "172.28.1.66:/u/depot",  "owner"  => "app"},
+                      "/u/nfs/file2/depot"  =>  {"device" => "172.28.1.67:/u/depot",  "owner"  => "app"},
+                      "/u/nfs/file3/depot"  =>  {"device" => "172.28.1.70:/u/depot",  "owner"  => "app"},
+                      "/u/nfs/netapp/depot" =>  {"device" => "172.28.2.6:/vol/depot", "owner" => "app"}
                     }
                     
 override_attributes :apache => {:listen_ports => [80,443]},
