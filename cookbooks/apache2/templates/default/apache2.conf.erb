@@ -110,7 +110,14 @@ SetEnvIf User-Agent "^websitepulse.*" no-log
 # Only include the mtime and size in the ETag by default
 FileETag MTime Size
 
-<IfModule mod_proxy.c>   
+# Workaround for apache ETag bugs, see http://scarff.id.au/blog/2009/apache-304-and-mod%5Fdeflate-revisited/
+
+<Location />
+ RequestHeader  edit "If-None-Match" "^(.*)-gzip$" "$1"
+ Header  edit "ETag" "^(.*[^g][^z][^i][^p])$" "$1-gzip"
+</Location>
+
+<IfModule mod_proxy.c>
 	<Proxy *>
 		Order deny,allow
 		Allow from 127.0.0.1
