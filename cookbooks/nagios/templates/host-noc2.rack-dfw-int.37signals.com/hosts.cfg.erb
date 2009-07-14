@@ -330,36 +330,6 @@ define host {
 
 define host {
   use server
-  address 192.168.2.50
-  host_name hr-app-02
-  alias hr-app-02
-  
-  hostgroups slices, hr-app
-  
-}
-
-define host {
-  use server
-  address 192.168.2.51
-  host_name hr-app-03
-  alias hr-app-03
-  
-  hostgroups slices, hr-app
-  
-}
-
-define host {
-  use server
-  address 192.168.2.52
-  host_name hr-app-04
-  alias hr-app-04
-  
-  hostgroups slices, hr-app
-  
-}
-
-define host {
-  use server
   address 192.168.2.53
   host_name hr-cron
   alias hr-cron
