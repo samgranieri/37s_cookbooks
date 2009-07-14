@@ -8,7 +8,7 @@ end
 
 gem_package "ohai" do
   action :upgrade
-  version "0.3.0"
+  version "0.3.2"
   source "http://gems.opscode.com"
 end
 
