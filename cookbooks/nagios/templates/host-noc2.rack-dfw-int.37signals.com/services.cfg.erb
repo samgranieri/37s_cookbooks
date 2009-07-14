@@ -313,7 +313,7 @@ define service {
 }
 define service {
 		use frequent-service-with-sms
-		host_name bc-app-09,bc-app-10,bc-app-11,bc-app-12,bc-app-13,bc-app-14,bc-app-15,bc-app-16,bc-app-01,bc-app-02
+		host_name bc-app-09,bc-app-10,bc-app-11,bc-app-12,bc-app-13,bc-app-14,bc-app-15,bc-app-16,bc-app-01,bc-app-02,bc-01,kvm14
 		service_description	BC app server HTTP content
 		check_command			check_http_content!projects.clientsection.com!/login!/login/authenticate
 }
