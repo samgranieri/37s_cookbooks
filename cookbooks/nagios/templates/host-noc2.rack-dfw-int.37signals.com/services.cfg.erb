@@ -25,7 +25,6 @@ define serviceescalation {
 define service {
 	use                     default-service
 	hostgroup_name          servers, linux_boxes, freebsd_boxes, slices
-	host_name               !<%= @node[:fqdn] %>
 	service_description     Load Average
 	check_command			      check_load
 }
