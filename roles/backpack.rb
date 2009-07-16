@@ -1,6 +1,16 @@
 name "backpack"
 description "Backpack"
 default_attributes  :active_applications =>  {"backpack" =>  {"env" =>  "production"}},
+                    :postfix => {
+                      :virtual_domains => {
+                        "/^([^@]+\.)?backpackit\.com$/" => "VIRTUAL",
+                        "/@([^@]+\.)backpackit\.com$/"  => "backpack@localhost",
+                        "/^share@backpackit\.com$/"     => "37signals.support@gmail.com",
+                        "/^support@backpackit\.com$/"   => "37signals.support@gmail.com",
+                        "/^system@backpackit\.com$/"    => "37signals.support@gmail.com",
+                        "/^alert@backpackit\.com$/"     => "devnull"
+                      }
+                    },
                     :applications => {
                       :backpack => {      
                         :gems => ['fast_xs', ['hpricot', '0.7'], 'aws-s3', 'ruby-prof'],
