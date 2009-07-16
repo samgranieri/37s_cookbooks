@@ -22,10 +22,4 @@ default_attributes  :active_applications =>  {"highrise" =>  {"env" =>  "product
                         :apache_modules => ["auth_token", "xsendfile", "rewrite"]
                       }
                     }
-override_attributes :passenger => { :tune_gc => true },
-                    :postfix => {
-                      :aliases => {
-                      },
-                      :virtual_domains => {
-                      }
-                    }
+override_attributes :passenger => { :tune_gc => true }

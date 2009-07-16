@@ -46,7 +46,12 @@ override_attributes :postfix => {
     "/^support@highrisehq\.com$/"                         => "37signals.support@gmail.com",
     "/^bounces@highrisehq\.com$/"                         => "devnull",
     "/^system@highrisehq\.com$/"                          => "devnull",
-    "/@forum\.highrisehq\.com$/"                          => "devnull"
+    "/@forum\.highrisehq\.com$/"                          => "devnull",
+    
+    "/^writeboard\.com$/" => "VIRTUAL",
+    "/^postmaster@writeboard\.com$/" => "postmaster@37signals.com",
+    "/^support@writeboard\.com$/" => "37signals.support@gmail.com",
+    "/^system@writeboard\.com$/" => "wb-system"
   },
   :aliases => {
     "basecamp"  => "|/usr/bin/sudo -u app /u/apps/basecamp/current/script/email_helper",
