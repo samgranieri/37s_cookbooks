@@ -1,0 +1,37 @@
+{
+	"run_list": ["role[rack-dfw]", "role[base]", "role[basecamp]", "role[highrise]", "role[campfire]", "role[proxy]"],
+	"keepalived": {
+    "router_id": "proxy-vrrp",
+    "lvs_id": "proxy01",
+    "notification_email": "sysadmins@37signals.com",
+    "email_from": "keepalived@proxy01.rack-dfw-int.37signals.com",
+    "vrrp_instances": [
+  	{ 
+  "name": "vi_proxy_exnet",
+	"state": "MASTER",
+	"interface": "eth0",
+	"garp_master_delay": 10,
+	"smtp_alert": true,
+	"virtual_router_id": 51,
+	"priority": 200,
+	"advert_int": 1,
+	"auth_type": "PASS",
+	"auth_pass": "cesglMbrBIJzKwN4J5yJ",
+	"virtual_addresses": [ "192.168.0.8" ]
+      },
+      { 
+        "name": "vi_proxy_localnet",
+	"state": "MASTER",
+	"interface": "eth2",
+	"garp_master_delay": 10,
+	"smtp_alert": true,
+	"virtual_router_id": 52,
+	"priority": 200,
+	"advert_int": 1,
+	"auth_type": "PASS",
+	"auth_pass": "cesglMbrBIJzKwN4J5yJ",
+	"virtual_addresses": [ "172.28.0.1" ]
+      }
+    ]
+  }
+}
