@@ -64,6 +64,7 @@ override_attributes :postfix => {
         :command => "/usr/local/bin/ruby /u/apps/basecamp/current/script/email_replies/process_incoming 150",
         :minute => "*/5",
         :user => "app"
+      }
     }
   }
 }
