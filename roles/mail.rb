@@ -1,4 +1,4 @@
-name "memcache"
+name "mail"
 description "Mail server"
 recipes "postfix::virtual"
 default_attributes :postfix => {
