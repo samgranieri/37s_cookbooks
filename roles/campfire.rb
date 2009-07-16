@@ -1,13 +1,6 @@
 name "campfire"
 description "Campfire production"
 default_attributes :active_applications =>  {"campfire" =>  {"env" =>  "production"}},
-                   :postfix => {
-                     :virtual_domains => {
-                       "/^campfirenow\.com$/"            => "VIRTUAL",
-                       "/^postmaster@campfirenow\.com$/" => "postmaster@37signals.com",
-                       "/^support@campfirenow\.com$/"    => "37signals.support@gmail.com"
-                     }
-                   },
                   :nfs_mounts => {
                    "/u/nfs/file1/depot"  =>  {"device" => "172.28.1.66:/u/depot",  "owner"  => "app"},
                    "/u/nfs/file2/depot"  =>  {"device" => "172.28.1.67:/u/depot",  "owner"  => "app"},

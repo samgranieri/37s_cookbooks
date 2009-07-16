@@ -25,22 +25,7 @@ default_attributes  :active_applications =>  {"highrise" =>  {"env" =>  "product
 override_attributes :passenger => { :tune_gc => true },
                     :postfix => {
                       :aliases => {
-                        "highrise"  => "|/usr/bin/sudo -u app /u/apps/highrise/current/script/email_helper"
                       },
                       :virtual_domains => {
-                        "/^([^@]+\.)?highrisehq\.com$/" => "VIRTUAL",
-                        "/^(forum\.)?highrisehq\.com$/" => "VIRTUAL",
-                        "/^dropbox(\+.+)?@(\d+)\.([^\.]+)\.highrisehq\.com$/" => "highrise@localhost",
-                        "/^case\+dropbox@(\d+)\.([^\.]+)\.highrisehq\.com$/"  => "highrise@localhost",
-                        "/^deal\+dropbox@(\d+)\.([^\.]+)\.highrisehq\.com$/"  => "highrise@localhost",
-                        "/^task(\+.+)?@(\d+)\.([^\.]+)\.highrisehq\.com$/"    => "highrise@localhost",
-                        "/^postmaster@highrisehq\.com$/"                      => "postmaster@37signals.com",
-                        "/^cancel@highrisehq\.com$/"                          => "37signals.support@gmail.com",
-                        "/^hr-cron@37signals\.com$/"                          => "hr-exceptions@37signals.com",
-                        "/^solr-cron@37signals\.com$/"                        => "solr@37signals.com",
-                        "/^support@highrisehq\.com$/"                         => "37signals.support@gmail.com",
-                        "/^bounces@highrisehq\.com$/"                         => "devnull",
-                        "/^system@highrisehq\.com$/"                          => "devnull",
-                        "/@forum\.highrisehq\.com$/"                          => "devnull"
                       }
                     }
