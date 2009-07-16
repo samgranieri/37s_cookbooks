@@ -2,6 +2,7 @@ require_recipe "postfix"
 
 execute "update-postfix-virtual-domains" do
   command "/usr/sbin/postmap virtual"
+  cwd "/etc/postfix"
   action :nothing
 end
 
