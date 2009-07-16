@@ -43,4 +43,4 @@ override_attributes :passenger => { :tune_gc => true },
                         "/^system@highrisehq\.com$/"                          => "devnull",
                         "/@forum\.highrisehq\.com$/"                          => "devnull"
                       }
-                    },
+                    }
