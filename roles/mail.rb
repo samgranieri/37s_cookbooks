@@ -1,7 +1,7 @@
 name "mail"
 description "Mail server"
 recipes "postfix::virtual", "postfix::aliases"
-default_attributes :postfix => {
+override_attributes :postfix => {
   :virtual_domains => {
     "/^virt-gw\.37signals\.com$/" => "VIRTUAL",
     "/^app@virt-gw\.37signals\.com$/" => "devnull@localhost",
