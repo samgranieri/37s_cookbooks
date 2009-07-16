@@ -14,15 +14,5 @@ set :chef_gem,   "#{chef_reqs}/chef-0.7.1.gem"
 set :ohai_gem,   "#{chef_reqs}/ohai-0.3.0.gem"
 
 task :provision do
-  run "gem sources -a http://gems.opscode.com"
-  run "wget -qO /tmp/#{ruby_pkg} #{debs}/#{ruby_pkg}"
-  sudo "dpkg -i /tmp/#{ruby_pkg}"
-  sudo "mkdir -p /etc/chef"
-  sudo "wget -qO /etc/chef/client.rb #{client_cfg}"
-  run "wget -qO /tmp/chef.gem #{chef_gem}"
-  run "wget -qO /tmp/ohai.gem #{ohai_gem}"
-  sudo "gem install /tmp/ohai.gem /tmp/chef.gem --no-rdoc --no-ri"
-  sudo "wget -qO /etc/chef/node.json #{slice_json}"
-  sudo "mkdir -p /var/log/chef"
-  sudo "chef-client -j /etc/chef/node.json -t #{token}"
+  sudo "wget -qO - http://dist/chef/bootstrap.tar | tar xvf - ; cd bootstrap ; ./bootstrap.sh"
 end
