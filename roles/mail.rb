@@ -1,6 +1,6 @@
 name "mail"
 description "Mail server"
-recipes "postfix::virtual", "postfix::aliases"
+recipes "postfix::virtual", "postfix::aliases", "cron"
 override_attributes :postfix => {
   :virtual_domains => {
     "/^virt-gw\.37signals\.com$/" => "VIRTUAL",
@@ -57,5 +57,13 @@ override_attributes :postfix => {
     "basecamp"  => "|/usr/bin/sudo -u app /u/apps/basecamp/current/script/email_helper",
     "backpack"  => "|/usr/bin/sudo -u app /u/apps/backpack/current/script/email_helper",
     "highrise"  => "|/usr/bin/sudo -u app /u/apps/highrise/current/script/email_helper"
+  },
+  :cron => {
+    :jobs => {
+      :bc_email_replies => {
+        :command => "/usr/local/bin/ruby /u/apps/basecamp/current/script/email_replies/process_incoming 150",
+        :minute => "*/5",
+        :user => "app"
+    }
   }
 }

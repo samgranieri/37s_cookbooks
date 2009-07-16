@@ -4,6 +4,6 @@ if node[:cron][:jobs]
       config.each do |k,v|
         send(k.to_sym, v)
       end
-    end  
+    end
   end
 end
