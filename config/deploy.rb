@@ -45,6 +45,7 @@ end
 desc "Update recipes"
 task :update_recipes do
   run "cd #{deploy_to} && rake install"
+  sudo "/etc/init.d/apache2 restart"
 end
 
 desc "Create tarball for chef solo"
