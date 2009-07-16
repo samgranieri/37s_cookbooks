@@ -1,6 +1,6 @@
 name "mail"
 description "Mail server"
-recipes "postfix::virtual"
+recipes "postfix::virtual", "postfix::aliases"
 default_attributes :postfix => {
   :virtual_domains => {
     "/^virt-gw\.37signals\.com$/" => "VIRTUAL",

@@ -2,6 +2,9 @@ name "backpack"
 description "Backpack"
 default_attributes  :active_applications =>  {"backpack" =>  {"env" =>  "production"}},
                     :postfix => {
+                      :aliases => {
+                        "backpack"  => "|/usr/bin/sudo -u app /u/apps/backpack/current/script/email_helper"
+                      },
                       :virtual_domains => {
                         "/^([^@]+\.)?backpackit\.com$/" => "VIRTUAL",
                         "/@([^@]+\.)backpackit\.com$/"  => "backpack@localhost",

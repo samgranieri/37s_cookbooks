@@ -2,6 +2,9 @@ name "basecamp"
 description "Basecamp"
 default_attributes  :active_applications =>  {"basecamp" =>  {"env" => "production"}},
                     :postfix => {
+                      :aliases => {
+                        "basecamp"  => "|/usr/bin/sudo -u app /u/apps/basecamp/current/script/email_helper"
+                      },
                       :virtual_domains => {
                         "/^([^@]+\.)?(updatelog|clientsection|seework|grouphub|projectpath|basecamphq)\.com$/" => "VIRTUAL",
                        "/^P\d+-reply@(([^@])+\.)basecamphq\.com$/" => "basecamp@localhost",

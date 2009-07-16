@@ -2,6 +2,9 @@ name "highrise"
 description "Highrise production"
 default_attributes  :active_applications =>  {"highrise" =>  {"env" =>  "production"}},
                     :postfix => {
+                      :aliases => {
+                        "highrise"  => "|/usr/bin/sudo -u app /u/apps/highrise/current/script/email_helper"
+                      },
                       :virtual_domains => {
                         "/^([^@]+\.)?highrisehq\.com$/" => "VIRTUAL",
                         "/^(forum\.)?highrisehq\.com$/" => "VIRTUAL",
