@@ -1,7 +1,9 @@
 name "mail"
 description "Mail server"
 recipes "postfix::virtual", "postfix::aliases", "cron"
-override_attributes :cron => {
+override_attributes :active_groups => {:app => {:enabled => true}},
+                    :active_sudo_groups => {:app => {:enabled => true}},
+  :cron => {
     :jobs => {
       :bc_email_replies => {
         :command => "/usr/local/bin/ruby /u/apps/basecamp/current/script/email_replies/process_incoming 150",
