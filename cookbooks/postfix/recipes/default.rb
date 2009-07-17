@@ -1,3 +1,4 @@
+Chef::Log.info node.roles.inspect
 package "postfix" do
   action :upgrade
 end
