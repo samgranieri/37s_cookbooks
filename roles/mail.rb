@@ -4,6 +4,16 @@ recipes 'postfix::virtual', 'postfix::aliases', 'cron', 'rails::apps', 'syslog::
 
 override_attributes :active_groups => {:app => {:enabled => true}},
                     :active_sudo_groups => {:app => {:enabled => true}},
+  :authorization => {
+   :sudo => {
+     :users => {
+       "nobody" => {:target_user => "app", :command => "NOPASSWD:/u/apps/backpack/current/script/email_helper"},
+       "nobody" => {:target_user => "app", :command => "NOPASSWD:/u/apps/basecamp/current/script/email_helper"},
+       "nobody" => {:target_user => "app", :command => "NOPASSWD:/u/apps/highrise/current/script/email_helper"},
+       "nobody" => {:target_user => "app", :command => "NOPASSWD:/u/apps/highrise/current/script/dropbox_helper"}
+     }
+   }
+  },
   :cron => {
     :jobs => {
       :bc_email_replies => {
