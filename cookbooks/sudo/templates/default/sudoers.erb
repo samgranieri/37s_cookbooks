@@ -17,8 +17,8 @@ root    			ALL=(ALL) ALL
 <% end -%>
 
 <% if @sudoers_users && !@sudoers_users.empty? %>
-<% @sudoers_users.each do |user, conf| -%>
-<%= user %> ALL=(<%= conf[:target_user] || "ALL" %>) <%= conf[:command] || "ALL" %>
+<% @sudoers_users.each do |conf| -%>
+<%= conf[:user] %> ALL=(<%= conf[:target_user] || "ALL" %>) <%= conf[:command] || "ALL" %>
 <% end -%>
 <% end %>
 
