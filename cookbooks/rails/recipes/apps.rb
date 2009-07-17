@@ -1,5 +1,3 @@
-require_recipe "passenger" unless node[:web_only]
-
 directory "/u/apps" do
   owner "app"
   group "app"
@@ -7,21 +5,9 @@ directory "/u/apps" do
   recursive true
 end
 
-directory "/u/logs" do
-  action :create
-  mode 0755
-  owner "app"
-  group "app"
-end
-
-directory "/u/logs/apps" do
-  action :create
-  mode 0775
-  owner "app"
-  group "www-data"
-end
-
 if node[:active_applications]
+
+  require_recipe "passenger" unless node[:web_only]
 
   node[:active_applications].each do |app, conf|
     full_name = "#{app}_#{conf[:env]}"
