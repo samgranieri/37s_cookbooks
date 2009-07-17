@@ -9,6 +9,12 @@ override_attributes :active_groups => {:app => {:enabled => true}},
         :command => "/usr/local/bin/ruby /u/apps/basecamp/current/script/email_replies/process_incoming 150",
         :minute => "*/5",
         :user => "app"
+      },
+      :bc_rotate_email_folders => {
+        :command => "/usr/local/bin/ruby /u/apps/basecamp/current/script/cron/rotate-email-folders",
+        :minute => 0,
+        :hour => 3,
+        :user => "app"
       }
     }
   },
