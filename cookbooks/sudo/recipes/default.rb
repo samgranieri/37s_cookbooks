@@ -10,5 +10,5 @@ template "/etc/sudoers" do
   owner "root"
   group "root"
   sudogroups = 
-  variables(:sudoers_groups => node[:active_sudo_groups])
+  variables(:sudoers_groups => node[:active_sudo_groups], :sudoers_users => node[:active_sudo_users])
 end
