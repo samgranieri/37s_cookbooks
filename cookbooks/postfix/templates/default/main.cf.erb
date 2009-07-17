@@ -22,11 +22,11 @@ recipient_delimiter = +
 inet_interfaces = all
 
 unknown_local_recipient_reject_code = 550
-<% if @node.roles.include? :mail %>
+<% if @node.recipe? "postfix::virtual" %>
 virtual_maps = pcre:$config_directory/virtual
 <% end %>
 
-<% if @node.roles.include? :mail %>
+<% if @node.recipe? 'postfix::aliases' %>
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
 <% end %>
