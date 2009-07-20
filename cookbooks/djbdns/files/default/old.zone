@@ -121,7 +121,6 @@
 =rackspace-fw1.rack-dfw-int.37signals.com:192.168.0.1:300
 =rackspace-fw2.rack-dfw-int.37signals.com:192.168.0.2:300
 
-
 # Internal load-balanced
 
 =ob.rack-dfw-int.37signals.com:192.168.0.5:300
@@ -148,3 +147,8 @@
 =db-slave.drac:192.168.0.175:300
 =noc2.drac:192.168.0.176:300
 =gateway.drac:192.168.0.177:300
+
+# Fake out us.archive.ubuntu.com to point to mirror.rackspace.com
+# for faster installs.
+
+=us.archive.ubuntu.com:72.3.128.167:30
