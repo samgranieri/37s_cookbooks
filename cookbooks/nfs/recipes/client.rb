@@ -13,6 +13,8 @@ if node[:nfs_mounts]
       device config[:device]
       dump 0
       pass 0
+      # add to fstab. set to 'disable' to remove it
+      enable true
     end
   end
 else
