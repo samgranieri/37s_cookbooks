@@ -91,3 +91,16 @@ remote_file "/usr/local/bin/kvmtool" do
   source "kvmtool"
   mode 0755
 end
+
+service "libvirtd-bin" do
+  supports :restart => true, :reload => true
+  action :enable
+end
+
+template "/etc/libvirt/libvirtd.conf" do
+  source "libvirtd.conf"
+  mode 0644
+  owner "root"
+  group "root"
+  notifies :reload, resources(:service => "libvirtd")
+end
