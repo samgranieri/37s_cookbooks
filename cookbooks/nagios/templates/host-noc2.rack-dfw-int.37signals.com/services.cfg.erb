@@ -251,7 +251,7 @@ define service {
 		use generic-service
 		host_name mail-03,mail-04
 		service_description	BC Incoming mail queue
-		check_command			check_file_count!/u/depot/basecamp/email/incoming/new!200!250
+		check_command			check_file_count!/u/apps/basecamp/shared/email/incoming/new!200!250
 }
 
 define service {
