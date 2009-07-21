@@ -3,7 +3,7 @@ description "Backpack"
 default_attributes  :active_applications =>  {"backpack" =>  {"env" =>  "production"}},
                     :applications => {
                       :backpack => {      
-                        :gems => ['fast_xs', ['hpricot', '0.7'], 'aws-s3', 'ruby-prof'],
+                        :gems => ['fast_xs', ['hpricot', '0.7'], 'aws-s3', 'ruby-prof', 'mime-types'],
                         :packages => ['imagemagick', 'elinks'],
                         :symlinks => {
                           '/usr/local/bin/convert' => '/usr/bin/convert',
