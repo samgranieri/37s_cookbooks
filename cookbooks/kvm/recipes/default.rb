@@ -102,5 +102,5 @@ template "/etc/libvirt/libvirtd.conf" do
   mode 0644
   owner "root"
   group "root"
-  notifies :reload, resources(:service => "libvirtd")
+  notifies :reload, resources(:service => "libvirtd-bin")
 end
