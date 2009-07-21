@@ -98,7 +98,7 @@ service "libvirt-bin" do
 end
 
 template "/etc/libvirt/libvirtd.conf" do
-  source "libvirtd.conf"
+  source "libvirtd.conf.erb"
   mode 0644
   owner "root"
   group "root"
