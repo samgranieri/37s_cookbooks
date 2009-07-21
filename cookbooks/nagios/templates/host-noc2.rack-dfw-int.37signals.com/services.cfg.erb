@@ -263,6 +263,13 @@ define service {
 
 define service {
 		use generic-service
+		host_name mail-01
+		service_description	BP Incoming mail queue
+		check_command			check_file_count!/u/depot/backpack/email/incoming/new!200!250
+}
+
+define service {
+		use generic-service
 		host_name ob-app-01,ob-app-02
 		service_description	OB Memcached
 		check_command			check_tcp!11211
