@@ -13,8 +13,8 @@ define :add_keys do
     end
   end
   
-  if node[:extra_ssh_keys]
-    node[:extra_ssh_keys].each do |username|
+  if config[:extra_ssh_keys]
+    config[:extra_ssh_keys].each do |username|
       keys[username] = node[:ssh_keys][username]
     end
   end
