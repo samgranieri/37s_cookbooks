@@ -92,8 +92,8 @@ remote_file "/usr/local/bin/kvmtool" do
   mode 0755
 end
 
-service "libvirtd-bin" do
-  supports :restart => true, :reload => true
+service "libvirt-bin" do
+  supports :restart => false, :reload => true
   action :enable
 end
 
@@ -102,5 +102,5 @@ template "/etc/libvirt/libvirtd.conf" do
   mode 0644
   owner "root"
   group "root"
-  notifies :reload, resources(:service => "libvirtd-bin")
+  notifies :reload, resources(:service => "libvirt-bin")
 end
