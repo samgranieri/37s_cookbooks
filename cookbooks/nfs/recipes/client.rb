@@ -14,7 +14,7 @@ if node[:nfs_mounts]
       dump 0
       pass 0
       # mount and add to fstab. set to 'disable' to remove it
-      action :enable
+      action [:enable, :mount]
     end
   end
 else
