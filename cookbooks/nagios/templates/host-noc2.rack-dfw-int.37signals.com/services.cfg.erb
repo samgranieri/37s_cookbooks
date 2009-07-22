@@ -383,7 +383,7 @@ define service {
 
 define service {
 		use frequent-service-with-sms
-		hostgroup_name cf-app
+		host_name cf-app-05, cf-app-07, cf-app-09, cf-app-10, cf-app-11, cf-app-12, cf-app-13, cf-app-14
 		service_description	CF HTTP content
 		check_command			check_http_content!37s.campfirenow.com!/login!/login
 }
