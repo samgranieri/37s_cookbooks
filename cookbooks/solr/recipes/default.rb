@@ -7,6 +7,7 @@ node[:active_applications].keys.each do |app|
     variables(:app => app)
     owner node[:tomcat][:user]
     mode "0644"
+    backup false
   end
 
   directory "#{node[:solr][:root]}/#{app}" do
@@ -25,6 +26,7 @@ node[:active_applications].keys.each do |app|
     mount "#{node[:solr][:root]}/#{app}/data" do
       device node[:solr][:data_device]
       fstype "ext3"
+      action [ :enable, :mount ]
     end
   end
 
