@@ -8,6 +8,8 @@ node[:active_applications].keys.each do |app|
     owner node[:tomcat][:user]
     mode "0644"
     backup false
+
+    notifies :restart, resources("service[tomcat]"), :delayed
   end
 
   directory "#{node[:solr][:root]}/#{app}" do
