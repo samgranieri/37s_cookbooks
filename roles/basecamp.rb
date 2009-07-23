@@ -16,4 +16,4 @@ default_attributes  :active_applications =>  {"basecamp" =>  {"env" => "producti
                       }
                     },
                     :apache => {:listen_ports => [80]}
-override_attributes :passenger => { :tune_gc => false }
+override_attributes :passenger => { :tune_gc => true }
