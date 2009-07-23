@@ -4,5 +4,5 @@
  DeflateCompressionLevel 9
 
  # Exclude Basecamp uploads
- SetEnvIfNoCase Request_URI ^/dl/.* no-gzip dont-vary
+ SetEnvIf Request_URI "^/dl/" no-gzip dont-vary
 </IfModule>
