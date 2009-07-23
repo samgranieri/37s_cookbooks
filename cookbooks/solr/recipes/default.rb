@@ -9,7 +9,7 @@ node[:active_applications].keys.each do |app|
     mode "0644"
     backup false
 
-    notifies :restart, resources("service[tomcat]"), :delayed
+    notifies :restart, resources("service[tomcat6]"), :delayed
   end
 
   directory "#{node[:solr][:root]}/#{app}" do
