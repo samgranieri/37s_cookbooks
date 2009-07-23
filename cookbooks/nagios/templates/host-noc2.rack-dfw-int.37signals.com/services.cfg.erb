@@ -309,62 +309,27 @@ define service {
 		use frequent-service-with-sms
 		hostgroup_name hr-web
 		service_description	HR HTTP content
-		check_command			check_http_content!37s.highrisehq.com!/login!/session
+		check_command			check_https_content!37s.highrisehq.com!/login!/session
 }
 
 define service {
 		use frequent-service-with-sms
 		host_name bpmu-app-01, bpmu-app-02, bpmu-app-03, bpmu-app-05
 		service_description	BP HTTP content
-		check_command			check_http_content!37s.backpackit.com!/login!/session
+		check_command			check_https_content!37s.backpackit.com!/login!/session
 }
 define service {
 		use frequent-service-with-sms
 		host_name bc-01, bc-02, bc-03, bc-04
 		service_description BC app server HTTP content
-		check_command check_http_content!projects.clientsection.com!/login!/login/authenticate
+		check_command check_https_content!projects.clientsection.com!/login!/login/authenticate
 }
 
 define service {
 		use frequent-service-with-sms
 		host_name bc-web-02,bc-web-03,bc-web-04,bc-web-05
 		service_description	BC clientsection HTTP content
-		check_command			check_http_content!projects.clientsection.com!/login!/login/authenticate
-}
-
-define service {
-		use frequent-service-with-sms
-		host_name bc-web-02,bc-web-03,bc-web-04,bc-web-05
-		service_description	BC basecamphq HTTP content
-		check_command			check_http_content!projects.basecamphq.com!/login!/login/authenticate
-}
-
-define service {
-		use frequent-service-with-sms
-		host_name bc-web-02,bc-web-03,bc-web-04,bc-web-05
-		service_description	BC seework HTTP content
-		check_command			check_http_content!projects.seework.com!/login!/login/authenticate
-}
-
-define service {
-		use frequent-service-with-sms
-		host_name bc-web-02,bc-web-03,bc-web-04,bc-web-05
-		service_description	BC projectpath HTTP content
-		check_command			check_http_content!projects.projectpath.com!/login!/login/authenticate
-}
-
-define service {
-		use frequent-service-with-sms
-		host_name bc-web-02,bc-web-03,bc-web-04,bc-web-05
-		service_description	BC grouphub HTTP content
-		check_command			check_http_content!projects.grouphub.com!/login!/login/authenticate
-}
-
-define service {
-		use frequent-service-with-sms
-		host_name bc-web-02,bc-web-03,bc-web-04,bc-web-05
-		service_description	BC updatelog HTTP content
-		check_command			check_http_content!projects.updatelog.com!/login!/login/authenticate
+		check_command			check_https_content!projects.clientsection.com!/login!/login/authenticate
 }
 
 define service {
@@ -385,14 +350,14 @@ define service {
 		use frequent-service-with-sms
 		host_name cf-app-05, cf-app-07, cf-app-09, cf-app-10, cf-app-11, cf-app-12, cf-app-13, cf-app-14
 		service_description	CF HTTP content
-		check_command			check_http_content!37s.campfirenow.com!/login!/login
+		check_command			check_https_content!37s.campfirenow.com!/login!/login
 }
 
 define service {
 		use frequent-service
 		host_name	billing
 		service_description	QB HTTP content
-		check_command			check_http_content!billing.37signals.com!/session/new!/session
+		check_command			check_https_content!billing.37signals.com!/session/new!/session
 }
 
 define service {

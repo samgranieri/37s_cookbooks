@@ -103,9 +103,14 @@ define command{
         command_line    $USER1$/check_hpjd -H $HOSTADDRESS$ -C public
         }
 
-define command{
+define command {
         command_name    check_http_content
-        command_line    $USER1$/check_http -I $HOSTADDRESS$ -H $ARG1$ -u $ARG2$ -s $ARG3$ 
+        command_line    $USER1$/check_http -I $HOSTADDRESS$ -H $ARG1$ -u $ARG2$ -s $ARG3$ -f follow
+        }
+
+define command {
+        command_name    check_https_content
+        command_line    $USER1$/check_http -I $HOSTADDRESS$ -H $ARG1$ -u $ARG2$ -s $ARG3$ -f follow -S
         }
 
 define command{
