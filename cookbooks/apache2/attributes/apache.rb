@@ -57,6 +57,7 @@ apache[:worker][:maxrequestsperchild] = 0 unless apache[:worker].has_key?(:maxre
 apache[:deflate] = Mash.new unless apache.has_key?(:deflate)
 apache[:deflate][:mime_types] = %w(text/html text/plain text/xml application/xml application/xhtml+xml
                                 text/javascript application/x-javascript application/javascript text/css) unless apache[:deflate].has_key?(:mime_types)
+apache[:deflate][:disable] = false unless apache[:deflate].has_key?(:disable)
 
 apache[:expires] = Mash.new unless apache.has_key?(:expires)
 apache[:expires][:default] = "access plus 1 year" unless apache[:expires].has_key?(:default)                                
