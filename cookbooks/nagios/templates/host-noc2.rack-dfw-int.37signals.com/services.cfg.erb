@@ -307,9 +307,23 @@ define service {
 
 define service {
 		use frequent-service-with-sms
-		hostgroup_name hr-web
+		host_name hr-web-01, hr-web-03, hr-web-04
 		service_description	HR HTTP content
 		check_command			check_https_content!37s.highrisehq.com!/login!/session
+}
+
+define service {
+		use frequent-service-with-sms
+		host_name hr-app-01, hr-app-05, hr-app-06, hr-app-07
+		service_description	HR app server HTTP content
+		check_command			check_http_content!37s.highrisehq.com!/login!/session
+}
+
+define service {
+		use frequent-service-with-sms
+		host_name bc-01, bc-02, bc-03, bc-04
+		service_description BC app server HTTP content
+		check_command check_http_content!projects.clientsection.com!/login!/login/authenticate
 }
 
 define service {
@@ -318,6 +332,7 @@ define service {
 		service_description	BP HTTP content
 		check_command			check_https_content!37s.backpackit.com!/login!/session
 }
+
 define service {
 		use frequent-service-with-sms
 		host_name bc-01, bc-02, bc-03, bc-04
