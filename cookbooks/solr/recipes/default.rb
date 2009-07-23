@@ -11,6 +11,7 @@ node[:active_applications].keys.each do |app|
   end
 
   directory "#{node[:solr][:root]}/#{app}" do
+    recursive true
     owner "app"
     group "app"
     mode 0755
