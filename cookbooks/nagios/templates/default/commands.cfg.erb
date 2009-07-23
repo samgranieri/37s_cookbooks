@@ -27,7 +27,7 @@ define command {
 
 define command {
   command_name    check_log
-  command_line    $USER1$/check_by_ssh -H $HOSTADDRESS$ -C "/usr/lib/nagios/plugins/check_log -F $ARG1$ -O /tmp/nagios.logcheck.processed -q $ARG2$" -l root
+  command_line    $USER1$/check_by_ssh -H $HOSTADDRESS$ -C "/usr/lib/nagios/plugins/check_log -F $ARG1$ -O /tmp/nagios.logcheck.processed -q $ARG2$" -l app
 }
 
 define command { 
