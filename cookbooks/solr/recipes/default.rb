@@ -1,15 +1,7 @@
-#
-# Cookbook Name:: solr
-# Recipe:: default
-#
-# Copyright 2009, 37signals
-#
-# All rights reserved - Do Not Redistribute
-#
 
 require_recipe "tomcat"
 
-node[:active_applications].each do |app|
+node[:active_applications].keys.each do |app|
   template "/etc/tomcat6/Catalina/localhost/#{app}.xml" do
     source "solr.xml.erb"
     variables(:app => app)
