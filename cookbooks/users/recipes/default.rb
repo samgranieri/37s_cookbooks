@@ -18,6 +18,7 @@ node[:active_groups].each do |group_name, config|
       shell "/bin/bash"
       password config[:password]
       supports :manage_home => true
+      action [:create, :manage]
     end
 
     directory "/home/#{u}/.ssh" do
