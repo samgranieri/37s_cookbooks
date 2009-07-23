@@ -200,25 +200,6 @@ define host {
 
 define host {
   use server
-  address 192.168.2.24
-  host_name cf-app-05
-  alias cf-app-05
-  hostgroups slices, cf-app
-  
-}
-
-define host {
-  use server
-  address 192.168.2.26
-  host_name cf-app-07
-  alias cf-app-07
-  
-  hostgroups slices, cf-app
-  
-}
-
-define host {
-  use server
   address 192.168.2.28
   host_name live-01
   alias live-01
