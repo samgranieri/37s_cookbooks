@@ -210,17 +210,6 @@ define host {
 
 define host {
   use server
-  address 192.168.2.29
-  host_name live-02
-  alias live-02
-  
-  hostgroups slices, live-app
-  
-}
-
-
-define host {
-  use server
   address 192.168.2.44
   host_name ob-app-01
   alias ob-app-01
@@ -258,14 +247,6 @@ define host {
 #   hostgroups slices
 #   
 # }
-
-define host {
-  use server
-  address 192.168.2.58
-  host_name hr-web-01
-  alias hr-web-01
-  hostgroups slices, hr-web
-}
 
 define host {
   use server
