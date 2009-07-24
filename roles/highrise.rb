@@ -9,7 +9,7 @@ default_attributes  :active_applications =>  {"highrise" =>  {"env" =>  "product
                     :applications => {
                       :highrise => {
                         :syslog_files => {:haproxy => true},
-                        :gems => ['fast_xs','hpricot'],
+                        :gems => ['fast_xs','hpricot', 'open4'],
                         :packages => ['imagemagick', 'zip'],
                         :symlinks => {
                         '/usr/local/bin/convert' => '/usr/bin/convert',
