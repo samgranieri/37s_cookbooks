@@ -307,7 +307,7 @@ define service {
 
 define service {
 		use frequent-service-with-sms
-		host_name hr-web-01, hr-web-03, hr-web-04
+		host_name hr-web-03, hr-web-04
 		service_description	HR HTTP content
 		check_command			check_https_content!37s.highrisehq.com!/login!/session
 }
