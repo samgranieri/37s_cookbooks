@@ -19,8 +19,12 @@ node[:active_applications].keys.each do |app|
     mode 0755
   end
 
-  link "#{node[:solr][:root]}/#{app}/bin" do
-    to "#{node[:solr][:root]}/#{app}/conf/scripts"
+  
+  remote_directory "#{node[:solr][:root]}/#{app}/bin" do
+    source node[:solr][:script_dir]
+    owner "app"
+    group "app"
+    mode 0755
   end
   
   directory "#{node[:solr][:root]}/#{app}/data" do
