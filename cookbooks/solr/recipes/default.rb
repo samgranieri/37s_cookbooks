@@ -24,7 +24,10 @@ node[:active_applications].keys.each do |app|
     source node[:solr][:script_dir]
     owner "app"
     group "app"
-    mode 0755
+    mode 0750
+    files_owner "app"
+    files_group "app"
+    files_mode 0700
   end
   
   directory "#{node[:solr][:root]}/#{app}/data" do
