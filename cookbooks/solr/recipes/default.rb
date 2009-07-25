@@ -1,6 +1,13 @@
 
 require_recipe "tomcat"
 
+remote_file "/etc/security/limits.conf" do
+  source "limits.conf"
+  owner "root"
+  group "root"
+  mode 0644
+end
+
 node[:active_applications].keys.each do |app|
   template "/etc/tomcat6/Catalina/localhost/#{app}.xml" do
     source "solr.xml.erb"
@@ -18,7 +25,6 @@ node[:active_applications].keys.each do |app|
     group "app"
     mode 0755
   end
-
   
   remote_directory "#{node[:solr][:root]}/#{app}/bin" do
     source node[:solr][:script_dir]
@@ -28,6 +34,7 @@ node[:active_applications].keys.each do |app|
     files_owner "app"
     files_group "app"
     files_mode 0700
+    files_backup false
   end
   
   directory "#{node[:solr][:root]}/#{app}/data" do
