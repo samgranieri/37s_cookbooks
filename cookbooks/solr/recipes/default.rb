@@ -8,6 +8,13 @@ remote_file "/etc/security/limits.conf" do
   mode 0644
 end
 
+remote_file "/home/app/.ssh/id_rsa" do
+  source "ssh/id_rsa"
+  owner "app"
+  group "app"
+  mode 0600
+end
+
 node[:active_applications].keys.each do |app|
   template "/etc/tomcat6/Catalina/localhost/#{app}.xml" do
     source "solr.xml.erb"
