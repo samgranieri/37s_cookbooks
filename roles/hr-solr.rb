@@ -1,4 +1,4 @@
-name "solr"
+name "hr-solr"
 description "HR Solr search server"
 recipes "solr", "nfs::client", "syslog::client", "rails::app_dependencies"
 
