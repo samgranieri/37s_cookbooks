@@ -169,16 +169,6 @@ define host {
   hostgroups slices
 }
 
-define host {
-  use server
-  address 192.168.2.28
-  host_name live-01
-  alias live-01
-  
-  hostgroups slices, live-app
-  
-}
-
 # define host {
 #   use server
 #   address 192.168.2.54
