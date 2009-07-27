@@ -1,11 +1,4 @@
 
-remote_file "/home/root/.ssh/id_rsa.storage" do
-  source "ssh/id_rsa.storage"
-  owner "root"
-  group "root"
-  mode "0600"
-end
-
 directory "/u/backup" do
   owner "storage"
   group "storage"
