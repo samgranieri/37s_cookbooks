@@ -133,11 +133,6 @@ define hostgroup {
 }
 
 define hostgroup {
-	hostgroup_name live-app
-	alias 37s Live App
-}
-
-define hostgroup {
 	hostgroup_name web-general
 	alias Small Apps and Sites
 	members 37s-app-01, 37s-app-02
@@ -260,7 +255,7 @@ define service {
 
 define service {
 		use frequent-service
-		hostgroup_name live-app
+		host_name live-app-02
 		service_description	37sLive HTTP content
 		check_command			check_http_content!live.37signals.com!/!Live
 }
