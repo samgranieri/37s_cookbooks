@@ -84,11 +84,6 @@ define hostgroup {
 }
 
 define hostgroup {
-	hostgroup_name cf_solr
-	alias cf_solr
-}
-
-define hostgroup {
 	hostgroup_name decomm
 	alias decomm
 }
@@ -222,7 +217,7 @@ define service{
 
 define service{
         use                     generic-service
-		hostgroup_name			cf_solr
+		host_name	cf-solr-indexer, cf-solr-searcher
         service_description     CF Solr
 		check_command			check_solr!campfire
 }
@@ -564,7 +559,7 @@ define service {
 
 define service {
 	use generic-service
-	host_name cf-solr-01
+	host_name cf-solr-indexer
   service_description CF Solr Index
 	check_command check_solr_index!cf
 }

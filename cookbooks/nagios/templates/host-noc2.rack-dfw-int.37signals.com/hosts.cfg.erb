@@ -172,26 +172,6 @@ define host {
 
 define host {
   use server
-  address 192.168.2.8
-  host_name cf-solr-01
-  alias cf-solr-01
-  
-  hostgroups slices, cf_solr
-  
-}
-
-define host {
-  use server
-  address 192.168.2.9
-  host_name cf-solr-02
-  alias cf-solr-02
-  
-  hostgroups slices, cf_solr
-  
-}
-
-define host {
-  use server
   address 192.168.2.28
   host_name live-01
   alias live-01
