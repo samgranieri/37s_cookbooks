@@ -219,23 +219,3 @@ define host {
 #   hostgroups slices
 #   
 # }
-
-define host {
-  use server
-  address 192.168.2.12
-  host_name hr-solr-01
-  alias hr-solr-01
-  
-  hostgroups slices, hr_solr
-  
-}
-
-define host {
-  use server
-  address 192.168.2.13
-  host_name hr-solr-02
-  alias hr-solr-02
-  
-  hostgroups slices, hr_solr
-  
-}

@@ -89,11 +89,6 @@ define hostgroup {
 }
 
 define hostgroup {
-	hostgroup_name hr_solr
-	alias hr_solr
-}
-
-define hostgroup {
 	hostgroup_name decomm
 	alias decomm
 }
@@ -234,7 +229,7 @@ define service{
 
 define service{
     use                     generic-service
-		hostgroup_name               hr_solr
+		host_name hr-solr-indexer, hr-solr-searcher
     service_description     HR Solr
 		max_check_attempts			6
 		check_command	query_solr!highrise!%2Bmodel_base_class%3ARecording+AND+%2B%28name_string%3A%22test%22%5E4+OR+body_text%3A%22test%22%5E3+OR+name_string%3A%28test%29%5E1.5+OR+body_text%3A%28test%29%29%3B+created_at_datetime+desc%3B
@@ -562,7 +557,7 @@ define service {
 
 define service {
 	use generic-service
-	host_name hr-solr-01
+	host_name hr-solr-indexer
   service_description HR Solr Index
 	check_command check_solr_index!hr
 }
