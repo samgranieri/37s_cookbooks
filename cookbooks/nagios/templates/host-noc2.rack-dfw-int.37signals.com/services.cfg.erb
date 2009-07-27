@@ -269,13 +269,6 @@ define service {
 }
 
 define service {
-		use generic-service
-		host_name ob-app-01,ob-app-02
-		service_description	OB Memcached
-		check_command			check_tcp!11211
-}
-
-define service {
 		use frequent-service
 		hostgroup_name live-app
 		service_description	37sLive HTTP content
