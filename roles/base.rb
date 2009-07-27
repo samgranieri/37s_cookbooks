@@ -23,9 +23,11 @@ override_attributes :active_groups => {:admin => {:enabled => true}},
                   :dyndns_password => "5SkR2hJiNsQP",
                   :apache => {:listen_ports => [80,443]},
                   :groups => {:app => {:gid => 1003},
-                             :site => {:gid => 3001},
-                             :support => {:gid => 3002},
-                             :admin   => {:gid => 4000}}, 
+                              :site => {:gid => 3001},
+                              :support => {:gid => 3002},
+                              :storage => {:gid => 3003},
+                              :admin   => {:gid => 4000}},
+
                   :users => {:app => {:password => "$1$hk40k332$wpSYJYlbbVo3AK/7thxO3.", :comment => "App User", :uid => 1003, :group => :app, :ssh_key_groups => [:app,:site,:admin], :extra_ssh_keys => [:nagios, :solr]},
                              :site => {:password => "$1$4k01kee3$tQkwp46/ngyG.iH4kIaTJ0", :comment => "Site User", :uid => 4000, :group => :site, :ssh_key_groups => [:app,:site,:admin]},
                              :joshua => {:password => "$1$2B2ZNpWj$poiTyPOZxozN75xDkt4DT.", :comment => "Joshua Sierles", :uid => 3010, :group => :admin, :yubikey_id => 'dtnkddnltnhk', :http_digest => 'Q0ow3S0HISHc.'},
@@ -42,7 +44,8 @@ override_attributes :active_groups => {:admin => {:enabled => true}},
                              :matt => {:password => "$1$uZBGnixP$IObtQbltwN/OMqYOvETgo.", :comment => "Matt Linderman", :uid => 3021, :group => :site},
                              :craig => {:password => "$1$9UPxs06v$YP5cJBW0hDxiZcu1GGryi/", :comment => "Craig Davey", :uid => 3024, :group => :app},
                              :sarah => {:password => "$1$U0cG83um$O2rd3ewKpBseLoy6OLLfg0", :comment => "Sarah Hatter", :uid => 3022, :group => :support},
-                             :michael => {:password => "$1$vT.aW0Bk$dZ29mgu32LVuieh6w5z.4.", :comment => "Michael Berger", :uid => 3023, :group => :support}},
+                             :michael => {:password => "$1$vT.aW0Bk$dZ29mgu32LVuieh6w5z.4.", :comment => "Michael Berger", :uid => 3023, :group => :support},
+                             :storage => {:password => "$1$hk40k332$wpSYJYlbbVo3AK/7thxO3.", :comment => "Bulk Storage", :uid => 3025, :group => :bulk},},
      
                   :ssh_keys =>
                      {:david => "ssh-dss AAAAB3NzaC1kc3MAAAEBAMz5mPUa2WubrwTgE1VXPdmPSkT0qoU71vh4elJRaj0VWypb2c3IPyyGSdWjsCBSHUSUBUR4VL5fSJfu1QKrHVpt0BIU7Nl+dvCwATAeL9j3k0cpzYrjPhXLZQ4UStfh+Tpo20QitzXQ2ceoFaiVNXf5upUP+Yz+jTqhLkcjWVlIdas/eiVldXVtLEUqUo6RUTcaVLbb8ksp6lhZp1iVV8k07OMButiCB3X3k5kQxCnCMzzWI5IDP6VSacu5gUwIjnS2hB0S3lSBSgJL+YBOBWqjBW4HCqPHMkphEyxUs0GtVia1qdhIs62m8tMMD6hWiqr7+ATJi0xf0iI31TjUxSUAAAAVAPS7EZNGzL+bknalDVdd5JpTFlqfAAABAD1fD+2u1fAh/pMeUnj7fwNGVEH0NwjePLyrZiCV1qvcqfR2FOH6pJS5ntQPgo+bi33MnkXqp/dnkEdpWar/CRo9FgIcyQ4NUSkXYwlhY6HM+PxTQvM5WhRMpJqfcfQKXdhV8hlf293p5roWYmbale4vq+Kz+bpVnIxO+UQqvb1nbnbzB9/ztWWjKwTKUPklvja52g3tWYH1tywzGVHukLoiedZGwqw3kHT8FQgORAr2AbE8Bn++cT6PUr78PXUl537OLVTwtNPK/taB8mm4Fwbriz9fiEdvgtfsji+1vqkJubeUmQi8TPq5iwsthE3TPyY6Ip1ZJlPO8LTXENGyvD8AAAEAUYs2ZCRntt59ryfOsXiu4J/vYpzbSbBqXmX5wBzbb23qmZGd8LBLzUY6NwgR6NbD41e0qx31IGK5KE8fFX/z+oaZfQBw/Vt72QuyypdMcqYXVN4/AOv4u8+pqb7q+m1qULgGoi+/DMKE61mxw0+iiFz+drUr3ZF+9weuVE+xWlBWIze+GOBxMDVrKjvK4wuGFl67gD8F5/wcA8pRDltYVYgwkuf22L+o1ZvYRt+4861kAUfqeP2HM24+swXgPOK1Mi/3AZupqTFTSB1NruDlvd2xBKAMqSMv9sIc0y89cATd9Divusb85zRJVsIGQz19l7UUgA0Ogvwdm0+t4zr2Kw== david@Envy5.local",
@@ -62,6 +65,7 @@ override_attributes :active_groups => {:admin => {:enabled => true}},
                      :sarah => "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwMnlTXspEIgOYmdntSgwCjOH0w3RqfoBZ8FRBxTiQIvHZJJonTxukwA6zPuaH9CfAq7swAQUzQrnmFsQ++7TFtC0NQdSldnyO6oRAIpAAUCauG9LaLwhr3LgOSySAJfETxZeesCnLHvSs/rWT0TIPXcqgADuvZcrYepLmTk+FDnHTS09j+070UMjwTuBjbEouFmJcWHI5Uu2Y8Bc5/MgGEwBh5epNBrU9vNAgad9P1Av1CKv1bYY7av92CYEOWainyP3clTC4fdJYFHgCDkbK9aMCtPcXKjsvLmHQt4ukO7EGzWAzNvHmXlORVJg7gTVEFZi0pJ0TqBfzHOulamcFw== sarah@dev.37signals.com",
                      :michael => "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA53phCOgf54FyqE2TwtTSzIRpnMHZ75Dt8xC6luL3nKXlCeb/daD3PMhN/Ymu2XUFe17d579cygUjeYp9G8hBIbLqJndXmuVbap8hYmaScGXYuCnHsvC1PAKwh+i66p8JdqK8hRgs29rsA737R+N3g7V08kcfPZ0PtIvl49TlfAw9z/OkCEch8RKTqUEKBn6RrshADEgg91IUN6cBBFgAzFHUa3W/ihvJHOfkrUS+rC80SpI9RjD0sLXoeRv3IE/uG1Nc6Fe4fmX6ezNcYFP3IQkP79KDgHuPO4Oalp7QMXcJZGLh5tjlhNYVAMZmzRhcDHY3rDZbbKMGM2totg3tFQ== michael@dev.37signals.com",
                      :nagios => "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA1XrZTbwTj6TfXpW5wLYtjcMl1fC5fWXpeHldglEP3poM8pwm+Yvwa8EQ6mcy1G/FCXLX5w9owz5R3p+8J1I32QehOsU4eFT/tU4CzTz1kA+0OJGjWIRecA5PKRxa6dc1N8xfEir+YFx9MabpjErZ8Us8hS48glpGavdKQzoKcy9VEk4JiddRYimTreiakc0elFeYJJbNYNC8x76lVPUr9Llw3d81rdJyi28Xv06oaNS+n0Oa/XnzSfKk+9anwbIymj9utf5tAJarAsOiC1CRBe4BRm9ALbsfBjbgn2JZoZmEjI2uG+1/hxoeXfPh1C048qNP+zdlClwlQM535vsKOQ== nagios@noc.37signals.com",
-                     :solr => "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAmBDpYGrYau33dBcy5ms+KCCIWNGIli3dDOt7nfDwPrBXxgK7068zlGaroa9U8btE6pfYzjLXEldvqwP50+lfmGxTVfc/AC4fu+w0ojOWzA/pz3QS5gslMgJP1+iggryMVnlCc5nRHgJdg55aJ4XF/+nQ9kso4DSUCYC3RksrHu6WKn2tik2CEY0bcSEil2jzpgHnEwA0nFik3ahQr8UO2EdFACJ79vuQd9ZStUvokhak9xMT+49if9V4NSMxSzlsjm+PSlrStb0xzo39me2XJ9Irau1CJ2GGEA+GmZhUvg04Sn8LhysAuRDVx0tHeElPJB6wbpLNsU66PJjqLBdZBw== app@bc-solr-02"
+                     :solr => "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAmBDpYGrYau33dBcy5ms+KCCIWNGIli3dDOt7nfDwPrBXxgK7068zlGaroa9U8btE6pfYzjLXEldvqwP50+lfmGxTVfc/AC4fu+w0ojOWzA/pz3QS5gslMgJP1+iggryMVnlCc5nRHgJdg55aJ4XF/+nQ9kso4DSUCYC3RksrHu6WKn2tik2CEY0bcSEil2jzpgHnEwA0nFik3ahQr8UO2EdFACJ79vuQd9ZStUvokhak9xMT+49if9V4NSMxSzlsjm+PSlrStb0xzo39me2XJ9Irau1CJ2GGEA+GmZhUvg04Sn8LhysAuRDVx0tHeElPJB6wbpLNsU66PJjqLBdZBw== app@bc-solr-02",
+                     :storage => "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEApuUKB9EclFR4vztKeXUNwReHGhfVLUINb3Y4iLK3JiC30BVe7blBEf3LUHX1PeeqCXRR4ioKrv2IKSrYPJLv4J3J/ePuMIxMX7pnSWrEi55YJNPquPv1yCBpCUveoP+7ABKxNUgTz+4CgFj7CsVTfUNK9IZ++rL9Vm1WPDczcJEhJrY31wtZXEZ16vMQnhh69lP7rty3W0TcX4dslADXvJBow+Idtd/xBQwKTBI9StK6w3R/vzkwmgBo6qF3eA+3RAxrsX7wLG2adNbhSPbWl7GpJgwNJCgrqa5dZngdJAySBnk/fHyUn4iG9ftysColbun+DFM0DCZrk7p+qjrqqQ== backup@bulk"
 }
  
