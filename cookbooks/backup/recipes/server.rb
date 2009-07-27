@@ -1,5 +1,6 @@
 
 directory "/u/backup" do
+  recursive true
   owner "storage"
   group "storage"
   mode "0775"
