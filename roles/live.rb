@@ -4,6 +4,6 @@ default_attributes :active_applications =>  {"live" => {"env" =>  "production"}}
 
 :applications => {
   :live => {
-    :gems => ['fast_xs']
+    :gems => ['fast_xs', 'RedCloth']
   }
 }
