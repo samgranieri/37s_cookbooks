@@ -1,2 +1,2 @@
 backup Mash.new unless attribute?(:backup?)
-backup[:devices] = [] unless backup.has_key?(:devices)
+backup[:devices] = Mash.new unless backup.has_key?(:devices)
