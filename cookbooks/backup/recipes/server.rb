@@ -1,4 +1,6 @@
 
+package "nfs-kernel-server"
+
 directory "/u/backup" do
   recursive true
   owner "storage"
