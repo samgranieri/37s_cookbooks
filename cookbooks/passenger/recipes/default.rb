@@ -42,7 +42,7 @@ template "/usr/local/bin/ruby_gc_wrapper" do
 end
 
 cron "passenger memory monitor" do
-  command "/usr/local/bin/passenger_monitor 280 550"
+  command "/usr/local/bin/passenger_monitor #{node[:passenger][:soft_memory_limit]} #{node[:passenger][:hard_memory_limit]}"
 end
 
 apache_module "passenger"
