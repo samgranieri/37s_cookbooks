@@ -292,7 +292,7 @@ define service {
 
 define service {
 		use frequent-service-with-sms
-		host_name hr-app-01, hr-app-05, hr-app-06, hr-app-07
+		host_name hr-app-01, hr-app-05, hr-app-06, hr-app-07, hr-app-08
 		service_description	HR app server HTTP content
 		check_command			check_http_content!37s.highrisehq.com!/login!/session
 }
