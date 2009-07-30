@@ -52,12 +52,6 @@ define serviceescalation {
 
 # old services
 
-
-define hostgroup{
-	hostgroup_name netapp
-	alias netapp
-}
-
 define hostgroup{
 	hostgroup_name slices
 	alias slices
@@ -158,27 +152,6 @@ define serviceescalation{
 	notification_interval	600
 	contact_groups		sysadmin-sms
 	}
-
-define service {
-		use generic-service
-		host_name netapp-01
-		service_description	NetApp 1 Xen Used Space
-		check_command			check_netapp!90!95!/vol/xen/
-}
-
-define service {
-		use generic-service
-		host_name netapp-02
-		service_description	NetApp 2 Xen Used Space
-		check_command			check_netapp!80!85!/vol/xen2/
-}
-
-define service {
-		use generic-service
-		host_name netapp-02
-		service_description	NetApp 2 Backups Used Space
-		check_command			check_netapp!80!85!/vol/backup/
-}
 
 
 define service {
@@ -532,7 +505,7 @@ define service {
 
 define service {
 	use default-service
-	host_name *, !netapp-01, !netapp-02, !cc1, !cc2, !search1, !db-slave, !billing
+	host_name *, !cc1, !cc2, !search1, !db-slave, !billing
 	hostgroup_name !bc_external
 	service_description Postfix port 25
 	check_command check_smtp

@@ -53,12 +53,6 @@ define command {
 	command_line	$USER3$/db_queues.rb -H $HOSTADDRESS$ -u $ARG1$ -p $ARG2$ -d $ARG3$ -q $ARG4$ -w $ARG5$ -c $ARG6$
 }
 
-define command{ 
-	command_name    check_netapp
-	command_line    $USER3$/check_netapp.pl -H $HOSTADDRESS$ -C 37nag -w $ARG1$ -c $ARG2$ -o $ARG3$ -v DISKUSED
-}
-
-
 define command{
         command_name    check_local_disk
         command_line    $USER1$/check_disk -w $ARG1$ -c $ARG2$ -p $ARG3$
