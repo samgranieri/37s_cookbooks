@@ -227,6 +227,13 @@ class Knife < Thor
     puts node.recipes.inspect
   end
 
+  desc "delete_node", "Delete a node"
+  method_options :node => :required
+  def delete_node
+    authenticate
+    node = @rest.delete_rest("nodes/#{expand_node(options[:node])}")
+  end
+
   desc "list_nodes", "Display chef nodes"
   method_options :role => :optional, :cap => :boolean, :attribute => :optional
   
