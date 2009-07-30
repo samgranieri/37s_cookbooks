@@ -1,7 +1,7 @@
 name "37s-app"
 description "General 37s application server"
 
-recipes "rails::apps", "php::sites"
+recipes "rails::apps", "php5::sites"
 
 override_attributes :active_applications => {
                      :bookstore => {"env" => "production"},
