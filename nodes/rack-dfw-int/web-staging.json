@@ -1,1 +1,1 @@
-{"run_list": ["role[rack-dfw]", "role[base]", "role[web-staging]"]}
+{"run_list": ["role[rack-dfw]", "role[base]", "role[bookstore]", "role[blogcabin]", "role[forum]", "role[extra_extra]", "role[jobs]", "role[help]", "role[web-staging]"]}
