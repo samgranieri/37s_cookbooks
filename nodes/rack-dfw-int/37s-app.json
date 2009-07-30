@@ -1,0 +1,1 @@
+{"run_list": ["role[rack-dfw]", "role[base]", "role[bookstore]", "role[blogcabin]", "role[forum]", "role[extra_extra]", "role[jobs]", "role[37s-app]"]}
