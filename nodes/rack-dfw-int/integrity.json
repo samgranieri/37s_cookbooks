@@ -1,0 +1,10 @@
+{
+ "run_list": ["role[rack-dfw]", "role[base]", "role[basecamp]", "role[backpack]", "role[campfire]", "role[highrise]", "role[queenbee]", "role[writeboard]", "role[tadalist]", "recipe[integrity]"],
+ "apache": {"listen_ports" :["80"]},
+ "integrity": {
+   "url": "https://dev.37signals.com/integrity",
+   "db_uri": "mysql://integrity:4NvUNGl56m1HEl8b3SNL@localhost/integrity",
+   "basic_auth": "false",
+   "projects": [ "backpack", "basecamp", "campfire", "highrise", "queenbee", "tadalist", "writeboard" ]
+  }
+}
