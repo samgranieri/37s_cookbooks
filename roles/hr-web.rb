@@ -1,6 +1,6 @@
 name "hr-web"
 description "Highrise web server"
-recipes "syslog::client", "rails::web"
+recipes "syslog::client", "rails::web", "nfs::client"
 default_attributes :active_groups => {:app => {:enabled => true}},
                    :active_sudo_groups => {:app => {:enabled => true}}
 
