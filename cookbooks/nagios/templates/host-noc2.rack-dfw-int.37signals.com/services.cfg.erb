@@ -361,6 +361,13 @@ define service {
 		check_command			check_http_content!news.37signals.com!/feeds/highrise.js!document.write
 }
 
+define service {
+		use frequent-service-with-sms
+		host_name wb-app-01,wb-app-02
+		service_description	Writeboard HTTP content
+		check_command		check_http_content!123.writeboard.com!/documents/new!newWriteboard
+}
+
 #define service {
 #		use frequent-service
 #		hostgroup_name app-general
