@@ -513,21 +513,21 @@ define service {
 
 define service {
 	use generic-service
-	host_name bc-solr-indexer
-  service_description BC Solr Index
+	host_name bc-solr-indexer, bc-solr-02
+        service_description BC Solr Index
 	check_command check_solr_index!bc
 }
 
 define service {
 	use generic-service
-	host_name hr-solr-indexer
-  service_description HR Solr Index
+	host_name hr-solr-indexer, hr-solr-searcher
+        service_description HR Solr Index
 	check_command check_solr_index!hr
 }
 
 define service {
 	use generic-service
-	host_name cf-solr-indexer
-  service_description CF Solr Index
+	host_name cf-solr-indexer, cf-solr-searcher
+        service_description CF Solr Index
 	check_command check_solr_index!cf
 }
