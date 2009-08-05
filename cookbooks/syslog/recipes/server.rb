@@ -40,9 +40,12 @@ logrotate "syslog-remote" do
   files ['/u/logs/syslog/messages', "/u/logs/syslog/secure", "/u/logs/syslog/maillog", "/u/logs/syslog/cron"]
 end
 
-
-cron "old logs cleanup" do
-  command "find /u/logs/basecamp -maxdepth 1 -type d -mtime +7 -exec rm -rf {} \\;"
-  hour "10"
-  minute "0"
+node[:applications].each do |app, config|
+  next unless config[:syslog_files][:logsort]
+  
+  cron "logsort log rotation: #{app}" do
+    command "find /u/logs/#{app} -maxdepth 1 -type d -mtime +7 -exec rm -rf {} \\;"
+    hour "10"
+    minute "0"
+  end
 end
