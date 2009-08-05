@@ -8,21 +8,25 @@ end
 directory node[:mysql][:server][:root] do
   owner "mysql"
   group "mysql"
+  recursive true
 end
 
 directory node[:mysql][:server][:datadir] do
   owner "mysql"
   group "mysql"
+  recursive true
 end
 
 directory node[:mysql][:server][:log_root] do
   owner "mysql"
-  group "mysql"  
+  group "mysql"
+  recursive true
 end
 
 directory node[:mysql][:server][:binlog_dir] do
   owner "mysql"
-  group "mysql"  
+  group "mysql"
+  recursive true
 end
 
 template "/etc/mysql/my.cnf" do
