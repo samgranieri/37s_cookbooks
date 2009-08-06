@@ -1,3 +1,5 @@
+=cc1.rack-dfw-int.37signals.com:172.28.1.100:300
+=cc2.rack-dfw-int.37signals.com:172.28.1.101:300
 =web1.rack-dfw-int.37signals.com:192.168.1.100:300
 =web2.rack-dfw-int.37signals.com:192.168.1.101:300
 =web3.rack-dfw-int.37signals.com:192.168.1.102:300
