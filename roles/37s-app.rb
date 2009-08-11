@@ -12,6 +12,7 @@ override_attributes :active_applications => {
                    },
                    :active_sites => {
                      "37signals" => {"env" =>"production"},
+                     :rework => {"env" => "production"},
                      :developer => {"env" =>"production"},
                      :basecamphq => {"env" =>"production"},
                      :backpackit => {"env" =>"production"},
