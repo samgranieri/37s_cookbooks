@@ -24,6 +24,13 @@ directory "/var/run/haproxy" do
   mode 0750
 end
 
+file "/etc/sysctl.d/20-ip-nonlocal-bind.conf" do
+  source "20-ip-nonlocal-bind.conf"
+  owner "root"
+  group "root"
+  mode 0644
+end
+
 node[:haproxy][:instances].each do |instance|
   instance[:listeners].each_with_index do |listener, idx|
     [ :options, :errorfiles, :backends ].each do |key|
