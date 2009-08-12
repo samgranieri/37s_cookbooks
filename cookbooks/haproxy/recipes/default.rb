@@ -24,7 +24,7 @@ directory "/var/run/haproxy" do
   mode 0750
 end
 
-file "/etc/sysctl.d/20-ip-nonlocal-bind.conf" do
+remote_file "/etc/sysctl.d/20-ip-nonlocal-bind.conf" do
   source "20-ip-nonlocal-bind.conf"
   owner "root"
   group "root"
