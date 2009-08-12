@@ -128,7 +128,6 @@ include_recipe "apache2::mod_log_config" if platform?("centos", "redhat", "suse"
 
 apache_site "default" do
   enable false
-  number "000"
 end
 
 service "apache2" do
