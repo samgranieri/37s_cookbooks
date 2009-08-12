@@ -39,7 +39,7 @@ define service{
 define serviceescalation {
   hostgroup_name          servers, linux_boxes, freebsd_boxes, slices
 	service_description	Free Memory
-	first_notification	5
+	first_notification	1
 	last_notification	0
 	notification_interval	0
 	escalation_options c,u,r
@@ -272,7 +272,7 @@ define service {
 
 define service {
 		use frequent-service-with-sms
-		host_name bc-01, bc-02, bc-03, bc-04
+		host_name bc-01, bc-02, bc-03, bc-04, bc-beta
 		service_description BC app server HTTP content
 		check_command check_http_content!projects.clientsection.com!/login!/login/authenticate
 }
@@ -286,7 +286,7 @@ define service {
 
 define service {
 		use frequent-service-with-sms
-		host_name bc-01, bc-02, bc-03, bc-04
+		host_name bc-01, bc-02, bc-03, bc-04, bc-beta
 		service_description BC app server HTTP content
 		check_command check_http_content!projects.clientsection.com!/login!/login/authenticate
 }
