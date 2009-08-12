@@ -23,7 +23,8 @@ vrrp_instance <%= vrrp[:name] %> {
         auth_pass <%= vrrp[:auth_pass] %>
     }
     virtual_ipaddress {
-        <% vrrp[:virtual_addresses].each do |addr| %><%= addr %><% end %>
+        <% vrrp[:virtual_addresses].each do |addr| %><%= addr %>
+<% end %>
     }
 }
 <% end %>
