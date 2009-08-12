@@ -286,13 +286,6 @@ define service {
 
 define service {
 		use frequent-service-with-sms
-		host_name bc-01, bc-02, bc-03, bc-04, bc-beta
-		service_description BC app server HTTP content
-		check_command check_http_content!projects.clientsection.com!/login!/login/authenticate
-}
-
-define service {
-		use frequent-service-with-sms
 		host_name bc-web-02,bc-web-03,bc-web-04,bc-web-05
 		service_description	BC clientsection HTTP content
 		check_command			check_https_content!projects.clientsection.com!/login!/login/authenticate
