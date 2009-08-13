@@ -365,7 +365,7 @@ define service {
 		use frequent-service-with-sms
 		host_name qb-01, qb-02
 		service_description Queenbee HTTPS Content
-		check_command check_https_content!billing.37signals.com!/basecamp/Free/signup/new!signup.37signals.com
+		check_command check_https_content!billing.37signals.com!/basecamp/Free/signup/new!signup_submit
 }
 
 #define service {
