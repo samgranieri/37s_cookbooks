@@ -361,6 +361,13 @@ define service {
 		check_command		check_http_content!123.writeboard.com!/documents/new!newWriteboard
 }
 
+define service {
+		use frequent-service-with-sms
+		host_name qb-01, qb-02
+		service_description Queenbee HTTPS Content
+		check_command check_https_content!billing.37signals.com!/basecamp/Free/signup/new!signup.37signals.com
+}
+
 #define service {
 #		use frequent-service
 #		hostgroup_name app-general
