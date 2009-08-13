@@ -279,9 +279,9 @@ define service {
 
 define service {
 		use frequent-service-with-sms
-		host_name bpmu-app-01, bpmu-app-02, bpmu-app-03, bpmu-app-05
-		service_description	BP HTTP content
-		check_command			check_https_content!37s.backpackit.com!/login!/session
+		host_name bp-01, bp-02
+		service_description BP HTTP content
+		check_command check_https_content!37s.backpackit.com!/login!/session
 }
 
 define service {
