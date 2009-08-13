@@ -307,9 +307,9 @@ define service {
 
 define service {
 		use frequent-service-with-sms
-		host_name cf-app-09, cf-app-10, cf-app-11, cf-app-12, cf-app-13, cf-app-14, cf-app-15, cf-app-16
-		service_description	CF HTTP content
-		check_command			check_https_content!37s.campfirenow.com!/login!/login
+		host_name cf-01, cf-02, cf-03
+		service_description CF HTTP content
+		check_command check_https_content!37s.campfirenow.com!/login!/login
 }
 
 define service {
@@ -420,9 +420,9 @@ define service {
 
 define service {
 		use generic-service
-		host_name cf-app-09, cf-app-10, cf-app-11, cf-app-12, cf-app-13, cf-app-14, cf-app-15, cf-app-16
-		service_description	CF proxy errors
-		check_command			check_log!/u/apps/campfire/current/log/apache.log!proxy
+		host_name cf-01, cf-02, cf-03
+		service_description CF proxy errors
+		check_command check_log!/u/apps/campfire/current/log/apache.log!proxy
 }
 
 define service {
