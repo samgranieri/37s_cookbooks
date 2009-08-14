@@ -314,13 +314,6 @@ define service {
 
 define service {
 		use frequent-service
-		host_name	billing
-		service_description	QB HTTP content
-		check_command			check_https_content!billing.37signals.com!/session/new!/session
-}
-
-define service {
-		use frequent-service
 		hostgroup_name web-general
 		service_description	Jobs HTTP content
 		check_command			check_http_content!jobs.37signals.com!/!/jobs/search
