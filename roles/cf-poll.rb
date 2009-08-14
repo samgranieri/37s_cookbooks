@@ -2,7 +2,8 @@ name "cf-poll"
 description "CF Solr search server"
 recipes "erlang", "rails::app_dependencies"
 
-default_attributes :erlang => {
+default_attributes :active_groups => {:app => {:enabled => true}},
+                   :erlang => {
                      :applications => [
                         { 
                          "name" => "campfire_poller",
