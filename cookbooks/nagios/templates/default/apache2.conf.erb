@@ -1,5 +1,7 @@
+
+Listen 0.0.0.0:445
 <VirtualHost *:445>
-  ServerAdmin     <%= @node[:base][:sysadmin_email] %>
+  ServerAdmin     <%= @node[:sysadmin_email] %>
   ServerName      nagios.<% @node[:domain] %>
   ServerAlias     nagios <% if @node[:public_domain] %>nagios.<%= @node[:public_domain] %><% end %>
   DocumentRoot    <%= @node[:nagios][:webroot] %>

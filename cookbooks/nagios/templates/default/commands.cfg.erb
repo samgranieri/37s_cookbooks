@@ -11,18 +11,23 @@ define command {
 # Service checks
 
 define command {
+  command_name    check_haproxy_queue
+  command_line    $USER1$/check_nrpe -H $HOSTADDRESS$ -c check_$ARG1$_haproxy_queue -t 20
+}
+
+define command {
   command_name    check_file_age
   command_line    $USER1$/check_by_ssh -H $HOSTADDRESS$ -C "/usr/local/bin/check_file -i -p $ARG1$ -w $ARG2$ -c $ARG3$" -l root
 }
 
 define command {
   command_name    check_file_count
-  command_line    $USER1$/check_by_ssh -H $HOSTADDRESS$ -C "/u/nagios/checks/file_queues.rb -t count -p $ARG1$ -w $ARG2$ -c $ARG3$" -l app
+  command_line    $USER1$/check_by_ssh -H $HOSTADDRESS$ -C "/u/nagios/plugins/file_queues.rb -t count -p $ARG1$ -w $ARG2$ -c $ARG3$" -l app
 }
 
 define command {
   command_name    check_log
-  command_line    $USER1$/check_by_ssh -H $HOSTADDRESS$ -C "/usr/lib64/nagios/plugins/check_log -F $ARG1$ -O /tmp/nagios.logcheck.processed -q $ARG2$" -l root
+  command_line    $USER1$/check_by_ssh -H $HOSTADDRESS$ -C "/usr/lib/nagios/plugins/check_log -F $ARG1$ -O /tmp/nagios.logcheck.processed -q $ARG2$" -l app
 }
 
 define command { 
@@ -47,12 +52,6 @@ define command {
 	command_name	check_query_count
 	command_line	$USER3$/db_queues.rb -H $HOSTADDRESS$ -u $ARG1$ -p $ARG2$ -d $ARG3$ -q $ARG4$ -w $ARG5$ -c $ARG6$
 }
-
-define command{ 
-	command_name    check_netapp
-	command_line    $USER3$/check_netapp.pl -H $HOSTADDRESS$ -C 37nag -w $ARG1$ -c $ARG2$ -o $ARG3$ -v DISKUSED
-}
-
 
 define command{
         command_name    check_local_disk
@@ -98,10 +97,20 @@ define command{
         command_line    $USER1$/check_hpjd -H $HOSTADDRESS$ -C public
         }
 
-define command{
+define command {
         command_name    check_http_content
-        command_line    $USER1$/check_http -I $HOSTADDRESS$ -H $ARG1$ -u $ARG2$ -s $ARG3$ 
+        command_line    $USER1$/check_http -I $HOSTADDRESS$ -H $ARG1$ -u $ARG2$ -s $ARG3$ -f follow
         }
+
+define command {
+        command_name    check_https_content
+        command_line    $USER1$/check_http -I $HOSTADDRESS$ -H $ARG1$ -u $ARG2$ -s $ARG3$ -f follow -S
+        }
+
+define command{
+        command_name    check_campfire_poller
+        command_line    $USER1$/check_http -I $HOSTADDRESS$ -p 2345 -u /stats -w 2 -c 3 -N
+	}
 
 define command{
        command_name    check_mongrel_http_content
@@ -252,7 +261,7 @@ define command {
 
 define command{
   command_name  host-notify-by-campfire
-  command_line  /usr/local/nagios/bin/campfire -r "<%= @node[:base][:monitoring_campfire_room] %>" -S -l <%= @node[:base][:campfire_email] %> -p <%= @node[:base][:campfire_password] %> -m "$HOSTALIAS$ (ssh://$HOSTNAME$) $HOSTSTATE$ $NOTIFICATIONTYPE$ $HOSTSTATE$ $HOSTOUTPUT$"
+  command_line  /usr/local/nagios/bin/campfire -r "<%= @node[:monitoring_campfire_room] %>" -S -l <%= @node[:campfire_email] %> -p <%= @node[:campfire_password] %> -m "$HOSTALIAS$ (ssh://$HOSTNAME$) $HOSTSTATE$ $NOTIFICATIONTYPE$ $HOSTSTATE$ $HOSTOUTPUT$"
 
 }
 
@@ -269,7 +278,7 @@ define command{
 
 define command{
   command_name  host-notify-by-sms-gateway
-  command_line  /usr/local/nagios/bin/clickatell -n $CONTACTPAGER$ -u <%= @node[:base][:clickatell_username] %> -p <%= @node[:base][:clickatell_password] %> -a <%= @node[:base][:clickatell_api_id] %> -m "$HOSTALIAS$ $HOSTSTATE$ $NOTIFICATIONTYPE$ $HOSTOUTPUT$" 
+  command_line  /usr/local/nagios/bin/clickatell -n $CONTACTPAGER$ -u <%= @node[:clickatell_username] %> -p <%= @node[:clickatell_password] %> -a <%= @node[:clickatell_api_id] %> -m "$HOSTALIAS$ $HOSTSTATE$ $NOTIFICATIONTYPE$ $HOSTOUTPUT$" 
 
 }
 
@@ -282,13 +291,13 @@ define command{
 
 define command {
   command_name  service-notify-by-campfire
-  command_line  /usr/local/nagios/bin/campfire -s subdomain -r "<%= @node[:base][:monitoring_campfire_room] %>" -S -l <%= @node[:base][:campfire_email] %> -p <%= @node[:base][:campfire_password] %> -m "$SERVICEDESC$ $SERVICESTATE$ $HOSTALIAS$ (ssh://$HOSTNAME$) $NOTIFICATIONTYPE$ $SERVICEOUTPUT$"
+  command_line  /usr/local/nagios/bin/campfire -s 37s -r "<%= @node[:monitoring_campfire_room] %>" -S -l <%= @node[:campfire_email] %> -p <%= @node[:campfire_password] %> -m "$SERVICEDESC$ $SERVICESTATE$ $HOSTALIAS$ (ssh://$HOSTNAME$) $NOTIFICATIONTYPE$ $SERVICEOUTPUT$"
 
 }
 
 define command {
   command_name  service-notify-by-sms-gateway
-  command_line  /usr/local/nagios/bin/clickatell -n $CONTACTPAGER$ -u <%= @node[:base][:clickatell_username] %> -p <%= @node[:base][:clickatell_password] %> -a <%= @node[:base][:clickatell_api_id] %> -m "SERVICEDESC$ $SERVICESTATE$ $NOTIFICATIONTYPE$ $SERVICEOUTPUT$" 
+  command_line  /usr/local/nagios/bin/clickatell -n $CONTACTPAGER$ -u <%= @node[:clickatell_username] %> -p <%= @node[:clickatell_password] %> -a <%= @node[:clickatell_api_id] %> -m "$SERVICEDESC$ $SERVICESTATE$ $HOSTNAME$ $NOTIFICATIONTYPE$ $SERVICEOUTPUT$" 
 
 }
 

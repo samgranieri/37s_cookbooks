@@ -1,9 +1,11 @@
-define :apache_site, :enable => true do
+define :apache_site, :enable => true, :number => "000" do
   include_recipe "apache2"
 
-  link "#{node[:apache][:dir]}/sites-available/#{params[:name]}" do
-    to params[:config_path]
-    only_if { File.exists?(params[:config_path]) }
+  if params[:config_path]
+    link "#{node[:apache][:dir]}/sites-available/#{params[:name]}" do
+      to params[:config_path]
+      only_if { File.exists?(params[:config_path]) }
+    end
   end
   
   if params[:enable]
@@ -17,7 +19,7 @@ define :apache_site, :enable => true do
     execute "a2dissite #{params[:name]}" do
       command "/usr/sbin/a2dissite #{params[:name]}"
       notifies :restart, resources(:service => "apache2")
-      only_if do File.symlink?("#{node[:apache][:dir]}/sites-enabled/#{params[:name]}") end
+      only_if do File.symlink?("#{node[:apache][:dir]}/sites-available/#{params[:name]}") || File.symlink?("#{node[:apache][:dir]}/sites-available/#{params[:number]}-#{params[:name]}") end
     end
   end
 end

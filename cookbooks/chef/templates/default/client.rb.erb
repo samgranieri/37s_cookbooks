@@ -6,12 +6,12 @@
 
 
 log_level          :info
-log_location       "/var/log/chef/client.log"
 ssl_verify_mode    :verify_none
 registration_url   "https://chef.<%= @node[:domain]%>"
 openid_url         "https://chef.<%= @node[:domain]%>"
 template_url       "https://chef.<%= @node[:domain]%>"
 remotefile_url     "https://chef.<%= @node[:domain]%>"
 search_url         "https://chef.<%= @node[:domain]%>"
+role_url           "https://chef.rack-dfw-int.37signals.com" unless Chef::VERSION == "0.6.2"
 
 Chef::Log::Formatter.show_time = false

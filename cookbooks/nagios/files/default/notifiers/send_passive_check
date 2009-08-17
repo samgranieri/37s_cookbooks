@@ -16,4 +16,4 @@ exit_status = $?
 time = Time.now.to_i
 hostname = `hostname -s`.chomp
 command = "[#{time}] PROCESS_SERVICE_CHECK_RESULT;#{hostname};#{options[:service_name]};#{exit_status};#{result}"
-`ssh nagios@nagios-server "echo '#{command}' >> /var/lib/nagios3/rw/nagios.cmd"`
+`ssh nagios@noc "echo '#{command}' >> /usr/local/nagios/var/rw/nagios.cmd"`

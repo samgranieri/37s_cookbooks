@@ -13,7 +13,7 @@ template_url       "https://chef.<%= @node[:domain]%>"
 remotefile_url     "https://chef.<%= @node[:domain]%>"
 search_url         "https://chef.<%= @node[:domain]%>"
 
-validation_token   "372fa8ac3d0f87395f986314897b835a"
+validation_token   "<%= @node[:chef][:validation_token]%>"
 
 cookbook_path      [ "/var/chef/site-cookbooks", "/var/chef/cookbooks" ]
 

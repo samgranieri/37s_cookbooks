@@ -28,12 +28,12 @@ end
 ###
 
 # General settings
-apache[:listen_ports] = [ "80","443","444" ]     unless apache.has_key?(:listen_ports)
+apache[:listen_ports] = [ "80" ]     unless apache.has_key?(:listen_ports)
 apache[:contact] = "sysadmins@37signals.com" unless apache.has_key?(:contact)
 apache[:timeout] = 300               unless apache.has_key?(:timeout)
-apache[:keepalive] = "On"            unless apache.has_key?(:keepalive)
-apache[:keepaliverequests] = 100     unless apache.has_key?(:keepaliverequests)
-apache[:keepalivetimeout] = 5        unless apache.has_key?(:keepalivetimeout)
+apache[:keepalive] = "Off"            unless apache.has_key?(:keepalive)
+apache[:keepaliverequests] = 12     unless apache.has_key?(:keepaliverequests)
+apache[:keepalivetimeout] = 2        unless apache.has_key?(:keepalivetimeout)
 
 # Prefork Attributes
 apache[:prefork] = Mash.new unless apache.has_key?(:prefork)
@@ -45,6 +45,7 @@ apache[:prefork][:maxrequestsperchild] = 10000 unless apache[:prefork].has_key?(
 
 # Worker Attributes
 apache[:worker] = Mash.new unless apache.has_key?(:worker)
+apache[:worker][:serverlimit] = 16        unless apache[:worker].has_key?(:serverlimit)
 apache[:worker][:startservers] = 4        unless apache[:worker].has_key?(:startservers)
 apache[:worker][:maxclients] = 1024       unless apache[:worker].has_key?(:maxclients)
 apache[:worker][:minsparethreads] = 64    unless apache[:worker].has_key?(:minsparethreads)
@@ -56,6 +57,7 @@ apache[:worker][:maxrequestsperchild] = 0 unless apache[:worker].has_key?(:maxre
 apache[:deflate] = Mash.new unless apache.has_key?(:deflate)
 apache[:deflate][:mime_types] = %w(text/html text/plain text/xml application/xml application/xhtml+xml
                                 text/javascript application/x-javascript application/javascript text/css) unless apache[:deflate].has_key?(:mime_types)
+apache[:deflate][:disable] = false unless apache[:deflate].has_key?(:disable)
 
 apache[:expires] = Mash.new unless apache.has_key?(:expires)
 apache[:expires][:default] = "access plus 1 year" unless apache[:expires].has_key?(:default)                                

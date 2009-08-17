@@ -1,5 +1,7 @@
 package "nagios-nrpe-server"
 
+gem_package "choice"
+
 service "nagios-nrpe-server" do
   action :enable
   supports :restart => true, :reload => true

@@ -2,9 +2,11 @@ nagios Mash.new unless attribute?("nagios")
 
 nagios[:root] = "/etc/nagios3"
 nagios[:webroot] = "/usr/share/nagios3/htdocs"
+nagios[:bin_path] = "/usr/sbin/nagios3"
+nagios[:config_path] = "/etc/nagios3/nagios.cfg"
 nagios[:config_subdir] = "conf.d"
 nagios[:users] = Mash.new
-nagios[:users]["nagiosadmin"] = "password"
+nagios[:users]["nagiosadmin"] = "k5402krb03"
 nagios[:notifications_enabled] = true unless nagios.has_key?(:notifications_enabled)
 nagios[:check_external_commands] = true
 nagios[:default_contact_groups] = %w(admins)
@@ -28,3 +30,6 @@ nagios[:default_service][:check_interval] = 60
 nagios[:default_service][:retry_interval] = 15
 nagios[:default_service][:notification_interval] = 1200
 nagios[:default_service][:max_check_attempts] = 3
+
+nagios[:notifiers_dir] = "/var/lib/nagios3/notifiers"
+nagios[:bot_path] = "#{nagios[:notifiers_dir]}/jabber_bot"

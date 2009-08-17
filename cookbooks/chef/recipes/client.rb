@@ -7,15 +7,15 @@ gem_package "ohai" do
 end
 
 gem_package "ohai" do
-  action :install
-  version "0.2.0"
+  action :upgrade
+  version "0.3.2"
   source "http://gems.opscode.com"
 end
 
 gem_package "chef" do
   action :upgrade
   version node[:chef][:client_version]
-  source "http://gems.opscode.com"
+  source "http://localgems"
 end
 
 template "/etc/chef/client.rb" do
@@ -43,8 +43,10 @@ execute "Remove the validation token" do
   only_if { File.exists? "/etc/chef/validation_token" }
 end
 
-runit_service "chef-client"
+if node[:chef][:client_enable]
+  runit_service "chef-client"
 
-service "chef-client" do
-  action :enable
+  service "chef-client" do
+    action :enable
+  end
 end

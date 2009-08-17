@@ -1,22 +1,3 @@
-#
-# Cookbook Name:: apache2
-# Recipe:: default
-#
-# Copyright 2008, OpsCode, Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-# 
-#     http://www.apache.org/licenses/LICENSE-2.0
-# 
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-
 package "apache2" do
   case node[:platform]
   when "centos","redhat","fedora","suse"
@@ -37,6 +18,8 @@ service "apache2" do
   supports :restart => true, :reload => true
   action :enable
 end
+
+package "apache2-prefork-dev"
 
 if platform?("centos", "redhat", "fedora", "suse")
   directory node[:apache][:log_dir] do
@@ -93,6 +76,7 @@ template "apache2.conf" do
   owner "root"
   group "root"
   mode 0644
+  notifies :reload, resources(:service => "apache2")
 end
 
 template "#{node[:apache][:dir]}/ports.conf" do
@@ -136,12 +120,15 @@ include_recipe "apache2::mod_env"
 include_recipe "apache2::mod_mime"
 include_recipe "apache2::mod_negotiation"
 include_recipe "apache2::mod_setenvif"
-include_recipe "apache2::mod_deflate"
 include_recipe "apache2::mod_expires"
 include_recipe "apache2::mod_headers"
 include_recipe "apache2::mod_ssl"
 include_recipe "apache2::mod_proxy_http"
 include_recipe "apache2::mod_log_config" if platform?("centos", "redhat", "suse")
+
+apache_site "default" do
+  enable false
+end
 
 service "apache2" do
   action :start

@@ -227,6 +227,31 @@ class Knife < Thor
     puts node.recipes.inspect
   end
 
+  desc "delete_node", "Delete a node"
+  method_options :node => :required
+  def delete_node
+    authenticate
+    node = @rest.delete_rest("nodes/#{expand_node(options[:node])}")
+  end
+
+  desc "list_nodes", "Display chef nodes"
+  method_options :role => :optional, :cap => :boolean, :attribute => :optional
+  
+  def list_nodes
+    authenticate
+    nodes = @rest.get_rest("search/node/entries?a=ipaddress,hostname")
+    attribute = options[:attribute] || nil
+    if options[:cap]
+      hostnames = nodes.collect {|n| "\"#{n[:hostname]}\"" }
+      puts "role :all, #{hostnames.join(", ")}"
+    else
+      puts "#{nodes.size} hosts"
+      nodes.each do |n|
+        puts "#{n[:ipaddress]} #{n[:hostname]} #{attribute ? attribute+":"+n[attribute.to_sym].inspect : ""}"
+      end
+    end
+  end
+  
   def authenticate
     @rest = Chef::REST.new(Chef::Config[:registration_url])
     @rest.authenticate(API_USERNAME, API_PASSWORD)

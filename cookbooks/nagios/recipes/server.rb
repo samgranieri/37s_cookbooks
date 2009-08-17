@@ -17,6 +17,11 @@ user "nagios" do
   shell "/bin/bash"
 end
 
+execute "copy distribution init.d script" do
+  command "mv /etc/init.d/nagios3 /etc/init.d/nagios3.dist"
+  creates "/etc/init.d/nagios3.dist"
+end
+
 directory "/etc/nagios3/.ssh" do
   mode 0700
   owner "nagios"
@@ -63,12 +68,9 @@ userlist = node[:nagios][:users]
 # end
 
 nodes = []
-search(:node, "*", %w(ipaddress hostname)) {|n| nodes << n }
+search(:node, "*", %w(ipaddress hostname)) {|n| nodes << n } unless Chef::Config[:solo]
 
-service "nagios3" do
-  supports :status => true, :restart => true, :reload => true
-  action :enable
-end
+runit_service "nagios3"
 
 nagios_conf "nagios" do
   config_subdir false
@@ -93,7 +95,7 @@ execute "archive default nagios object definitions" do
   not_if { Dir.glob(node[:nagios][:root] + "/conf.d/*_nagios*.cfg").empty? }
 end
 
-remote_directory "/var/lib/nagios/notifiers" do
+remote_directory node[:nagios][:notifiers_dir] do
   source "notifiers"
   files_backup 5
   files_owner "nagios"
@@ -112,19 +114,35 @@ nagios_conf "hosts" do
   variables({:hosts => nodes})
 end
 
-nagios_template "local" do
+nagios_template "local-service" do
   template_type "service"
   max_check_attempts      4
   normal_check_interval   300
   retry_check_interval    60
 end
 
-nagios_template "frequent" do
+nagios_template "frequent-service" do
   template_type "service"
-	use "generic-service"
+	use "default-service"
 	max_check_attempts    3
-  normal_check_interval 1
-  retry_check_interval  1
+  normal_check_interval 5
+  retry_check_interval  20
+end
+
+nagios_template "frequent-service-with-sms" do
+  template_type "service"
+	use "frequent-service"
+  notification_interval 0
+  notification_options "u,c,r"
+  contact_groups "admins, sysadmin-sms"
+end
+
+nagios_template "default-contact" do
+  template_type "contact"
+	use "frequent-service"
+  notification_interval 0
+  notification_options "u,c,r"
+  contact_groups "admins, sysadmin-sms"
 end
 
 nagios_conf "templates"
@@ -141,6 +159,4 @@ apache_site "nagios" do
   config_path "/etc/nagios3/apache2.conf"
 end
 
-service "nagios3" do
-  action :start
-end
+runit_service "nagios-bot"

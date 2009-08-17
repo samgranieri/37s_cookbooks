@@ -1,4 +1,4 @@
-include_recipe "build-essential"
+include_recipe "build"
 include_recipe "runit"
 
 package "djbdns"

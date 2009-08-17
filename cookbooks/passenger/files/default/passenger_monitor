@@ -1,17 +1,19 @@
-#!/usr/bin/env ruby
+#!/usr/local/bin/ruby
 #
 # watch for bloating passengers and kill them gracefully if possible (SIGUSR), then with extreme prejudice (SIGTERM)
 #
 
 require 'yaml'
+require 'rubygems'
+require 'syslog_logger'
+
+logger = SyslogLogger.new("passenger")
 
 # required by passenger
 ENV['HTTPD'] = 'apache2'
 
-config_path = File.dirname(__FILE__) + "/../config/passenger.yml"
-config = YAML.load(File.read(config_path)) if File.exists?(config_path)
-
-MEM_LIMIT = config['memory_limit'] || ARGV[0] || 500
+WARN_MEM_LIMIT = ARGV[0] || 280
+CRIT_MEM_LIMIT = ARGV[1] || 550
 
 module Process
   def self.running?(pid)
@@ -23,21 +25,26 @@ module Process
   end
 end
 
-`passenger-memory-stats`.each_line do |line|
+`/usr/local/bin/passenger-memory-stats`.each_line do |line|
   if line =~ /Rails: /
     parts = line.split
-    pid, private_dirty_rss = parts[0].to_i, parts[4].to_f
-    if private_dirty_rss > MEM_LIMIT.to_i
-      puts "Found bloater #{pid} with size #{private_dirty_rss.to_s}"
-      puts "Killing with SIGUSR1 (graceful)..."
+    pid, private_dirty_rss, path = parts[0].to_i, parts[4].to_f, parts[7]
+    if private_dirty_rss > CRIT_MEM_LIMIT.to_i
+      logger.info "Found process #{pid} with critical size #{private_dirty_rss.to_s} at path #{path}"
+      logger.info "Attempting graceful kill with SIGUSR1..."
       Process.kill("SIGUSR1", pid)
-      puts "Finished kill attempt. Sleeping for 8 seconds..."
-      sleep 8
+      logger.info "Finished kill attempt. Sleeping for 10 seconds..."
+      sleep 10
       if Process.running?(pid)
-        puts "Process is still running, so killing with extreme predjudice!"
+        logger.info "Process #{pid} is still running. Killing with extreme predjudice (SIGTERM)!"
         Process.kill("TERM", pid)
       end
-      puts "Done!"
+      logger.info "Done."
+    elsif private_dirty_rss > WARN_MEM_LIMIT.to_i
+      logger.info "Found process #{pid} with size #{private_dirty_rss.to_s} at path #{path}"
+      logger.info "Gracefully killing with SIGUSR1..."
+      Process.kill("SIGUSR1", pid)
+      logger.info "Done."
     end
   end
 end

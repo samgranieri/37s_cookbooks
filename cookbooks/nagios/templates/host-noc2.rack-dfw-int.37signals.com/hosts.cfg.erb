@@ -1,0 +1,125 @@
+# host definitions
+
+define host {
+  use                     server
+  host_name               localhost
+  alias                   localhost
+  address                 127.0.0.1
+}
+
+<% @hosts.each do |host| %>
+define host {
+  use server
+  address <%= host['ipaddress'] %>
+  host_name <%= host['hostname'] %>
+  hostgroups <%= hostgroups_for(host) %>
+}
+
+<% end %>
+
+# external BC IPs
+
+define hostgroup {
+  hostgroup_name bc_external
+}
+
+define host {
+  use server
+  address 72.32.33.206
+  host_name clientsection
+  hostgroups bc_external
+}
+
+define host {
+  use server
+  address 72.32.33.208
+  host_name grouphub
+  hostgroups bc_external
+}
+
+define host {
+  use server
+  address 72.32.33.207
+  host_name seework
+  hostgroups bc_external
+}
+
+define host {
+  use server
+  address 72.3.156.117
+  host_name basecamphq
+  hostgroups bc_external
+}
+
+define host {
+  use server
+  address 72.32.33.209
+  host_name projectpath
+  hostgroups bc_external
+}
+
+# old hosts
+
+define host {
+  use server
+  address 192.168.1.151
+  host_name bc-db-01
+  alias bc-db-01
+  hostgroups linux_boxes, db_master
+}
+
+define host {
+  use server
+  address 192.168.1.196
+  host_name hr-db-01
+  alias hr-db-01
+  hostgroups linux_boxes, db_master
+}
+
+define host {
+  use server
+  address 192.168.1.165
+  host_name db6
+  alias db6
+  hostgroups linux_boxes, db_master
+}
+
+define host {
+  use server
+  address 192.168.1.152
+  host_name bc-db-02
+  alias bc-db-02
+  hostgroups linux_boxes, db_slave
+}
+
+define host {
+  use server
+  address 192.168.1.127
+  host_name db3
+  alias db3
+  hostgroups linux_boxes
+}
+
+define host {
+  use server
+  address 192.168.1.120
+  host_name db4
+  alias db4
+  hostgroups freebsd_boxes
+}
+
+define host {
+  use server
+  address 192.168.1.122
+  host_name search1
+  alias search1
+}
+
+# this is the NEW dbslave
+define host {
+  use server
+  address 192.168.1.156
+  host_name db-slave
+  alias db-slave
+  hostgroups linux_boxes, db_slave
+}

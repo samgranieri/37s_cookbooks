@@ -17,12 +17,12 @@ template "/etc/rubygems/mirror.conf" do
 end
 
 cron "gem mirror nightly update" do
-  # the following delete command ensures generate_index won't fail on broken win32 gems (sorry, windows people)
   command "rsync -av rsync://master.mirror.rubyforge.org/gems #{node[:rubygems][:mirror][:base_path]}/gems && find #{node[:rubygems][:mirror][:base_path]}/gems -name \"*win32*\" -delete && gem generate_index -d /u/mirrors/gems > /var/log/gem-mirror.log 2>&1"
-  hour "5"
+  hour "2"
+  minute "0"
 end
 
-template "/etc/apache2/sites-available/gem-mirror" do
+template "/etc/rubygems/gem-mirror.vhost.conf" do
   source 'mirror-vhost.conf.erb'
   action :create
   owner "root"
@@ -30,4 +30,6 @@ template "/etc/apache2/sites-available/gem-mirror" do
   mode 0640
 end
 
-apache_site "gem-mirror"
+apache_site "gem-mirror" do
+  config_path "/etc/rubygems/gem-mirror.vhost.conf"
+end
