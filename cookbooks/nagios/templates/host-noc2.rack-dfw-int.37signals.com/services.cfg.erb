@@ -138,7 +138,7 @@ define hostgroup {
 }
 
 define service{
-    use                     generic-service
+    use                     default-service
     hostgroup_name          db_master, db_slave
     service_description     DB Free Memory
 		check_command			check_mem
@@ -155,28 +155,28 @@ define serviceescalation{
 
 
 define service {
-		use generic-service
+		use default-service
 		host_name bc-db-02
 		service_description		Files Pending Purge
 		check_command			check_query_count!basecamp_ro!oDhdFrgvB2!basecamp_production!"select count(*) from pending_purges"!150000!175000
 }
 
 define service {
-		use generic-service
+		use default-service
 		host_name bc-db-02
 		service_description		Files Pending Migration
 		check_command			check_query_count!basecamp_ro!oDhdFrgvB2!basecamp_production!"select count(*) from attachments where migrated is null and hosted = 1 and byte_size < 100000000"!80000!90000
 }
 
 # define service{
-#         use                     generic-service
+#         use                     default-service
 #         hostgroup_name               db_slave
 #         service_description    	MySQL Replication
 # 		check_command			check_replication
 # }
 
 define service{
-        use                     generic-service
+        use                     default-service
 	hostgroup_name		bc_solr
 	host_name		bc-solr-indexer, bc-solr-02
         service_description     BC Solr
@@ -184,14 +184,14 @@ define service{
 }
 
 define service{
-        use                     generic-service
+        use                     default-service
 		host_name	cf-solr-indexer, cf-solr-searcher
         service_description     CF Solr
 		check_command			check_solr!campfire
 }
 
 define service{
-    use                     generic-service
+    use                     default-service
 		host_name hr-solr-indexer, hr-solr-searcher
     service_description     HR Solr
 		max_check_attempts			6
@@ -199,28 +199,28 @@ define service{
 }
 
 define service{
-        use                     generic-service
+        use                     default-service
 		host_name				search1
         service_description     BP Solr
 		check_command			check_solr!backpack
 }
 
 define service {
-		use generic-service
+		use default-service
 		host_name mail-03,mail-04
 		service_description	BC Incoming mail queue
 		check_command			check_file_count!/u/apps/basecamp/shared/email/incoming/new!200!250
 }
 
 define service {
-		use generic-service
+		use default-service
 		host_name mail-03
 		service_description	HR Incoming mail queue
 		check_command			check_file_count!/u/depot/highrise/email/incoming/new!200!250
 }
 
 define service {
-		use generic-service
+		use default-service
 		host_name mail-03
 		service_description	BP Incoming mail queue
 		check_command			check_file_count!/u/depot/backpack/email/incoming/new!200!250
@@ -412,70 +412,77 @@ define service {
 #}
 
 define service {
-		use generic-service
+		use default-service
 		host_name cf-01, cf-02, cf-03
 		service_description CF proxy errors
 		check_command check_log!/u/apps/campfire/current/log/apache.log!proxy
 }
 
 define service {
-	use generic-service
+	use default-service
 	host_name db-slave
 	service_description HR Replication
 	check_command check_mysqlrep!3306!XLDcjtQVWt!20!100
 }
 
 define service {
-	use generic-service
+	use default-service
 	host_name db-slave
 	service_description Jobs Replication
 	check_command check_mysqlrep!3308!XLDcjtQVWt!20!100
 }
 
 define service {
-	use generic-service
+	use default-service
 	host_name db-slave
 	service_description BP Replication
 	check_command check_mysqlrep!3307!XLDcjtQVWt!20!100
 }
 
 define service {
-	use generic-service
+	use default-service
 	host_name db-slave
 	service_description CF Replication
 	check_command check_mysqlrep!3312!XLDcjtQVWt!20!100
 }
 
 define service {
-	use generic-service
+	use default-service
 	host_name db-slave
 	service_description WB Replication
 	check_command check_mysqlrep!3310!XLDcjtQVWt!250!500
 }
 
 define service {
-	use generic-service
+	use default-service
 	host_name db-slave
 	service_description OB Replication
 	check_command check_mysqlrep!3313!XLDcjtQVWt!20!100
 }
 
 define service {
-	use generic-service
+	use default-service
 	host_name db-slave
   	service_description Junta Replication
 	check_command check_mysqlrep!3311!XLDcjtQVWt!20!100
 }
 
 define service {
-	use generic-service
+	use default-service
 	host_name db-slave
 	service_description Extra Extra Replication
 	check_command check_mysqlrep!3309!XLDcjtQVWt!20!100
 }
 
 define service {
-	use generic-service
+	use default-service
+	host_name db-slave
+	service_description Queenbee Replication
+	check_command check_mysqlrep!3309!XLDcjtQVWt!20!100
+}
+
+define service {
+	use default-service
 	host_name bc-db-02
   service_description BC Replication
 	check_command check_mysqlrep!3306!XLDcjtQVWt!800!1000
@@ -490,21 +497,21 @@ define service {
 }
 
 define service {
-	use generic-service
+	use default-service
 	host_name bc-solr-indexer, bc-solr-02
         service_description BC Solr Index
 	check_command check_solr_index!bc
 }
 
 define service {
-	use generic-service
+	use default-service
 	host_name hr-solr-indexer, hr-solr-searcher
         service_description HR Solr Index
 	check_command check_solr_index!hr
 }
 
 define service {
-	use generic-service
+	use default-service
 	host_name cf-solr-indexer, cf-solr-searcher
         service_description CF Solr Index
 	check_command check_solr_index!cf
