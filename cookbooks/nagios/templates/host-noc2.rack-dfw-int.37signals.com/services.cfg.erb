@@ -419,28 +419,6 @@ define service {
 }
 
 define service {
-    use                generic-service
-    host_name          cc1,cc2
-    service_description   Free Disk Space
-		active_checks_enabled 0
-		check_freshness 1
-		passive_checks_enabled	1
-		freshness_threshold 300
-		check_command no-disk-checks
-}
-
-define service {
-    use                generic-service
-    host_name          cc1,cc2
-    service_description   Free Memory
-		active_checks_enabled 0
-		check_freshness 1
-		passive_checks_enabled	1
-		freshness_threshold 300
-		check_command no-mem-checks
-}
-
-define service {
 	use generic-service
 	host_name db-slave
 	service_description HR Replication
@@ -505,7 +483,7 @@ define service {
 
 define service {
 	use default-service
-	host_name *, !cc1, !cc2, !search1, !db-slave, !billing
+	host_name *, !search1, !db-slave
 	hostgroup_name !bc_external
 	service_description Postfix port 25
 	check_command check_smtp

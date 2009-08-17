@@ -123,25 +123,3 @@ define host {
   alias db-slave
   hostgroups linux_boxes, db_slave
 }
-
-# These hosts are scheduled for migration to xen
-
-define host {
-	use server
-	address 67.192.52.125
-	host_name cc1
-	hostgroups passive_boxes
-}
-
-define host {
-	use server
-	address 67.192.52.124
-	host_name cc2
-	hostgroups passive_boxes
-}
-
-define host {
-	use server
-	address 67.192.52.123
-	host_name billing
-}
