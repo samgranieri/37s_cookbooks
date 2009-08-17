@@ -114,14 +114,14 @@ nagios_conf "hosts" do
   variables({:hosts => nodes})
 end
 
-nagios_template "local" do
+nagios_template "local-service" do
   template_type "service"
   max_check_attempts      4
   normal_check_interval   300
   retry_check_interval    60
 end
 
-nagios_template "frequent" do
+nagios_template "frequent-service" do
   template_type "service"
 	use "default-service"
 	max_check_attempts    3
@@ -131,10 +131,15 @@ end
 
 nagios_template "frequent-service-with-sms" do
   template_type "service"
-	use "default-service"
-	max_check_attempts    3
-  normal_check_interval 5
-  retry_check_interval  20
+	use "frequent-service"
+  notification_interval 0
+  notification_options "u,c,r"
+  contact_groups "admins, sysadmin-sms"
+end
+
+nagios_template "default-contact" do
+  template_type "contact"
+	use "frequent-service"
   notification_interval 0
   notification_options "u,c,r"
   contact_groups "admins, sysadmin-sms"
