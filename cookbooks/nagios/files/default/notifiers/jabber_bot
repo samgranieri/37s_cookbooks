@@ -6,9 +6,9 @@ require 'xmpp4r-simple'
 require 'drb'
 include Jabber
 
-jid = '37s.monitoring@gmail.com'
-pass = '0hs0tast33'
-authorized_jids = %w(jsierles@me.com)
+jid = 'example@gmail.com'
+pass = '12345'
+authorized_jids = %w(you@me.com)
 jabber = Simple.new(jid, pass)
 DRb.start_service("druby://127.0.0.1:10370", jabber)
 STATES = {0 => 'OK', 1 => "WARN", 2 => "CRIT"}
