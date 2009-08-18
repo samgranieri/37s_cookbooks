@@ -29,22 +29,45 @@ define contactgroup {
 
 define contact{
   use			 generic-contact
-  contact_name admin
-  alias 		 Admin
-  email 		 admin@example.com
-  pager		 12345678
-  address1	admin@example.com
+  contact_name markimbriaco
+  alias 		 Mark Imbriaco	
+  email 		 mark@37signals.com
+  pager		 17576170935
+  address1	mark.imbriaco@gmail.com
   contactgroups	admins
 }
 
 define contact{
-  contact_name admin-sms
+  contact_name markimbriaco-sms
   use			 sms-contact
-  alias 		 Admin
-  email 		 admin@example.com
-  pager		 12345678
-  address1	admin@example.com
+  alias 		 Mark Imbriaco	
+  email 		 mark@37signals.com
+  pager		 17576170935
+  address1	mark.imbriaco@gmail.com
   contactgroups	sysadmin-sms
+  service_notification_commands service-notify-by-sms-gateway
+  host_notification_commands host-notify-by-sms-gateway
+}
+
+
+define contact{
+  contact_name joshuasierles
+  use			 generic-contact
+  alias 		 Joshua Sierles
+  email 		 joshua@37signals.com
+  pager		 34626971353
+  contactgroups	admins
+  address1	jsierles@gmail.com
+}
+
+define contact{
+  contact_name joshuasierles-sms
+  use			 sms-contact
+  alias 		 Joshua Sierles
+  email 		 joshua@37signals.com
+  pager		 34626971353
+  contactgroups	sysadmin-sms
+  address1	jsierles@gmail.com
   service_notification_commands service-notify-by-sms-gateway
   host_notification_commands host-notify-by-sms-gateway
 }
@@ -55,6 +78,6 @@ define contact{
   alias 		 Campfire
   service_notification_commands   service-notify-by-campfire
   host_notification_commands      host-notify-by-campfire
-  email 		 monitoring@example.com
+  email 		 monitoring@37signals.com
   contactgroups	admins
 }
