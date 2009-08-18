@@ -7,7 +7,7 @@ mogilefs[:pkg] = "http://dist/packages/mogilefs.tar.bz2" unless mogilefs.has_key
 mogilefs[:mogilefsd] = Mash.new unless mogilefs.has_key?(:mogilefsd)
 mogilefs[:mogilefsd][:db_dsn] = "DBI:mysql:mogilefs:host=mogile-db" unless mogilefs[:mogilefsd].has_key?(:db_dsn)
 mogilefs[:mogilefsd][:db_user] = "mogile" unless mogilefs[:mogilefsd].has_key?(:db_user)
-mogilefs[:mogilefsd][:db_pass] = "example" unless mogilefs[:mogilefsd].has_key?(:db_pass)
+mogilefs[:mogilefsd][:db_pass] = "12345678" unless mogilefs[:mogilefsd].has_key?(:db_pass)
 mogilefs[:mogilefsd][:conf_port] = 6001 unless mogilefs[:mogilefsd].has_key?(:conf_port)
 mogilefs[:mogilefsd][:listener_jobs] = 10 unless mogilefs[:mogilefsd].has_key?(:listener_jobs)
 mogilefs[:mogilefsd][:delete_jobs] = 1 unless mogilefs[:mogilefsd].has_key?(:delete_jobs)

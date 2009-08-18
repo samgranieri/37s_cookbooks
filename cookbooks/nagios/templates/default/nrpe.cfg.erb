@@ -11,17 +11,9 @@ command[check_load]=/usr/lib/nagios/plugins/check_load -w <%= @node[:nagios][:ch
 command[check_all_disks]=/usr/lib/nagios/plugins/check_disk -w 8% -c 5% -A -x /dev/shm -X nfs -i /boot
 command[check_mem]=/u/nagios/plugins/check_mem.sh -w <%= @node[:nagios][:checks][:memory][:warning] %> -c <%= @node[:nagios][:checks][:memory][:critical] %> -p
 
-command[check_bc_haproxy_queue]=/u/nagios/plugins/haproxy_stats.rb -w <%= @node[:nagios][:checks][:haproxy_queue][:warning] %> -c <%= @node[:nagios][:checks][:haproxy_queue][:critical] %> -p /u/apps/basecamp/shared/log/haproxy.stat -t backlog -b basecamp
-command[check_bc_upload_haproxy_queue]=/u/nagios/plugins/haproxy_stats.rb -w <%= @node[:nagios][:checks][:haproxy_queue][:warning] %> -c <%= @node[:nagios][:checks][:haproxy_queue][:critical] %> -p /u/apps/basecamp/shared/log/haproxy.stat -t backlog -b basecamp_upload
-
-command[check_hr_haproxy_queue]=/u/nagios/plugins/haproxy_stats.rb -w <%= @node[:nagios][:checks][:haproxy_queue][:warning] %> -c <%= @node[:nagios][:checks][:haproxy_queue][:critical] %> -p /u/apps/highrise/shared/log/haproxy.stat -t backlog -b highrise
-
-command[check_cf_haproxy_queue]=/u/nagios/plugins/haproxy_stats.rb -w <%= @node[:nagios][:checks][:haproxy_queue][:warning] %> -c <%= @node[:nagios][:checks][:haproxy_queue][:critical] %> -p /u/apps/campfire/shared/log/haproxy.stat -t backlog -b campfire
+command[check_bc_haproxy_queue]=/u/nagios/plugins/haproxy_stats.rb -w <%= @node[:nagios][:checks][:haproxy_queue][:warning] %> -c <%= @node[:nagios][:checks][:haproxy_queue][:critical] %> -p /u/apps/basecamp/shared/log/haproxy.stat -t backlog -b appname
 
 # Add checks for Solr index age.
-command[check_bc_solr_index]=/usr/lib/nagios/plugins/check_file_age /u/solr/basecamp/data/index -w 2400 -c 3600
-command[check_hr_solr_index]=/usr/lib/nagios/plugins/check_file_age /u/solr/highrise/data/index -w 2400 -c 3600
-command[check_bp_solr_index]=/usr/lib/nagios/plugins/check_file_age /u/solr/backpack/data/index -w 2400 -c 3600
-command[check_cf_solr_index]=/usr/lib/nagios/plugins/check_file_age /u/solr/campfire/data/index -w 2400 -c 3600
+command[check_solr_index]=/usr/lib/nagios/plugins/check_file_age /u/solr/appname/data/index -w 2400 -c 3600
 
 
