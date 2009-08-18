@@ -137,14 +137,6 @@ nagios_template "frequent-service-with-sms" do
   contact_groups "admins, sysadmin-sms"
 end
 
-nagios_template "default-contact" do
-  template_type "contact"
-	use "frequent-service"
-  notification_interval 0
-  notification_options "u,c,r"
-  contact_groups "admins, sysadmin-sms"
-end
-
 nagios_conf "templates"
 nagios_conf "commands"
 nagios_conf "contacts"
