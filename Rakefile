@@ -1,22 +1,3 @@
-#
-# Rakefile for Chef Server Repository
-#
-# Author:: Adam Jacob (<adam@opscode.com>)
-# Copyright:: Copyright (c) 2008 OpsCode, Inc.
-# License:: Apache License, Version 2.0
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-# 
-#     http://www.apache.org/licenses/LICENSE-2.0
-# 
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
 require 'chef'
 require 'chef/role'
 require File.join(File.dirname(__FILE__), 'config', 'rake')
@@ -86,10 +67,9 @@ task :install => [ :test, :roles, :metadata ] do
   sh "rsync -rlP --delete --exclude '.svn' cookbooks/ #{COOKBOOK_PATH}"
   puts "* Installing new Node Roles"
   sh "rsync -rlP --delete --exclude '.svn' roles/ #{ROLE_PATH}"
-  
-  #puts "* Installing new Site Cookbooks"
-  #sh "rsync -rlP --delete --exclude '.svn' site-cookbooks/ #{SITE_COOKBOOK_PATH}"
-  # puts "* Installing new Chef Server Config"
+  puts "* Installing new Site Cookbooks"
+  sh "rsync -rlP --delete --exclude '.svn' site-cookbooks/ #{SITE_COOKBOOK_PATH}"
+  #puts "* Installing new Chef Server Config"
   # sh "sudo cp config/server.rb #{CHEF_SERVER_CONFIG}"
   # puts "* Installing new Chef Client Config"
   # sh "sudo cp config/client.rb #{CHEF_CLIENT_CONFIG}"
