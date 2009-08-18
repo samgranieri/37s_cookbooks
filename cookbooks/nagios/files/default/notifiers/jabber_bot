@@ -6,10 +6,9 @@ require 'xmpp4r-simple'
 require 'drb'
 include Jabber
 
-jid = '37s.monitoring@gmail.com'
-pass = '0hs0tast33'
-authorized_jids = %w(jsierles@me.com)
-jabber = Simple.new(jid, pass)
+jabber = Simple.new(ARGV[0], ARGV[1])
+AUTHORIZED_JIDS = ARGV[2].split(",")
+
 DRb.start_service("druby://127.0.0.1:10370", jabber)
 STATES = {0 => 'OK', 1 => "WARN", 2 => "CRIT"}
 
@@ -32,7 +31,8 @@ end
 loop do
   sleep 0.05
   jabber.received_messages do |msg|
-    case
+    next if AUTHORIZED_JIDS.include?(msg.from)
+    case 
       when msg.body =~ /^fullstats/
         jabber.deliver(msg.from, `/usr/local/nagios/bin/nagiostats`)
       when msg.body =~ /^stats/
