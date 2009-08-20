@@ -75,29 +75,6 @@ LogFormat "%{User-agent}i" agent
   TypesConfig /etc/mime.types
 </IfModule>
 
-<IfModule mod_status.c>   
-  ExtendedStatus On
-  <Location /server-status>
-     SetHandler server-status
-     order deny,allow
-     deny from all
-     allow from localhost
-     allow from 192.168.1.153/255.255.255.255
-     allow from 192.168.1.157/255.255.255.255
-  </Location>
-</IfModule>
-
-<IfModule mod_info.c>
-  <Location /server-info>
-    SetHandler server-info
-    order deny,allow
-    deny from all
-    allow from localhost
-    allow from 192.168.1.153/255.255.255.255
-    allow from 192.168.1.157/255.255.255.255
-  </Location>
-</IfModule>
-
 # Don't log webmux heartbeat requests or websitepulse checks.
 
 SetEnvIf Host "^VIP \-.*$" no-log
