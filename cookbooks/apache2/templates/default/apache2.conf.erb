@@ -70,30 +70,32 @@ LogFormat "%{Referer}i -> %U" referer
 LogFormat "%{User-agent}i" agent
 
 <IfModule mod_mime.c>
-    AddType application/x-compress .Z
-    AddType application/x-gzip .gz .tgz
-		TypesConfig /etc/mime.types
+  AddType application/x-compress .Z
+  AddType application/x-gzip .gz .tgz
+  TypesConfig /etc/mime.types
 </IfModule>
 
 <IfModule mod_status.c>   
-	ExtendedStatus On
-	<Location /server-status>
-		 SetHandler server-status
-		 order deny,allow
-		 deny from all
-		 allow from localhost
-		 allow from 192.168.1.153/255.255.255.255
-	</Location>
+  ExtendedStatus On
+  <Location /server-status>
+     SetHandler server-status
+     order deny,allow
+     deny from all
+     allow from localhost
+     allow from 192.168.1.153/255.255.255.255
+     allow from 192.168.1.157/255.255.255.255
+  </Location>
 </IfModule>
 
 <IfModule mod_info.c>
-	<Location /server-info>
-		SetHandler server-info
-		order deny,allow
-		deny from all
-		allow from localhost
-		allow from 192.168.1.153/255.255.255.255
-	</Location>
+  <Location /server-info>
+    SetHandler server-info
+    order deny,allow
+    deny from all
+    allow from localhost
+    allow from 192.168.1.153/255.255.255.255
+    allow from 192.168.1.157/255.255.255.255
+  </Location>
 </IfModule>
 
 # Don't log webmux heartbeat requests or websitepulse checks.
@@ -114,16 +116,17 @@ FileETag MTime Size
 
 <Location />
  RequestHeader  edit "If-None-Match" "^(.*)-gzip$" "$1"
- 
  # the following may be needed if the header quoting format is fixed but appending -gzip is not
  # Header  edit "ETag" "^(.*[^g][^z][^i][^p])$" "$1-gzip"
 </Location>
 
 <IfModule mod_proxy.c>
-	<Proxy *>
-		Order deny,allow
-		Allow from 127.0.0.1
-	</Proxy>
+  <Proxy *>
+    Order deny,allow
+    Allow from 127.0.0.1
+  </Proxy>
 </IfModule>
+
+##
 
 Include <%= @node[:apache][:dir] %>/sites-enabled/
