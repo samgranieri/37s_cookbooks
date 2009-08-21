@@ -1,6 +1,6 @@
 name 'mail'
 description 'Mail server'
-recipes 'postfix::virtual', 'postfix::aliases', 'cron', 'rails::apps', 'syslog::client', 'nfs::client'
+recipes 'postfix::virtual', 'postfix::aliases', 'cron', 'rails::app_dependencies', 'syslog::client', 'nfs::client'
 
 override_attributes :active_groups => {:app => {:enabled => true}},
                     :active_sudo_groups => {:app => {:enabled => true}},
@@ -65,7 +65,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
     
       '/^([^@]+\.)?(updatelog|clientsection|seework|grouphub|projectpath|basecamphq)\.com$/' => 'VIRTUAL',
       '/^P\d+-reply@(([^@])+\.)basecamphq\.com$/' => 'basecamp@localhost',
-      '/^(basecamp)|([Uu]\d+[PpIiMm]\d+-reply)@([^\.]+\.)(updatelog|clientsection|seework|grouphub|projectpath|basecamphq)\.com$/' => 'basecamp@localhost',
+      '/^[Uu]\d+[PpIiMm]\d+-reply@([^\.]+\.)@(updatelog|clientsection|seework|grouphub|projectpath|basecamphq)\.com$/' => 'basecamp@localhost',
       '/^do-not-reply(.+)?@([^\.]+\.)*(updatelog|clientsection|seework|grouphub|projectpath|basecamphq)\.com$/' => 'devnull',
       '/^notifications@basecamphq\.com$/' => 'devnull',
       '/^postmaster@(updatelog|clientsection|seework|grouphub|projectpath|basecamphq)\.com$/' => 'postmaster@37signals.com',
