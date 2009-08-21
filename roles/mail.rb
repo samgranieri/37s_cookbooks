@@ -62,10 +62,10 @@ override_attributes :active_groups => {:app => {:enabled => true}},
     :virtual_domains => {
       '/^virt-gw\.37signals\.com$/' => 'VIRTUAL',
       '/^app@virt-gw\.37signals\.com$/' => 'devnull@localhost',
-    
+
       '/^([^@]+\.)?(updatelog|clientsection|seework|grouphub|projectpath|basecamphq)\.com$/' => 'VIRTUAL',
       '/^P\d+-reply@(([^@])+\.)basecamphq\.com$/' => 'basecamp@localhost',
-      '/^[Uu]\d+[PpIiMm]\d+-reply@([^\.]+\.)@(updatelog|clientsection|seework|grouphub|projectpath|basecamphq)\.com$/' => 'basecamp@localhost',
+      '/^[Uu]\d+[PpIiMm]\d+-reply@([^\.]+\.)(updatelog|clientsection|seework|grouphub|projectpath|basecamphq)\.com$/' => 'basecamp@localhost',
       '/^do-not-reply(.+)?@([^\.]+\.)*(updatelog|clientsection|seework|grouphub|projectpath|basecamphq)\.com$/' => 'devnull',
       '/^notifications@basecamphq\.com$/' => 'devnull',
       '/^postmaster@(updatelog|clientsection|seework|grouphub|projectpath|basecamphq)\.com$/' => 'postmaster@37signals.com',
