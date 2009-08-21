@@ -221,9 +221,9 @@ define service {
 
 define service {
 		use default-service
-		host_name mail-03
+		host_name mail-03,mail-03
 		service_description	HR Incoming mail queue
-		check_command			check_file_count!/u/depot/highrise/email/incoming/new!200!250
+		check_command			check_file_count!/u/apps/highrise/shared/email/incoming/new!200!250
 }
 
 define service {
