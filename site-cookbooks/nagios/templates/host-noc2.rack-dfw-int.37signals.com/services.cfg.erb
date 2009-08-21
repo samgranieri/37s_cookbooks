@@ -214,16 +214,16 @@ define service {
 
 define service {
 		use default-service
-		host_name mail-03
-		service_description	HR Incoming mail queue
-		check_command			check_file_count!/u/depot/highrise/email/incoming/new!200!250
+		host_name mail-03,mail-04
+		service_description	BP Incoming mail queue
+		check_command			check_file_count!/u/apps/backpack/shared/email/incoming/new!200!250
 }
 
 define service {
 		use default-service
 		host_name mail-03
-		service_description	BP Incoming mail queue
-		check_command			check_file_count!/u/depot/backpack/email/incoming/new!200!250
+		service_description	HR Incoming mail queue
+		check_command			check_file_count!/u/depot/highrise/email/incoming/new!200!250
 }
 
 define service {
