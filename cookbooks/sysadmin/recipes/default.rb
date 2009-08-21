@@ -16,3 +16,8 @@ package "lsof"
 package "gdb"
 package "socat"
 package "procmail"
+
+remote_file "/usr/local/bin/rotate-email-folders" do
+  source "rotate-email-folders"
+  mode 0755
+end
