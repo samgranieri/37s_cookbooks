@@ -27,9 +27,37 @@ override_attributes :active_groups => {:app => {:enabled => true}},
         :minute => 0,
         :hour => 3,
         :user => 'app'
+      },
+      :hr_dropbox_worker => {
+        :command => '/usr/local/bin/ruby /u/apps/highrise/current/script/dropbox_worker 50',
+        :minute => '*/5',
+        :user => 'app'
+      },
+      :hr_email_log_purger => {
+        :command => 'find /u/apps/highrise/shared/log/emails/2009/* -maxdepth 1 -type d -mtime +5 -exec rm -rf {} \;',
+        :hour => "0",
+        :user => 'app',
+      },
+      :bp_email_worker => {
+        :command => '/usr/local/bin/ruby /u/apps/backpack/current/script/email_worker 50',
+        :minute => "*/5",
+        :user => 'app'
+      },
+      :email_rotation => {
+        :command => '/u/apps/basecamp/current/script/cron/rotate-email-folders basecamp,highrise,backpack',
+        :minute => "0",
+        :hour => "3",
+        :user => 'app'
+      },
+      :email_rotation_cleanup => {
+        :command => 'find /u/apps/*/shared/email/old -maxdepth 1 -mtime +7',
+        :minute => "0",
+        :hour => "4",
+        :user => 'app'
       }
     }
   },
+  
   :postfix => {
     :virtual_domains => {
       '/^virt-gw\.37signals\.com$/' => 'VIRTUAL',

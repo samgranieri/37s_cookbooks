@@ -3,20 +3,22 @@
 require 'fileutils'
 
 date = Time.now.strftime("%m-%d-%Y")
-app = ARGV[0]
+apps = ARGV[0].split(",")
 
-email_dir = "/u/apps/#{app}/shared/email"
-rotate_dir = File.join(email_dir, "/old/#{date}")
+apps.each do |app|
+  email_dir = "/u/apps/#{app}/shared/email"
+  rotate_dir = File.join(email_dir, "/old/#{date}")
 
-FileUtils.mkdir_p(rotate_dir)
+  FileUtils.mkdir_p(rotate_dir)
 
-%W(completed failed junk).each do |dir|
-  src = File.join(email_dir, dir)
-  dest = File.join(rotate_dir, dir)
+  %W(completed failed junk).each do |dir|
+    src = File.join(email_dir, dir)
+    dest = File.join(rotate_dir, dir)
 
-  FileUtils.mv(src, dest)
+    FileUtils.mv(src, dest)
 
-  %W(cur new tmp).each do |folder|
-    FileUtils.mkdir_p(File.join(email_dir, dir, folder))
+    %W(cur new tmp).each do |folder|
+      FileUtils.mkdir_p(File.join(email_dir, dir, folder))
+    end
   end
 end
