@@ -22,12 +22,6 @@ override_attributes :active_groups => {:app => {:enabled => true}},
         :minute => '*/5',
         :user => 'app'
       },
-      :bc_rotate_email_folders => {
-        :command => '/usr/local/bin/ruby /u/apps/basecamp/current/script/cron/rotate-email-folders',
-        :minute => 0,
-        :hour => 3,
-        :user => 'app'
-      },
       :hr_dropbox_worker => {
         :command => '/usr/local/bin/ruby /u/apps/highrise/current/script/dropbox_worker 50',
         :minute => '*/5',
@@ -44,7 +38,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
         :user => 'app'
       },
       :email_rotation => {
-        :command => '/u/apps/basecamp/current/script/cron/rotate-email-folders basecamp,highrise,backpack',
+        :command => '/usr/local/bin/rotate-email-folders basecamp,highrise,backpack',
         :minute => "0",
         :hour => "3",
         :user => 'app'
