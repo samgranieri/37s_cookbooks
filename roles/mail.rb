@@ -50,7 +50,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
         :user => 'app'
       },
       :email_rotation_cleanup => {
-        :command => 'find /u/apps/*/shared/email/old -maxdepth 1 -mtime +7',
+        :command => 'find /u/apps/*/shared/email/old -maxdepth 1 -mtime +7 -exec rm -rf {} \;',
         :minute => "0",
         :hour => "4",
         :user => 'app'
