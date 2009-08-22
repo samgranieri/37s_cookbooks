@@ -13,6 +13,7 @@ apps.each do |app|
 
   %W(completed failed junk).each do |dir|
     src = File.join(email_dir, dir)
+    next unless File.exist?(src)
     dest = File.join(rotate_dir, dir)
 
     FileUtils.mv(src, dest)
