@@ -96,7 +96,7 @@ template "#{node[:apache][:dir]}/mods-available/deflate.conf" do
   notifies :reload, resources(:service => "apache2")
 end
 
-%w(headers expires).each do |mod|
+%w(headers expires status info).each do |mod|
   template "#{node[:apache][:dir]}/mods-available/#{mod}.conf" do
     source "#{mod}.conf.erb"
     owner "root"
