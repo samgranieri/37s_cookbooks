@@ -1,3 +1,3 @@
 name "staging"
 description "Staging server"
-recipes "mysql::server"
+recipes "rails::apps", "syslog::client", "nfs::client", "mysql::server", "nfs::client", "erlang"
