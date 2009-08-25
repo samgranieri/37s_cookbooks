@@ -32,10 +32,12 @@ table_cache = 1024
 log-warnings
 key_buffer = 16M
 long_query_time = 2000000
-log_slow_verbosity = "query_plan,innodb"
 max_allowed_packet = 16M
 query_cache_size = 100M
 max_connect_errors = 99999999
 skip-locking
 innodb_buffer_pool_size = <%= @node[:mysql][:server][:innodb_buffer_pool_size] %>
 innodb_thread_concurrency = 4
+<% if @node[:mysql][:percona_patches] %>
+log_slow_verbosity = "query_plan,innodb"
+<% end %>
