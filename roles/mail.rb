@@ -1,6 +1,6 @@
 name 'mail'
 description 'Mail server'
-recipes 'postfix::virtual', 'postfix::aliases', 'cron', 'rails::app_dependencies', 'syslog::client', 'nfs::client'
+recipes 'postfix::virtual', 'postfix::aliases', 'cron', 'rails::app_dependencies', 'syslog::client'
 
 override_attributes :active_groups => {:app => {:enabled => true}},
                     :active_sudo_groups => {:app => {:enabled => true}},
