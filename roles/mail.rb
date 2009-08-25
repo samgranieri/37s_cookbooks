@@ -64,6 +64,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
       '/^notifications@basecamphq\.com$/' => 'devnull',
       '/^postmaster@(updatelog|clientsection|seework|grouphub|projectpath|basecamphq)\.com$/' => 'postmaster@37signals.com',
       '/^support@(updatelog|clientsection|seework|grouphub|projectpath|basecamphq)\.com$/' => '37signals.support@gmail.com',
+      '/^transition@basecamphq\.com$/' => 'jason@37signals.com',    
       '/^requests@basecamphq\.com$/' => '37signals.support@gmail.com',
       '/^errors?@basecamphq\.com$/' => '37signals.support@gmail.com',
     
