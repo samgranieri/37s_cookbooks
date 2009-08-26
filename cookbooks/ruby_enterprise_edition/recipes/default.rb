@@ -1,4 +1,4 @@
-ree_filename = ["ruby-enterprise", node[:ree][:version], node[:ree][:architecture].join("_")
+ree_filename = ["ruby-enterprise", node[:ree][:version], node[:ree][:architecture]].join("_")
 
 remote_file "/tmp/#{ree_filename}" do
   source 
