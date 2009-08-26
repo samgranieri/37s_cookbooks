@@ -5,6 +5,10 @@ directory "/u/apps" do
   recursive true
 end
 
+gem_package "rack" do
+  verison "1.0.0"
+end
+
 if node[:active_applications]
 
   node[:active_applications].each do |app, conf|
