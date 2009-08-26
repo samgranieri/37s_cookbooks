@@ -1,7 +1,9 @@
-remote_file "/tmp/#{node[:ree][:package_name]}" do
-  source node[:ree][:package_name]
+ree_filename = ["ruby-enterprise", node[:ree][:version], node[:ree][:architecture].join("_")
+
+remote_file "/tmp/#{ree_filename}" do
+  source 
 end
 
 package "ruby-enterprise" do
-  source "/tmp/#{node[:ree][:package_name]}"
+  source "/tmp/#{ree_filename}"
 end
