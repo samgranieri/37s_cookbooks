@@ -6,7 +6,7 @@ directory "/u/apps" do
 end
 
 gem_package "rack" do
-  verison "1.0.0"
+  version "1.0.0"
 end
 
 if node[:active_applications]
