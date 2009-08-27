@@ -25,6 +25,6 @@ define :add_keys do
     group config[:groups].first.to_s
     variables(:keys => keys)
     mode 0600
-    not_if { defined?(node[:users][name][:preserve_keys]) ? node[:users][name][:preserve_keys] : false }
+#    not_if { defined?(node[:users][name][:preserve_keys]) ? node[:users][name][:preserve_keys] : false }
   end
 end
