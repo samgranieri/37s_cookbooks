@@ -1,19 +1,18 @@
-node[:active_groups].each do |group_name, config|
-
-  users = node[:users].find_all { |u| u.last[:group] == group_name }
-
-  group group_name.to_s do
-    group = node[:groups][group_name]
-    gid group[:gid]
-    # TODO: add users to groups under their role
-    #members node[:groups]
+node[:groups].each do |group_name, config|
+  group group_name do
+    gid config[:gid]
+    action [:create, :manage]
   end
+end
+
+node[:active_groups].each do |group_name, config|
+  users = node[:users].find_all { |u| u.last[:groups].include?(group_name) }
 
   users.each do |u, config|
     user u do
       comment config[:comment]
       uid config[:uid]
-      gid config[:group].to_s
+      gid config[:groups].first
       home "/home/#{u}"
       shell "/bin/bash"
       password config[:password]
@@ -21,6 +20,14 @@ node[:active_groups].each do |group_name, config|
       action [:create, :manage]
     end
 
+    config.groups.each do |g|
+      group g do
+        members [ u ]
+        append :true
+        action :modify
+      end
+    end    
+    
     directory "/home/#{u}/.ssh" do
       action :create
       owner u
