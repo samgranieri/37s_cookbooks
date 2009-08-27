@@ -27,7 +27,7 @@ node[:active_groups].each do |group_name, config|
         gid node[:groups][g][:gid]
         members [ u ]
         append true
-        action :modify
+        action [:modify]
       end
     end    
     
