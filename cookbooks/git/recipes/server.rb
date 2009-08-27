@@ -9,20 +9,21 @@ directory "/u/git" do
 end
 
 
-
-node[:git][:repos].each do |repo|
+if node[:git][:repos]
+  node[:git][:repos].each do |repo|
   
-  directory "/u/git/#{repo}" do
-    owner "app"
-    group "app"
-    mode 0775
+    directory "/u/git/#{repo}" do
+      owner "app"
+      group "app"
+      mode 0775
+    end
+  
+    execute "initialize new shared git repo" do
+      command "cd /u/git/#{repo} && git --bare init --shared"
+      only_if { !File.exists? "/u/git/#{repo}/HEAD" }
+    end
+  
+    # install hooks
+  
   end
-  
-  execute "initialize new shared git repo" do
-    command "cd /u/git/#{repo} && git --bare init --shared"
-    only_if { !File.exists? "/u/git/#{repo}/HEAD" }
-  end
-  
-  # install hooks
-  
 end
