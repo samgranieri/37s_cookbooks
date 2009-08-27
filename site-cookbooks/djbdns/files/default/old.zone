@@ -5,7 +5,7 @@
 =web3.rack-dfw-int.37signals.com:192.168.1.102:300
 =web4.rack-dfw-int.37signals.com:192.168.1.117:300
 =dev.rack-dfw-int.37signals.com:192.168.1.114:300
-=dev-old.rack-dfw-int.37signals.com:192.168.2.120:300
+=dev-old.rack-dfw-int.37signals.com:192.168.2.130:300
 =db3.rack-dfw-int.37signals.com:192.168.1.127:300
 =db4.rack-dfw-int.37signals.com:192.168.1.120:300
 =db5.rack-dfw-int.37signals.com:192.168.1.118:300
