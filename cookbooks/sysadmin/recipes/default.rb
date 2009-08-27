@@ -16,6 +16,7 @@ package "lsof"
 package "gdb"
 package "socat"
 package "procmail"
+package "zsh"
 
 directory "/u/system" do
   owner "app"
