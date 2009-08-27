@@ -23,7 +23,7 @@ define :add_keys do
     source "authorized_keys.erb"
     action :create
     owner name
-    group config[:group].to_s
+    group config[:groups].first.to_s
     variables(:keys => keys)
     mode 0600
   end

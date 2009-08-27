@@ -1,6 +1,6 @@
-node[:groups].each do |group_name, config|
-  group group_name do
-    group_name group_name.to_s
+node[:groups].each do |group_key, config|
+  group group_key do
+    group_name group_key.to_s
     gid config[:gid]
     action [:create, :manage]
   end
@@ -34,7 +34,7 @@ node[:active_groups].each do |group_name, config|
     directory "/home/#{u}/.ssh" do
       action :create
       owner u
-      group config[:group].to_s
+      group config[:groups].first.to_s
       mode 0700
     end
     
