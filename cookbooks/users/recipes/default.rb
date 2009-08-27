@@ -1,5 +1,6 @@
 node[:groups].each do |group_name, config|
-  group group_name.to_s do
+  group group_name do
+    group_name g.to_s
     gid config[:gid]
     action [:create, :manage]
   end
@@ -21,7 +22,8 @@ node[:active_groups].each do |group_name, config|
     end
 
     config[:groups].each do |g|
-      group g.to_s do
+      group g do
+        group_name g.to_s
         gid node[:groups][g][:gid]
         members [ u ]
         append true
