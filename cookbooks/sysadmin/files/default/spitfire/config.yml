@@ -1,0 +1,10 @@
+users:
+  cia:
+    username: cia@example.com
+    password: example
+  git:
+    username: git@example.com
+    password: example
+  deploy:
+    username: deploy@example.com
+    password: example
