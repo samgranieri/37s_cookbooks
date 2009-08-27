@@ -20,7 +20,7 @@ node[:active_groups].each do |group_name, config|
       action [:create, :manage]
     end
 
-    config.groups.each do |g|
+    config[:groups].each do |g|
       group g do
         members [ u ]
         append :true
