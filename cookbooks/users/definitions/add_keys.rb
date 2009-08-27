@@ -6,7 +6,7 @@ define :add_keys do
 
   if config[:ssh_key_groups]
     config[:ssh_key_groups].each do |group|
-      node[:users].find_all{|u| u.last[:group] == group}.each do |user|
+      node[:users].find_all { |u| u.last[:groups].include?(group) }.each do |user|
         keys[user.first] = node[:ssh_keys][user.first]
       end
     end
@@ -25,6 +25,6 @@ define :add_keys do
     group config[:groups].first.to_s
     variables(:keys => keys)
     mode 0600
-#    not_if { defined?(node[:users][name][:preserve_keys]) ? node[:users][name][:preserve_keys] : false }
+    not_if { defined?(node[:users][name][:preserve_keys]) ? node[:users][name][:preserve_keys] : false }
   end
 end
