@@ -60,3 +60,7 @@ AcceptEnv LANG LC_*
 Subsystem sftp /usr/lib/openssh/sftp-server
 
 UsePAM yes
+
+<% if @node[:sshd][:max_startups] %>
+MaxStartups <%= @node[:sshd][:max_startups] %>
+<% end %>
