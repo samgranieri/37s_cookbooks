@@ -1,0 +1,10 @@
+users:
+  cia:
+    username: cia@loudthinking.com
+    password: paRAn0i3
+  git:
+    username: subversion@loudthinking.com
+    password: zUBv0rs!on
+  deploy:
+    username: deploy@example.com
+    password: example
