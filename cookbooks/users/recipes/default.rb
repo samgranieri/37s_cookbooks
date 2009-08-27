@@ -1,6 +1,6 @@
 node[:groups].each do |group_name, config|
   group group_name do
-    group_name g.to_s
+    group_name group_name.to_s
     gid config[:gid]
     action [:create, :manage]
   end
