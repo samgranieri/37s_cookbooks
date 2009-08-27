@@ -22,8 +22,7 @@ node[:active_groups].each do |group_name, config|
 
     config[:groups].each do |g|
       group g do
-        members [ u ]
-        append :true
+        append [ u ]
         action :modify
       end
     end    
