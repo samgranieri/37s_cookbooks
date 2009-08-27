@@ -17,6 +17,7 @@ package "gdb"
 package "socat"
 package "procmail"
 package "zsh"
+package "ack"
 
 directory "/u/system" do
   owner "app"
