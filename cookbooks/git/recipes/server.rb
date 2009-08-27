@@ -1,4 +1,5 @@
 require_recipe "git"
+require_recipe "gitosis"
 require_recipe "apache2"
 
  
