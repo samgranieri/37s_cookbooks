@@ -3,7 +3,7 @@ service "ssh" do
   action :enable
 end
 
-file "/etc/ssh/known_hosts" do
+remote_file "/etc/ssh/known_hosts" do
   source "known_hosts"
   mode 0644
 end
