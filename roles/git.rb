@@ -11,4 +11,47 @@ default_attributes :active_groups => {:app => {:enabled => true}, :git => {:enab
                          :user => "git"
                        }
                      }
+                   },
+                   :git => {
+                     :repos => {
+                       :basecamp => {},
+                       :backpack => {},
+                       "basecamp-help" => {},
+                       :blogcabin => {},
+                       :bookstore => {},
+                       :campfire => {},
+                       :cardstore => {},
+                       :champagne => {},
+                       :chef_recipes => {},
+                       :compass => {},
+                       :extra_extra => {},
+                       :forum => {},
+                       :extra_extra => {},
+                       "gitosis-admin" => {},
+                       :extra_extra => {},
+                       :haystack => {},
+                       :help => {},
+                       :highrise => {},
+                       :homedirs => {},
+                       :jobs => {},
+                       :limechicken => {},
+                       :live => {},
+                       "materials/37signals_materials" => {},
+                       "materials/basecamp_materials" => {},
+                       "materials/campfire_materials" => {},
+                       "materials/highrise_materials" => {},
+                       "materials/bascamp_materials" => {},
+                       :mirror => {},
+                       "mirrors/googlecharts" => {},
+                       "mirrors/mogilefs-client" => {},
+                       "mirrors/plugins/country_and_region_select" => {},
+                       "mirrors/plugins/deadlock_retry" => {},
+                       "mirrors/plugins/exception_notification" => {},
+                       "mirrors/plugins/open_id_authentication" => {},
+                       "mirrors/prototype" => {},
+                       "mirrors/rails" => {},
+                       "mirrors/scriptaculous" => {},
+                       "mirrors/sprockets" => {},
+                       "mirrors/sprockets-rails" => {}
+                     }
                    }
