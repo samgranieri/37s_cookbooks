@@ -19,6 +19,13 @@ remote_file node[:git][:repo_root]+"/bin/update_mirrors.rb" do
   mode 0755
 end
 
+cron "update git mirrors" do 
+  command "#{node[:git][:repo_root]}/bin/update_mirrors.rb"
+  user "git"
+  minute "*/5"
+end
+  
+
 if node[:git][:repos]
   node[:git][:repos].each do |repo|
   
