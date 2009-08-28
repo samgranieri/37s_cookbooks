@@ -1,4 +1,7 @@
 #!/usr/local/bin/ruby
+#
+# git mirror updater
+#
 
 mirrors_root = ARGV[0]
 repos = Dir.glob("#{mirrors_root}/*.git")
