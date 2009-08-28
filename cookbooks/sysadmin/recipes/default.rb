@@ -31,15 +31,6 @@ directory "/u/system/bin" do
   mode 0755  
 end
 
-remote_directory "/u/system/spitfire" do
-  source "spitfire"
-  owner "app"
-  group "app"
-  mode 0755
-  files_mode 0755
-end
-
-
 remote_file "/usr/local/bin/rotate-email-folders" do
   source "rotate-email-folders"
   mode 0755

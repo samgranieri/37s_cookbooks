@@ -134,7 +134,7 @@ $stdout.flush
 
 config = YAML.load(File.read("/u/system/spitfire/config.yml"))
 
-bot = Campfire::Bot.new(config['git']['username'], config['git']['password'])
+bot = Campfire::Bot.new(config[:git][:username], config[:git][:password])
 
 bot.say(output[:subject])
 bot.paste(output[:message]) if output[:message]
