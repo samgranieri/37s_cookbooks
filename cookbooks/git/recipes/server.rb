@@ -22,7 +22,7 @@ end
 if node[:git][:repos]
   node[:git][:repos].each do |repo|
   
-    repo_path = "/#{node[:git][:repo_root]}/#{repo}"
+    repo_path = "/#{node[:git][:repo_root]}/#{repo}.git"
     
     directory repo_path do
       owner "git"
@@ -32,7 +32,7 @@ if node[:git][:repos]
   
     execute "initialize new shared git repo" do
       command "cd #{repo_path} && git --bare init --shared"
-      only_if { !File.exists? "/u/git/#{repo}/HEAD" }
+      only_if { !File.exists? "#{repo_path}/HEAD" }
     end
   
     # install hooks
