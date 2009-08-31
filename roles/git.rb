@@ -106,6 +106,7 @@ default_attributes :active_groups => {:app => {:enabled => true}, :git => {:enab
                        "spitfire" => {},
                        "status" => {},
                        "sysadmin" => {},
+                       "user_profiles" => {},
                        "tada" => {},
                        "workshop" => {},
                        "writeboard" => {}
