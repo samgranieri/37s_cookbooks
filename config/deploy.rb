@@ -62,5 +62,5 @@ after "deploy", "update_recipes"
 after "update_recipes", "create_tarball"
 deploy.task :default, :except => {:no_release => true} do
   run "cd #{deploy_to} && git config remote.origin.url #{repository} && git pull"
-  sudo "chown -R chef:admin #{deploy_to} && chmod -R g+w #{deploy_to}"
+  sudo "sudo chown -R chef:admin #{deploy_to} && sudo chmod -R g+w #{deploy_to}"
 end
