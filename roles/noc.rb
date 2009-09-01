@@ -16,4 +16,4 @@ default_attributes :active_groups => {:app => {:enabled => true}},
                       },
                     }
                   }
-}
+
