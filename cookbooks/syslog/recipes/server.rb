@@ -40,12 +40,6 @@ logrotate "syslog-remote" do
   files ['/u/logs/syslog/messages', "/u/logs/syslog/secure", "/u/logs/syslog/maillog", "/u/logs/syslog/cron"]
 end
 
-cron "rotate highrise misc.log" do
-  command "/bin/mv /u/logs/highrise/`date +%m%d`/misc.log /u/logs/highrise/`date +%m%d`/misc.log.1"
-  hour "16"
-  minute "0"
-end
-
 node[:applications].each do |app, config|
   next unless config[:syslog_files][:logsort]
   
