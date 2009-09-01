@@ -15,4 +15,10 @@ override_attributes :web_only => true,
                                  :threadsperchild => 24,
                                  :maxrequestsperchild => 0
                        }
+                    },
+                    :sysctl => {
+                      :settings => {
+                        "net.ipv4.tcp_window_scaling" => "1"
+                        }
                     }
+                    
