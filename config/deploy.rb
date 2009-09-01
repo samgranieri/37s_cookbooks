@@ -45,6 +45,9 @@ end
 desc "Update recipes"
 task :update_recipes do
   run "cd #{deploy_to} && rake install"
+  set :dirs, "/var/chef/cookbooks /var/chef/site-cookbooks /var/chef/roles"
+  sudo "chown -R chef:admin #{dirs}"
+  sudo "chmod -R g+w #{dirs}"
   sudo "/etc/init.d/apache2 restart"
 end
 
@@ -62,5 +65,4 @@ after "deploy", "update_recipes"
 after "update_recipes", "create_tarball"
 deploy.task :default, :except => {:no_release => true} do
   run "cd #{deploy_to} && git config remote.origin.url #{repository} && git pull"
-  sudo "sudo chown -R chef:admin #{deploy_to} && sudo chmod -R g+w #{deploy_to}"
 end
