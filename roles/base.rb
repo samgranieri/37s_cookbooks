@@ -1,6 +1,6 @@
 name "base"
 description "Base role that applies to all servers"
-recipes "ruby-shadow", "hosts", "dns::client", "chef::client", "nagios::client", "rubygems::client", "timezone",
+recipes "ruby-shadow", "hosts", "dns::client", "chef::client", "nagios::client", "rubygems::client", "timezone", "sysctl",
         "git", "postfix", "ssh::server", "users", "sudo", "sysadmin", "mysql::client", "chef::client", "collectd"
 
 override_attributes :active_groups => {:admin => {:enabled => true}},
@@ -21,6 +21,12 @@ override_attributes :active_groups => {:admin => {:enabled => true}},
                   :jabber_admin_password => "x9CR0!7#z3ux7P",
                   :dyndns_login => "883mhi-ec2dyn",
                   :dyndns_password => "5SkR2hJiNsQP",
+                  :sysctl => {
+                    :settings => {
+                      # fixes mail delivery to some misconfigured routers or paranoid firewalls
+                      "net.ipv4.tcp_window_scaling" => "0"
+                    }
+                  }
                   :apache => {:listen_ports => [80,443]},
                   :groups => {:app => {:gid => 1003},
                               :site => {:gid => 3001},
