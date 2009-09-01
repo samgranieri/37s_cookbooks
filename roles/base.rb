@@ -26,7 +26,7 @@ override_attributes :active_groups => {:admin => {:enabled => true}},
                       # fixes mail delivery to some misconfigured routers or paranoid firewalls
                       "net.ipv4.tcp_window_scaling" => "0"
                     }
-                  }
+                  },
                   :apache => {:listen_ports => [80,443]},
                   :groups => {:app => {:gid => 1003},
                               :site => {:gid => 3001},
