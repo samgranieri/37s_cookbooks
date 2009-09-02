@@ -119,7 +119,8 @@ def format_analysis(pusher, project, url, analysis)
 end
 
 pusher  = ENV['USER']
-project = File.basename(Dir.pwd, ".git")
+project = Dir.pwd.scan(%r{/u/git/(.*).git}).flatten.first
+
 url = "https://dev.37signals.com/c/#{project}/"
 
 analysis = analyze_commits

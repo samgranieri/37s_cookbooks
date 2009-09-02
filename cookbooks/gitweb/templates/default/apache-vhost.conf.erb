@@ -13,7 +13,7 @@
    
   RewriteRule ^/c/(.+)/(.+)$ /gitweb/$1.git?a=commitdiff&h=$2 [R,L]
   
-  RewriteRule ^/gitweb/([a-zA-Z0-9_\-]+\.git)/?(\?.*)?$ /cgi-bin/gitweb.cgi/$1 [L,PT]
+  RewriteRule ^/gitweb/([a-zA-Z0-9_\/-]+\.git)/?(\?.*)?$ /cgi-bin/gitweb.cgi/$1 [L,PT]
   
   Alias /gitweb /usr/share/gitweb
   
