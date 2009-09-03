@@ -10,7 +10,7 @@ default_attributes :active_groups => {:app => {:enabled => true}},
                    :cron => {
                      :jobs => {
                        :highrise_misc_rotator => {
-                         :command => '/bin/mv /u/logs/highrise/`date +%m%d`/misc.log /u/logs/highrise/`date +%m%d`/misc.log.1',
+                         :command => '/usr/local/bin/rotate-misc-log highrise',
                          :hour => '12',
                          :minute => '0',
                          :user => 'root'

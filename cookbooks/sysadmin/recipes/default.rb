@@ -35,3 +35,8 @@ remote_file "/usr/local/bin/rotate-email-folders" do
   source "rotate-email-folders"
   mode 0755
 end
+
+remote_file "/usr/local/bin/rotate-misc-log" do
+  source "rotate-misc-log"
+  mode 0755
+end
