@@ -6,6 +6,7 @@ default_attributes :memcached => {
                        :basecamp => {"max_memory" => "256", "port" => "11211"},
                        :backpack => {"max_memory" => "1024", "port" => "11212"},
                        :shared   => {"max_memory" => "256", "port" => "11213"},
-                       :highrise => {"max_memory" => "1024", "port" => "11214"}
+                       :highrise => {"max_memory" => "1024", "port" => "11214"},
+                       :campfire => {"max_memory" => "256", "port" => "11215"}
                      }
                    }
