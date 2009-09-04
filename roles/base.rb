@@ -33,6 +33,7 @@ override_attributes :active_groups => {:admin => {:enabled => true}},
                               :support => {:gid => 3002},
                               :storage => {:gid => 3003},
                               :git => {:gid => 3004},
+                              :backup => {:gid => 3005},
                               :admin   => {:gid => 4000}},
 
                   :users => {:app => {:password => "$1$hk40k332$wpSYJYlbbVo3AK/7thxO3.", :comment => "App User", :uid => 1003, :groups => [:app], :ssh_key_groups => [:app,:site,:admin], :extra_ssh_keys => [:nagios, :solr]},
@@ -53,7 +54,7 @@ override_attributes :active_groups => {:admin => {:enabled => true}},
                              :sarah => {:password => "$1$U0cG83um$O2rd3ewKpBseLoy6OLLfg0", :comment => "Sarah Hatter", :uid => 3022, :groups => [:support, :git]},
                              :michael => {:password => "$1$vT.aW0Bk$dZ29mgu32LVuieh6w5z.4.", :comment => "Michael Berger", :uid => 3023, :groups => [:support, :git]},
                              :jz => {:password => "$1$0qP4NJqi$xP0xUByXE0UPYuPt7S/EK0", :comment => "Jason Zimdars", :uid => 3027, :groups => [:site, :git]},
-                             :storage => {:password => "$1$hk40k332$wpSYJYlbbVo3AK/7thxO3.", :comment => "Bulk Storage", :uid => 3025, :groups => [:storage], :ssh_key_groups => [:storage]},
+                             :storage => {:password => "$1$hk40k332$wpSYJYlbbVo3AK/7thxO3.", :comment => "Bulk Storage", :uid => 3025, :groups => [:storage, :git, :backup], :ssh_key_groups => [:storage]},
                              :git => {:password => "$1$hk40k332$wpSYJYlbbVo3AK/7thxO3.", :comment => "Gitosis User", :uid => 3026, :groups => [:git], :preserve_keys => true }},
      
                   :ssh_keys =>
@@ -75,7 +76,7 @@ override_attributes :active_groups => {:admin => {:enabled => true}},
                      :michael => "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA53phCOgf54FyqE2TwtTSzIRpnMHZ75Dt8xC6luL3nKXlCeb/daD3PMhN/Ymu2XUFe17d579cygUjeYp9G8hBIbLqJndXmuVbap8hYmaScGXYuCnHsvC1PAKwh+i66p8JdqK8hRgs29rsA737R+N3g7V08kcfPZ0PtIvl49TlfAw9z/OkCEch8RKTqUEKBn6RrshADEgg91IUN6cBBFgAzFHUa3W/ihvJHOfkrUS+rC80SpI9RjD0sLXoeRv3IE/uG1Nc6Fe4fmX6ezNcYFP3IQkP79KDgHuPO4Oalp7QMXcJZGLh5tjlhNYVAMZmzRhcDHY3rDZbbKMGM2totg3tFQ== michael@dev.37signals.com",
                      :nagios => "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA1XrZTbwTj6TfXpW5wLYtjcMl1fC5fWXpeHldglEP3poM8pwm+Yvwa8EQ6mcy1G/FCXLX5w9owz5R3p+8J1I32QehOsU4eFT/tU4CzTz1kA+0OJGjWIRecA5PKRxa6dc1N8xfEir+YFx9MabpjErZ8Us8hS48glpGavdKQzoKcy9VEk4JiddRYimTreiakc0elFeYJJbNYNC8x76lVPUr9Llw3d81rdJyi28Xv06oaNS+n0Oa/XnzSfKk+9anwbIymj9utf5tAJarAsOiC1CRBe4BRm9ALbsfBjbgn2JZoZmEjI2uG+1/hxoeXfPh1C048qNP+zdlClwlQM535vsKOQ== nagios@noc.37signals.com",
                      :solr => "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAmBDpYGrYau33dBcy5ms+KCCIWNGIli3dDOt7nfDwPrBXxgK7068zlGaroa9U8btE6pfYzjLXEldvqwP50+lfmGxTVfc/AC4fu+w0ojOWzA/pz3QS5gslMgJP1+iggryMVnlCc5nRHgJdg55aJ4XF/+nQ9kso4DSUCYC3RksrHu6WKn2tik2CEY0bcSEil2jzpgHnEwA0nFik3ahQr8UO2EdFACJ79vuQd9ZStUvokhak9xMT+49if9V4NSMxSzlsjm+PSlrStb0xzo39me2XJ9Irau1CJ2GGEA+GmZhUvg04Sn8LhysAuRDVx0tHeElPJB6wbpLNsU66PJjqLBdZBw== app@bc-solr-02",
-                     :storage => "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEApuUKB9EclFR4vztKeXUNwReHGhfVLUINb3Y4iLK3JiC30BVe7blBEf3LUHX1PeeqCXRR4ioKrv2IKSrYPJLv4J3J/ePuMIxMX7pnSWrEi55YJNPquPv1yCBpCUveoP+7ABKxNUgTz+4CgFj7CsVTfUNK9IZ++rL9Vm1WPDczcJEhJrY31wtZXEZ16vMQnhh69lP7rty3W0TcX4dslADXvJBow+Idtd/xBQwKTBI9StK6w3R/vzkwmgBo6qF3eA+3RAxrsX7wLG2adNbhSPbWl7GpJgwNJCgrqa5dZngdJAySBnk/fHyUn4iG9ftysColbun+DFM0DCZrk7p+qjrqqQ== backup@bulk",
+                     :storage => "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEApb9TlzchE2iJaPSgMO9TADJRiJpl71REENviBo/iTCWdzJNO/FjrZTbQKd2sn30+/MSGEnaeU8R/wKUfXDVPvhnBYlITsr71+cRhgA6QKwMljrHqXkq0U/iGzrw0yyc5X7FDR96TIRJcfe/CtgtReKXQ5SOObgGHLQIis4Dwg4UfqUrSGiq7+hze96lKuck7CK7jW8dNVNJ1NNWhU6ffsIPKIrj3rj3BngaELiPsn+Vo9J7wa/BIFgnD4/9bsQLYkqRsKH/RSOaxilGUMBlT7ukxUvWZKGNIMycc1YD9b0eSdSXJjJD1xaL2JwbdWoRF2POllIbcLqdOqZBw1uWODw== storage@bulk",
                      :jz => "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAmNmWYknwlKaGedM+58hKQG1dIjh2xYH9ut9JVyNidlTzfl1szhobGiZ2FwkMJyTKh2W9dmU1dUeZGzTHGiZuLor+MAESAMRjBwRXGeEW9sLQrIAxUdqunps5LEuWJlRJAwoqMOQW/IcybUIo1PwFznmIfuiBrJ5vukbXOTUpdxly4zMqxKdxNxt0sHOlixH1Zw4oJ0r1Qk59qxc2NuAW3JVe4yUUPWanZUNnAqGuOfQ6Bd0bDBy0FPq5LVV8NJuKIOZXHuD6E8KTYhjc4g0SEM/DIFvwzI9FJt01UyL1tpfLbS/Y0eCBc6xjCTFl9hv+nYZ41+Z8x6A8vdi9h9tEFw== jzimdars@jason-zimdarss-macbook-pro.local"
 }
  
