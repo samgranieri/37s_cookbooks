@@ -1,5 +1,11 @@
-
 package "nfs-kernel-server"
+
+remote_file "/home/storage/.ssh/id_rsa" do
+  source "ssh/id_rsa.storage"
+  owner "storage"
+  group "storage"
+  mode "0600"
+end
 
 directory "/u/backup" do
   recursive true

@@ -20,14 +20,14 @@ package "zsh"
 package "ack"
 
 directory "/u/system" do
-  owner "app"
-  group "app"
+  owner "root"
+  group "admin"
   mode 0755
 end
 
 directory "/u/system/bin" do
-  owner "app"
-  group "app"
+  owner "root"
+  group "admin"
   mode 0755  
 end
 
