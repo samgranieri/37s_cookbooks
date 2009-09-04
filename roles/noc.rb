@@ -15,6 +15,12 @@ default_attributes :active_groups => {:app => {:enabled => true}},
                          :minute => '0',
                          :user => 'root'
                       },
+                       :basecamp_misc_rotator => {
+                         :command => '/usr/local/bin/rotate-misc-log basecamp',
+                         :hour => '12',
+                         :minute => '0',
+                         :user => 'root'
+                      },
                     }
                   }
 
