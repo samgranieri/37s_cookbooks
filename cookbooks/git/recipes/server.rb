@@ -46,6 +46,8 @@ if node[:git][:repos]
     
     template "#{repo_path}/hooks/post-receive" do
       source "post-receive-hook.erb"
+      owner "git"
+      group "git"
     end
   end
 end
