@@ -1,7 +1,7 @@
 name "git"
 description "Git source server"
 recipes "git::server", "cron", "spitfire", "backup::client"
-default_attributes :active_groups => {:app => {:enabled => true}, :git => {:enabled => true}},
+default_attributes :active_groups => {:app => {:enabled => true}, :git => {:enabled => true}, :storage => {:enabled => true}},
                    :active_sudo_groups => {:app => {:enabled => true}},
                    :git => {
                      :repos => {
