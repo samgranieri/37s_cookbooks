@@ -52,6 +52,7 @@ default_attributes :active_groups => {:app => {:enabled => true}, :git => {:enab
                        "plugins/after_transaction" => {},
                        "plugins/auditor" => {},
                        "plugins/braintree" => {},
+                       "plugins/bubbly" => {},
                        "plugins/cached_externals" => {},
                        "plugins/calendar_date_select" => {},
                        "plugins/campaign_monitor" => {},
