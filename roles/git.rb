@@ -16,6 +16,7 @@ default_attributes :active_groups => {:app => {:enabled => true}, :git => {:enab
                        :chef_recipes => {},
                        :compass => {},
                        :extra_extra => {},
+                       "exceptions_mananger" => {},
                        :forum => {},
                        :extra_extra => {},
                        "gitosis-admin" => {},
