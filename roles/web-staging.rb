@@ -6,6 +6,7 @@ default_attributes "active_applications" => {"blogcabin" => {"env" => "staging"}
                  "jobs" => {"env" => "staging"},
                  "help" => {"env" => "staging"},
                  "extra_extra" => {"env" => "staging"}},
+                 "champagne" => {"env" => "staging"}}
  "active_sites" => {"37signals" => {"env" => "staging"},
                   "backpackit" => {"env" => "staging"},
                   "highrisehq" => {"env" => "staging"}}
