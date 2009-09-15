@@ -48,6 +48,7 @@ if node[:git][:repos]
       source "post-receive-hook.erb"
       owner "git"
       group "git"
+      mode 0755
     end
   end
 end
