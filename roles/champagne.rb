@@ -1,7 +1,6 @@
 name "champagne"
 description "Champagne"
-default_attributes :active_applications =>  {"champagne" =>  {"env" =>  "production"}},
-                   :applications => {
+default_attributes :applications => {
                      :champagne => {
                        :gems => ['fast_xs', 'rack-cache']
                      }
