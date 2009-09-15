@@ -8,7 +8,9 @@ override_attributes :active_applications => {
                      :blogcabin => {"env" => "production"},
                      :forum => {"env" => "production"},
                      :jobs => {"env" => "production"},
-                     :extra_extra => {"env" => "production"}
+                     :extra_extra => {"env" => "production"},
+                     :champagne => {"env" => "production"}
+                     
                    },
                    :active_sites => {
                      "37signals" => {"env" =>"production"},
