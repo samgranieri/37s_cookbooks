@@ -21,6 +21,9 @@ override_attributes :active_applications => {
                      :writeboard => {"env" =>"production"},
                      :highrisehq => {"env" =>"production"}
                    },
+                   :active_groups => {:app => {:enabled => true}},
+                   :active_sudo_groups => {:app => {:enabled => true}},
+
                    "apache" => {"listen_ports" => ["80","443"]},
                    "passenger" => {"max_pool_size" => "12", "use_global_queue" => "on", "rails_env" => "production"},
                    "php5" => {"version" => "5.2.9"},
