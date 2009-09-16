@@ -55,7 +55,7 @@ override_attributes :active_groups => {:admin => {:enabled => true}},
                              :sarah => {:password => "$1$U0cG83um$O2rd3ewKpBseLoy6OLLfg0", :comment => "Sarah Hatter", :uid => 3022, :groups => [:support, :git]},
                              :michael => {:password => "$1$vT.aW0Bk$dZ29mgu32LVuieh6w5z.4.", :comment => "Michael Berger", :uid => 3023, :groups => [:support, :git]},
                              :jz => {:password => "$1$0qP4NJqi$xP0xUByXE0UPYuPt7S/EK0", :comment => "Jason Zimdars", :uid => 3027, :groups => [:site, :git]},
-                             :pratik => {:password => "$1$iNLdiELV$e.HVgnU9B5e7LFLHDRmzb/", :comment => "Pratik Naik", :uid => 3028, :groups => [:contractors]},
+                             :pratik => {:password => "$1$iNLdiELV$e.HVgnU9B5e7LFLHDRmzb/", :comment => "Pratik Naik", :uid => 3028, :groups => [:contractors, :git]},
                              :storage => {:password => "$1$hk40k332$wpSYJYlbbVo3AK/7thxO3.", :comment => "Bulk Storage", :uid => 3025, :groups => [:storage, :git, :backup], :ssh_key_groups => [:storage]},
                              :git => {:password => "$1$hk40k332$wpSYJYlbbVo3AK/7thxO3.", :comment => "Gitosis User", :uid => 3026, :groups => [:git], :preserve_keys => true }},
      
