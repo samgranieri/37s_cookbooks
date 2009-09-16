@@ -491,7 +491,6 @@ define service {
 define service {
 	use default-service
 	host_name *, !search1, !db-slave
-	hostgroup_name !bc_external
 	service_description Postfix port 25
 	check_command check_smtp
 }
