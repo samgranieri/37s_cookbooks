@@ -31,6 +31,10 @@ node[:active_groups].each do |group_name, config|
       end
     end    
     
+    directory "/home/#{u}" do
+      mode 0750
+    end
+    
     directory "/home/#{u}/.ssh" do
       action :create
       owner u
