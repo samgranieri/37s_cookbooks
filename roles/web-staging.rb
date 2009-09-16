@@ -1,7 +1,8 @@
 name "web-staging"
 description "Staging slice for smaller sites/apps"
 recipes "mysql::server", "php5::sites", "rails::apps"
-default_attributes "active_applications" => {"blogcabin" => {"env" => "staging"},
+default_attributes :active_groups => {:contractors => {:enabled => true}},
+                  "active_applications" => {"blogcabin" => {"env" => "staging"},
                  "bookstore" => {"env" => "staging"},
                  "jobs" => {"env" => "staging"},
                  "help" => {"env" => "staging"},
