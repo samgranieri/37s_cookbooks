@@ -1,54 +1,5 @@
-define service {
-  use default-service
-  host_name *
-  service_description ping
-  check_command check_ping!50.0,20%!150.0,30%
-}
 
-define service {
-  use                     default-service
-  hostgroup_name          servers, linux_boxes, freebsd_boxes, slices
-  service_description     Free Space All Disks
-  check_command			      check_all_disks
-}
-
-define serviceescalation {
-  hostgroup_name          servers, linux_boxes, freebsd_boxes, slices
-	service_description	Free Space All Disks
-	first_notification	4
-	last_notification	0
-	notification_interval	0
-	escalation_options w,c,u,r
-	contact_groups		sysadmin-sms
-}
-	
-define service {
-	use                     default-service
-	hostgroup_name          servers, linux_boxes, freebsd_boxes, slices
-	service_description     Load Average
-	check_command			      check_load
-}
-
-define service{
-  use                     default-service
-  hostgroup_name          servers, linux_boxes, freebsd_boxes, slices
-  service_description     Free Memory
-  check_command			      check_mem
-}
-
-define serviceescalation {
-  hostgroup_name          servers, linux_boxes, freebsd_boxes, slices
-	service_description	Free Memory
-	first_notification	1
-	last_notification	0
-	notification_interval	0
-	escalation_options w,c,u,r
-	contact_groups		sysadmin-sms
-}
-
-# application checks
-
-# old services
+# Host Groups
 
 define hostgroup{
 	hostgroup_name slices
@@ -99,20 +50,10 @@ define hostgroup{
 	alias hr-web
 }
 
-#define hostgroup {
-#	hostgroup_name wb-app
-#	alias Writeboard App
-#}
-
 define hostgroup {
 	hostgroup_name bp-app
 	alias Backpack App 
 } 
-
-#define hostgroup {
-#	hostgroup_name bc-app
-#	alias Basecamp App
-#}
 
 define hostgroup {
 	hostgroup_name cf-app
@@ -135,21 +76,71 @@ define hostgroup {
 	alias Small Apps and Sites
 }
 
-define service{
-    use                     default-service
-    hostgroup_name          db_master, db_slave
-    service_description     DB Free Memory
-		check_command			check_mem
+# Services
+
+define service {
+  use default-service
+  host_name *
+  service_description ping
+  check_command check_ping!50.0,20%!150.0,30%
 }
 
-define serviceescalation{
-	hostgroup_name		db_master, db_slave
-	service_description	DB Free Memory
-	first_notification	3
-	last_notification	5
-	notification_interval	600
+define service {
+  use                     default-service
+  hostgroup_name          servers, linux_boxes, freebsd_boxes, slices
+  service_description     Free Space All Disks
+  check_command			      check_all_disks
+}
+
+define serviceescalation {
+  hostgroup_name          servers, linux_boxes, freebsd_boxes, slices
+	service_description	Free Space All Disks
+	first_notification	4
+	last_notification	0
+	notification_interval	0
+	escalation_options w,c,u,r
 	contact_groups		sysadmin-sms
-	}
+}
+	
+define service {
+	use                     default-service
+	hostgroup_name          servers, linux_boxes, freebsd_boxes, slices
+	service_description     Load Average
+	check_command			      check_load
+}
+
+define service {
+  use                 default-service
+  hostgroup_name      servers, linux_boxes, freebsd_boxes, slices
+  service_description Free Memory
+  check_command       check_mem
+}
+
+define serviceescalation {
+  hostgroup_name        servers, linux_boxes, freebsd_boxes, slices
+  service_description	Free Memory
+  first_notification	1
+  last_notification	2
+  notification_interval	300
+  escalation_options    w,c,u,r
+  contact_groups	sysadmin-sms
+}
+
+define service{
+  use                 default-service
+  hostgroup_name      db_master, db_slave
+  service_description DB Free Memory
+  check_command	      check_mem
+}
+
+define serviceescalation {
+  hostgroup_name	db_master, db_slave
+  service_description	DB Free Memory
+  first_notification	2
+  last_notification	5
+  notification_interval	600
+  contact_groups	sysadmin-sms
+}
 
 
 define service {
@@ -165,13 +156,6 @@ define service {
 		service_description		Files Pending Migration
 		check_command			check_query_count!basecamp_ro!oDhdFrgvB2!basecamp_production!"select count(*) from attachments where migrated is null and hosted = 1 and byte_size < 100000000"!80000!90000
 }
-
-# define service{
-#         use                     default-service
-#         hostgroup_name               db_slave
-#         service_description    	MySQL Replication
-# 		check_command			check_replication
-# }
 
 define service{
         use                     default-service
@@ -247,13 +231,6 @@ define service {
   check_command       check_tcp!11000
 }
 
-#define service {
-#		use frequent-service
-#		hostgroup_name wb-app
-#		service_description	WB HTTP content
-#		check_command			check_http_content!123.writeboard.com!/find!/p/list
-#}
-
 define service {
 		use frequent-service-with-sms
 		host_name hr-web-03, hr-web-04
@@ -295,13 +272,6 @@ define service {
 	service_description	BC Haproxy queue
 	check_command			check_haproxy_queue!bc
 }
-
-#define service {
-#  use frequent-service
-#  host_name proxy01,proxy02
-#	service_description	BC Upload Haproxy queue
-#	check_command			check_haproxy_queue!bc_upload
-#}
 
 define service {
 		use frequent-service-with-sms
@@ -358,56 +328,6 @@ define service {
 		service_description Queenbee HTTPS Content
 		check_command check_https_content!billing.37signals.com!/basecamp/Free/signup/new!signup_data_first_name
 }
-
-#define service {
-#		use frequent-service
-#		hostgroup_name app-general
-#		service_description	SvN HTTP content
-#		check_command			check_http_content!www.37signals.com!/svn/!simplicity
-#}
-#
-#define service {
-#		use frequent-service
-#		hostgroup_name app-general
-#		service_description	37signals.com HTTP content
-#		check_command			check_http_content!www.37signals.com!/!37signals
-#}
-#
-#define service {
-#		use frequent-service
-#		hostgroup_name app-general
-#		service_description	highrisehq HTTP content
-#		check_command			check_http_content!highrisehq.com!/!Highrise
-#}
-#
-#define service {
-#		use frequent-service
-#		hostgroup_name app-general
-#		service_description campfirenow HTTP content
-#		check_command			check_http_content!campfirenow.com!/!Campfire
-#}
-#
-#define service {
-#		use frequent-service
-#		hostgroup_name app-general
-#		service_description basecamphq HTTP content
-#		check_command			check_http_content!basecamphq.com!/!Basecamp
-#}
-
-
-#define service {
-#    use frequent-service-with-sms
-#    host_name localhost
-#   service_description BC Haproxy FD errors
-#    check_command     check_local_log!/u/logs/basecamp/haproxy.log!ulimit
-#}
-
-#define service {
-#    use frequent-service-with-sms
-#    host_name localhost
-#    service_description CF HAProxy FD errors
-#    check_command     check_local_log!/u/logs/campfire/haproxy.log!ulimit
-#}
 
 define service {
 		use default-service
