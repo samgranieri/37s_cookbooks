@@ -1,4 +1,4 @@
-name "37s-app"
+name "small-app"
 description "General 37s application server"
 
 recipes "rails::apps"
