@@ -1,5 +1,4 @@
 require_recipe "php5"
-apache_module "php5"
 
 directory "/u/logs/sites" do
   action :create
@@ -7,7 +6,6 @@ directory "/u/logs/sites" do
   owner "app"
   group "www-data"
 end
-
 
 logrotate "website_logs" do
   files "/u/logs/sites/*.log"
