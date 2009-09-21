@@ -111,6 +111,7 @@ define service {
 define service {
   use                 default-service
   hostgroup_name      servers, linux_boxes, freebsd_boxes, slices
+	host_name						!mogile-staging
   service_description Free Memory
   check_command       check_mem
 }
