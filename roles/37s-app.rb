@@ -27,6 +27,6 @@ override_attributes :active_applications => {
                    :active_sudo_groups => {:app => {:enabled => true}},
 
                    "apache" => {"listen_ports" => ["80","443"]},
-                   "passenger" => {"max_pool_size" => "12", "use_global_queue" => "on", "rails_env" => "production"},
+                   "passenger" => {"max_pool_size" => "12", "use_global_queue" => "off", "rails_env" => "production", "max_instances_per_app" => "2"},
                    "php5" => {"version" => "5.2.9"},
                    "hosts" => {"localhost_aliases" => ["basecamp.forum.37signals.com", "backpack.forum.37signals.com", "highrise.forum.37signals.com"]}
