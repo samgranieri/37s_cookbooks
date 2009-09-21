@@ -107,7 +107,6 @@
 =wb-app-02.rack-dfw-int.37signals.com:192.168.2.43:300
 =ob-app-01.rack-dfw-int.37signals.com:192.168.2.44:300
 =ob-app-02.rack-dfw-int.37signals.com:192.168.2.45:300
-=ob-staging.rack-dfw-int.37signals.com:127.0.0.1:300
 =hr-app-02.rack-dfw-int.37signals.com:192.168.2.50:300
 =hr-app-03.rack-dfw-int.37signals.com:192.168.2.51:300
 =hr-app-04.rack-dfw-int.37signals.com:192.168.2.52:300
@@ -117,6 +116,7 @@
 =bc-web-01.rack-dfw-int.37signals.com:192.168.2.56:300
 =hr-web-01.rack-dfw-int.37signals.com:192.168.2.58:300
 =web-staging.rack-dfw-int.37signals.com:192.168.2.60:300
++ob-staging.rack-dfw-int.37signals.com:192.168.2.60:300
 
 # Rackspace
 
