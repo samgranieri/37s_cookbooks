@@ -119,6 +119,7 @@ define service {
 define serviceescalation {
   hostgroup_name        servers, linux_boxes, freebsd_boxes, slices
   service_description	Free Memory
+	host_name						!mogile-staging
   first_notification	1
   last_notification	2
   notification_interval	300
