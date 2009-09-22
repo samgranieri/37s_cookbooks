@@ -3,7 +3,7 @@ description "Base role that applies to all servers"
 recipes "ruby-shadow", "hosts", "dns::client", "chef::client", "nagios::client", "rubygems::client", "timezone", "sysctl",
         "git", "postfix", "ssh::server", "users", "sudo", "sysadmin", "mysql::client", "chef::client", "collectd"
 
-override_attributes :active_groups => {:admin => {:enabled => true}},
+default_attributes :active_groups => {:admin => {:enabled => true}},
                   :active_sudo_groups => {:admin => {:enabled => true}},
                   :sysadmin_email => "sysadmins@37signals.com",
                   :sysadmin_sms_email => "sysadmins@37signals.com",
