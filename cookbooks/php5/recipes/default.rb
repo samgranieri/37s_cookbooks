@@ -17,6 +17,6 @@ EOC
   not_if { File.directory?(node[:php5][:path]) }
 end
 
-link "/usr/local/php/bin/php-cgi" do
-  to "/usr/bin/php-cgi"
+link "/usr/bin/php-cgi" do
+  to "/usr/local/php/bin/php-cgi" 
 end
