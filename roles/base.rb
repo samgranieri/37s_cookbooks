@@ -27,6 +27,7 @@ default_attributes :active_groups => {:admin => {:enabled => true}},
                       "net.ipv4.tcp_window_scaling" => "0"
                     }
                   },
+                  :rubygems => { :sources => %W(localgems gems) },
                   :apache => {:listen_ports => [80,443]},
                   :groups => {:app => {:gid => 1003},
                               :site => {:gid => 3001},

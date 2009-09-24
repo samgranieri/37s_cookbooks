@@ -20,3 +20,11 @@ end
 link "/usr/bin/php-cgi" do
   to "/usr/local/php/bin/php-cgi" 
 end
+
+template "/usr/local/php/lib/php.ini" do
+  source "php.ini.erb"
+  owner "root"
+  group "root"
+  mode 0644
+end
+

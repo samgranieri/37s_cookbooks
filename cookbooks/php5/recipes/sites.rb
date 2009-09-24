@@ -1,4 +1,4 @@
-require_recipe "php5"
+require_recipe "php5::default"
 
 directory "/u/logs/sites" do
   action :create
