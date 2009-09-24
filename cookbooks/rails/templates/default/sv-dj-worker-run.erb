@@ -1,0 +1,5 @@
+#!/bin/sh
+exec 2>&1
+exec /u/apps/<%= @app_name %>/current/script/runner "Delayed::Worker.new(:min_priority => ENV['MIN_PRIORITY'], :max_priority => ENV['MAX_PRIORITY']).start"
+
+RAILS_ENV=<%= @rails_env || "production" %> <%= @command_line %>
