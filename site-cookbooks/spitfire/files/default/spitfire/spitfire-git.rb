@@ -118,9 +118,8 @@ def format_analysis(pusher, project, url, analysis)
   end
 end
 
-pusher  = ENV['USER']
-project = Dir.pwd.scan(%r{/u/git/(.*).git}).flatten.first
-
+pusher  = ENV['GITOSIS_USER'] || ENV['USER']
+project = File.basename(Dir.pwd, ".git")
 url = "https://dev.37signals.com/c/#{project}/"
 
 analysis = analyze_commits
@@ -133,11 +132,7 @@ $stdout.puts "-" * 70
 $stdout.puts "sending summary to campfire..."
 $stdout.flush
 
-config = YAML.load(File.read("/u/system/spitfire/config.yml"))
-
-bot = Campfire::Bot.new(config['users']['git']['username'], config['users']['git']['password'])
-
-bot.say(output[:subject])
-bot.paste(output[:message]) if output[:message]
+Campfire::Subversion.say(output[:subject])
+Campfire::Subversion.paste(output[:message]) if output[:message]
 
 $stdout.puts "done!"
