@@ -13,6 +13,6 @@ default_attributes :users => {:app => {:extra_ssh_keys => [:nagios, :solr, :prat
                  "champagne" => {"env" => "staging"}},
                   "active_sites" => {"37signals" => {"env" => "staging"},
                   "backpackit" => {"env" => "staging"},
-                  "highrisehq" => {"env" => "staging"}},
+                  "highrisehq" => {"env" => "staging"}}
 
   
