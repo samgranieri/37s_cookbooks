@@ -132,7 +132,9 @@ $stdout.puts "-" * 70
 $stdout.puts "sending summary to campfire..."
 $stdout.flush
 
-Campfire::Subversion.say(output[:subject])
-Campfire::Subversion.paste(output[:message]) if output[:message]
+config = YAML.load(File.read("/u/system/spitfire/config.yml"))
+bot = Campfire::Bot.new(config['users']['git']['username'], config['users']['git']['password'])
+bot.say(output[:subject])
+bot.paste(output[:message]) if output[:message]
 
 $stdout.puts "done!"
