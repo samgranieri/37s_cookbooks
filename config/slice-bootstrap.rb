@@ -10,8 +10,8 @@ set :ruby_pkg,   "ruby-enterprise_1.8.6-20090610_amd64.deb"
 set :chef_reqs,  "#{dist}/chef/bootstrap"
 set :client_cfg, "#{chef_reqs}/client.rb"
 set :slice_json, "#{chef_reqs}/slice.json"
-set :chef_gem,   "#{chef_reqs}/chef-0.7.1.gem"
-set :ohai_gem,   "#{chef_reqs}/ohai-0.3.0.gem"
+set :chef_gem,   "#{chef_reqs}/chef-0.7.10.gem"
+set :ohai_gem,   "#{chef_reqs}/ohai-0.3.2.gem"
 
 task :provision do
   sudo "wget -qO - http://dist/chef/bootstrap.tar | tar xvf - ; cd bootstrap ; ./bootstrap.sh"
