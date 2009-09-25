@@ -132,7 +132,7 @@ $stdout.puts "-" * 70
 $stdout.puts "sending summary to campfire..."
 $stdout.flush
 
-Campfire::Subversion.say(output[:subject])
-Campfire::Subversion.paste(output[:message]) if output[:message]
+Campfire::Bot.say(output[:subject])
+Campfire::Bot.paste(output[:message]) if output[:message]
 
 $stdout.puts "done!"
