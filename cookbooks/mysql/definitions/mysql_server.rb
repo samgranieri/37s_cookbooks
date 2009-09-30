@@ -28,8 +28,11 @@ define :mysql_server, :options => {} do
     end
   end
 
-  execute "install mysql binaries" do
-    command "curl http://dist/packages/mysql/mysql-#{params[:version]}.tar.bz2 | tar xfC #{node[:mysql][:root]}/server"
+  bash "install mysql binaries" do
+    user "root"
+    group "root"
+    cwd "/tmp"
+    code "wget http://dist/packages/mysql/mysql-#{params[:version]}.tar.bz2 | tar -xC #{node[:mysql][:root]}/server -f -"
     not_if File.exist?("#{node[:mysql][:root]}/server/#{params[:version]}")
   end
   
