@@ -8,6 +8,7 @@ log-slow-queries = <%= @config[:slow_query_log] %>
 log-error = <%= @config[:mysqld_error_log] %>
 pid-file = <%= @config[:pidfile] %>
 server-id = <%= @config[:server_id] %>
+report-host = <%= @node[:hostname] %>
 port = <%= @config[:port] %>
 <% if @config[:binlogs_enabled] -%>
 log-bin = <%= @config[:binlog_dir] %>
