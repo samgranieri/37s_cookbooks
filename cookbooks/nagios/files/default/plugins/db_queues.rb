@@ -78,7 +78,7 @@ message = "Query '#{c[:query]}' result %d exceeds %d|#{perfdata}"
 
 if c[:warn] && c[:crit]
   
-  conn = Mysql::connect(c[:host], c[:port], c[:username], c[:password], c[:database])
+  conn = Mysql::connect(c[:host], c[:port].to_i, c[:username], c[:password], c[:database])
   res = conn.query(c[:query])
   value = res.fetch_row
   value = value.first.to_i
