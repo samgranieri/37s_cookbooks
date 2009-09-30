@@ -1,5 +1,7 @@
 nagios Mash.new unless attribute?("nagios")
 
+nagios[:plugins_dir] = "/u/nagios/plugins"
+
 nagios[:checks] = Mash.new unless nagios.has_key?(:checks)
 nagios[:checks][:load] = Mash.new unless nagios[:checks].has_key?(:load)
 nagios[:checks][:memory] = Mash.new unless nagios[:checks].has_key?(:memory)

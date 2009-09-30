@@ -13,7 +13,7 @@ directory "/u/nagios" do
   recursive true
 end
 
-remote_directory "/u/nagios/plugins" do
+remote_directory node[:nagios][:plugins_dir] do
   source "plugins"
   files_backup 5
   files_owner "nagios"
