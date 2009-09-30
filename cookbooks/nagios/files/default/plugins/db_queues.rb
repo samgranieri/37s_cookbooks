@@ -36,7 +36,7 @@ Choice.options do
     desc 'MySQL DB host'
   end
 
-    option :host do
+  option :port do
     short '-P'
     long '--port=VALUE'
     desc 'MySQL DB port'
