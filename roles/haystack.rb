@@ -2,7 +2,7 @@ name "haystack"
 description "Haystack"
 default_attributes :applications => {
                      :haystack => {
-                       :gems => ['fast_xs', 'xml-simple', 'right_aws'],
+                       :gems => ['fast_xs', 'xml-simple', 'right_aws', 'bcrypt-ruby', 'erubis'],
                        :packages => ["imagemagick"]
                      }
                    },
