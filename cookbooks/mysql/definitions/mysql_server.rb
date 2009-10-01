@@ -20,7 +20,7 @@ define :mysql_server, :options => {} do
     action [ :create, :manage ]
   end
 
-  [ node[:mysql][:root], "#[node[:mysql][:root]/server" ].each do |dir|
+  [ node[:mysql][:root], "#{node[:mysql][:root]}/server" ].each do |dir|
     directory dir do
       owner "root"
       group "root"
