@@ -23,8 +23,8 @@ innodb_data_file_path = ibdata1:10M:autoextend
 innodb_log_group_home_dir = <%= @params[:config][:innodb_log_dir] %>
 innodb_log_arch_dir = <%= @params[:config][:innodb_log_dir] %>
 innodb_log_files_in_group = 2
-innodb_log_file_size = <%= @params[:config][:log_file_size] %>
-innodb_log_buffer_size = <%= @params[:config][:log_buffer_size] %>
+innodb_log_file_size = <%= @params[:config][:innodb_log_file_size] %>
+innodb_log_buffer_size = <%= @params[:config][:innodb_log_buffer_size] %>
 innodb_flush_log_at_trx_commit = <%= @params[:config][:innodb_flush_log_at_trx_commit] %>
 innodb_flush_method = <%= @params[:config][:innodb_flush_method] %>
 max_connections = <%= @params[:config][:max_connections] %>
