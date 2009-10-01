@@ -20,7 +20,7 @@ define :mysql_server, :options => {} do
     action [ :create, :manage ]
   end
 
-  directory [ base_dir, "#{base_dir}/server" ].each do |dir|
+  [ base_dir, "#{base_dir}/server" ].each do |dir|
     directory dir do
       owner "root"
       group "root"
