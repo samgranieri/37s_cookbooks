@@ -1,7 +1,7 @@
 define :mysql_server, :options => {} do
   base_dir = "#{node[:mysql][:root]}/#{params[:name]}"
   params[:config] ||= {}
-  directories = []
+  directories = [ base_dir ]
   
   %W(binlogs config data logs).each do |d|
     directories << "#{base_dir}/#{d}"
@@ -20,7 +20,7 @@ define :mysql_server, :options => {} do
     action [ :create, :manage ]
   end
 
-  [ base_dir, "#{base_dir}/server" ].each do |dir|
+  [ node[:mysql][:root], "#[node[:mysql][:root]/server" ].each do |dir|
     directory dir do
       owner "root"
       group "root"
