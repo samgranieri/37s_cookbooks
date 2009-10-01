@@ -61,7 +61,7 @@ define :mysql_server, :options => {} do
     owner "mysql"
     group "mysql"
     mode 0644
-    variables(:config => params[:config])
+    variables(:params => params)
   end
 
   execute "install empty database" do

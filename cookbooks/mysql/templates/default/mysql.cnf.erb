@@ -1,27 +1,27 @@
 [safe_mysqld]
-err-log = <%= @config[:mysqld_error_log] %>
+err-log = <%= @params[:config][:mysqld_error_log] %>
 
 [mysqld]
-datadir = <%= @config[:datadir] %>
-socket = <%= @config[:socket_path] %>
-log-slow-queries = <%= @config[:slow_query_log] %>
-log-error = <%= @config[:mysqld_error_log] %>
-pid-file = <%= @config[:pidfile] %>
-server-id = <%= @config[:server_id] %>
+datadir = <%= @params[:config][:datadir] %>
+socket = <%= @params[:config][:socket_path] %>
+log-slow-queries = <%= @params[:config][:slow_query_log] %>
+log-error = <%= @params[:config][:mysqld_error_log] %>
+pid-file = <%= @params[:config][:pidfile] %>
+server-id = <%= @params[:config][:server_id] %>
 report-host = <%= @node[:hostname] %>
-port = <%= @config[:port] %>
-<% if @config[:binlogs_enabled] -%>
-log-bin = <%= @config[:binlog_dir] %>
+port = <%= @params[:config][:port] %>
+<% if @params[:config][:binlogs_enabled] -%>
+log-bin = <%= @params[:config][:binlog_dir] %>
 binlog-ignore-db = mysql
 sync_binlog = 1
 <% end -%>
-innodb_data_home_dir = <%= @config[:datadir] %>
-<% if @config[:innodb_file_per_table] -%>
+innodb_data_home_dir = <%= @params[:config][:datadir] %>
+<% if @params[:config][:innodb_file_per_table] -%>
 innodb_file_per_table
 <% end -%>
 innodb_data_file_path = ibdata1:10M:autoextend
-innodb_log_group_home_dir = <%= @config[:innodb_log_dir] %>
-innodb_log_arch_dir = <%= @config[:innodb_log_dir] %>
+innodb_log_group_home_dir = <%= @params[:config][:innodb_log_dir] %>
+innodb_log_arch_dir = <%= @params[:config][:innodb_log_dir] %>
 innodb_log_files_in_group = 2
 innodb_log_file_size = 200M
 innodb_log_buffer_size = 8M
@@ -37,13 +37,13 @@ max_allowed_packet = 16M
 query_cache_size = 100M
 max_connect_errors = 99999999
 skip-locking
-innodb_buffer_pool_size = <%= @config[:innodb_buffer_pool_size] %>
+innodb_buffer_pool_size = <%= @params[:config][:innodb_buffer_pool_size] %>
 innodb_thread_concurrency = 4
 <% if @node[:mysql][:percona_patches] %>
 log_slow_verbosity = "query_plan,innodb"
 <% end %>
 
-<% if @backup_location -%>
+<% if @params[:backup_location] -%>
 [xtrabackup]
-target_dir = <%= @backup_location %>
+target_dir = <%= @params[:backup_location] %>
 <% end -%>
