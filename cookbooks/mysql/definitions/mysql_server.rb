@@ -32,7 +32,7 @@ define :mysql_server, :options => {} do
     user "root"
     group "root"
     cwd "/tmp"
-    code "wget http://dist/packages/mysql/mysql-#{params[:version]}.tar.bz2 | tar -xC #{node[:mysql][:root]}/server -f -"
+    code "curl http://dist/packages/mysql/mysql-#{params[:version]}.tar.bz2 | tar -xjC #{node[:mysql][:root]}/server -f -"
     not_if File.exist?("#{node[:mysql][:root]}/server/#{params[:version]}")
   end
   
