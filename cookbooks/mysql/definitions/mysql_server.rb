@@ -9,6 +9,7 @@ define :mysql_server, :options => {} do
 
   group "mysql" do
     gid node[:mysql][:gid]
+    action [ :create, :manage ]
   end
 
   user "mysql" do
@@ -16,6 +17,7 @@ define :mysql_server, :options => {} do
     gid node[:mysql][:gid]
     comment "MySQL Server"
     home "/u/mysql"
+    action [ :create, :manage ]
   end
 
   directories.each do |dir|
