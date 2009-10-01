@@ -83,4 +83,8 @@ define :mysql_server, :options => {} do
   service "mysql_#{params[:name]}" do
     action [ :enable, :start ] 
   end
+
+  if params[:backup_location]
+    package "xtrabackup"
+  end
 end

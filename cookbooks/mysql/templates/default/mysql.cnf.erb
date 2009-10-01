@@ -42,3 +42,8 @@ innodb_thread_concurrency = 4
 <% if @node[:mysql][:percona_patches] %>
 log_slow_verbosity = "query_plan,innodb"
 <% end %>
+
+<% if @backup_location -%>
+[xtrabackup]
+target_dir = <%= @backup_location %>
+<% end -%>
