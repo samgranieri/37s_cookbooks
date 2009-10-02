@@ -92,7 +92,7 @@ define :mysql_server, :options => {} do
     group "mysql"
     cwd "/tmp"
     command "#{node[:mysql][:root]}/server/#{params[:version]}/bin/mysql_install_db --defaults-file=#{base_dir}/config/my.cnf --user=mysql"
-    action :run
+    creates "#{base_dir}/data/mysql/user.MYI"
   end
   
   template "/etc/init.d/mysql_#{params[:name]}" do
