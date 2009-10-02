@@ -13,7 +13,6 @@
 =bc-db-01.rack-dfw-int.37signals.com:192.168.1.151:300
 =bc-db-02.rack-dfw-int.37signals.com:192.168.1.152:300
 =db6.rack-dfw-int.37signals.com:192.168.1.165:300
-=dbslave.rack-dfw-int.37signals.com:192.168.1.197:300
 =db-slave.rack-dfw-int.37signals.com:192.168.1.156:300
 =search1.rack-dfw-int.37signals.com:192.168.1.122:300
 =file1.rack-dfw-int.37signals.com:192.168.1.111:300
