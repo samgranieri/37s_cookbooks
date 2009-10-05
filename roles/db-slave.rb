@@ -1,6 +1,6 @@
 name 'db-slave'
 description 'Slave Database Server'
-recipes 'cron', 'mysql::server', 'syslog::client'
+recipes 'cron', 'mysql::server', 'syslog::client', 'nfs::client'
 
 override_attributes :active_groups => {:app => {:enabled => true}},
                     :active_sudo_groups => {:app => {:enabled => true}},
