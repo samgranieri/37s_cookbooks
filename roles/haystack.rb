@@ -1,6 +1,6 @@
 name "haystack"
 description "Haystack"
-override_attributes :active_applications => {"haystack" => {"env" => "production"}},
+default_attributes :active_applications => {"haystack" => {"env" => "production"}},
                    :applications => {
                      :haystack => {
                        :gems => ['fast_xs', 'xml-simple', 'right_aws', 'bcrypt-ruby', 'erubis', 'aws-s3'],
