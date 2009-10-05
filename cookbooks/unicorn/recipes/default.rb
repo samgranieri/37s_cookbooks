@@ -30,7 +30,7 @@ node[:active_applications].each do |name, config|
     :worker_bind_address => '127.0.0.1',
     :worker_bind_base_port => "37#{counter}01",
     :debug => false,
-    :binary_path => config[:rack_only] ? "#{ruby_bin_path}/unicorn" : "#{ruby_bin_path}/unicorn_rails",
+    :binary_path => config[:rack_only] ? "#{node[:ruby_bin_path]}/unicorn" : "#{node[:ruby_bin_path]}/unicorn_rails",
     :env => 'production',
     :app_path => "/u/apps/#{name}/current",
     :enable => true,
