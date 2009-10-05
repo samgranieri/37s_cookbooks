@@ -1,5 +1,7 @@
 require_recipe "rails::app_dependencies"
-require_recipe "passenger"
+
+require_recipe node[:rails][:app_server]
+web_server = node[:rails][:web_server]
 
 if node[:active_applications]
 
@@ -7,20 +9,24 @@ if node[:active_applications]
 
     full_name = "#{app}_#{conf[:env]}"
     filename = "#{conf[:env]}.conf"
-    path = "/u/apps/#{app}/current/config/apache/#{filename}"
+    path = "/u/apps/#{app}/current/config/#{web_server}/#{filename}"
 
     if node[:applications][app]
-      if modules = node[:applications][app][:apache_modules]
+      if modules = node[:applications][app]["#{web_server}_modules"]
         modules.each do |mod|
-          require_recipe "apache2::mod_#{mod}"
-          apache_module mod
+          if web_server == "apache2"
+            require_recipe "apache2::mod_#{mod}"
+            apache_module mod
+          else
+            # install nginx modules
+          end
         end
       end
     end
-    
-    apache_site full_name do
+
+    send("#{web_server}_site".to_sym, full_name) do
       config_path path
-      only_if { File.exists?("/etc/apache2/sites-available/#{full_name}") }
+      only_if { File.exists?("/etc/#{web_server}/sites-available/#{full_name}") }
     end
 
     logrotate full_name do
@@ -28,7 +34,7 @@ if node[:active_applications]
       frequency "daily"
       rotate_count 14
       compress true
-      restart_command "/etc/init.d/apache2 reload > /dev/null"
+      restart_command "/etc/init.d/#{web_server} reload > /dev/null"
     end
   end
 else
