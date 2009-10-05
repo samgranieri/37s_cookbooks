@@ -8,7 +8,7 @@ default_attributes :active_applications =>  {"campfire" =>  {"env" =>  "producti
                    :applications => {
                      :campfire => {
                        :syslog_files => {:haproxy => true},
-                        :gems => ['fast_xs', 'hpricot', 'mime-types', ['tzinfo', '0.3.9'], "xml-simple"],
+                        :gems => ['fast_xs', 'hpricot', 'mime-types', ['tzinfo', '0.3.9'], 'xml-simple', 'bcrypt-ruby'],
                         :packages => ['imagemagick', 'libfcgi-dev'],
                         :symlinks => {
                           '/usr/local/bin/convert' => '/usr/bin/convert',
