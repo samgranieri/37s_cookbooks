@@ -18,9 +18,11 @@ end
 counter = 0
 node[:active_applications].each do |name, config|
   
+  app_root = "/u/apps/#{name}/current"
+  
   defaults = Mash.new({
-    :pid_path => "/tmp/unicorn/#{name}.pid",
-    :worker_count => node[:unicorn][:worker_count],      
+    :pid_path => "#{app_root}/tmp/pids/unicorn.pid",
+    :worker_count => node[:unicorn][:worker_count],
     :timeout => node[:unicorn][:timeout],
     :socket_path => "/tmp/unicorn/#{name}.sock",
     :backlog_limit => 1,
@@ -32,23 +34,17 @@ node[:active_applications].each do |name, config|
     :debug => false,
     :binary_path => config[:rack_only] ? "#{node[:ruby_bin_path]}/unicorn" : "#{node[:ruby_bin_path]}/unicorn_rails",
     :env => 'production',
-    :app_root => "/u/apps/#{name}/current",
+    :app_root => app_root,
     :enable => true,
-    :config_path => "/etc/unicorn/#{name}.conf"
+    :config_path => "#{app_root}/config/unicorn.conf.rb"
   })
   
-  config = defaults.merge(config)
+  config = defaults.merge(Mash.new(config))
   
   runit_service "unicorn-#{name}" do
     template_name "unicorn"
     cookbook "unicorn"
     options config
-  end
-    
-  template "/etc/unicorn/#{name}.conf" do
-    source "unicorn.conf.erb"
-    variables config
-    notifies :restart, resources(:service => "unicorn-#{name}")
   end
     
   service "unicorn-#{name}" do
