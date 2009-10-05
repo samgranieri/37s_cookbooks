@@ -1,0 +1,7 @@
+maintainer        "unicorn"
+maintainer_email  "sysadmins@37signals.com"
+description       "Configures unicorn"
+version           "0.1"
+depends           "runit"
+depends           "nginx"
+depends           "apache2"
