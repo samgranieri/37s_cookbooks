@@ -32,7 +32,7 @@ node[:active_applications].each do |name, config|
     :debug => false,
     :binary_path => config[:rack_only] ? "#{node[:ruby_bin_path]}/unicorn" : "#{node[:ruby_bin_path]}/unicorn_rails",
     :env => 'production',
-    :app_path => "/u/apps/#{name}/current",
+    :app_root => "/u/apps/#{name}/current",
     :enable => true,
     :config_path => "/etc/unicorn/#{name}.conf"
   })
