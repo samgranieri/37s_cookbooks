@@ -13,7 +13,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
       { 
         :name => "backpack",
         :version => "4.1.22",
-        :backup_location => "/u/backup/mysql/backpack",
+        :backup_location => "/u/backup/mysql/backpack/current",
         :config => { 
           :port => "3307",
  	  :server_id => "1623307",
@@ -24,7 +24,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
       { 
         :name => "campfire",
         :version => "4.1.22",
-	:backup_location => "/u/backup/mysql/campfire",
+	:backup_location => "/u/backup/mysql/campfire/current",
         :config => { 
           :port => "3312",
 	  :server_id => "1623312",
@@ -35,7 +35,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
       { 
         :name => "champagne",
         :version => "5.0.84-percona",
-	:backup_location => "/u/backup/mysql/champagne",
+	:backup_location => "/u/backup/mysql/champagne/current",
         :config => { 
           :port => "3316",
 	  :server_id => "1623316",
@@ -45,7 +45,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
       { 
         :name => "extra_extra",
         :version => "5.0.84-percona",
-	:backup_location => "/u/backup/mysql/extra_extra",
+	:backup_location => "/u/backup/mysql/extra_extra/current",
         :config => { 
           :port => "3309",
 	  :server_id => "1623309",
@@ -55,7 +55,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
       { 
         :name => "highrise",
         :version => "5.0.84-percona",
-	:backup_location => "/u/backup/mysql/highrise",
+	:backup_location => "/u/backup/mysql/highrise/current",
         :config => { 
           :port => "3306",
 	  :server_id => "1623306",
@@ -65,7 +65,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
       { 
         :name => "jobs",
         :version => "5.0.84-percona",
-	:backup_location => "/u/backup/mysql/jobs",
+	:backup_location => "/u/backup/mysql/jobs/current",
         :config => { 
           :port => "3308",
 	  :server_id => "1623308",
@@ -75,7 +75,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
       { 
         :name => "junta",
         :version => "4.1.22",
-	:backup_location => "/u/backup/mysql/junta",
+	:backup_location => "/u/backup/mysql/junta/current",
         :config => { 
           :port => "3311",
 	  :server_id => "1623311",
@@ -86,7 +86,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
       { 
         :name => "mogile",
         :version => "5.0.84-percona",
-	:backup_location => "/u/backup/mysql/mogile",
+	:backup_location => "/u/backup/mysql/mogile/current",
         :config => { 
           :port => "3314",
 	  :server_id => "1623314",
@@ -97,7 +97,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
       { 
         :name => "openbar",
         :version => "4.1.22",
-	:backup_location => "/u/backup/mysql/openbar",
+	:backup_location => "/u/backup/mysql/openbar/current",
         :config => { 
           :port => "3313",
 	  :server_id => "1623313",
@@ -109,7 +109,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
       { 
         :name => "queenbee",
         :version => "5.0.84-percona",
-	:backup_location => "/u/backup/mysql/queenbee",
+	:backup_location => "/u/backup/mysql/queenbee/current",
         :config => { 
           :port => "3315",
 	  :server_id => "1623315",
@@ -120,7 +120,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
       { 
         :name => "writeboard",
         :version => "4.1.22",
-	:backup_location => "/u/backup/mysql/writeboard",
+	:backup_location => "/u/backup/mysql/writeboard/current",
         :config => { 
           :port => "3310",
 	  :server_id => "1623310",
