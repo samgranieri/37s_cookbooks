@@ -30,7 +30,7 @@ node[:active_applications].each do |name, config|
     :worker_bind_address => '127.0.0.1',
     :worker_bind_base_port => "37#{counter}01",
     :debug => false,
-    :binary_path => config[:rack_only] ? "/usr/bin/unicorn" : "/usr/bin/unicorn_rails",
+    :binary_path => config[:rack_only] ? "#{ruby_bin_path}/unicorn" : "#{ruby_bin_path}/unicorn_rails",
     :env => 'production',
     :app_path => "/u/apps/#{name}/current",
     :enable => true,
@@ -39,20 +39,18 @@ node[:active_applications].each do |name, config|
   
   config = defaults.merge(config)
   
-  service "unicorn-#{name}"
-  
-  template "/etc/unicorn/#{name}.conf" do
-    source "unicorn.conf.erb"
-    variables config
-    notifies :restart, resources(:service => "unicorn-#{name}")
-  end
-  
   runit_service "unicorn-#{name}" do
     template_name "unicorn"
     cookbook "unicorn"
     options config
   end
-  
+    
+  template "/etc/unicorn/#{name}.conf" do
+    source "unicorn.conf.erb"
+    variables config
+    notifies :restart, resources(:service => "unicorn-#{name}")
+  end
+    
   service "unicorn-#{name}" do
     action config[:enable] ? [:enable, :start] : [:disable, :stop]
   end
