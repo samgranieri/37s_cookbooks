@@ -9,4 +9,6 @@ if node[:mysql][:instances]
       end
     end
   end
+else
+  Chef::Log.warn "You included the MySQL server recipe, but didn't specify MySQL instances"
 end
