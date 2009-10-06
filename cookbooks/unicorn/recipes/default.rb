@@ -18,10 +18,10 @@ end
 counter = 0
 node[:active_applications].each do |name, config|
   
-  app_root = "/u/apps/#{name}/current"
+  app_root = "/u/apps/#{name}"
   
   defaults = Mash.new({
-    :pid_path => "#{app_root}/tmp/pids/unicorn.pid",
+    :pid_path => "#{app_root}/shared/pids/unicorn.pid",
     :worker_count => node[:unicorn][:worker_count],
     :timeout => node[:unicorn][:timeout],
     :socket_path => "/tmp/unicorn/#{name}.sock",
@@ -36,7 +36,7 @@ node[:active_applications].each do |name, config|
     :env => 'production',
     :app_root => app_root,
     :enable => true,
-    :config_path => "#{app_root}/config/unicorn.conf.rb"
+    :config_path => "#{app_root}/current/config/unicorn.conf.rb"
   })
   
   config = defaults.merge(Mash.new(config))
