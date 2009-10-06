@@ -1,4 +1,4 @@
-if node[:mysql][:instances]
+if node[:mysql] && node[:mysql][:instances]
   node[:mysql][:instances].each do |instance|
     mysql_server instance[:name] do
       config instance[:config]
