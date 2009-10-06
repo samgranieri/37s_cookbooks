@@ -1,9 +1,5 @@
 =cc1.rack-dfw-int.37signals.com:172.28.1.100:300
 =cc2.rack-dfw-int.37signals.com:172.28.1.101:300
-=web1.rack-dfw-int.37signals.com:192.168.1.100:300
-=web2.rack-dfw-int.37signals.com:192.168.1.101:300
-=web3.rack-dfw-int.37signals.com:192.168.1.102:300
-=web4.rack-dfw-int.37signals.com:192.168.1.117:300
 =dev.rack-dfw-int.37signals.com:192.168.1.114:300
 =dev-old.rack-dfw-int.37signals.com:192.168.2.130:300
 =db3.rack-dfw-int.37signals.com:192.168.1.127:300
@@ -21,17 +17,6 @@
 =noc.rack-dfw-int.37signals.com:192.168.1.153:300
 =noc2.rack-dfw-int.37signals.com:192.168.1.157:300
 =gateway.rack-dfw-int.37signals.com:192.168.1.158:300
-=xen1.rack-dfw-int.37signals.com:192.168.1.72:300
-=xen2.rack-dfw-int.37signals.com:192.168.1.73:300
-=xen3.rack-dfw-int.37signals.com:192.168.1.74:300
-=xen4.rack-dfw-int.37signals.com:192.168.1.75:300
-=xen5.rack-dfw-int.37signals.com:192.168.1.76:300
-=xen6.rack-dfw-int.37signals.com:192.168.1.77:300
-=xen7.rack-dfw-int.37signals.com:192.168.1.78:300
-=xen8.rack-dfw-int.37signals.com:192.168.1.79:300
-=xen9.rack-dfw-int.37signals.com:192.168.1.162:300
-=xen10.rack-dfw-int.37signals.com:192.168.1.163:300
-
 =developer.rack-dfw-int.37signals.com:192.168.1.102:300
 =forum.rack-dfw-int.37signals.com:192.168.1.102:300
 =gettingreal.rack-dfw-int.37signals.com:192.168.1.102:300
@@ -62,61 +47,6 @@
 =campfire.search.rack-dfw-int.37signals.com:192.168.2.9:300
 =highrise.search.rack-dfw-int.37signals.com:192.168.2.13:300
 
-# App slices
-
-=chat-01.rack-dfw-int.37signals.com:192.168.2.1:300
-=bpmu-cron.rack-dfw-int.37signals.com:192.168.2.2:300
-=web-01.rack-dfw-int.37signals.com:192.168.2.3:300
-=web-02.rack-dfw-int.37signals.com:192.168.2.4:300
-=intrepid.rack-dfw-int.37signals.com:192.168.2.5:300
-=bpmu-staging.rack-dfw-int.37signals.com:192.168.2.7:300
-=cf-solr-01.rack-dfw-int.37signals.com:192.168.2.8:300
-=cf-solr-02.rack-dfw-int.37signals.com:192.168.2.9:300
-=proxy-01.rack-dfw-int.37signals.com:192.168.2.10:300
-=proxy-02.rack-dfw-int.37signals.com:192.168.2.11:300
-=hr-solr-01.rack-dfw-int.37signals.com:192.168.2.12:300
-=hr-solr-02.rack-dfw-int.37signals.com:192.168.2.13:300
-=cf-app-01.rack-dfw-int.37signals.com:192.168.2.14:300
-=cf-app-03.rack-dfw-int.37signals.com:192.168.2.16:300
-=cf-app-04.rack-dfw-int.37signals.com:192.168.2.17:300
-=bc-app-01.rack-dfw-int.37signals.com:192.168.2.18:300
-=bc-app-02.rack-dfw-int.37signals.com:192.168.2.19:300
-=bc-app-03.rack-dfw-int.37signals.com:192.168.2.20:300
-=bc-app-04.rack-dfw-int.37signals.com:192.168.2.21:300
-=bc-solr-01.rack-dfw-int.37signals.com:192.168.2.22:300
-=cf-app-05.rack-dfw-int.37signals.com:192.168.2.24:300
-=cf-app-06.rack-dfw-int.37signals.com:192.168.2.25:300
-=cf-app-07.rack-dfw-int.37signals.com:192.168.2.26:300
-=cf-app-08.rack-dfw-int.37signals.com:192.168.2.27:300
-=live-01.rack-dfw-int.37signals.com:192.168.2.28:300
-=live-02.rack-dfw-int.37signals.com:192.168.2.29:300
-=vm30.rack-dfw-int.37signals.com:192.168.2.30:300
-=centos.rack-dfw-int.37signals.com:192.168.2.31:300
-=bpmu-app-01.rack-dfw-int.37signals.com:192.168.2.32:300
-=bpmu-app-02.rack-dfw-int.37signals.com:192.168.2.33:300
-=bpmu-app-03.rack-dfw-int.37signals.com:192.168.2.34:300
-=bpmu-app-04.rack-dfw-int.37signals.com:192.168.2.35:300
-=bc-app-05.rack-dfw-int.37signals.com:192.168.2.36:300
-=bc-app-06.rack-dfw-int.37signals.com:192.168.2.37:300
-=bc-app-07.rack-dfw-int.37signals.com:192.168.2.38:300
-=bc-app-08.rack-dfw-int.37signals.com:192.168.2.39:300
-=mail-01.rack-dfw-int.37signals.com:192.168.2.40:300
-=mail-02.rack-dfw-int.37signals.com:192.168.2.41:300
-=wb-app-01.rack-dfw-int.37signals.com:192.168.2.42:300
-=wb-app-02.rack-dfw-int.37signals.com:192.168.2.43:300
-=ob-app-01.rack-dfw-int.37signals.com:192.168.2.44:300
-=ob-app-02.rack-dfw-int.37signals.com:192.168.2.45:300
-=hr-app-02.rack-dfw-int.37signals.com:192.168.2.50:300
-=hr-app-03.rack-dfw-int.37signals.com:192.168.2.51:300
-=hr-app-04.rack-dfw-int.37signals.com:192.168.2.52:300
-=hr-cron.rack-dfw-int.37signals.com:192.168.2.53:300
-=tada-app-01.rack-dfw-int.37signals.com:192.168.2.54:300
-=tada-app-02.rack-dfw-int.37signals.com:192.168.2.55:300
-=bc-web-01.rack-dfw-int.37signals.com:192.168.2.56:300
-=hr-web-01.rack-dfw-int.37signals.com:192.168.2.58:300
-=web-staging.rack-dfw-int.37signals.com:192.168.2.60:300
-+ob-staging.rack-dfw-int.37signals.com:192.168.2.60:300
-
 # Rackspace
 
 =rackspace-fw1.rack-dfw-int.37signals.com:192.168.0.1:300
@@ -130,26 +60,3 @@
 =hr-staging-lb.rack-dfw-int.37signals.com:192.168.0.26:300
 =hr-staging-uploads-lb.rack-dfw-int.37signals.com:192.168.0.27:300
 =web-generic-lb.rack-dfw-int.37signals.com:192.168.0.28:300
-
-# KVM
-
-=file3.drac:192.168.0.152:300
-=xen1.drac:192.168.0.161:300
-=xen2.drac:192.168.0.162:300
-=xen3.drac:192.168.0.163:300
-=xen4.drac:192.168.0.164:300
-=xen5.drac:192.168.0.165:300
-=xen6.drac:192.168.0.166:300
-=xen7.drac:192.168.0.167:300
-=xen8.drac:192.168.0.168:300
-=xen9.drac:192.168.0.169:300
-=xen10.drac:192.168.0.170:300
-=noc.drac:192.168.0.174:300
-=db-slave.drac:192.168.0.175:300
-=noc2.drac:192.168.0.176:300
-=gateway.drac:192.168.0.177:300
-
-# Fake out us.archive.ubuntu.com to point to mirror.rackspace.com
-# for faster installs.
-
-=us.archive.ubuntu.com:72.3.128.167:30
