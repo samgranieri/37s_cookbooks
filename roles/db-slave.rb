@@ -57,8 +57,8 @@ override_attributes :active_groups => {:app => {:enabled => true}},
         :version => "5.0.84-percona",
 	:backup_location => "/u/backup/mysql/haystack/current",
         :config => { 
-          :port => "3310",
-	  :server_id => "1623310",
+          :port => "3317",
+	  :server_id => "1623317",
           :innodb_buffer_pool_size => "2G"
         }
       },                   
