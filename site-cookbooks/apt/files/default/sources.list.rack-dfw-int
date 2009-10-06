@@ -21,8 +21,8 @@ deb http://apt/security-ubuntu/ubuntu hardy-security universe
 deb http://apt/security-ubuntu/ubuntu hardy-security main restricted
 
 # Hardy and Intrepid sources on Rackspace mirror.
-deb-src http://mirror.rackspace.com/ubuntu intrepid main restricted universe
-deb-src http://mirror.rackspace.com/ubuntu hardy main restricted universe
+# deb-src http://mirror.rackspace.com/ubuntu intrepid main restricted universe
+# deb-src http://mirror.rackspace.com/ubuntu hardy main restricted universe
 
 # Local Apt repo for locally built packages.
 deb http://dist/apt intrepid main contrib non-free
