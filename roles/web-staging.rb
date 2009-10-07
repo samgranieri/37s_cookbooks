@@ -9,7 +9,6 @@ override_attributes :users => {:app => {:password => "$1$hk40k332$wpSYJYlbbVo3AK
                      "jobs" => {"env" => "staging"},
                      "help" => {"env" => "staging"},
                      "extra_extra" => {"env" => "staging"},
-                     "haystack" => {"env" => "staging"},
                      "openbar" => {"env" => "staging"},
                      "champagne" => {"env" => "staging"}
                    },
