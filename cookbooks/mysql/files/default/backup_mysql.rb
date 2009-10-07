@@ -22,7 +22,7 @@ class BackupUtil
 
   def run
     rotate_current
-    system("/usr/bin/xtrabackup --defaults-file=#{defaults_file} --target-dir=#{current_path} --backup > #{current_path}/backup.log 2>&1")
+    system("/usr/bin/xtrabackup --defaults-file=#{defaults_file} --target-dir=#{current_path} --backup 2>&1 | tee #{current_path}/backup.log")
   end
   
   def rotate_current
