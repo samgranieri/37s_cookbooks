@@ -30,13 +30,19 @@ end
 
 directory "/etc/nginx/helpers"
 
-template "/etc/nginx/helpers/lb_filter.conf"
-
-template "/etc/nginx/conf.d/headers.conf"
-
-template "/etc/nginx/conf.d/expires.conf" do
-  only_if { node[:nginx][:expires][:enabled] }
+# helpers to be included in your vhosts
+node[:nginx][:helpers].each do |h|
+  template "/etc/nginx/helpers/#{h}.conf" do
+    notifies :reload, resources(:service => "nginx")
+  end
 end
+
+# server-wide defaults, automatically loaded
+node[:nginx][:extras].each do |ex|
+  template "/etc/nginx/conf.d/#{ex}.conf" do
+    notifies :reload, resources(:service => "nginx")
+  end
+end  
 
 service "nginx" do
   action [ :enable, :start ]
