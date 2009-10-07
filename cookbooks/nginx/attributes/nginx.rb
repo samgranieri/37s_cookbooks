@@ -18,6 +18,7 @@ nginx[:worker_processes] = 1               unless attribute?("nginx_worker_proce
 nginx[:worker_connections] = 1024          unless attribute?("nginx_worker_connections")
 nginx[:server_names_hash_bucket_size] = 64 unless attribute?("nginx_server_names_hash_bucket_size")
 
-nginx[:expires][:enabled] = true
-nginx[:expires][:regex] = '\.(ico|css|js|gif|jpe?g|png)$'
-nginx[:expires][:time] = "max"
+default.nginx[:expires] = Mash.new
+default.nginx[:expires][:enabled] = true
+default.nginx[:expires][:regex] = '\.(ico|css|js|gif|jpe?g|png)$'
+default.nginx[:expires][:time] = "max"
