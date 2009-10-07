@@ -35,7 +35,7 @@ template "/etc/nginx/helpers/lb_filter.conf"
 template "/etc/nginx/conf.d/headers.conf"
 
 template "/etc/nginx/conf.d/expires.conf" do
-  only_if node[:nginx][:expires][:enabled]
+  only_if { node[:nginx][:expires][:enabled] }
 end
 
 service "nginx" do
