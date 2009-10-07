@@ -14,6 +14,7 @@ default_attributes :active_groups => {:app => {:enabled => true}, :git => {:enab
                        :cardstore => {},
                        :champagne => {},
                        :chef_recipes => {},
+                       "config" => {},
                        :compass => {},
                        :extra_extra => {},
                        "exceptions_mananger" => {},
