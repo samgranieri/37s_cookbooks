@@ -34,7 +34,7 @@ if node[:git][:repos]
     directory repo_path do
       owner "git"
       group "git"
-      mode 2775
+      mode "2775"
     end
   
     execute "initialize new shared git repo" do
