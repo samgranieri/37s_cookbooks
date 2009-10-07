@@ -8,7 +8,8 @@ override_attributes :active_groups => {:app => {:enabled => true}},
     "/u/backup/mysql" => { "device" => "172.28.10.188:/u/backup/db", "owner" => "root" }
   },
   :cron => { :jobs => {} },
-  :mysql => { 
+  :mysql => {
+    :perform_backups => true,
     :instances => [
       { 
         :name => "backpack",
