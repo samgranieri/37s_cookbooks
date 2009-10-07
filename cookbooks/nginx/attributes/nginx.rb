@@ -17,3 +17,7 @@ nginx[:keepalive_timeout] = 65 unless attribute?("nginx_keepalive_timeout")
 nginx[:worker_processes] = 1               unless attribute?("nginx_worker_processes")
 nginx[:worker_connections] = 1024          unless attribute?("nginx_worker_connections")
 nginx[:server_names_hash_bucket_size] = 64 unless attribute?("nginx_server_names_hash_bucket_size")
+
+nginx[:expires][:enabled] = true
+nginx[:expires][:regex] = '\.(ico|css|js|gif|jpe?g|png)$'
+nginx[:expires][:time] = "max"
