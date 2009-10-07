@@ -439,6 +439,20 @@ define service {
 
 define service {
 	use default-service
+	host_name dbslave
+	service_description Haystack Replication
+	check_command check_mysqlrep!3317!XLDcjtQVWt!20!100
+}
+
+define service {
+	use default-service
+	host_name dbslave
+	service_description MogileFS Replication
+	check_command check_mysqlrep!3314!XLDcjtQVWt!20!100
+}
+
+define service {
+	use default-service
 	host_name bc-db-02
   service_description BC Replication
 	check_command check_mysqlrep!3306!XLDcjtQVWt!800!1000
