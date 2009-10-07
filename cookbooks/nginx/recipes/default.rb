@@ -28,6 +28,16 @@ template "nginx.conf" do
   notifies :reload, resources(:service => "nginx")
 end
 
+directory "/etc/nginx/helpers"
+
+template "/etc/nginx/helpers/lb_filter.conf"
+
+template "/etc/nginx/conf.d/headers.conf"
+
+template "/etc/nginx/conf.d/expires.conf" do
+  only_if node[:nginx][:expires][:enabled]
+end
+
 service "nginx" do
   action [ :enable, :start ]
 end
