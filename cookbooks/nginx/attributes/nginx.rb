@@ -23,5 +23,5 @@ default.nginx[:expires][:enabled] = true
 default.nginx[:expires][:regex] = '\.(ico|css|js|gif|jpe?g|png)$'
 default.nginx[:expires][:time] = "max"
 
-nginx[:extras] = ['headers']
-nginx[:helpers] = ['expires', 'lb_filter']
+default.nginx[:extras] = ['headers']
+default.nginx[:helpers] = ['expires', 'lb_filter']
