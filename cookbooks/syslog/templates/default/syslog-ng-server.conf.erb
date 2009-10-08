@@ -63,6 +63,7 @@ log { source(s_remote); filter(f_passenger); destination(passenger_monitor); fla
 filter f_completed_in { match("Completed in"); };
 filter f_thumbnail_build { match("thumbnail\.build"); };
 filter f_memcache { match("MemCacheStore"); };
+filter f_uploader { match("Uploader"); };
 
 <% @applications.each do |app, config| %>
 <% config[:syslog_files] ||= Mash.new %>
@@ -87,6 +88,11 @@ log { source(s_remote); filter(f_<%= app %>); filter(f_thumbnail_build); destina
 <% if config[:syslog_files][:memcache] %>
 destination <%= app %>_memcache { file("/u/logs/<%= app %>/memcache.log", owner(app), group(app), perm(0640)); };
 log { source(s_remote); filter(f_<%= app %>); filter(f_memcache); destination(<%= app %>_memcache); };
+<% end %>
+
+<% if config[:syslog_files][:uploader] %>
+destination <%= app %>_uploader { file("/u/logs/<%= app %>/uploader.log", owner(app), group(app), perm(0640)); };
+log { source(s_remote); filter(f_<%= app %>); filter(f_uploader); destination(<%= app %>_uploader); };
 <% end %>
 
 <% if config[:syslog_files][:logsort] %>
