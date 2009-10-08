@@ -1,0 +1,6 @@
+maintainer        "SSH Gateway"
+maintainer_email  "sysadmins@37signals.com"
+description       "Configures SSH Gateway Proxying"
+version           "0.1"
+depends           "ssh::server"
+depends           "users"
