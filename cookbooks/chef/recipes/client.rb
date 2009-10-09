@@ -2,17 +2,11 @@ require_recipe "runit"
 include_recipe "logrotate"
 
 gem_package "ohai" do
-  action :remove
-  version "0.2.1"
-end
-
-gem_package "ohai" do
   action :upgrade
-  version "0.3.2"
 end
 
 gem_package "chef" do
-  action :upgrade
+  action :install
   version node[:chef][:client_version]
 end
 
