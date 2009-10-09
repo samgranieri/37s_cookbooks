@@ -1,7 +1,7 @@
 name "base"
 description "Base role that applies to all servers"
 recipes "ruby-shadow", "hosts", "dns::client", "chef::client", "nagios::client", "rubygems::client", "timezone", "sysctl",
-        "git", "postfix", "ssh::server", "users", "sudo", "sysadmin", "mysql::client", "chef::client", "collectd"
+        "git", "postfix", "ssh::server", "users", "sudo", "sysadmin", "mysql::client", "chef::client", "collectd", "ruby::gc_wrapper"
 
 default_attributes :active_groups => {:admin => {:enabled => true}},
                   :active_sudo_groups => {:admin => {:enabled => true}},
@@ -15,8 +15,6 @@ default_attributes :active_groups => {:admin => {:enabled => true}},
                   :clickatell_api_id => "3131956",
                   :clickatell_password => "EIJVhiv4",
                   :default_domain => "37signals.com",
-                  :gems_path => `gem env gemdir`.chomp!,
-                  :ruby_path => `which ruby`.chomp!,
                   :jabber_domain => "37signals.com",
                   :jabber_admin_password => "x9CR0!7#z3ux7P",
                   :dyndns_login => "883mhi-ec2dyn",
