@@ -16,10 +16,12 @@ directory "/tmp/unicorn" do
 end
 
 counter = 0
+
 node[:active_applications].each do |name, config|
-  
+  next unless node[:rails][:app_server] == 'unicorn'
+
   app_root = "/u/apps/#{name}"
-  
+
   defaults = Mash.new({
     :pid_path => "#{app_root}/shared/pids/unicorn.pid",
     :worker_count => node[:unicorn][:worker_count],
