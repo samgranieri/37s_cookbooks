@@ -112,6 +112,7 @@ default_attributes :active_groups => {:app => {:enabled => true}, :git => {:enab
                        "user_profiles" => {},
                        "tada" => {},
                        "workshop" => {},
-                       "writeboard" => {}
+                       "writeboard" => {},
+                       "yubikey" => {}
                      }
                    }
