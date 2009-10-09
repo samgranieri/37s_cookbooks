@@ -1,3 +1,7 @@
+
+# Only setup Unicorn when the rails[:app_server] is set to unicorn
+return unless node[:rails][:app_server] == 'unicorn'
+
 gem_package "unicorn" do
   action :upgrade
   version node[:unicorn][:version]
@@ -18,8 +22,6 @@ end
 counter = 0
 
 node[:active_applications].each do |name, config|
-  next unless node[:rails][:app_server] == 'unicorn'
-
   app_root = "/u/apps/#{name}"
 
   defaults = Mash.new({
