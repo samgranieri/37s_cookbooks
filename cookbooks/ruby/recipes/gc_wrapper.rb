@@ -1,0 +1,4 @@
+template "/usr/local/bin/ruby_gc_wrapper" do
+  source "ruby_gc_wrapper.sh.erb"
+  mode 0755
+end

@@ -36,11 +36,6 @@ remote_file "/usr/local/bin/passenger_monitor" do
   mode 0755
 end
 
-template "/usr/local/bin/ruby_gc_wrapper" do
-  source "ruby_gc_wrapper.sh.erb"
-  mode 0755
-end
-
 cron "passenger memory monitor" do
   command "/usr/local/bin/passenger_monitor #{node[:passenger][:soft_memory_limit]} #{node[:passenger][:hard_memory_limit]}"
 end
