@@ -31,6 +31,11 @@ directory "/u/system/bin" do
   mode 0755  
 end
 
+remote_file "/usr/local/bin/memory_stats" do
+  source "memory_stats"
+  mode 0755
+end
+
 remote_file "/usr/local/bin/rotate-email-folders" do
   source "rotate-email-folders"
   mode 0755
