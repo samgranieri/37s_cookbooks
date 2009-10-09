@@ -6,3 +6,8 @@ default.ruby[:gc][:heap_slots_increment] = 250000
 default.ruby[:gc][:heap_slots_growth_factor] = 1
 default.ruby[:gc][:malloc_limit] = 50000000
 default.ruby[:gc][:heap_free_min] = 4096
+default.ruby[:gc][:enabled] = true
+
+ruby[:bin_dir] = languages[:ruby][:ruby_bin].gsub(/\/ruby.*$/, "")
+
+ruby[:bin_path] = ruby[:gc][:enabled] ? "#{ruby[:bin_dir]}/ruby_gc_wrapper" : "#{ruby[:bin_dir]}/ruby"
