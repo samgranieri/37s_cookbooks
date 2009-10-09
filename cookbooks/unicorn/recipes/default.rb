@@ -3,7 +3,6 @@
 return unless node[:rails][:app_server] == 'unicorn'
 
 gem_package "unicorn" do
-  action :upgrade
   version node[:unicorn][:version]
 end
 
@@ -23,7 +22,6 @@ counter = 0
 
 node[:active_applications].each do |name, config|
   app_root = "/u/apps/#{name}"
-
   defaults = Mash.new({
     :pid_path => "#{app_root}/shared/pids/unicorn.pid",
     :worker_count => node[:unicorn][:worker_count],
@@ -36,7 +34,7 @@ node[:active_applications].each do |name, config|
     :worker_bind_address => '127.0.0.1',
     :worker_bind_base_port => "37#{counter}01",
     :debug => false,
-    :binary_path => config[:rack_only] ? "#{node[:ruby_bin_path]}/unicorn" : "#{node[:ruby_bin_path]}/unicorn_rails",
+    :binary_path => config[:rack_only] ? "#{node[:ruby][:bin_path]} #{node[:ruby][:bin_dir]}/unicorn" : "#{node[:ruby][:bin_path]} #{node[:ruby][:bin_dir]}/unicorn_rails",
     :env => 'production',
     :app_root => app_root,
     :enable => true,
