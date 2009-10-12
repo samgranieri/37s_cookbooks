@@ -38,7 +38,7 @@ if node[:active_applications]
     end
 
     god_monitor app do
-      config_path "/u/apps/#{app}/current/config/god.conf.rb"
+      config_path "/u/apps/#{app}/current/config/god/#{conf[:env]}.conf.rb"
       enable (conf[:god] || true)
     end
     
