@@ -376,63 +376,63 @@ define service {
 
 define service {
 	use default-service
-	host_name db-slave
+	host_name dbslave
 	service_description HR Replication
 	check_command check_mysqlrep!3306!XLDcjtQVWt!20!100
 }
 
 define service {
 	use default-service
-	host_name db-slave
+	host_name dbslave
 	service_description Jobs Replication
 	check_command check_mysqlrep!3308!XLDcjtQVWt!20!100
 }
 
 define service {
 	use default-service
-	host_name db-slave
+	host_name dbslave
 	service_description BP Replication
 	check_command check_mysqlrep!3307!XLDcjtQVWt!20!100
 }
 
 define service {
 	use default-service
-	host_name db-slave
+	host_name dbslave
 	service_description CF Replication
 	check_command check_mysqlrep!3312!XLDcjtQVWt!20!100
 }
 
 define service {
 	use default-service
-	host_name db-slave
+	host_name dbslave
 	service_description WB Replication
 	check_command check_mysqlrep!3310!XLDcjtQVWt!250!500
 }
 
 define service {
 	use default-service
-	host_name db-slave
+	host_name dbslave
 	service_description OB Replication
 	check_command check_mysqlrep!3313!XLDcjtQVWt!20!100
 }
 
 define service {
 	use default-service
-	host_name db-slave
+	host_name dbslave
   	service_description Junta Replication
 	check_command check_mysqlrep!3311!XLDcjtQVWt!20!100
 }
 
 define service {
 	use default-service
-	host_name db-slave
+	host_name dbslave
 	service_description Extra Extra Replication
 	check_command check_mysqlrep!3309!XLDcjtQVWt!20!100
 }
 
 define service {
 	use default-service
-	host_name db-slave
+	host_name dbslave
 	service_description Queenbee Replication
 	check_command check_mysqlrep!3315!XLDcjtQVWt!20!100
 }
@@ -454,7 +454,7 @@ define service {
 define service {
 	use default-service
 	host_name bc-db-02
-  service_description BC Replication
+        service_description BC Replication
 	check_command check_mysqlrep!3306!XLDcjtQVWt!800!1000
 }
 
