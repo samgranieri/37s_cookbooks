@@ -2,14 +2,7 @@ include_recipe "djbdns"
 
 user "axfrdns" do
   uid 9996
-  case node[:platform]
-  when "ubuntu","debian"
-    gid "nogroup"
-  when "redhat", "centos"
-    gid "nobody"
-  else
-    gid "nobody"
-  end
+  gid "nogroup"
   shell "/bin/false"
   home "/home/axfrdns"
 end
