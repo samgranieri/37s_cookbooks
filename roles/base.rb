@@ -19,6 +19,9 @@ default_attributes :active_groups => {:admin => {:enabled => true}},
                   :jabber_admin_password => "x9CR0!7#z3ux7P",
                   :dyndns_login => "883mhi-ec2dyn",
                   :dyndns_password => "5SkR2hJiNsQP",
+                  :jabber_notifier_username => '37s.monitoring@gmail.com',
+                  :jabber_notifier_password => 'ig2tya4dral',
+                  :jabber_notifier_recipients => ['jsierles@gmail.com', 'mark.imbriaco.@gmail.com']
                   :sysctl => {
                     :settings => {
                       # fixes mail delivery to some misconfigured routers or paranoid firewalls
@@ -39,9 +42,9 @@ default_attributes :active_groups => {:admin => {:enabled => true}},
 
                   :users => {:app => {:password => "$1$hk40k332$wpSYJYlbbVo3AK/7thxO3.", :comment => "App User", :uid => 1003, :groups => [:app], :ssh_key_groups => [:app,:site,:admin], :extra_ssh_keys => [:nagios, :solr]},
                              :site => {:password => "$1$4k01kee3$tQkwp46/ngyG.iH4kIaTJ0", :comment => "Site User", :uid => 4000, :groups => [:site], :ssh_key_groups => [:app,:site,:admin]},
-                             :joshua => {:password => "$1$2B2ZNpWj$poiTyPOZxozN75xDkt4DT.", :comment => "Joshua Sierles", :uid => 3010, :groups => [:admin, :git], :yubikey_id => 'dtnkddnltnhk', :http_digest => 'Q0ow3S0HISHc.'},
-                             :mark => {:password => "$1$/Tksj8KW$Vqswv0AALCtHLMog3z6kk/", :comment => "Mark Imbriaco",  :uid => 3011, :groups => [:admin, :git],  :yubikey_id => 'fffnfcuikinj', :http_digest => 'Dyil3x.G1g872'},
-                             :david => {:password => "$1$1EcOMWnu$E/TtE2ODkJKKiOgOq14Sq1", :comment => "DHH", :uid => 3012, :groups => [:app, :git]},
+                             :joshua => {:password => "$1$2B2ZNpWj$poiTyPOZxozN75xDkt4DT.", :comment => "Joshua Sierles", :uid => 3010, :groups => [:admin, :git], :yubikey_id => 'dtnkddnltnhk', :http_digest => 'Q0ow3S0HISHc.', :jabber_id => 'mark@37signals.com'},
+                             :mark => {:password => "$1$/Tksj8KW$Vqswv0AALCtHLMog3z6kk/", :comment => "Mark Imbriaco",  :uid => 3011, :groups => [:admin, :git],  :yubikey_id => 'fffnfcuikinj', :http_digest => 'Dyil3x.G1g872', :jabber_id => 'mark@37signals.com'},
+                             :davi in  {:password => "$1$1EcOMWnu$E/TtE2ODkJKKiOgOq14Sq1", :comment => "DHH", :uid => 3012, :groups => [:app, :git]},
                              :jamis => {:password => "$1$n7kJKJ7s$.Jtb56SLe8lhWxIekaqpN0", :comment => "Jamis Buck", :uid => 3013, :groups => [:app, :git]},
                              :sam => {:password => "$1$6cIAM7hX$4w6vLIp2Wp8at6VksADJg0", :comment => "Sam Stephenson", :uid => 3014, :groups => [:app, :git]},
                              :jeremy => {:password => "$1$pphqNx4n$LS783nrUBTe4xH8ixpONw.", :comment => "Jeremy Kemper", :uid => 3015, :groups => [:app, :git]},
