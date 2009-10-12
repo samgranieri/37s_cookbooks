@@ -1,26 +1,11 @@
 apache Mash.new unless attribute?("apache")
 
 # Where the various parts of apache are
-case platform
-when "redhat","centos","fedora","suse"
-  apache[:dir]     = "/etc/httpd"
-  apache[:log_dir] = "/var/log/httpd"
-  apache[:user]    = "apache"
-  apache[:binary]  = "/usr/sbin/httpd"
-  apache[:icondir] = "/var/www/icons"
-when "debian","ubuntu"
-  apache[:dir]     = "/etc/apache2" 
-  apache[:log_dir] = "/var/log/apache2"
-  apache[:user]    = "www-data"
-  apache[:binary]  = "/usr/sbin/apache2"
-  apache[:icondir] = "/usr/share/apache2/icons"
-else
-  apache[:dir]     = "/etc/apache2" 
-  apache[:log_dir] = "/var/log/apache2"
-  apache[:user]    = "www-data"
-  apache[:binary]  = "/usr/sbin/apache2"
-  apache[:icondir] = "/usr/share/apache2/icons"
-end
+apache[:dir]     = "/etc/apache2" 
+apache[:log_dir] = "/var/log/apache2"
+apache[:user]    = "www-data"
+apache[:binary]  = "/usr/sbin/apache2"
+apache[:icondir] = "/usr/share/apache2/icons"
 
 ###
 # These settings need the unless, since we want them to be tunable,
