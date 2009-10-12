@@ -1,4 +1,5 @@
 require_recipe "rails::app_dependencies"
+require_recipe "god::apps"
 
 require_recipe node[:rails][:app_server]
 web_server = node[:rails][:web_server]
@@ -9,7 +10,7 @@ if node[:active_applications]
 
     full_name = "#{app}_#{conf[:env]}"
     filename = "#{conf[:env]}.conf"
-    path = "/u/apps/#{app}/current/config/#{web_server}/#{filename}"
+    path = "/u/apps/#{app}/current/config/#{web_server}/#{filename}.conf.rb"
 
     if node[:applications][app]
       if modules = node[:applications][app]["#{web_server}_modules"]
