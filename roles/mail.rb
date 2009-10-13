@@ -25,7 +25,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
       :hr_dropbox_worker => {
         :command => '/usr/local/bin/ruby /u/apps/highrise/current/script/dropbox_worker 50',
         :minute => '*/5',
-        :user => 'ap'
+        :user => 'app'
       },
       :hr_email_log_purger => {
         :command => 'find /u/apps/highrise/shared/log/emails/2009/* -maxdepth 1 -type d -mtime +5 -exec rm -rf {} \;',
