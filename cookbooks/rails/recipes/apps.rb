@@ -1,5 +1,4 @@
 require_recipe "rails::app_dependencies"
-require_recipe "god::apps"
 
 require_recipe node[:rails][:app_server]
 web_server = node[:rails][:web_server]
@@ -37,6 +36,12 @@ if node[:active_applications]
       compress true
       restart_command "/etc/init.d/#{web_server} reload > /dev/null"
     end
+
+    god_monitor app do
+      config_path "/u/apps/#{app}/current/config/god/#{conf[:env]}.conf.rb"
+      enable (conf[:god] || true)
+    end
+    
   end
 else
   Chef::Log.info "Add an :active_applications attribute to configure this node's apps"
