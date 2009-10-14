@@ -29,7 +29,7 @@ if node[:applications]
   end
 end
 
-directory node[:syslog_ng][:root] + "syslog" do
+directory node[:syslog_ng][:root] + "/syslog" do
   owner "root"
   group "app"
   mode 0750
