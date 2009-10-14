@@ -6,6 +6,20 @@ node[:groups].each do |group_key, config|
   end
 end
 
+node[:active_users].each do |username|
+  config = node[:users][username]
+  user username do
+    comment config[:comment]
+    uid config[:uid]
+    gid config[:groups].first
+    home "/home/#{username}"
+    shell "/bin/bash"
+    password config[:password]
+    supports :manage_home => true
+    action [:create, :manage]
+  end  
+end
+
 node[:active_groups].each do |group_name, config|
   users = node[:users].find_all { |u| u.last[:groups].include?(group_name) }
 
