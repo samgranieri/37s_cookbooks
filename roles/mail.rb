@@ -8,7 +8,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
                       {:user => "nobody", :target_user => "app", :command => "NOPASSWD:/u/apps/backpack/current/script/email_helper"},
                       {:user => "nobody", :target_user => "app", :command => "NOPASSWD:/u/apps/basecamp/current/script/email_helper"},
                       {:user => "nobody", :target_user => "app", :command => "NOPASSWD:/u/apps/highrise/current/script/email_helper"},
-                      {:user => "nobody", :target_user => "app", :command => "NOPASSWD:/u/apps/highrise/current/script/dropbox_helper"}
+                      {:user => "nobody", :target_user => "app", :command => "NOPASSWD:/u/apps/highrise/current/script/dropbox_helper"},                     
                     ],
   :nfs_mounts => {
     "/u/nfs/file1/depot"  =>  {"device" => "172.28.1.66:/u/depot",  "owner"  => "app"},
@@ -103,7 +103,12 @@ override_attributes :active_groups => {:app => {:enabled => true}},
       '/^writeboard\.com$/' => 'VIRTUAL',
       '/^postmaster@writeboard\.com$/' => 'postmaster@37signals.com',
       '/^support@writeboard\.com$/' => '37signals.support@gmail.com',
-      '/^system@writeboard\.com$/' => 'wb-system'
+      '/^system@writeboard\.com$/' => 'wb-system',
+      
+      '/^haystack\.com$/' => 'VIRTUAL',
+      '/^postmaster@haystack\.com$/' => 'sysadmins@37signals.com',
+      '/^support@haystack\.com$/' => 'support@37signals.com',
+      '/^jordan@haystack\.com$/' => 'jgarbis@gmail.com'
     },
     :aliases => {
       'basecamp'  => '|/usr/bin/sudo -u app /u/apps/basecamp/current/script/email_helper',
