@@ -39,6 +39,7 @@ default_attributes :active_groups => {:app => {:enabled => true}, :git => {:enab
                        "mirrors/mogilefs-client" => {},
                        "mirrors/plugins/country_and_region_select" => {},
                        "mirrors/plugins/deadlock_retry" => {},
+                       "mirrors/plugins/delayed_job" => {},
                        "mirrors/plugins/exception_notification" => {},
                        "mirrors/plugins/open_id_authentication" => {},
                        "mirrors/prototype" => {},
