@@ -70,7 +70,7 @@ filter f_uploader { match("Uploader"); };
 <% if config[:syslog_send_to_host] && @node[:ipaddress] != config[:syslog_send_to_host] %>
 # send <%= app %> logs to another host
 destination loghost_<%= app %> { tcp("<%= config[:syslog_send_to_host] %>", port(5140)); };
-log { source(s_remote); filter(f_<%= app %>); destination(loghost_<%= app %>); flags(final); };
+log { source(s_remote); filter(f_<%= app %>); destination(loghost_<%= app %>); };
 <% end %>
 
 <% config[:syslog_files] ||= Mash.new %>
