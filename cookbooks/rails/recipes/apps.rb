@@ -42,6 +42,12 @@ if node[:active_applications]
       enable (conf[:god] || true)
     end
     
+    if node[:applications][app][:domains]
+      node[:applications][app][:domains].each do |domain|
+        ssl_certificate node.role?("staging") ? "staging.#{domain}" : domain
+      end
+    end
+    
   end
 else
   Chef::Log.info "Add an :active_applications attribute to configure this node's apps"

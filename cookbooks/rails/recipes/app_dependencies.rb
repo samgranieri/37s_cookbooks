@@ -39,12 +39,6 @@ if node[:active_applications]
           end
         end
       end
-      
-      if node[:applications][app][:domains]
-        node[:applications][app][:domains].each do |domain|
-          ssl_certificate node.role?("staging") ? "staging.#{domain}" : domain
-        end
-      end
     end
   end
 else
