@@ -69,7 +69,7 @@ filter f_uploader { match("Uploader"); };
 
 <% if conf[:syslog_send_to_host] %>
 # send <%= app %> logs to another host
-destination loghost_<%= app %> { tcp("<%= conf[:syslog_send_to_host] %>", port(5140)); };
+destination loghost_<%= app %> { tcp("<%= config[:syslog_send_to_host] %>", port(5140)); };
 log { source(s_remote); filter(f_<%= app %>); destination(loghost_<%= app %>); flags(final); };
 <% end %>
 
