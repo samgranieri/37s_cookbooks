@@ -5,7 +5,8 @@ default_attributes :active_applications => {"haystack" => {"env" => "production"
                      :haystack => {
                        :domains => ["haystack.com"],
                        :gems => ['fast_xs', 'xml-simple', 'right_aws', 'bcrypt-ruby', 'erubis', 'aws-s3'],
-                       :packages => ["imagemagick"]
+                       :packages => ["imagemagick"],
+                       :syslog_send_to_host => ("192.168.2.138")
                      }
                    },
                    :delayed_jobs => {:enabled => true, :rails_env => "staging", :app_name => "haystack"},

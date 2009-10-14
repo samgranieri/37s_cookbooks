@@ -66,6 +66,13 @@ filter f_memcache { match("MemCacheStore"); };
 filter f_uploader { match("Uploader"); };
 
 <% @applications.each do |app, config| %>
+
+<% if conf[:syslog_send_to_host] %>
+# send <%= app %> logs to another host
+destination loghost_<%= app %> { tcp("<%= conf[:syslog_send_to_host] %>", port(5140)); };
+log { source(s_remote); filter(f_<%= app %>); destination(loghost_<%= app %>); flags(final); };
+<% end %>
+
 <% config[:syslog_files] ||= Mash.new %>
 <% if config[:syslog_files][:haproxy] %>
 destination d_<%= app %>_haproxy { file("/u/logs/<%= app %>/haproxy.log", owner(app), group(app), perm(0640)); };
@@ -102,6 +109,7 @@ log { source(s_remote); filter(f_<%= app %>); destination(<%= app %>_logsort); f
 destination <%= app %> { file("/u/logs/<%= app %>/rails.log", owner(app), group(app), perm(0640)); };
 log { source(s_remote); filter(f_<%= app %>); destination(<%= app %>); flags(final); };
 <% end %>
+
 <% end %>
 
 
