@@ -31,17 +31,9 @@ directory "/u/system/bin" do
   mode 0755  
 end
 
-remote_file "/usr/local/bin/memory_stats" do
-  source "memory_stats"
-  mode 0755
-end
-
-remote_file "/usr/local/bin/rotate-email-folders" do
-  source "rotate-email-folders"
-  mode 0755
-end
-
-remote_file "/usr/local/bin/rotate-misc-log" do
-  source "rotate-misc-log"
-  mode 0755
+%w(memory_stats rotate-email-folders rotate-misc-log rotate-db-backups).each do |file|
+  remote_file "/usr/local/bin/#{file}" do
+    source file
+    mode 0755
+  end
 end
