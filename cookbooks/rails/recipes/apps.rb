@@ -37,9 +37,16 @@ if node[:active_applications]
       restart_command "/etc/init.d/#{web_server} reload > /dev/null"
     end
 
-    god_monitor app do
-      config_path "/u/apps/#{app}/current/config/god/#{conf[:env]}.conf.rb"
-      enable (conf[:god] || true)
+    if node[:rails][:app_server] == "unicorn"
+      god_monitor app do
+        rails_env conf[:env]
+        rails_root "/u/apps/#{app}/current"
+        interval 30
+        user "app"
+        group "app"
+        memory_limit 250 # megabytes
+        cpu_limit 50 # percent
+      end
     end
     
     if node[:applications][app][:domains]
