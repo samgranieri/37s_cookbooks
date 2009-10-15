@@ -160,7 +160,7 @@ define service {
 
 define service {
   use default-service
-  host_name db-slave
+  host_name dbslave
   service_description Pending CalendarEvent Reminders
   check_command check_query_count!3307!backpack_ro!DoUg1JXgZOOuHlzgRMBb!backpack_production!"SELECT COUNT(*) FROM calendar_events JOIN calendars ON calendars.id = calendar_events.calendar_id JOIN accounts ON accounts.id = calendars.account_id WHERE remind = 1 AND remind_at <= UTC_TIMESTAMP() AND accounts.canceled_at IS NULL"!20!50
 }
@@ -460,7 +460,7 @@ define service {
 
 define service {
 	use default-service
-	host_name *, !search1, !db-slave
+	host_name *, !search1
 	service_description Postfix port 25
 	check_command check_smtp
 }
