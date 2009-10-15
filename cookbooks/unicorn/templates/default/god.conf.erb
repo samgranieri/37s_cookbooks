@@ -1,7 +1,7 @@
  God.watch do |w|
   w.name = "<%= @name %>"
   w.interval = <%= @interval %>.seconds
-  w.start = "cd #{rails_root} && /usr/local/bin/unicorn_rails -c #{<%= @rails_root %>}/config/unicorn.conf.rb -E <%= @rails_env %> -D"
+  w.start = "cd <%= @rails_root %> && /usr/local/bin/unicorn_rails -c <%= @rails_root %>/config/unicorn.conf.rb -E <%= @rails_env %> -D"
   w.stop = "kill -QUIT `cat <%= @rails_root %>/tmp/pids/unicorn.pid`"
   w.restart = "kill -USR2 `cat <%= @rails_root %>/tmp/pids/unicorn.pid`"
   w.start_grace = 10.seconds

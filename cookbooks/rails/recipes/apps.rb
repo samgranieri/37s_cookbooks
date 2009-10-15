@@ -39,6 +39,7 @@ if node[:active_applications]
 
     if node[:rails][:app_server] == "unicorn"
       god_monitor app do
+        cookbook "unicorn"
         rails_env conf[:env]
         rails_root "/u/apps/#{app}/current"
         interval 30
