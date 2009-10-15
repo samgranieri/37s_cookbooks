@@ -70,7 +70,7 @@ class Marshmallow
     puts res2.body if @debug
 
     # refresh our headers
-    @headers = { 'Cookie' => res.response['set-cookie'] }
+    @headers = { 'Cookie' => res.response['set-cookie'], 'X-Requested-With' => 'XMLHttpRequest' }
     @req.get("/room/#{@room_id}/") # join the room if necessary
     return @headers
   end
