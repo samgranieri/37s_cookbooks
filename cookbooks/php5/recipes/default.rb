@@ -4,6 +4,7 @@ unless node[:platform] == "ubuntu"
 end
 
 package "libmcrypt4"
+package "libltdl7"
 package "apache2-mpm-worker"
 package "libapache2-mod-fcgid"
 apache_module "fcgid"
