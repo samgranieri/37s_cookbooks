@@ -29,12 +29,3 @@ template "/etc/god/master.god" do
   mode 0755
   notifies :restart, resources(:service => "god")
 end
-
-if node[:god][:watches]
-  node[:god][:watches].each do |name, conf|
-    god_monitor name do
-      config_path conf[:config_path]
-      enable (conf[:enabled] || true)
-    end
-  end
-end
