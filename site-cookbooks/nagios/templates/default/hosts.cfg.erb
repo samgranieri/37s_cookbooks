@@ -73,12 +73,3 @@ define host {
   host_name search1
   alias search1
 }
-
-# this is the NEW dbslave
-define host {
-  use server
-  address 192.168.1.156
-  host_name db-slave
-  alias db-slave
-  hostgroups linux_boxes, db_slave
-}
