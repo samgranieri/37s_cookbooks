@@ -10,5 +10,4 @@ default_attributes :active_applications => {"haystack" => {"env" => "production"
                        :delayed_job => true
                      }
                    },
-                   :delayed_jobs => {:enabled => true, :rails_env => "staging", :app_name => "haystack"},
                    :rails => {:web_server => "nginx", :app_server => "unicorn"}
