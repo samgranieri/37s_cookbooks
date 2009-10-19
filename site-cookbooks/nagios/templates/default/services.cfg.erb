@@ -165,6 +165,13 @@ define service {
   check_command check_query_count!3307!backpack_ro!DoUg1JXgZOOuHlzgRMBb!backpack_production!"SELECT COUNT(*) FROM calendar_events JOIN calendars ON calendars.id = calendar_events.calendar_id JOIN accounts ON accounts.id = calendars.account_id WHERE remind = 1 AND remind_at <= UTC_TIMESTAMP() AND accounts.canceled_at IS NULL"!20!50
 }
 
+define service {
+  use default-service
+  host_name db6
+  service_description HS Pending Delayed Jobs
+  check_command check_query_count!3311!haystack_ro!yosh1bok1ga!haystack_production!"SELECT COUNT(*) FROM delayed_jobs"!20!50
+}
+
 define service{
         use                     default-service
 	hostgroup_name		bc_solr
