@@ -109,7 +109,8 @@ override_attributes :active_groups => {:app => {:enabled => true}},
       '/^haystack\.com$/' => 'VIRTUAL',
       '/^postmaster@haystack\.com$/' => 'sysadmins@37signals.com',
       '/^support@haystack\.com$/' => 'support@37signals.com',
-      '/^jordan@haystack\.com$/' => 'jgarbis@gmail.com'
+      '/^jordan@haystack\.com$/' => 'jgarbis@gmail.com',
+      '/^no-reply@haystack\.com$/' => 'haystack@37signals.com'
     },
     :aliases => {
       'basecamp'  => '|/usr/bin/sudo -u app /u/apps/basecamp/current/script/email_helper',
