@@ -3,6 +3,7 @@ nginx Mash.new unless attribute?("nginx")
 nginx[:dir]     = "/etc/nginx"
 nginx[:log_dir] = "/var/log/nginx"
 nginx[:user]    = "www-data"
+nginx[:group]   = "www-data"
 nginx[:binary]  = "/usr/sbin/nginx"
 
 nginx[:gzip] = "on"               unless attribute?("nginx_gzip")
