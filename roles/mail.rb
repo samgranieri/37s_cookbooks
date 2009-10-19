@@ -53,6 +53,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
   },
   
   :postfix => {
+    :mynetworks => [ '192.168.0.0/22', '172.28.0.0/16' ],
     :virtual_domains => {
       '/^virt-gw\.37signals\.com$/' => 'VIRTUAL',
       '/^app@virt-gw\.37signals\.com$/' => 'devnull@localhost',
