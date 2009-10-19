@@ -16,7 +16,7 @@ alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
 mydestination = <%= @node[:fqdn] %>, localhost.<%= @node[:domain] %>, localhost
 relayhost = <%= @node[:postfix][:relay_host] || "" %>
-mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 <% if @node[:postfix][:mynetworks] -%><%= @node[:postfix][:mynetworks].join(' ') %><% end -%>
 mailbox_size_limit = 0
 recipient_delimiter = +
 inet_interfaces = all
