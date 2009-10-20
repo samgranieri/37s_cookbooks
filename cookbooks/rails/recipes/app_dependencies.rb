@@ -15,6 +15,8 @@ if node[:active_applications]
 
   node[:active_applications].each do |app, conf|
     
+    full_name = "#{app}_#{conf[:env]}"
+    
     if node[:applications][app]
       if node[:applications][app][:gems]
         node[:applications][app][:gems].each do |g|
