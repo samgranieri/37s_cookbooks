@@ -54,6 +54,7 @@ if node[:active_applications]
           source "s3.yml.erb"
           mode "0640"
           cookbook "aws"
+          backup false
           variables(:aki => node[:applications][app][:aws][:aki], :sak => node[:applications][app][:aws][:sak], :s3_bucket => s3_bucket)
           owner "root"
           group "app"
