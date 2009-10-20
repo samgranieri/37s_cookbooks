@@ -48,7 +48,7 @@ if node[:active_applications]
       
       if node[:applications][app][:aws]
         template "/u/apps/#{app}/shared/config/s3.yml" do
-          source "s3.yml"
+          source "s3.yml.erb"
           mode "0640"
           cookbook "aws"
           variables node[:applications][app][:aws]
