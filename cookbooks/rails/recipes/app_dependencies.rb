@@ -54,7 +54,7 @@ if node[:active_applications]
           source "s3.yml.erb"
           mode "0640"
           cookbook "aws"
-          variables node[:applications][app][:aws].merge(:s3_bucket => s3_bucket)
+          variables(:aki => node[:applications][app][:aws][:aki], :sak => node[:applications][app][:aws][:sak], :s3_bucket => s3_bucket)
           owner "root"
           group "app"
         end
