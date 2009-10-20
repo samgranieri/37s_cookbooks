@@ -7,7 +7,8 @@ default_attributes :active_applications => {"haystack" => {"env" => "production"
                        :gems => ['fast_xs', 'xml-simple', 'right_aws', 'bcrypt-ruby', 'erubis', 'aws-s3'],
                        :packages => ["imagemagick"],
                        :syslog_send_to_host => ("192.168.2.138"),
-                       :delayed_job => true
+                       :delayed_job => true,
+                       :aws => true
                      }
                    },
                    :rails => {:web_server => "nginx", :app_server => "unicorn"}
