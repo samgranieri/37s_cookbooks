@@ -47,14 +47,18 @@ if node[:active_applications]
       end
       
       if node[:applications][app][:aws]
+        
+        s3_bucket = node[:applications][app][:aws][:s3] ? node[:applications][app][:aws][:s3][:bucket] : "#{app}_#{conf[:env]}"
+        
         template "/u/apps/#{app}/shared/config/s3.yml" do
           source "s3.yml.erb"
           mode "0640"
           cookbook "aws"
-          variables node[:applications][app][:aws]
+          variables node[:applications][app][:aws].merge(:s3_bucket => s3_bucket)
           owner "root"
           group "app"
         end
+        
       end
       
     end
