@@ -48,7 +48,7 @@ if node[:active_applications]
       
       if node[:applications][app][:aws]
         
-        s3_bucket = node[:applications][app][:aws][:s3] ? node[:applications][app][:aws][:s3][:bucket] : "#{app}_#{conf[:env]}"
+        s3_bucket = node[:applications][app][:aws][:s3] ? node[:applications][app][:aws][:s3][:bucket] : "#{app}-#{conf[:env]}"
         
         template "/u/apps/#{app}/shared/config/s3.yml" do
           source "s3.yml.erb"
