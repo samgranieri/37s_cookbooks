@@ -14,8 +14,10 @@ end
 if node[:active_applications]
 
   node[:active_applications].each do |app, conf|
-    
-    full_name = "#{app}_#{conf[:env]}"
+
+    directory "/u/apps/#{app}/shared/config" do
+      recursive true
+    end
     
     if node[:applications][app]
       if node[:applications][app][:gems]
@@ -45,7 +47,14 @@ if node[:active_applications]
       end
       
       if node[:applications][app][:aws]
-        aws_credentials full_name
+        template "/u/apps/#{app}/shared/config/s3.yml" do
+          source "s3.yml"
+          mode "0640"
+          cookbook "aws"
+          variables node[:applications][app][:aws]
+          owner "root"
+          group "app"
+        end
       end
       
     end
