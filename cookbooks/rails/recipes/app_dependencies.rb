@@ -1,3 +1,5 @@
+require_recipe "aws"
+
 directory "/u/apps" do
   owner "app"
   group "app"
@@ -39,6 +41,11 @@ if node[:active_applications]
           end
         end
       end
+      
+      if node[:applications][app][:aws]
+        aws_credentials full_name
+      end
+      
     end
   end
 else
