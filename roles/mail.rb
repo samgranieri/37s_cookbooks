@@ -107,6 +107,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
       '/^system@writeboard\.com$/' => 'wb-system',
       
       '/^haystack\.com$/' => 'VIRTUAL',
+      '/^contact@haystack\.com$/' => 'haystack@37signals.com',
       '/^postmaster@haystack\.com$/' => 'sysadmins@37signals.com',
       '/^support@haystack\.com$/' => 'support@37signals.com',
       '/^jordan@haystack\.com$/' => 'jgarbis@gmail.com',
