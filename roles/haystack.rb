@@ -19,5 +19,5 @@ default_attributes :active_applications => {"haystack" => {"env" => "production"
                        "net.ipv4.tcp_window_scaling" => "1"
                        }
                    },
-                   :postfix => {:relay_host => "mail-03"}
+                   :postfix => {:relay_host => "mail-relay-01"}
                   
