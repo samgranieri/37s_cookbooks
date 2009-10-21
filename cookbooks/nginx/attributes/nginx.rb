@@ -21,7 +21,7 @@ nginx[:server_names_hash_bucket_size] = 64 unless attribute?("nginx_server_names
 
 default.nginx[:expires] = Mash.new
 default.nginx[:expires][:enabled] = true
-default.nginx[:expires][:regex] = '\.(ico|css|js|gif|jpe?g|png)$'
+default.nginx[:expires][:regex] = '\.(ico|css|js|gif|jp?g|png)(\?[0-9]+)?'
 default.nginx[:expires][:time] = "max"
 
 default.nginx[:extras] = ['headers']
