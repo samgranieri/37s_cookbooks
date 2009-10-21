@@ -10,7 +10,7 @@ nginx[:gzip] = "on"               unless attribute?("nginx_gzip")
 nginx[:gzip_http_version] = "1.0" unless attribute?("nginx_gzip_http_version")
 nginx[:gzip_comp_level] = "2"     unless attribute?("nginx_gzip_comp_level")
 nginx[:gzip_proxied] = "any"      unless attribute?("nginx_gzip_proxied")
-nginx[:gzip_types] = [ "text/plain", "text/html", "text/css", "application/x-javascript", "text/xml", "application/xml", "application/xml+rss", "text/javascript" ] unless attribute?("nginx_gzip_types")
+nginx[:gzip_types] = [ "text/plain", "text/html", "text/css", "application/javascript", "application/x-javascript", "text/xml", "application/xml", "application/xml+rss", "text/javascript" ] unless attribute?("nginx_gzip_types")
 
 nginx[:keepalive] = "off"       unless attribute?("nginx_keepalive")
 nginx[:keepalive_timeout] = 65 unless attribute?("nginx_keepalive_timeout")
