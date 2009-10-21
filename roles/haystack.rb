@@ -13,4 +13,10 @@ default_attributes :active_applications => {"haystack" => {"env" => "production"
                        }
                      }
                    },
-                   :rails => {:web_server => "nginx", :app_server => "unicorn"}
+                   :rails => {:web_server => "nginx", :app_server => "unicorn"},
+                   :sysctl => {
+                     :settings => {
+                       "net.ipv4.tcp_window_scaling" => "1"
+                       }
+                   }
+
