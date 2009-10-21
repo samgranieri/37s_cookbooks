@@ -1,4 +1,4 @@
-myorigin = <%= @node[:postfix][:myorigin] %>
+myorigin = <%= @node[:postfix][:relay_host] ? @node[:fqdn] : @node[:postfix][:myorigin] %>
 
 smtpd_banner = $myhostname ESMTP $mail_name (Ubuntu)
 biff = no
@@ -11,7 +11,7 @@ append_dot_mydomain = no
 
 readme_directory = no
 
-myhostname = <%= @node[:postfix][:myorigin] %>
+myhostname = <%= @node[:postfix][:relay_host] ? @node[:fqdn] : @node[:postfix][:myorigin] %>
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
 mydestination = <%= @node[:fqdn] %>, localhost.<%= @node[:domain] %>, localhost
