@@ -111,7 +111,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
       '/^postmaster@haystack\.com$/' => 'sysadmins@37signals.com',
       '/^support@haystack\.com$/' => 'support@37signals.com',
       '/^jordan@haystack\.com$/' => 'jgarbis@gmail.com',
-      '/abby@haystack\.com' => 'abby.schneiderman@gmail.com',
+      '/^abby@haystack\.com$/' => 'abby.schneiderman@gmail.com',
       '/^no-reply@haystack\.com$/' => 'haystack@37signals.com'
     },
     :aliases => {
