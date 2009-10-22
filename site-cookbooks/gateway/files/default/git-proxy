@@ -1,2 +1,2 @@
 #!/bin/sh
-exec /bin/nc -w 10 git 22
+exec /bin/nc -w 10 192.168.2.129 22
