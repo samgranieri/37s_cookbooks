@@ -9,4 +9,12 @@ default_attributes :memcached => {
                        :highrise => {"max_memory" => "1024", "port" => "11214"},
                        :campfire => {"max_memory" => "256", "port" => "11215"}
                      }
+                   },
+                   :nagios => {
+                     :checks => {
+                       :memory => {
+                         :critical => 100,
+                         :warning => 120
+                       }
+                     }
                    }
