@@ -10,14 +10,14 @@ defaults
   log global
   balance roundrobin
   option dontlognull
+  option redispatch
   retries 3
-  redispatch
   contimeout <%= @config.has_key?(:conn_timeout) ? @config[:conn_timeout] : "60s" %>
   clitimeout <%= @config.has_key?(:client_timeout) ? @config[:client_timeout] : "60s" %>
   srvtimeout <%= @config.has_key?(:server_timeout) ? @config[:server_timeout] : "60s" %>
 
 <% @config[:listeners].each do |instance_name, config| -%>
-listen <%= @instance_name %> <%= config[:ip] %>:<%= config[:port] %>
+listen <%= instance_name %> <%= config[:ip] %>:<%= config[:port] %>
   mode <%= config[:mode] %>
   <% config[:options].each do |option| -%>
   option <%= option %>
