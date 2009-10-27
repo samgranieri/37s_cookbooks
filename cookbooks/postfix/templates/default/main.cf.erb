@@ -30,3 +30,6 @@ virtual_maps = pcre:$config_directory/virtual
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
 <% end %>
+
+# Disable rewriting of address lines and the envelope.
+local_header_rewrite_clients = static:none
