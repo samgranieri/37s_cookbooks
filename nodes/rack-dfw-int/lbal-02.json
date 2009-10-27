@@ -1,0 +1,124 @@
+{ 
+  "run_list": [	"role[rack-dfw]", "role[base]",	"keepalived", "perlbal", "haproxy" ],
+  "keepalived": {
+    "router_id": "lbal-vrrp",
+    "lvs_id": "lbal-02",
+    "notification_email": "sysadmins@37signals.com",
+    "email_from": "keepalived@lbal-02.rack-dfw-int.37signals.com",
+    "vrrp_instances": [
+      { 
+        "name": "vi_mogilefs",
+	"state": "BACKUP",
+	"interface": "eth0",
+	"garp_master_delay": 10,
+	"smtp_alert": true,
+	"virtual_router_id": 50,
+	"priority": 100,
+	"advert_int": 1,
+	"auth_type": "PASS",
+	"auth_pass": "vHpAa7jxh0yrBwLqUGBa",
+	"virtual_addresses": [ "192.168.0.7" ]
+      }
+    ]
+  },
+  "perlbal": {
+    "pools": [
+      {
+        "name": "basecamp_pool",
+        "backends": [
+          {"ip": "192.168.0.8", "port": "11000"}
+        ]
+      },
+      {
+        "name": "backpack_pool",
+        "backends": [
+          {"ip": "192.168.1.189", "port": "80"},
+          {"ip": "192.168.1.190", "port": "80"}
+        ]
+      },
+      {
+        "name": "campfire_pool",
+        "backends": [
+          {"ip": "192.168.1.191", "port": "90"},
+          {"ip": "192.168.1.192", "port": "90"},
+          {"ip": "192.168.1.193", "port": "90"}
+        ]
+      },
+      {
+        "name": "highrise_pool",
+        "backends": [
+          {"ip": "192.168.0.8", "port": "13000"}
+        ]
+      }
+    ],
+    "proxies": [
+      {
+        "name": "basecamp_proxy",
+        "role": "reverse_proxy",
+        "pool": "basecamp_pool",
+        "reproxy": "yes",
+        "ip": "0.0.0.0",
+        "port": "11000",
+        "always_trusted": "yes"
+      },
+      {
+        "name": "backpack_proxy",
+        "role": "reverse_proxy",
+        "pool": "backpack_pool",
+        "reproxy": "yes",
+        "ip": "0.0.0.0",
+        "port": "14000",
+        "always_trusted": "yes"
+      },
+      {
+        "name": "campfire_proxy",
+        "role": "reverse_proxy",
+        "pool": "campfire_pool",
+        "reproxy": "yes",
+        "ip": "0.0.0.0",
+        "port": "12300",
+        "always_trusted": "yes"
+      },
+      {
+        "name": "highrise_proxy",
+        "role": "reverse_proxy",
+        "pool": "highrise_pool",
+        "reproxy": "yes",
+        "ip": "0.0.0.0",
+        "port": "13300",
+        "always_trusted": "yes"
+      }
+    ]
+  },
+  "haproxy": {
+    "instances": {
+      "mogile_tracker": {
+        "listeners": {
+          "mogile_tracker_pool": {
+            "ip": "0.0.0.0",
+            "port": "6001",
+            "mode": "tcp",
+            "admin_port": "6002",
+            "backends": {
+              "mogilefs-01": {
+                "ip": "192.168.2.74",
+                "port": "6001",
+                "options": "check"
+              },
+              "mogilefs-02": {
+                "ip": "192.168.2.75",
+                "port": "6001",
+                "options": "check"
+              },
+              "mogilefs-03": {
+                "ip": "192.168.2.83",
+                "port": "6001",
+                "options": "check"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
