@@ -92,33 +92,33 @@
   },
   "haproxy": {
     "instances": {
-	    "mogile_tracker": {
-			 	"listeners": {
-			   	"mogile_tracker_pool": {
-				    "ip": "0.0.0.0",
-				    "port": "6001",
-				    "mode": "tcp",
-				    "admin_port": "6002",
-				    "backends": {
-			      	"mogilefs-01": {
-								"ip": "192.168.2.74",
-								"port": "6001",
-								"options": "check"
-							},
-							"mogilefs-02": {
-								"ip": "192.168.2.75",
-								"port": "6001",
-								"options": "check"
-							},
-							"mogilefs-03": {
-								"ip": "192.168.2.83",
-								"port": "6001",
-								"options": "check"
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+      "mogile_tracker": {
+        "listeners": {
+          "mogile_tracker_pool": {
+            "ip": "0.0.0.0",
+            "port": "6001",
+            "mode": "tcp",
+            "admin_port": "6002",
+            "backends": {
+              "mogilefs-01": {
+                "ip": "192.168.2.74",
+                "port": "6001",
+                "options": "check"
+              },
+              "mogilefs-02": {
+                "ip": "192.168.2.75",
+                "port": "6001",
+                "options": "check"
+              },
+              "mogilefs-03": {
+                "ip": "192.168.2.83",
+                "port": "6001",
+                "options": "check"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
