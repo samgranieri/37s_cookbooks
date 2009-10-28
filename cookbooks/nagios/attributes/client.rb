@@ -11,7 +11,7 @@ nagios[:checks][:memory][:critical] = 150 unless nagios[:checks][:memory].has_ke
 nagios[:checks][:memory][:warning] = 250 unless nagios[:checks][:memory].has_key?(:warning)
 
 nagios[:checks][:load][:critical] = "30,20,10" unless nagios[:checks][:load].has_key?(:critical)
-nagios[:checks][:load][:warning] = "15,10,5" unless nagios[:checks][:load].has_key?(:warning)
+nagios[:checks][:load][:warning] = "15,10,7" unless nagios[:checks][:load].has_key?(:warning)
 
 nagios[:checks][:haproxy_queue][:critical] = "10" unless nagios[:checks][:haproxy_queue].has_key?(:critical)
 nagios[:checks][:haproxy_queue][:warning] = "1" unless nagios[:checks][:haproxy_queue].has_key?(:warning)
