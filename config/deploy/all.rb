@@ -23,3 +23,8 @@ role "proxy", "proxy01", "proxy02"
 role "dns", "dns-01", "dns-02"
 role "utility", "bulk", "gateway", "build", "integrity"
 role "mail", "mail-03", "mail-04"
+
+desc "Find a slice"
+task :find, :roles => :kvm do
+  sudo "kvmtool list | grep #{ENV['NAME']}"
+end
