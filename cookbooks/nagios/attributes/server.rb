@@ -12,6 +12,8 @@ default.nagios[:default_contact_groups] = %w(admins)
 # This setting is effectively sets the minimum interval (in seconds) nagios can handle.
 # Other interval settings provided in seconds will calculate their actual from this value, since nagios works in 'time units' rather than allowing definitions everywhere in seconds
 
+default.nagios[:templates] = Mash.new # required for the nagios_template definition
+
 default.nagios[:interval_length] = 1
 
 default.nagios[:default_host][:check_interval] = 15
