@@ -5,7 +5,7 @@ default.nagios[:config_path] = "/etc/nagios3/nagios.cfg"
 default.nagios[:config_subdir] = "conf.d"
 default.nagios[:users] = Mash.new
 default.nagios[:users]["nagiosadmin"] = "k5402krb03"
-default.nagios[:notifications_enabled] = true
+default.nagios[:notifications_enabled] = 1
 default.nagios[:check_external_commands] = true
 default.nagios[:default_contact_groups] = %w(admins)
 
