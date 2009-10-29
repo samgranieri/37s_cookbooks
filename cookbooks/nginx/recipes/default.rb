@@ -1,4 +1,13 @@
-package "nginx"
+nginx_filename = ["nginx", node[:nginx][:version], node[:nginx][:nginx]].join("_")+".deb"
+
+remote_file "/tmp/#{nginx_filename}" do
+  source nginx_filename
+end
+
+package "nginx" do
+  action :upgrade
+  source "/tmp/#{nginx_filename}"
+end
 
 service "nginx" do
   supports :status => true, :restart => true, :reload => true
