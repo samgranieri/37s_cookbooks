@@ -4,7 +4,7 @@ default_attributes  :active_applications =>  {"basecamp" =>  {"env" => "producti
                     :applications => {
                       :basecamp => {
                         :syslog_files => {:completed => true, :thumbnails => true, :logsort => true, :haproxy => true, :memcache => true, :uploader => true},
-                        :gems => ['fast_xs', ['hpricot', '0.8.1'], 'aws-s3', 'ruby-prof', ['net-ssh', '1.1.4'], ['net-sftp', '1.1.1'], ['tzinfo', '0.3.9'], 'bcrypt-ruby'],
+                        :gems => ['fast_xs', ['hpricot', '0.8.1'], 'aws-s3', 'ruby-prof', ['net-ssh', '1.1.4'], ['net-sftp', '1.1.1'], ['tzinfo', '0.3.9'], 'bcrypt-ruby', 'system_timer'],
                         :packages => ['imagemagick', 'elinks', 'zip'],
                         :symlinks => {
                         '/usr/local/bin/convert' => '/usr/bin/convert',
