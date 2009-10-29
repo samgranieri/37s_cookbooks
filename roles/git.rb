@@ -37,6 +37,7 @@ default_attributes :active_groups => {:app => {:enabled => true}, :git => {:enab
                        :mirror => {},
                        "mirrors/googlecharts" => {},
                        "mirrors/mogilefs-client" => {},
+                       "mirrors/memcache-client" => {},
                        "mirrors/plugins/country_and_region_select" => {},
                        "mirrors/plugins/deadlock_retry" => {},
                        "mirrors/plugins/delayed_job" => {},
