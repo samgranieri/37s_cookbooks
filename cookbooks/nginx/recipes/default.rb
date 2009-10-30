@@ -1,5 +1,7 @@
 nginx_filename = ["nginx", node[:nginx][:version], node[:nginx][:architecture]].join("_")+".deb"
 
+package "libxslt1.1"
+
 remote_file "/tmp/#{nginx_filename}" do
   source nginx_filename
 end
