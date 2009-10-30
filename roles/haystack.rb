@@ -8,8 +8,8 @@ default_attributes :active_applications => {"haystack" => {"env" => "production"
                        :packages => ["imagemagick"],
                        :syslog_send_to_host => ("192.168.2.138"),
                        :delayed_job => true,
-                       :aws => {:aki => "AKIAJK4ZAYISOG7BFE7A",
-                                :sak => "PRrjr0wxbS8R6ZHdyQAKMQ6b4ZBcKgRAssEDu3sg"
+                       :aws => {:aki => "AKIAJKDNR5IVVJAGKPRQ",
+                                :sak => "z66ymhwmaYPkyLkTbUmiMuto+CcL5qI4gdNG5oUk"
                        }
                      }
                    },
