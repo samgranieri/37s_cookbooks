@@ -7,7 +7,6 @@ remote_file "/tmp/#{nginx_filename}" do
 end
 
 package "nginx" do
-  action :upgrade
   source "/tmp/#{nginx_filename}"
 end
 
