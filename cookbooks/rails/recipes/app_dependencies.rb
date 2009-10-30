@@ -11,6 +11,8 @@ gem_package "rack" do
   version "1.0.0"
 end
 
+gem_package "system_timer"
+
 if node[:active_applications]
 
   node[:active_applications].each do |app, conf|

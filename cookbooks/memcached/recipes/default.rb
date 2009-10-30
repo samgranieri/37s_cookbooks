@@ -12,3 +12,7 @@ package "memcached"
 end
 
 directory "/etc/memcached"
+
+remote_file "/usr/local/bin/memcache-top" do
+  mode 0755
+end

@@ -1,4 +1,14 @@
-package "nginx"
+nginx_filename = ["nginx", node[:nginx][:version], node[:nginx][:architecture]].join("_")+".deb"
+
+package "libxslt1.1"
+
+remote_file "/tmp/#{nginx_filename}" do
+  source nginx_filename
+end
+
+package "nginx" do
+  source "/tmp/#{nginx_filename}"
+end
 
 service "nginx" do
   supports :status => true, :restart => true, :reload => true
