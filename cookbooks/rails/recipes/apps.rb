@@ -2,9 +2,9 @@ require_recipe "rails::app_dependencies"
 
 require_recipe node[:rails][:app_server]
 web_server = node[:rails][:web_server]
+system_web_server = web_server.gsub(/[0-9]/, '')
 
 if node[:active_applications]
-
   node[:active_applications].each do |app, conf|
 
     full_name = "#{app}_#{conf[:env]}"
@@ -14,7 +14,7 @@ if node[:active_applications]
     if node[:applications][app]
       if modules = node[:applications][app]["#{web_server}_modules"]
         modules.each do |mod|
-          if web_server == "apache2"
+          if web_server == "apache"
             require_recipe "apache2::mod_#{mod}"
             apache_module mod
           else
@@ -26,7 +26,7 @@ if node[:active_applications]
 
     send("#{web_server}_site".to_sym, full_name) do
       config_path path
-      only_if { File.exists?("/etc/#{web_server}/sites-available/#{full_name}") }
+      only_if { File.exists?("/etc/#{system_web_server}/sites-available/#{full_name}") }
     end
 
     logrotate full_name do
@@ -34,7 +34,7 @@ if node[:active_applications]
       frequency "daily"
       rotate_count 14
       compress true
-      restart_command "/etc/init.d/#{web_server} reload > /dev/null"
+      restart_command "/etc/init.d/#{system_web_server} reload > /dev/null"
     end
 
     if node[:rails][:app_server] == "unicorn"
