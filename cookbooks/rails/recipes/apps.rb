@@ -2,7 +2,7 @@ require_recipe "rails::app_dependencies"
 
 require_recipe node[:rails][:app_server]
 web_server = node[:rails][:web_server]
-system_web_server = web_server.gsub(/[0-9]/, '')
+system_web_server = web_server == 'apache' ? 'apache2' : web_server
 
 if node[:active_applications]
   node[:active_applications].each do |app, conf|
