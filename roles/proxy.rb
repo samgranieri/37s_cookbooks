@@ -3,6 +3,11 @@ description "Proxy server"
 recipes "haproxy", "keepalived"
 
 default_attributes :active_groups => {:app => {:enabled => true}},
+:sysctl => {
+  :settings => {
+    "net.ipv4.tcp_window_scaling" => "1"
+    }
+},
 :haproxy => {
   :instances => {
     :mail_relay => {

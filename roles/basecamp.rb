@@ -15,5 +15,11 @@ default_attributes  :active_applications =>  {"basecamp" =>  {"env" => "producti
                         :disable_apache_modules => ["deflate"]
                       }
                     },
-                    :apache => {:listen_ports => [80]}
+                    :apache => {:listen_ports => [80]},
+                    :sysctl => {
+                      :settings => {
+                        "net.ipv4.tcp_window_scaling" => "1"
+                        }
+                    }
+
 override_attributes :passenger => { :tune_gc => true }
