@@ -3,33 +3,33 @@ global
   maxconn 2048
   user <%= @node[:haproxy][:user] %>
   group <%= @node[:haproxy][:user] %>
-  pidfile /var/run/haproxy/<%= @instance[:name] %>.pid
-  stats socket /var/run/haproxy/<%= @instance[:name] %>.stats
+  pidfile /var/run/haproxy/<%= @name %>.pid
+  stats socket /var/run/haproxy/<%= @name %>.stats
 
 defaults
   log global
   balance roundrobin
   option dontlognull
+  option redispatch
   retries 3
-  redispatch
-  contimeout <%= @instance.has_key?(:conn_timeout) ? @instance[:conn_timeout] : "60s" %>
-  clitimeout <%= @instance.has_key?(:client_timeout) ? @instance[:client_timeout] : "60s" %>
-  srvtimeout <%= @instance.has_key?(:server_timeout) ? @instance[:server_timeout] : "60s" %>
+  contimeout <%= @config.has_key?(:conn_timeout) ? @config[:conn_timeout] : "60s" %>
+  clitimeout <%= @config.has_key?(:client_timeout) ? @config[:client_timeout] : "60s" %>
+  srvtimeout <%= @config.has_key?(:server_timeout) ? @config[:server_timeout] : "60s" %>
 
-<% @instance[:listeners].each do |listener| -%>
-listen <%= listener[:name] %> <%= listener[:ip] %>:<%= listener[:port] %>
-  mode <%= listener[:mode] %>
-  <% listener[:options].each do |option| -%>
+<% @config[:listeners].each do |instance_name, config| -%>
+listen <%= instance_name %> <%= config[:ip] %>:<%= config[:port] %>
+  mode <%= config[:mode] %>
+  <% config[:options].each do |option| -%>
   option <%= option %>
   <% end -%>
-  <% listener[:errorfiles].each do |error| -%>
+  <% config[:errorfiles].each do |error| -%>
   errorfile <%= error[:code] %> <%= error[:file_path] %>
   <% end -%>
-  <% listener[:backends].each do |backend| %>
-  server <%= backend[:name] %>_<%= backend[:port] %> <%= backend[:ip] %>:<%= backend[:port] %> <%= backend[:options] %>
+  <% config[:backends].each do |b_name, b_config| %>
+  server <%= b_name %>_<%= b_config[:port] %> <%= b_config[:ip] %>:<%= b_config[:port] %> <%= b_config[:options] %>
   <% end -%>
 
-listen <%= listener[:name] %>_admin <%= listener[:ip] %>:<%= listener[:admin_port] %>
+listen <%= instance_name %>_admin <%= config[:ip] %>:<%= config[:admin_port] %>
   mode http
   stats uri /
 <% end -%>

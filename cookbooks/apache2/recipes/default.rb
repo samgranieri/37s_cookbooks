@@ -1,62 +1,14 @@
 package "apache2" do
-  case node[:platform]
-  when "centos","redhat","fedora","suse"
-    name "httpd"
-  when "debian","ubuntu"
-    name "apache2"
-  end
-  action :install
+  name "apache2"
 end
 
 service "apache2" do
-  case node[:platform]
-  when "centos","redhat","fedora","suse"
-    name "httpd"
-  when "debian","ubuntu"
-    name "apache2"
-  end
+  name "apache2"
   supports :restart => true, :reload => true
   action :enable
 end
 
 package "apache2-prefork-dev"
-
-if platform?("centos", "redhat", "fedora", "suse")
-  directory node[:apache][:log_dir] do
-    mode 0755
-    action :create
-  end
-  
-  remote_file "/usr/local/bin/apache2_module_conf_generate.pl" do
-    source "apache2_module_conf_generate.pl"
-    mode 0755
-    owner "root"
-    group "root"
-  end
-
-  %w{sites-available sites-enabled mods-available mods-enabled}.each do |dir|
-    directory "#{node[:apache][:dir]}/#{dir}" do
-      mode 0755
-      owner "root"
-      group "root"
-      action :create
-    end
-  end
-    
-  execute "generate-module-list" do
-    command "/usr/local/bin/apache2_module_conf_generate.pl /usr/#{node[:architecture]}/httpd/modules /etc/httpd/mods-available"  
-    action :run
-  end
-  
-  %w{a2ensite a2dissite s2enmod s2dismod}.each do |modscript|
-    template "/usr/sbin/#{modscript}" do
-      source "#{modscript}.erb"
-      mode 0755
-      owner "root"
-      group "root"
-    end  
-  end
-end
 
 directory "#{node[:apache][:dir]}/ssl" do
   action :create
@@ -66,12 +18,7 @@ directory "#{node[:apache][:dir]}/ssl" do
 end
 
 template "apache2.conf" do
-  case node[:platform]
-  when "centos","redhat","fedora"
-    path "#{node[:apache][:dir]}/conf/httpd.conf"
-  when "debian","ubuntu"
-    path "#{node[:apache][:dir]}/apache2.conf"
-  end
+  path "#{node[:apache][:dir]}/apache2.conf"
   source "apache2.conf.erb"
   owner "root"
   group "root"
@@ -124,7 +71,6 @@ include_recipe "apache2::mod_expires"
 include_recipe "apache2::mod_headers"
 include_recipe "apache2::mod_ssl"
 include_recipe "apache2::mod_proxy_http"
-include_recipe "apache2::mod_log_config" if platform?("centos", "redhat", "suse")
 
 apache_site "default" do
   enable false

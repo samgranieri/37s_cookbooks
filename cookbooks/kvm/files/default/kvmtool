@@ -24,7 +24,7 @@ class KvmTool < Thor
   end
 
   desc "build", "Build a new KVM guest"
-  method_options :memory => :required, :cpu => :required, :hostname => :required, :ip_address => :required, :root_disk_size => :optional
+  method_options :memory => :required, :cpu => :required, :hostname => :required, :ip_address => :required, :root_disk_size => :string
   def build
     root_disk_size = options[:root_disk_size] || "18G"
     volume = options[:hostname].gsub("-", "_")

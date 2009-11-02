@@ -1,44 +1,47 @@
-package "mysql-server"
 
-service "mysql" do
-  action :enable
-  supports [:restart, :reload]
-end
+script_dir = File.join(node[:mysql][:root], "scripts").to_s
 
-directory node[:mysql][:server][:root] do
-  owner "mysql"
-  group "mysql"
-  recursive true
-end
+if node[:mysql] && node[:mysql][:instances]
+  directory script_dir do
+    owner "root"
+    group "root"
+    mode 0700
+  end
 
-directory node[:mysql][:server][:datadir] do
-  owner "mysql"
-  group "mysql"
-  recursive true
-end
+  if node[:mysql][:perform_backups]
+    package "xtrabackup"
+    
+    remote_file File.join(script_dir, "backup_mysql.rb") do
+      source "backup_mysql.rb"
+      owner "root"
+      group "root"
+      mode "0700"
+    end
+    
+    template File.join(script_dir, "backup_all.sh") do
+      source "backup_all.sh.erb"
+      owner "root"
+      group "root"
+      mode "0700"    
+    end
+    
+    cron "backup mysql databases" do
+      command File.join(script_dir, "backup_all.sh")
+      hour node[:mysql][:backup_hour]
+      minute "00"
+    end
+  end
+  
+  node[:mysql][:instances].each do |instance|
+    mysql_server instance[:name] do
+      config instance[:config]
+      version instance[:version]
 
-directory node[:mysql][:server][:log_root] do
-  owner "mysql"
-  group "mysql"
-  recursive true
-end
-
-directory node[:mysql][:server][:binlog_dir] do
-  owner "mysql"
-  group "mysql"
-  recursive true
-end
-
-template "/etc/mysql/my.cnf" do
-  source "mysql.cnf.erb"
-  notifies :reload, resources(:service => "mysql")
-end
-
-execute "Initiilize mysql database" do
-  command "mysql_install_db --user=mysql"
-  creates "#{node[:mysql][:server][:datadir]}/mysql"
-end
-
-service "mysql" do
-  action :start
+      if instance[:backup_location]
+        backup_location instance[:backup_location]
+      end
+    end
+  end
+else
+  Chef::Log.warn "You included the MySQL server recipe, but didn't specify MySQL instances"
 end

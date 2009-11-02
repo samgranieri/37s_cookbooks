@@ -3,19 +3,11 @@ unless node[:platform] == "ubuntu"
   return
 end
 
-template "php5.load" do
-  path "/etc/apache2/mods-available/php5.load"
-  source "php5.load.erb"
-  owner "root"
-  mode 0644
-end
-
-template "php5.conf" do
-  path "/etc/apache2/mods-available/php5.conf"
-  source "php5.conf.erb"
-  owner "root"
-  mode 0644
-end
+package "libmcrypt4"
+package "libltdl7"
+package "apache2-mpm-worker"
+package "libapache2-mod-fcgid"
+apache_module "fcgid"
 
 bash "install_php" do
   code <<-EOC
@@ -26,3 +18,15 @@ EOC
   cwd "/tmp"
   not_if { File.directory?(node[:php5][:path]) }
 end
+
+link "/usr/bin/php-cgi" do
+  to "/usr/local/php/bin/php-cgi" 
+end
+
+template "/usr/local/php/lib/php.ini" do
+  source "php.ini.erb"
+  owner "root"
+  group "root"
+  mode 0644
+end
+

@@ -1,13 +1,16 @@
-require_recipe "php5"
-apache_module "php5"
+require_recipe "php5::default"
+
+directory "/u/logs" do
+  mode 0755
+  owner "root"
+  group "root"
+end
 
 directory "/u/logs/sites" do
-  action :create
   mode 0775
   owner "app"
   group "www-data"
 end
-
 
 logrotate "website_logs" do
   files "/u/logs/sites/*.log"

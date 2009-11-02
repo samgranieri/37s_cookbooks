@@ -1,5 +1,4 @@
 require_recipe "memcached"
-include_recipe "runit"
 
 service "memcached" do
   action [:stop, :disable]

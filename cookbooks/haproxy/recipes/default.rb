@@ -31,33 +31,34 @@ remote_file "/etc/sysctl.d/20-ip-nonlocal-bind.conf" do
   mode 0644
 end
 
-node[:haproxy][:instances].each do |instance|
-  instance[:listeners].each_with_index do |listener, idx|
+node[:haproxy][:instances].each do |name, config|
+  
+  config[:listeners].each do |listener_name, listener_config|
     [ :options, :errorfiles, :backends ].each do |key|
-      instance[:listeners][idx][key] = [] unless listener.has_key?(key)
+      config[:listeners][listener_name][key] = Mash.new unless listener_config.has_key?(key)
     end
   end
 
-  template "/etc/init.d/haproxy_#{instance[:name]}" do
+  template "/etc/init.d/haproxy_#{name}" do
     source "haproxy.init.erb"
-    variables(:instance => instance)
+    variables(:name => name)
     owner "root"
     group "root"
     mode 0755
   end
   
-  service "haproxy_#{instance[:name]}" do
-    pattern "haproxy.*#{instance[:name]}"
+  service "haproxy_#{name}" do
+    pattern "haproxy.*#{name}"
     supports [ :start, :stop, :restart, :reload ]
     action [ :enable ]
   end
 
-  template "/etc/haproxy/#{instance[:name]}.cfg" do
+  template "/etc/haproxy/#{name}.cfg" do
     source "haproxy.cfg.erb"
-    variables(:instance => instance)
+    variables(:name => name, :config => config)
     owner node[:haproxy][:user]
     group node[:haproxy][:group]
     mode 0640
-    notifies :reload, resources(:service => "haproxy_#{instance[:name]}")
+    notifies :reload, resources(:service => "haproxy_#{name}")
   end
 end

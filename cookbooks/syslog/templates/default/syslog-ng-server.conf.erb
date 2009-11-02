@@ -63,8 +63,16 @@ log { source(s_remote); filter(f_passenger); destination(passenger_monitor); fla
 filter f_completed_in { match("Completed in"); };
 filter f_thumbnail_build { match("thumbnail\.build"); };
 filter f_memcache { match("MemCacheStore"); };
+filter f_uploader { match("Uploader"); };
 
 <% @applications.each do |app, config| %>
+
+<% if config[:syslog_send_to_host] && @node[:ipaddress] != config[:syslog_send_to_host] %>
+# send <%= app %> logs to another host
+destination loghost_<%= app %> { tcp("<%= config[:syslog_send_to_host] %>", port(5140)); };
+log { source(s_remote); filter(f_<%= app %>); destination(loghost_<%= app %>); };
+<% end %>
+
 <% config[:syslog_files] ||= Mash.new %>
 <% if config[:syslog_files][:haproxy] %>
 destination d_<%= app %>_haproxy { file("/u/logs/<%= app %>/haproxy.log", owner(app), group(app), perm(0640)); };
@@ -89,6 +97,11 @@ destination <%= app %>_memcache { file("/u/logs/<%= app %>/memcache.log", owner(
 log { source(s_remote); filter(f_<%= app %>); filter(f_memcache); destination(<%= app %>_memcache); };
 <% end %>
 
+<% if config[:syslog_files][:uploader] %>
+destination <%= app %>_uploader { file("/u/logs/<%= app %>/uploader.log", owner(app), group(app), perm(0640)); };
+log { source(s_remote); filter(f_<%= app %>); filter(f_uploader); destination(<%= app %>_uploader); };
+<% end %>
+
 <% if config[:syslog_files][:logsort] %>
 destination <%= app %>_logsort { program("/u/apps/<%= app %>/shared/bin/logsort", log_fifo_size(30000)); };
 log { source(s_remote); filter(f_<%= app %>); destination(<%= app %>_logsort); flags(final); };	
@@ -96,6 +109,7 @@ log { source(s_remote); filter(f_<%= app %>); destination(<%= app %>_logsort); f
 destination <%= app %> { file("/u/logs/<%= app %>/rails.log", owner(app), group(app), perm(0640)); };
 log { source(s_remote); filter(f_<%= app %>); destination(<%= app %>); flags(final); };
 <% end %>
+
 <% end %>
 
 

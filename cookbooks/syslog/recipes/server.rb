@@ -29,7 +29,7 @@ if node[:applications]
   end
 end
 
-directory node[:syslog_ng][:root] + "syslog" do
+directory node[:syslog_ng][:root] + "/syslog" do
   owner "root"
   group "app"
   mode 0750
@@ -41,7 +41,7 @@ logrotate "syslog-remote" do
 end
 
 node[:applications].each do |app, config|
-  next unless config[:syslog_files][:logsort]
+  next unless !config[:syslog_files].nil? && config[:syslog_files][:logsort]
   
   cron "logsort log rotation: #{app}" do
     command "find /u/logs/#{app} -maxdepth 1 -type d -mtime +7 -exec rm -rf {} \\;"
