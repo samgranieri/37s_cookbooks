@@ -1,0 +1,1 @@
+git[:repo_root] = "/u/git"

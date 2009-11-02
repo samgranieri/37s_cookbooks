@@ -1,0 +1,48 @@
+{
+  "replacing": {
+
+  },
+  "long_description": "Configureskeepalived",
+  "attributes": {
+    "keepalived": {
+      "required": false,
+      "default": "",
+      "type": "string",
+      "recipes": [
+        "keepalived"
+      ],
+      "description": "",
+      "multiple_values": false,
+      "display_name": ""
+    }
+  },
+  "maintainer": "37signals",
+  "recommendations": {
+
+  },
+  "license": "Apache v2.0",
+  "recipes": {
+    "keepalived": ""
+  },
+  "maintainer_email": "sysadmins@37signals.com",
+  "suggestions": {
+
+  },
+  "dependencies": {
+
+  },
+  "conflicting": {
+
+  },
+  "platforms": {
+
+  },
+  "description": "Configures keepalived",
+  "version": "0.1.0",
+  "name": "keepalived",
+  "providing": {
+    "keepalived": [
+
+    ]
+  }
+}
