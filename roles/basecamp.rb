@@ -20,6 +20,7 @@ default_attributes  :active_applications =>  {"basecamp" =>  {"env" => "producti
                       :settings => {
                         "net.ipv4.tcp_window_scaling" => "1"
                         }
-                    }
+                    },
+                    :postfix => {:relay_host => "192.168.0.8:22001"}
 
 override_attributes :passenger => { :tune_gc => true }
