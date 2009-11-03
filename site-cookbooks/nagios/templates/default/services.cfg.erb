@@ -269,11 +269,59 @@ define service {
 }
 
 define service {
-  use                 frequent-service-with-sms
+  use           frequent-service-with-sms
   host_name	    lbal-01, lbal-02
   service_description Perlbal proxy
   process_perf_data 0
-  check_command       check_tcp!11000
+  check_command check_tcp!11000
+}
+
+define service {
+  use           frequent-service-with-sms
+  host_name	    proxy01, proxy02
+  service_description BC Haproxy
+  process_perf_data 0
+  check_command check_tcp!11000
+}
+
+define service {
+  use           frequent-service-with-sms
+  host_name	    proxy01, proxy02
+  service_description BC Haproxy
+  process_perf_data 0
+  check_command check_tcp!11000
+}
+
+define service {
+  use           frequent-service-with-sms
+  host_name	    proxy01, proxy02
+  service_description BC Haproxy
+  process_perf_data 0
+  check_command check_tcp!11100
+}
+
+define service {
+  use           frequent-service-with-sms
+  host_name	    proxy01, proxy02
+  service_description CF Haproxy
+  process_perf_data 0
+  check_command check_tcp!12000
+}
+
+define service {
+  use           frequent-service-with-sms
+  host_name	    proxy01, proxy02
+  service_description CF Poller Haproxy
+  process_perf_data 0
+  check_command check_tcp!12750
+}
+
+define service {
+  use           frequent-service-with-sms
+  host_name	    proxy01, proxy02
+  service_description HR Haproxy
+  process_perf_data 0
+  check_command check_tcp!13000
 }
 
 define service {
@@ -294,7 +342,14 @@ define service {
 		use frequent-service-with-sms
 		host_name bc-01, bc-02, bc-03, bc-04
 		service_description BC app server HTTP content
-		check_command check_http_content!projects.clientsection.com!/login!/login/authenticate
+		check_command check_http_content!projects.basecamphq.com!/login!/login/authenticate
+}
+
+define service {
+		use frequent-service-with-sms
+		host_name bc-01, bc-02, bc-03, bc-04
+		service_description BC app server HTTP content
+		check_command check_http_content!projects.basecamphq.com!/login!/login/authenticate
 }
 
 define service {
@@ -329,7 +384,7 @@ define service {
 		use frequent-service
 		hostgroup_name web-general
 		service_description	Jobs HTTP content
-		check_command			check_http_content!jobs.37signals.com!/!/jobs/search
+		check_command 	check_http_content!jobs.37signals.com!/!/jobs/search
 }
 
 define service {
