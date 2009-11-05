@@ -1,6 +1,6 @@
 name "gateway"
 description "SSH Gateway Server"
-recipes "gateway"
+recipes "gateway", "openvpn"
 
 default_attributes :active_groups => {
                      :app => {:enabled => true},
