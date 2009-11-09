@@ -48,6 +48,10 @@ if node[:active_applications]
         end
       end
       
+      node[:applications][app][:domains].each do |domain|
+        ssl_certificate domain
+      end
+      
       if node[:applications][app][:aws]
         
         s3_bucket = node[:applications][app][:aws][:s3] ? node[:applications][app][:aws][:s3][:bucket] : "#{app}-#{conf[:env]}"

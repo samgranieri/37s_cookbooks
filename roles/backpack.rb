@@ -12,14 +12,15 @@ default_attributes  :active_applications =>  {"backpack" =>  {"env" =>  "product
                           '/usr/local/bin/elinks' => '/usr/bin/elinks',
                           '/u/depot' => '/u/nfs/file1/depot'
                         },
-                        :apache_modules => ["auth_token", "xsendfile", "rewrite"]
+                        :apache_modules => ["auth_token", "xsendfile", "rewrite"],
+                        :domains => "*.backpackit.com"
                       }
                     },
                     :nfs_mounts => {
                       "/u/nfs/file1/depot"  =>  {"device" => "172.28.1.66:/u/depot",  "owner"  => "app"},
                       "/u/nfs/file2/depot"  =>  {"device" => "172.28.1.67:/u/depot",  "owner"  => "app"},
                       "/u/nfs/file3/depot"  =>  {"device" => "172.28.1.70:/u/depot",  "owner"  => "app"}
-                    }
+                    },
                     
 override_attributes :apache => {:listen_ports => [80,443]},
                     :passenger => {:tune_gc => true}

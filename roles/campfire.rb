@@ -16,7 +16,8 @@ default_attributes :active_applications =>  {"campfire" =>  {"env" =>  "producti
                           '/usr/local/bin/composite' => '/usr/bin/composite',
                           '/u/depot' => '/u/nfs/file1/depot'
                         },
-                        :apache_modules => ["auth_token", "xsendfile", "rewrite"]
+                        :apache_modules => ["auth_token", "xsendfile", "rewrite"],
+                        :domains => "*.campfirenow.com"
                       }
                     }
 override_attributes :apache => {:ports => [80,443]},

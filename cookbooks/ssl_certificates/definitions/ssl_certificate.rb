@@ -1,6 +1,6 @@
-define :ssl_certificate, :wildcard => false do
+define :ssl_certificate do
   
-  name = params[:wildcard] ? "#{params[:name]}_wildcard" : params[:name]
+  name = params[:name] =~ /\*\.(.+)/ ? "#{$1}_wildcard" : params[:name]
   
   remote_file "#{node[:ssl_certificates][:path]}/#{name}.crt" do
     source "#{name}.crt"

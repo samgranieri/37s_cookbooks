@@ -17,7 +17,8 @@ default_attributes  :active_applications =>  {"highrise" =>  {"env" =>  "product
                         '/usr/local/bin/zip' => '/usr/bin/zip',
                         '/u/depot' => '/u/nfs/file1/depot',
                         '/usr/local/bin/iconv' => '/usr/bin/iconv'},
-                        :apache_modules => ["auth_token", "xsendfile", "rewrite"]
+                        :apache_modules => ["auth_token", "xsendfile", "rewrite"],
+                        :domains => "*.highrisehq.com"
                       }
                     }
 override_attributes :passenger => { :tune_gc => true }
