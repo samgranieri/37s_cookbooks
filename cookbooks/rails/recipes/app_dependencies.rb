@@ -48,8 +48,10 @@ if node[:active_applications]
         end
       end
       
-      node[:applications][app][:domains].each do |domain|
-        ssl_certificate domain
+      if node[:applications][app][:domains]
+        node[:applications][app][:domains].each do |domain|
+          ssl_certificate domain
+        end
       end
       
       if node[:applications][app][:aws]
