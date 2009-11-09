@@ -5,7 +5,7 @@ default_attributes :active_applications =>  {"jobs" =>  {"env" =>  "production"}
                    :applications => {
                      :jobs => {
                        :gems => ['fast_xs', 'RedCloth', 'mime-types', "xml-simple"],
-                       :domains => "*.37signals.com"
+                       :domains => ["*.37signals.com"]
                        
                      }
                    }
