@@ -13,7 +13,7 @@ default_attributes  :active_applications =>  {"basecamp" =>  {"env" => "producti
                         '/usr/local/bin/elinks' => '/usr/bin/elinks'},
                         :apache_modules => ["auth_token", "xsendfile", "rewrite"],
                         :disable_apache_modules => ["deflate"],
-                        :domains => ["*.basecamphq.com", "*.projectpath.com", "*.seework.com", "*.grouphub.com", "*.updatelog.com"]
+                        :domains => ["*.basecamphq.com", "*.projectpath.com", "*.seework.com", "*.grouphub.com", "*.updatelog.com", "*.clientsection.com"]
                       }
                     },
                     :apache => {:listen_ports => [80]},
