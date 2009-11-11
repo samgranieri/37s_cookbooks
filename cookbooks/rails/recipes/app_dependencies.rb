@@ -8,7 +8,7 @@ directory "/u/apps" do
 end
 
 gem_package "rack" do
-  version "1.0.0"
+  version "1.0.1"
 end
 
 gem_package "system_timer"
