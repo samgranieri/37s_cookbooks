@@ -1,1 +1,1 @@
-git[:repo_root] = "/u/git"
+default.git[:repo_root] = "/u/git"
