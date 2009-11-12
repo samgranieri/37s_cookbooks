@@ -1,21 +1,8 @@
 {
-  "replacing": {
-
-  },
-  "long_description": "Configuresmogilefs",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
 
   },
   "license": "Apache v2.0",
-  "recipes": {
-    "mogilefs::tracker": "",
-    "mogilefs::storenode": "",
-    "mogilefs": ""
-  },
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
@@ -28,12 +15,11 @@
   "conflicting": {
 
   },
+  "description": "Configures mogilefs",
   "platforms": {
 
   },
-  "description": "Configures mogilefs",
   "version": "0.1.0",
-  "name": "mogilefs",
   "providing": {
     "mogilefs::tracker": [
 
@@ -44,5 +30,19 @@
     "mogilefs": [
 
     ]
-  }
+  },
+  "long_description": "Configuresmogilefs",
+  "replacing": {
+
+  },
+  "name": "mogilefs",
+  "recipes": {
+    "mogilefs::tracker": "",
+    "mogilefs::storenode": "",
+    "mogilefs": ""
+  },
+  "attributes": {
+
+  },
+  "maintainer": "37signals"
 }

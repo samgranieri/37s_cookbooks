@@ -1,19 +1,8 @@
 {
-  "replacing": {
-
-  },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
 
   },
   "license": "Apache v2.0",
-  "recipes": {
-    "gitweb": ""
-  },
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
@@ -29,15 +18,26 @@
   "conflicting": {
 
   },
+  "description": "Configures gitweb",
   "platforms": {
 
   },
-  "description": "Configures gitweb",
   "version": "0.1.0",
-  "name": "gitweb",
   "providing": {
     "gitweb": [
 
     ]
-  }
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "name": "gitweb",
+  "recipes": {
+    "gitweb": ""
+  },
+  "attributes": {
+
+  },
+  "maintainer": "37signals"
 }

@@ -1,19 +1,8 @@
 {
-  "replacing": {
-
-  },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
 
   },
   "license": "Apache v2.0",
-  "recipes": {
-    "build": ""
-  },
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
@@ -24,15 +13,26 @@
   "conflicting": {
 
   },
+  "description": "Configures build dependencies",
   "platforms": {
 
   },
-  "description": "Configures build dependencies",
   "version": "0.1.0",
-  "name": "build",
   "providing": {
     "build": [
 
     ]
-  }
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "name": "build",
+  "recipes": {
+    "build": ""
+  },
+  "attributes": {
+
+  },
+  "maintainer": "37signals"
 }

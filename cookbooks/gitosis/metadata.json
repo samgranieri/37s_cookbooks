@@ -1,19 +1,8 @@
 {
-  "replacing": {
-
-  },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
 
   },
   "license": "Apache v2.0",
-  "recipes": {
-    "gitosis": ""
-  },
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
@@ -24,15 +13,26 @@
   "conflicting": {
 
   },
+  "description": "Configures Gitosis",
   "platforms": {
 
   },
-  "description": "Configures Gitosis",
   "version": "0.1.0",
-  "name": "gitosis",
   "providing": {
     "gitosis": [
 
     ]
-  }
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "name": "gitosis",
+  "recipes": {
+    "gitosis": ""
+  },
+  "attributes": {
+
+  },
+  "maintainer": "37signals"
 }

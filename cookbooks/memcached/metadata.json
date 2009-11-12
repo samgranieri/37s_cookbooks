@@ -1,21 +1,8 @@
 {
-  "replacing": {
-
-  },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
 
   },
   "license": "Apache v2.0",
-  "recipes": {
-    "memcached::instances": "",
-    "memcached::basic": "",
-    "memcached": ""
-  },
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
@@ -28,12 +15,11 @@
   "conflicting": {
 
   },
+  "description": "Configures memcached",
   "platforms": {
 
   },
-  "description": "Configures memcached",
   "version": "0.1.0",
-  "name": "memcached",
   "providing": {
     "memcached::instances": [
 
@@ -44,5 +30,19 @@
     "memcached": [
 
     ]
-  }
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "name": "memcached",
+  "recipes": {
+    "memcached::instances": "",
+    "memcached::basic": "",
+    "memcached": ""
+  },
+  "attributes": {
+
+  },
+  "maintainer": "37signals"
 }

@@ -1,20 +1,8 @@
 {
-  "replacing": {
-
-  },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
 
   },
   "license": "Apache v2.0",
-  "recipes": {
-    "php5::sites": "",
-    "php5": ""
-  },
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
@@ -27,12 +15,11 @@
   "conflicting": {
 
   },
+  "description": "Configures php5",
   "platforms": {
 
   },
-  "description": "Configures php5",
   "version": "0.1.0",
-  "name": "php5",
   "providing": {
     "php5::sites": [
 
@@ -40,5 +27,18 @@
     "php5": [
 
     ]
-  }
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "name": "php5",
+  "recipes": {
+    "php5": "",
+    "php5::sites": ""
+  },
+  "attributes": {
+
+  },
+  "maintainer": "37signals"
 }

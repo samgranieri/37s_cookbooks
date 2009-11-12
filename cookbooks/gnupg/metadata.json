@@ -1,19 +1,8 @@
 {
-  "replacing": {
-
-  },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
 
   },
   "license": "Apache v2.0",
-  "recipes": {
-    "gnupg": ""
-  },
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
@@ -24,15 +13,26 @@
   "conflicting": {
 
   },
+  "description": "Configures gnupg",
   "platforms": {
 
   },
-  "description": "Configures gnupg",
   "version": "0.1.0",
-  "name": "gnupg",
   "providing": {
     "gnupg": [
 
     ]
-  }
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "name": "gnupg",
+  "recipes": {
+    "gnupg": ""
+  },
+  "attributes": {
+
+  },
+  "maintainer": "37signals"
 }

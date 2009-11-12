@@ -1,19 +1,8 @@
 {
-  "replacing": {
-
-  },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
 
   },
   "license": "Apache v2.0",
-  "recipes": {
-    "hosts": ""
-  },
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
@@ -24,15 +13,26 @@
   "conflicting": {
 
   },
+  "description": "Configures hosts",
   "platforms": {
 
   },
-  "description": "Configures hosts",
   "version": "0.1.0",
-  "name": "hosts",
   "providing": {
     "hosts": [
 
     ]
-  }
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "name": "hosts",
+  "recipes": {
+    "hosts": ""
+  },
+  "attributes": {
+
+  },
+  "maintainer": "37signals"
 }

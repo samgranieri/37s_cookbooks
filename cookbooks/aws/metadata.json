@@ -1,20 +1,8 @@
 {
-  "replacing": {
-
-  },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
 
   },
   "license": "Apache v2.0",
-  "recipes": {
-    "aws": "",
-    "aws::tools": ""
-  },
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
@@ -25,12 +13,11 @@
   "conflicting": {
 
   },
+  "description": "Configures AWS credentials",
   "platforms": {
 
   },
-  "description": "Configures AWS credentials",
   "version": "0.1.0",
-  "name": "aws",
   "providing": {
     "aws": [
 
@@ -38,5 +25,18 @@
     "aws::tools": [
 
     ]
-  }
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "name": "aws",
+  "recipes": {
+    "aws": "",
+    "aws::tools": ""
+  },
+  "attributes": {
+
+  },
+  "maintainer": "37signals"
 }

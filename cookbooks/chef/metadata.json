@@ -1,20 +1,8 @@
 {
-  "replacing": {
-
-  },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
 
   },
   "license": "Apache v2.0",
-  "recipes": {
-    "chef::server": "",
-    "chef::client": ""
-  },
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
@@ -42,18 +30,34 @@
   "conflicting": {
 
   },
+  "description": "Configures chef",
   "platforms": {
 
   },
-  "description": "Configures chef",
   "version": "0.7.0",
-  "name": "chef",
   "providing": {
     "chef::server": [
+
+    ],
+    "chef": [
 
     ],
     "chef::client": [
 
     ]
-  }
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "name": "chef",
+  "recipes": {
+    "chef::server": "",
+    "chef": "",
+    "chef::client": ""
+  },
+  "attributes": {
+
+  },
+  "maintainer": "37signals"
 }

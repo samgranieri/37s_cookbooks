@@ -1,8 +1,45 @@
 {
+  "recommendations": {
+
+  },
+  "license": "Apache 2.0",
+  "maintainer_email": "cookbooks@opscode.com",
+  "suggestions": {
+
+  },
+  "dependencies": {
+
+  },
+  "conflicting": {
+
+  },
+  "description": "Installs and configures nginx",
+  "platforms": {
+    "debian": [
+
+    ],
+    "ubuntu": [
+
+    ]
+  },
+  "version": "0.8.0",
+  "providing": {
+    "nginx::memcache_proxy": [
+
+    ],
+    "nginx": [
+
+    ]
+  },
+  "long_description": "",
   "replacing": {
 
   },
-  "long_description": "",
+  "name": "nginx",
+  "recipes": {
+    "nginx::memcache_proxy": "",
+    "nginx": ""
+  },
   "attributes": {
     "nginx\/worker_connections": {
       "required": false,
@@ -166,42 +203,5 @@
       "display_name": "Nginx Keepalive"
     }
   },
-  "maintainer": "Opscode, Inc.",
-  "recommendations": {
-
-  },
-  "license": "Apache 2.0",
-  "recipes": {
-    "nginx::memcache_proxy": "",
-    "nginx": ""
-  },
-  "maintainer_email": "cookbooks@opscode.com",
-  "suggestions": {
-
-  },
-  "dependencies": {
-
-  },
-  "conflicting": {
-
-  },
-  "platforms": {
-    "debian": [
-
-    ],
-    "ubuntu": [
-
-    ]
-  },
-  "description": "Installs and configures nginx",
-  "version": "0.8.0",
-  "name": "nginx",
-  "providing": {
-    "nginx::memcache_proxy": [
-
-    ],
-    "nginx": [
-
-    ]
-  }
+  "maintainer": "Opscode, Inc."
 }

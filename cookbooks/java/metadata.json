@@ -1,19 +1,8 @@
 {
-  "replacing": {
-
-  },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
 
   },
   "license": "Apache v2.0",
-  "recipes": {
-    "java": ""
-  },
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
@@ -24,15 +13,26 @@
   "conflicting": {
 
   },
+  "description": "Configures java",
   "platforms": {
 
   },
-  "description": "Configures java",
   "version": "0.1.0",
-  "name": "java",
   "providing": {
     "java": [
 
     ]
-  }
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "name": "java",
+  "recipes": {
+    "java": ""
+  },
+  "attributes": {
+
+  },
+  "maintainer": "37signals"
 }

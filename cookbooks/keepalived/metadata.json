@@ -1,8 +1,36 @@
 {
+  "recommendations": {
+
+  },
+  "license": "Apache v2.0",
+  "maintainer_email": "sysadmins@37signals.com",
+  "suggestions": {
+
+  },
+  "dependencies": {
+
+  },
+  "conflicting": {
+
+  },
+  "description": "Configures keepalived",
+  "platforms": {
+
+  },
+  "version": "0.1.0",
+  "providing": {
+    "keepalived": [
+
+    ]
+  },
+  "long_description": "Configureskeepalived",
   "replacing": {
 
   },
-  "long_description": "Configureskeepalived",
+  "name": "keepalived",
+  "recipes": {
+    "keepalived": ""
+  },
   "attributes": {
     "keepalived": {
       "required": false,
@@ -16,33 +44,5 @@
       "display_name": ""
     }
   },
-  "maintainer": "37signals",
-  "recommendations": {
-
-  },
-  "license": "Apache v2.0",
-  "recipes": {
-    "keepalived": ""
-  },
-  "maintainer_email": "sysadmins@37signals.com",
-  "suggestions": {
-
-  },
-  "dependencies": {
-
-  },
-  "conflicting": {
-
-  },
-  "platforms": {
-
-  },
-  "description": "Configures keepalived",
-  "version": "0.1.0",
-  "name": "keepalived",
-  "providing": {
-    "keepalived": [
-
-    ]
-  }
+  "maintainer": "37signals"
 }

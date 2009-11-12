@@ -1,19 +1,8 @@
 {
-  "replacing": {
-
-  },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
 
   },
   "license": "Apache v2.0",
-  "recipes": {
-    "ssl_certificates": ""
-  },
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
@@ -24,15 +13,26 @@
   "conflicting": {
 
   },
+  "description": "Configures SSL certificate",
   "platforms": {
 
   },
-  "description": "Configures SSL certificate",
   "version": "0.1.0",
-  "name": "ssl_certificates",
   "providing": {
     "ssl_certificates": [
 
     ]
-  }
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "name": "ssl_certificates",
+  "recipes": {
+    "ssl_certificates": ""
+  },
+  "attributes": {
+
+  },
+  "maintainer": "37signals"
 }

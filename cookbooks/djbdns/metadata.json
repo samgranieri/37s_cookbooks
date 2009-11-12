@@ -1,24 +1,8 @@
 {
-  "replacing": {
-
-  },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
 
   },
   "license": "Apache v2.0",
-  "recipes": {
-    "djbdns::axfr": "",
-    "djbdns::autozone": "",
-    "djbdns::cache": "",
-    "djbdns::internal_server": "",
-    "djbdns::server": "",
-    "djbdns": ""
-  },
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
@@ -34,12 +18,11 @@
   "conflicting": {
 
   },
+  "description": "Configures djbdns",
   "platforms": {
 
   },
-  "description": "Configures djbdns",
   "version": "0.1.0",
-  "name": "djbdns",
   "providing": {
     "djbdns::axfr": [
 
@@ -59,5 +42,22 @@
     "djbdns::server": [
 
     ]
-  }
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "name": "djbdns",
+  "recipes": {
+    "djbdns::axfr": "",
+    "djbdns::autozone": "",
+    "djbdns::cache": "",
+    "djbdns::internal_server": "",
+    "djbdns::server": "",
+    "djbdns": ""
+  },
+  "attributes": {
+
+  },
+  "maintainer": "37signals"
 }

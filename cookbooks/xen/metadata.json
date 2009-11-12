@@ -1,19 +1,8 @@
 {
-  "replacing": {
-
-  },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
 
   },
   "license": "Apache v2.0",
-  "recipes": {
-
-  },
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
@@ -24,13 +13,24 @@
   "conflicting": {
 
   },
+  "description": "Configures xen",
   "platforms": {
 
   },
-  "description": "Configures xen",
   "version": "0.1.0",
-  "name": "xen",
   "providing": {
 
-  }
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "name": "xen",
+  "recipes": {
+
+  },
+  "attributes": {
+
+  },
+  "maintainer": "37signals"
 }

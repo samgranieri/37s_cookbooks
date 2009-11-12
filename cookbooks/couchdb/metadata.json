@@ -1,19 +1,8 @@
 {
-  "replacing": {
-
-  },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
 
   },
   "license": "Apache v2.0",
-  "recipes": {
-    "couchdb": ""
-  },
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
@@ -24,15 +13,26 @@
   "conflicting": {
 
   },
+  "description": "Configures couchdb",
   "platforms": {
 
   },
-  "description": "Configures couchdb",
   "version": "0.1.0",
-  "name": "couchdb",
   "providing": {
     "couchdb": [
 
     ]
-  }
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "name": "couchdb",
+  "recipes": {
+    "couchdb": ""
+  },
+  "attributes": {
+
+  },
+  "maintainer": "37signals"
 }

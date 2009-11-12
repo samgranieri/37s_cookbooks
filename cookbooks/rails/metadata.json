@@ -1,22 +1,8 @@
 {
-  "replacing": {
-
-  },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
 
   },
   "license": "Apache v2.0",
-  "recipes": {
-    "rails::delayed_job": "",
-    "rails::app_dependencies": "",
-    "rails::web": "",
-    "rails::apps": ""
-  },
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
@@ -47,12 +33,11 @@
   "conflicting": {
 
   },
+  "description": "Configures rails",
   "platforms": {
 
   },
-  "description": "Configures rails",
   "version": "0.1.0",
-  "name": "rails",
   "providing": {
     "rails::delayed_job": [
 
@@ -66,5 +51,20 @@
     "rails::apps": [
 
     ]
-  }
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "name": "rails",
+  "recipes": {
+    "rails::delayed_job": "",
+    "rails::app_dependencies": "",
+    "rails::web": "",
+    "rails::apps": ""
+  },
+  "attributes": {
+
+  },
+  "maintainer": "37signals"
 }
