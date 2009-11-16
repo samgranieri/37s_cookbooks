@@ -374,6 +374,13 @@ define service {
 }
 
 define service {
+  use frequent-service
+  host_name proxy01,proxy02
+	service_description	HR Haproxy queue
+	check_command			check_haproxy_queue!hr
+}
+
+define service {
 		use frequent-service-with-sms
 		host_name cf-01, cf-02, cf-03
 		service_description CF HTTP content
