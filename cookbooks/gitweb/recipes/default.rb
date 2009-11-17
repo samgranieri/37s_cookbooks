@@ -2,16 +2,17 @@ require_recipe "git::server"
 
 package "gitweb"
 
-directory node[:gitweb][:active_repos] do
+directory node[:gitweb][:repo_root] do
   mode 0755
+  recursive true
 end
 
-template "/etc/gitweb-vhost.conf" do
+template "/etc/gitweb/apache.conf" do
   source "apache-vhost.conf.erb"
 end
 
 apache_site "gitweb" do
-  config_path "/etc/gitweb-vhost.conf"
+  config_path "/etc/gitweb/apache.conf"
 end
 
 if node[:git][:repos]
