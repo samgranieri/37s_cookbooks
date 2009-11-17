@@ -9,10 +9,7 @@ end
 
 template "/etc/gitweb/apache.conf"
 
-template "/etc/gitweb/projects.conf" do
-  projects = node[:git][:repos].delete_if { |name, conf| conf[:visible] == false }.keys
-  variables :projects => projects
-end
+template "/etc/gitweb/projects.conf"
 
 apache_site "gitweb" do
   config_path "/etc/gitweb/apache.conf"
