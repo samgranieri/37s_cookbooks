@@ -18,7 +18,8 @@ override_attributes :active_groups => {:app => {:enabled => true}},
         :config => { 
           :port => "3306",
 	  :server_id => "2173306",
-          :innodb_buffer_pool_size => "100G"
+          :innodb_buffer_pool_size => "100G",
+          :innodb_thread_concurrency => "6"
         }
       }
     ]
