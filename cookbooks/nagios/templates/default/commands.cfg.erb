@@ -215,7 +215,7 @@ define command{
 
 define command{ 
 	command_name    check_mysqlhealth
-	command_line    $USER1$/check_mysqlhealth.pl -H $HOSTADDRESS$ -u nagios -p $ARG1$ --port 3306 --wa 500 --cc 550
+	command_line    $USER1$/check_mysql_health --hostname $HOSTADDRESS$ --username nagios --password $ARG1$ --port $ARG2$ --mode $ARG3$ --warning $ARG4$ --critical $ARG5$
 } 
 
 define command{ 
