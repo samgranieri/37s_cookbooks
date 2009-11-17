@@ -2,7 +2,7 @@ require_recipe "git::server"
 
 package "gitweb"
 
-directory node[:gitweb][:repo_root] do
+directory node[:gitweb][:config_path] do
   mode 0755
   recursive true
 end
