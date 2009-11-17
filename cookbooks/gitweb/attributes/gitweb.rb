@@ -1,0 +1,1 @@
+default.gitweb[:repo_root] = "/etc/gitweb/active-repos"
