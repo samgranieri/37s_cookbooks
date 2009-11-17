@@ -9,7 +9,9 @@ end
 
 template "/etc/gitweb/apache.conf"
 
-template "/etc/gitweb/projects.conf"
+template "/etc/gitweb/projects.conf" do
+  variables :projects => node[:git][:repos]
+end
 
 apache_site "gitweb" do
   config_path "/etc/gitweb/apache.conf"
