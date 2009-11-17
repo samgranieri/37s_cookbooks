@@ -522,8 +522,8 @@ define service {
 
 define service {
 	use default-service
-	host_name bc-db-02
-        service_description BC Replication
+	host_name bc-db-01
+  service_description BC Replication
 	check_command check_mysqlrep!3306!XLDcjtQVWt!800!1000
 }
 
