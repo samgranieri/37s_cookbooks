@@ -7,8 +7,11 @@ directory node[:gitweb][:repo_root] do
   recursive true
 end
 
-template "/etc/gitweb/apache.conf" do
-  source "apache-vhost.conf.erb"
+template "/etc/gitweb/apache.conf"
+
+template "/etc/gitweb/projects.conf" do
+  projects = node[:git][:repos].delete_if { |name, conf| conf[:visible] == false }
+  variables :projects => projects
 end
 
 apache_site "gitweb" do
