@@ -1,9 +1,17 @@
-#!/usr/local/jruby/bin/jruby --server
+#!/usr/bin/env ruby
+#
+# Tool for interacting with S3 buckets
+#
+
 require 'rubygems'
 require 'right_aws'
-require 'optparse'
+require 'thor'
 
-class S3BucketCopy
+class S3Tool < Thor
+
+end
+
+class S3BucketCopy < Thor
   attr_reader :source_bucket, :target_bucket, :keys, :num_threads, :s3, :s3_interface
 
   def self.usage

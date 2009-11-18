@@ -8,20 +8,38 @@ require 'thor'
 
 class Cloudfiles < Thor
 
-  method_options %w(username -u) => :required, %w(password -p) => :required
   desc "list", "List all containers for a given account"
+  method_options %w(username -u) => :required, %w(password -p) => :required
   def list
     connect
     puts @conn.containers.join("\n")
   end
+
+  desc "show_container", "List objects in a container"
+  method_options %w(username -u) => :required, %w(password -p) => :required, %w(container -c) => :required
+  def show_container
+    connect
+    container = @conn.container(options[:container])
+    container.objects_detail.each {|k, v| puts "#{k} #{v[:bytes].to_i / 1024} KB\n" }
+  end
+
+  desc "show_object", "Display metadata about a particular object"
+  method_options %w(username -u) => :required, %w(password -p) => :required, %w(container -c) => :required, %w(object -o) => :required
+  def show_object
+    connect
+    container = @conn.container(options[:container])
+    o = container.object(options[:object])
+    puts "#{o.name} #{o.bytes.to_i / 1024}KB"
+  end
   
   desc "fetch", "Fetch all files matching the given <container_regex> to a local path"
-  method_options %w(username -u) => :required, %w(password -p) => :required, %w(container_regex -c) => :required, %w(repository_path -r) => :required, %w(date_prefix -d) => :string
+  method_options %w(username -u) => :required, %w(password -p) => :required, %w(container_regex -c) => :required, %w(repository_path -r) => :required,
+                 %w(date_prefix -d) => :string, %w(skip_same_size -s) => :boolean
   def fetch
     
     connect
     
-    date_prefix = options[:date_prefix] || Time.now.strftime("%Y_%m_%d")    
+    date_prefix = options[:date_prefix] || Time.now.strftime("%Y_%m_%d")
     
     containers = @conn.containers().find_all{ |c| c.match(/#{options[:container_regex]}/) }
     
@@ -41,11 +59,14 @@ class Cloudfiles < Thor
       container.objects(:prefix => date_prefix).each do |object_name|
         filename = object_name.gsub(/^([^\/]*\/)/, '')
         puts "  Fetching file #{filename} ... "
-        
         object = container.object(object_name)
         size = object.bytes.to_f
+        target_file = File.join(dest_dir, filename)
+        if options[:skip_same_size] && File.stat(target_file).size * 1024 == object.bytes
+          puts "Skipping #{filename} since the target is the same size"
+        end
         start = Time.now
-        object.save_to_filename(File.join(dest_dir, filename))
+        object.save_to_filename(target_file)
         delta = Time.now - start
         throughput = ((size / 1024) / delta)
         puts "  Finished #{filename}: [%-6.2f MB, %-6.2f sec, %-6.2f KB/s]" % [ (size/1024/1024), delta, throughput ]
