@@ -5,6 +5,7 @@ require 'fileutils'
 require 'rubygems'
 require 'cloudfiles'
 require 'thor'
+require 'digest/md5'
 
 class Cloudfiles < Thor
 
@@ -29,7 +30,7 @@ class Cloudfiles < Thor
     connect
     container = @conn.container(options[:container])
     o = container.object(options[:object])
-    puts "#{o.name} #{o.bytes.to_i / 1024}KB"
+    puts "#{o.name} #{o.bytes.to_i / 1024}KB #{o.etag}"
   end
   
   desc "fetch", "Fetch all files matching the given <container_regex> to a local path"
@@ -62,11 +63,25 @@ class Cloudfiles < Thor
         object = container.object(object_name)
         size = object.bytes.to_f
         target_file = File.join(dest_dir, filename)
-        if options[:skip_same_size] && File.stat(target_file).size * 1024 == object.bytes
-          puts "Skipping #{filename} since the target is the same size"
+        
+      
+        if File.exists?(target_file)
+          target_digest = `md5sum #{target_file}`.chomp.split.first
+          puts "#{target_digest} #{object.etag}"
+          if options[:skip_same_size] && target_digest == object.etag
+            puts "Skipping #{filename} since the target file exists and has the same checksum #{target_digest}"
+            next
+          end
         end
-        start = Time.now
-        object.save_to_filename(target_file)
+        retries = 5
+        begin
+          start = Time.now
+          object.save_to_filename(target_file)
+        rescue Exception => e
+          puts "Fetch failed with #{e.inspect}. Retrying #{retries} more times..."
+          retry if (retries -= 1) > 0
+        end
+        
         delta = Time.now - start
         throughput = ((size / 1024) / delta)
         puts "  Finished #{filename}: [%-6.2f MB, %-6.2f sec, %-6.2f KB/s]" % [ (size/1024/1024), delta, throughput ]
