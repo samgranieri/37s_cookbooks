@@ -9,8 +9,7 @@ override_attributes :users => {:app => {:password => "$1$hk40k332$wpSYJYlbbVo3AK
                      "help" => {"env" => "staging"},
                      "extra_extra" => {"env" => "staging"},
                      "openbar" => {"env" => "staging"},
-                     "champagne" => {"env" => "staging"},
-                     "portfolio" => {"env" => "staging"}
+                     "champagne" => {"env" => "staging"}
                    },
                    "active_sites" => {
                      "37signals" => {"env" => "staging"},
