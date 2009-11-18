@@ -1,0 +1,66 @@
+#!/usr/bin/env ruby
+
+require 'erb'
+require 'fileutils'
+require 'rubygems'
+require 'cloudfiles'
+require 'thor'
+
+class Cloudfiles < Thor
+
+  method_options %w(username -u) => :required, %w(password -p) => :required
+  desc "list", "List all containers for a given account"
+  def list
+    connect
+    puts @conn.containers.join("\n")
+  end
+  
+  desc "fetch", "Fetch all files matching the given <container_regex> to a local path"
+  method_options %w(username -u) => :required, %w(password -p) => :required, %w(container_regex -c) => :required, %w(repository_path -r) => :required, %w(date_prefix -d) => :string
+  def fetch
+    
+    connect
+    
+    date_prefix = options[:date_prefix] || Time.now.strftime("%Y_%m_%d")    
+    
+    containers = @conn.containers().find_all{ |c| c.match(/#{options[:container_regex]}/) }
+    
+    puts "Fetching from containers matching #{options[:container_regex]} : "
+    puts containers.join("\n")
+    
+    containers.each do |container_name|
+      puts "Processing container: #{container_name}"
+
+      dest_dir = File.join(options[:repository_path], container_name, date_prefix)
+
+      puts "  Creating target directory, #{dest_dir}"
+      FileUtils.mkdir_p(dest_dir)
+
+      container = @conn.container(container_name)
+      
+      container.objects(:prefix => date_prefix).each do |object_name|
+        filename = object_name.gsub(/^([^\/]*\/)/, '')
+        puts "  Fetching file #{filename} ... "
+        
+        object = container.object(object_name)
+        size = object.bytes.to_f
+        start = Time.now
+        object.save_to_filename(File.join(dest_dir, filename))
+        delta = Time.now - start
+        throughput = ((size / 1024) / delta)
+        puts "  Finished #{filename}: [%-6.2f MB, %-6.2f sec, %-6.2f KB/s]" % [ (size/1024/1024), delta, throughput ]
+      end
+      puts
+    end
+    
+  end
+  
+  no_tasks do
+    def connect
+      @conn = CloudFiles::Connection.new(options[:username], options[:password])
+    end
+  end
+
+end
+
+Cloudfiles.start
