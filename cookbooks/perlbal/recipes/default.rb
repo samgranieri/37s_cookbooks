@@ -1,6 +1,6 @@
-
 require_recipe "mogilefs"
 require_recipe "runit"
+require_recipe "god"
 
 directory "#{node[:perlbal][:config_path]}" do
   owner "root"
@@ -16,4 +16,4 @@ template "#{node[:perlbal][:config_path]}/perlbal.conf" do
   notifies :restart, resources(:service => "perlbal")
 end
 
-
+god_monitor 'perlbal'
