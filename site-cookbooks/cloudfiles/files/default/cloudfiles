@@ -52,7 +52,15 @@ class Cloudfiles < Thor
       end
       puts
     end
-    
+  end
+  
+  method_options %w(username -u) => :required, %w(password -p) => :required, %w(container -c) => :string, %w(directory -d) => :required,
+                 %w(date_prefix -d) => :string, %(num_threads -n) => :numeric, %w(public_key_id -k) => :required, %w(root_dir -r) => :string,
+                 %w(tmp_dir -t) => :string
+                 
+  desc "backup", "Split, encrypt and backup files in a given directory"
+  def backup
+    CloudBackup.new(options[:directory], options)
   end
   
   no_tasks do
@@ -61,6 +69,130 @@ class Cloudfiles < Thor
     end
   end
 
+end
+
+class CloudBackup
+  
+  attr_reader :container, :files, :num_threads, :date_prefix
+
+  def initialize(directory, options = {})
+    @options = options
+    @directory = directory
+    @container = options[:container] || directory
+    @date_prefix = options[:date_prefix] || Time.now.strftime("%Y_%m_%d")
+    @num_threads = options[:num_threads] || 4
+    @public_key_id = options[:public_key_id]
+    @root_dir = options[:root_dir] || "/u/backup/db"
+    @@tmp_dir = options[:tmp_dir] || "/u/backup/tmp"
+    @mutex = Mutex.new
+    @workers = []
+  end
+
+  def split!
+    current = File.join(@root_dir, @directory, 'current')
+    unless File.exist?(current)
+      STDERR.puts "Error: Missing current directory for #{@directory}. Aborting."
+      exit(1)
+    end
+
+    Dir.chdir(@tmp_dir)
+    prefix = "#{@directory}.tar.gz."
+    
+    print "Combining and chunking backup ... "
+    elapsed = delta { system("/bin/tar --transform 's,#{@root_dir}/,,' -cPf - #{current} | /usr/bin/split -d -b 2048m - #{prefix}") }
+    puts "done in #{elapsed} seconds."
+  end
+
+  def encrypt!
+    puts "\nEncrypting files:"
+    queue = Dir["#{@tmp_dir}/#{@directory}*"].reject { |d| d.match(/\.gpg$/) }
+    threadify(:encrypt, queue)
+  end
+
+  def upload!
+    puts "\nUploading files to CloudFiles:"
+    queue = Dir["#{@tmp_dir}/#{@directory}*.gpg"]
+    threadify(:upload, queue)
+  end
+
+  def cleanup!
+    puts "\nCleaning up temporary files."
+    system("/bin/rm -f #{@tmp_dir}/#{@directory}*")
+  end
+
+  private
+  
+  def encrypt(thread_num)
+    file = get_file
+    return if file.nil?
+
+    puts "  [#{thread_num}] Encrypting file #{file}."
+    elapsed = delta do 
+      system("/usr/bin/gpg --compress-algo none -r #{@public_key_id} -e #{file}")
+    end
+    puts "  [#{thread_num}] Encrypted file #{file} in #{elapsed} seconds."
+
+    sleep rand(5)
+    encrypt(thread_num)
+  end
+
+  def upload(thread_num)
+    file = get_file || return
+    return if file.nil?
+
+    file_num = file.split('.')[3]
+    object_name = "#{@date_prefix}/#{File.basename(file)}"
+    file_size = File.size(file) / 1024 / 1024;
+
+    begin
+      conn = CloudFiles::Connection.new(options[:username], options[:password])
+      conn.storagehost = "snet-" + conn.storagehost # hack to use the internal Rackspace ServiceNet
+      container = conn.container(@container)
+      object = container.create_object(object_name)
+      puts "  [#{thread_num}] Uploading object: #{object_name}"
+      elapsed_time = delta { object.load_from_filename(file) }
+      elapsed_time = 0.01 if elapsed_time == 0
+      upload_rate = file_size / elapsed_time
+      puts "  [#{thread_num}] Uploaded #{object_name} (#{file_size} MB in #{elapsed_time} seconds) [#{upload_rate} MB/s]"
+    rescue Exception => e
+      STDERR.puts "  [#{thread_num}] Upload of #{object_name} to #{@container} failed, adding back to queue."
+      requeue_file(file)
+    end
+
+    upload(thread_num)
+  end
+
+  def threadify(method, queue)
+    @queue = queue
+
+    ( 0 .. @num_threads-1 ).each do |thread_num| 
+      @workers[thread_num] = Thread.new { self.send(method.to_s, thread_num) }
+    end
+
+    @workers.each { |worker| worker.join }
+  end
+
+  def get_file
+    return nil unless @queue
+    result = nil
+    @mutex.synchronize do
+      result = @queue.pop
+    end
+    result
+  end
+  
+  def requeue_file(file)
+    return unless @queue
+    @mutex.synchronize do
+      @queue.push(file)
+    end
+  end
+
+  def delta(&block)
+    start_time = Time.now
+    yield
+    ( Time.now - start_time ).to_i
+  end
 end
 
 Cloudfiles.start
