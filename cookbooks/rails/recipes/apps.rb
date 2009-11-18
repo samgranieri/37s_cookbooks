@@ -7,6 +7,8 @@ system_web_server = web_server == 'apache' ? 'apache2' : web_server
 if node[:active_applications]
   node[:active_applications].each do |app, conf|
 
+    Chef::Log.info "Setting up Rails app #{app}"
+
     full_name = "#{app}_#{conf[:env]}"
     filename = "#{conf[:env]}.conf"
     path = "/u/apps/#{app}/current/config/#{web_server}/#{filename}.conf.rb"

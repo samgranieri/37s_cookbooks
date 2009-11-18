@@ -25,6 +25,6 @@ override_attributes :users => {:app => {:password => "$1$hk40k332$wpSYJYlbbVo3AK
                        }
                      ]
                    }
-                   
+
 
   
