@@ -1,6 +1,6 @@
 name "web-staging"
 description "Staging slice for smaller sites/apps"
-recipes "mysql::server", "php5::sites", "rails::apps", "rails::delayed_job"
+recipes "mysql::server", "php5::sites", "rails::apps", "rails::delayed_job", "nginx"
 override_attributes :users => {:app => {:password => "$1$hk40k332$wpSYJYlbbVo3AK/7thxO3.", :comment => "App User", :uid => 1003, :groups => [:app], :ssh_key_groups => [:app,:site,:admin], :extra_ssh_keys => [:nagios, :solr, :pratik]}},
                    "active_applications" => {
                      "blogcabin" => {"env" => "staging"},
