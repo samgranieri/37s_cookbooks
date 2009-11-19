@@ -4,7 +4,7 @@ default_attributes  :active_applications =>  {"portfolio" =>  {"env" => "product
                     :applications => {
                       :portfolio => {
                         :gems => ['bundler'],
-                        :packages => ['imagemagick']
+                        :packages => ['imagemagick', 'libmagick9-dev']
                       }
                     }
 
