@@ -55,9 +55,15 @@ class Cloudfiles < Thor
       puts "  Creating target directory, #{dest_dir}"
       FileUtils.mkdir_p(dest_dir)
 
-      container = @conn.container(container_name)
+      objects = nil
+      container = nil
       
-      container.objects(:prefix => date_prefix).each do |object_name|
+      retryable(:tries => 3) do
+        container = @conn.container(container_name)
+        objects = container.objects(:prefix => date_prefix)
+      end
+      
+      objects.each do |object_name|
         filename = object_name.gsub(/^([^\/]*\/)/, '')
         puts "  Fetching file #{filename} ... "
         object = container.object(object_name)
@@ -73,13 +79,11 @@ class Cloudfiles < Thor
             next
           end
         end
-        retries = 5
-        begin
+        
+        start = nil
+        retryable(:tries => 3) do
           start = Time.now
           object.save_to_filename(target_file)
-        rescue Exception => e
-          puts "Fetch failed with #{e.inspect}. Retrying #{retries} more times..."
-          retry if (retries -= 1) > 0
         end
         
         delta = Time.now - start
@@ -102,6 +106,21 @@ class Cloudfiles < Thor
   no_tasks do
     def connect
       @conn = CloudFiles::Connection.new(options[:username], options[:password])
+    end
+    
+    def retryable(options = {}, &block)
+      opts = { :tries => 1, :on => Exception }.merge(options)
+
+      retry_exception, retries = opts[:on], opts[:tries]
+
+      begin
+        return yield
+      rescue retry_exception
+        puts "Operation failed with #{e.inspect}. Retrying #{retries} more times..."
+        retry if (retries -= 1) > 0
+      end
+
+      yield
     end
   end
 
