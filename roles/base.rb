@@ -1,6 +1,6 @@
 name "base"
 description "Base role that applies to all servers"
-recipes "ruby-shadow", "hosts", "dns::client", "chef::client", "nagios::client", "rubygems::client", "timezone", "sysctl",
+recipes "ruby-shadow", "hosts", "dns::client", "chef::client", "nagios::client", "rubygems::client", "timezone", "sysctl", "bluepill",
         "git", "postfix", "ssh::server", "users", "sudo", "sysadmin", "mysql::client", "chef::client", "collectd", "ruby::gc_wrapper", "ssl_certificates"
 
 default_attributes :active_groups => {:admin => {:enabled => true}},
