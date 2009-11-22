@@ -11,7 +11,6 @@ define :bluepill_monitor, :enable => true do
     source params[:source] || "bluepill_#{params[:name]}.conf.erb"
     cookbook params[:cookbook]
     variables params
-    notifies :restart, resources(:service => "bluepill")
+    notifies :run, resources("execute[load-bluepill-#{params[:name]}]")
   end
-
 end
