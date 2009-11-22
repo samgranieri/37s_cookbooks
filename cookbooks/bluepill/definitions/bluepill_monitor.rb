@@ -8,7 +8,7 @@ define :bluepill_monitor, :enable => true do
   end
 
   template config_path do
-    source params[:source] || "bluepill.conf.erb"
+    source params[:source] || "bluepill_#{params[:name]}.conf.erb"
     cookbook params[:cookbook]
     variables params
     notifies :restart, resources(:service => "bluepill")
