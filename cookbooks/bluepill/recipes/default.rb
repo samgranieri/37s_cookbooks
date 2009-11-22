@@ -8,6 +8,7 @@ directory node[:bluepill][:pid_dir]
 
 template "/etc/init.d/bluepill" do
   source "init.sh.erb"
+  mode 0755
 end
 
 service "bluepill"
