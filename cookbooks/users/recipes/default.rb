@@ -1,5 +1,5 @@
-users = DataBag.load("user_data/accounts")
-groups = DataBag.load("user_data/groups")
+users = Mash.new(DataBag.load("user_data/accounts"))
+groups = Mash.new(DataBag.load("user_data/groups"))
 
 groups.each do |group_key, config|
   group group_key do
@@ -26,7 +26,8 @@ if node[:active_users]
 end
 
 node[:active_groups].each do |group_name, config|
-  users = users.find_all { |u| u.last[:groups].include?(group_name) }
+  
+  users = users.find_all { |username, u_config| u_config["groups"].include?(group_name) }
 
   users.each do |u, config|
     user u do
