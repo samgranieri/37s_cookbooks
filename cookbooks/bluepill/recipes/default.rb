@@ -11,4 +11,6 @@ template "/etc/init.d/bluepill" do
   mode 0755
 end
 
-service "bluepill"
+service "bluepill" do
+  action [:enable, :start]
+end
