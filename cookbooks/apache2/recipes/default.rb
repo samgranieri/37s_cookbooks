@@ -1,5 +1,6 @@
 package "apache2" do
   name "apache2"
+  version node[:apache][:version]
 end
 
 service "apache2" do
