@@ -6,7 +6,12 @@ define :bluepill_monitor, :enable => true do
     command "bluepill load #{node[:bluepill][:config_path]}/#{params[:name]}.conf.rb"
     action :nothing
   end
-
+  
+  execute "restart-bluepill-#{params[:name]}" do
+    command "bluepill restart #{params[:name]}"
+    action :nothing    
+  end
+  
   template config_path do
     source params[:source] || "bluepill_#{params[:name]}.conf.erb"
     cookbook params[:cookbook]
