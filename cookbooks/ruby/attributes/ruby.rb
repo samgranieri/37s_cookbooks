@@ -1,5 +1,4 @@
 # twitter GC settings from http://blog.evanweaver.com/articles/2009/04/09/ruby-gc-tuning/
-ruby Mash.new unless attribute?("ruby")
 default.ruby[:gc] = Mash.new
 default.ruby[:gc][:heap_min_slots] = 500000
 default.ruby[:gc][:heap_slots_increment] = 250000

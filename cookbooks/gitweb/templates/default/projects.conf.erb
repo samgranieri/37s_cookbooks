@@ -1,0 +1,3 @@
+<% @projects.delete_if { |name, conf| conf[:visible] == false }.keys.each do |path| %>
+<%= path %> Gitosis+User
+<% end %>

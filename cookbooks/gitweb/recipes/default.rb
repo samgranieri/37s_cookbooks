@@ -2,10 +2,26 @@ require_recipe "git::server"
 
 package "gitweb"
 
-template "/etc/gitweb-vhost.conf" do
-  source "apache-vhost.conf.erb"
+directory node[:gitweb][:config_path] do
+  mode 0755
+  recursive true
+end
+
+template "/etc/gitweb/apache.conf"
+
+template "/etc/gitweb/projects.conf" do
+  variables :projects => node[:git][:repos]
 end
 
 apache_site "gitweb" do
-  config_path "/etc/gitweb-vhost.conf"
+  config_path "/etc/gitweb/apache.conf"
+end
+
+if node[:git][:repos]
+  node[:git][:repos].each do |name, config|
+    link "#{node[:gitweb][:repo_root]}/#{name}" do
+      to "#{node[:git][:repo_root]}/#{name}"
+      not_if { config[:gitweb] == false }
+    end
+  end
 end

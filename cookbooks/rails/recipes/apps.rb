@@ -7,6 +7,8 @@ system_web_server = web_server == 'apache' ? 'apache2' : web_server
 if node[:active_applications]
   node[:active_applications].each do |app, conf|
 
+    Chef::Log.info "Setting up Rails app #{app}"
+
     full_name = "#{app}_#{conf[:env]}"
     filename = "#{conf[:env]}.conf"
     path = "/u/apps/#{app}/current/config/#{web_server}/#{filename}.conf.rb"
@@ -38,8 +40,9 @@ if node[:active_applications]
     end
 
     if node[:rails][:app_server] == "unicorn"
-      god_monitor app do
+      bluepill_monitor app do
         cookbook "unicorn"
+        source "bluepill.conf.erb"
         rails_env conf[:env]
         rails_root "/u/apps/#{app}/current"
         interval 30
@@ -52,7 +55,7 @@ if node[:active_applications]
     
     if node[:applications][app][:domains]
       node[:applications][app][:domains].each do |domain|
-        ssl_certificate node.role?("staging") ? "staging.#{domain}" : domain
+        ssl_certificate domain
       end
     end
 

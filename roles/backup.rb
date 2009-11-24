@@ -1,6 +1,6 @@
 name "backup"
 description "Backup Server"
-recipes "backup::server", "rsnapshot::server", "nfs::server", "java", "gnupg", "cron", "aws::tools"
+recipes "backup::server", "rsnapshot::server", "nfs::server", "java", "gnupg", "cron", "aws::tools", "cloudfiles"
 
 default_attributes :active_groups => {:storage => {:enabled => true}},
                    :rsnapshot =>  {

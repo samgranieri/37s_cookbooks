@@ -5,6 +5,5 @@ remote_file "/tmp/#{ree_filename}" do
 end
 
 package "ruby-enterprise" do
-  action :upgrade
   source "/tmp/#{ree_filename}"
 end

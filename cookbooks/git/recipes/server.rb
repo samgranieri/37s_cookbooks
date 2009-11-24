@@ -27,7 +27,7 @@ end
   
 
 if node[:git][:repos]
-  node[:git][:repos].each do |repo|
+  node[:git][:repos].each do |repo, config|
   
     repo_path = "/#{node[:git][:repo_root]}/#{repo}.git"
     

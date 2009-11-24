@@ -23,4 +23,5 @@ define :ssl_certificate do
     owner "root"
     group "www-data"
   end
+
 end

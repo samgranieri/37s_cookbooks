@@ -7,6 +7,7 @@ apache[:user]    = "www-data"
 apache[:binary]  = "/usr/sbin/apache2"
 apache[:icondir] = "/usr/share/apache2/icons"
 
+apache[:version] = "2.2.9-7ubuntu3.5"
 ###
 # These settings need the unless, since we want them to be tunable,
 # and we don't want to override the tunings.

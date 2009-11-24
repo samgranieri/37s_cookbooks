@@ -1,7 +1,7 @@
 name "openbar"
 description "Openbar"
 default_attributes :applications => {
-                      :open_bar => {
+                      :openbar => {
                         :gems => ['fast_xs']
                       }
                     }

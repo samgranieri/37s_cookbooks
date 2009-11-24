@@ -1,6 +1,6 @@
 name "noc"
 description "Network opertions server"
-recipes "syslog::server", "nagios::server", "apt::mirror", "support", "cron"
+recipes "syslog::server", "nagios::server", "apt::mirror", "support", "cron", "rabbitmq", "nanite"
 
 default_attributes :active_groups => {:app => {:enabled => true}},
                    :active_sudo_groups => {:app => {:enabled => true}},

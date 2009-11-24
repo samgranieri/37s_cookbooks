@@ -6,6 +6,7 @@ if node[:mysql] && node[:mysql][:instances]
     owner "root"
     group "root"
     mode 0700
+    recursive true
   end
 
   if node[:mysql][:perform_backups]

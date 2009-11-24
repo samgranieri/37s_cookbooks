@@ -7,4 +7,5 @@ template "#{node[:mogilefs][:path]}/etc/mogilefsd.conf" do
   mode 0600
 end
 
-runit_service "mogilefsd"
+bluepill_monitor "mogilefsd"
+#runit_service "mogilefsd"

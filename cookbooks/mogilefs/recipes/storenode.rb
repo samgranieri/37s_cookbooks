@@ -13,4 +13,4 @@ directory "#{node[:mogilefs][:mogstored][:doc_root]}" do
   mode 0755
 end
 
-runit_service "mogstored"
+bluepill_monitor "mogstored"
