@@ -12,6 +12,7 @@ report-host = <%= @node[:hostname] %>
 port = <%= @params[:config][:port] %>
 <% if @params[:config][:binlogs_enabled] -%>
 log-bin = <%= @params[:config][:binlog_dir] %>
+expire_logs_days = 5
 binlog-ignore-db = mysql
 sync_binlog = <%= @params[:config][:sync_binlog] %>
 <% end -%>
