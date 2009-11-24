@@ -148,14 +148,14 @@ define service {
 		use default-service
 		host_name bc-db-02
 		service_description		Files Pending Purge
-		check_command			check_query_count!3306!basecamp_ro!oDhdFrgvB2!basecamp_production!"select count(*) from pending_purges"!150000!175000
+		check_command			check_query_count!3306!basecamp_ro!oDhdFrgvB2!basecamp_production!"select count(*) from pending_purges"!25000!30000
 }
 
 define service {
 		use default-service
 		host_name bc-db-02
 		service_description		Files Pending Migration
-		check_command			check_query_count!3306!basecamp_ro!oDhdFrgvB2!basecamp_production!"select count(*) from attachments where migrated is null and hosted = 1 and byte_size < 100000000"!80000!90000
+		check_command			check_query_count!3306!basecamp_ro!oDhdFrgvB2!basecamp_production!"select count(*) from attachments where migrated is null and hosted = 1 and byte_size < 100000000"!10000!15000
 }
 
 define service {
