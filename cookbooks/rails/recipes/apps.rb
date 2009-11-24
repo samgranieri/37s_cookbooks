@@ -40,8 +40,9 @@ if node[:active_applications]
     end
 
     if node[:rails][:app_server] == "unicorn"
-      god_monitor app do
+      bluepill_monitor app do
         cookbook "unicorn"
+        source "bluepill.conf.erb"
         rails_env conf[:env]
         rails_root "/u/apps/#{app}/current"
         interval 30
