@@ -1,0 +1,3 @@
+-t nat -A POSTROUTING -o #{service_interface} -j MASQUERADE
+-A FORWARD -i #{service_interface} -o #{local_interface} -m state --state ESTABLISHED,RELATED -j ACCEPT
+-A FORWARD -i #{local_interface} -o #{service_interface} -j ACCEPT
