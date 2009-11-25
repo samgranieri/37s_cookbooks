@@ -2,9 +2,20 @@ gem_package "bluepill" do
   version node[:bluepill][:version]
 end
 
-directory node[:bluepill][:config_dir]
-directory node[:bluepill][:log_dir]
-directory node[:bluepill][:pid_dir]
+directory node[:bluepill][:config_dir] do
+  owner "app"
+  group "app"
+end
+
+directory node[:bluepill][:log_dir] do
+  owner "app"
+  group "app"
+end
+
+directory node[:bluepill][:pid_dir] do
+  owner "app"
+  group "app"
+end
 
 template "/etc/init.d/bluepill" do
   source "init.sh.erb"
