@@ -9,7 +9,7 @@ Bluepill.application("mogilefsd", :log_file => "/var/log/bluepill/bluepill_mogil
     process.checks :mem_usage, :every => 10, :below => 200.megabytes, :times => [3, 5]
     
     process.monitor_children do |cp|
-      cp.checks :mem_usage, :every => 10, :below => 20.megabytes, :times => [3, 5]
+      cp.checks :mem_usage, :every => 10, :below => 30.megabytes, :times => [3, 5]
       cp.stop_command = "kill -QUIT {{PID}}"
     end
   end
