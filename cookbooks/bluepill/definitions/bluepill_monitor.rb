@@ -1,4 +1,4 @@
-define :bluepill_monitor, :enable => true do
+define :bluepill_monitor, :enable => true, :rackup_path => false do
   include_recipe "bluepill"
   config_path = "#{node[:bluepill][:config_dir]}/#{params[:name]}.conf.rb"
 
@@ -9,7 +9,7 @@ define :bluepill_monitor, :enable => true do
   
   execute "restart-bluepill-#{params[:name]}" do
     command "bluepill restart #{params[:name]}"
-    action :nothing    
+    action :nothing
   end
   
   template config_path do
