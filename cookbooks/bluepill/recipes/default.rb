@@ -3,18 +3,18 @@ gem_package "bluepill" do
 end
 
 directory node[:bluepill][:config_dir] do
-  owner "app"
-  group "app"
+  owner "root"
+  group "root"
 end
 
 directory node[:bluepill][:log_dir] do
-  owner "app"
-  group "app"
+  owner "root"
+  group "root"
 end
 
 directory node[:bluepill][:pid_dir] do
-  owner "app"
-  group "app"
+  owner "root"
+  group "root"
 end
 
 template "/etc/init.d/bluepill" do
