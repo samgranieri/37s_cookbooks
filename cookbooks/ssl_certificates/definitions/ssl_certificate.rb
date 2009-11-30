@@ -23,5 +23,12 @@ define :ssl_certificate do
     owner "root"
     group "www-data"
   end
+  remote_file "#{node[:ssl_certificates][:path]}/#{name}_combined.crt" do
+    source "#{name}_combined.crt"
+    mode "0640"
+    cookbook "ssl_certificates"
+    owner "root"
+    group "www-data"
+  end
 
 end
