@@ -1,4 +1,4 @@
-name 'hr-db'
+name 'hr-db-master'
 description 'Highrise Database Server'
 recipes 'cron', 'mysql::server', 'syslog::client', 'nfs::client'
 
@@ -9,7 +9,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
   },
   :cron => { :jobs => {} },
   :mysql => {
-    :perform_backups => true,
+    :perform_backups => false,
     :instances => [
       { 
         :name => "highrise",
@@ -18,7 +18,7 @@ override_attributes :active_groups => {:app => {:enabled => true}},
         :config => { 
           :port => "3306",
 	  :server_id => "2173306",
-          :innodb_buffer_pool_size => "100G",
+          :innodb_buffer_pool_size => "115G",
           :innodb_thread_concurrency => "6"
         }
       }
