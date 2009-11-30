@@ -11,7 +11,7 @@ if node[:active_applications]
 
     full_name = "#{app}_#{conf[:env]}"
     filename = "#{conf[:env]}.conf"
-    path = "/u/apps/#{app}/current/config/#{web_server}/#{filename}.conf.rb"
+    path = "/u/apps/#{app}/current/config/#{web_server}/#{filename}"
 
     if node[:applications][app]
       if modules = node[:applications][app]["#{web_server}_modules"]
