@@ -1,7 +1,4 @@
-users = Mash.new(DataBag.load("user_data/accounts"))
-groups = Mash.new(DataBag.load("user_data/groups"))
-
-groups.each do |group_key, config|
+node[:groups].each do |group_key, config|
   group group_key do
     group_name group_key.to_s
     gid config[:gid]
@@ -11,7 +8,7 @@ end
 
 if node[:active_users]
   node[:active_users].each do |username|
-    config = users[username]
+    config = node[:users][username]
     user username do
       comment config[:comment]
       uid config[:uid]
@@ -26,8 +23,7 @@ if node[:active_users]
 end
 
 node[:active_groups].each do |group_name, config|
-  
-  users = users.find_all { |username, u_config| u_config["groups"].include?(group_name) }
+  users = node[:users].find_all { |u| u.last[:groups].include?(group_name) }
 
   users.each do |u, config|
     user u do
@@ -44,7 +40,7 @@ node[:active_groups].each do |group_name, config|
     config[:groups].each do |g|
       group g do
         group_name g.to_s
-        gid groups[g][:gid]
+        gid node[:groups][g][:gid]
         members [ u ]
         append true
         action [:modify]
@@ -69,6 +65,13 @@ node[:active_groups].each do |group_name, config|
       conf config
     end
   end
+  
+  # remove users who may have been added but are now restricted from this node's role
+  # (node[:users] - users).each do |u|
+  #   user u do
+  #     action :remove
+  #   end
+  # end
 end
 
 # Remove initial setup user and group.
