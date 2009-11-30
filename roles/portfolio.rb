@@ -5,7 +5,8 @@ default_attributes  :active_applications =>  {"portfolio" =>  {"env" => "product
                       :portfolio => {
                         :gems => ['bundler'],
                         :packages => ['imagemagick', 'libmagick9-dev'],
-                        :rack_config => true
+                        :rack_config => true,
+                        :domains => ["*.37signals.com"]
                       }
                     },
                     :rails => {:web_server => "nginx", :app_server => "unicorn"}
