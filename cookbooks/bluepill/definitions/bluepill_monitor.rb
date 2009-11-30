@@ -1,4 +1,4 @@
-define :bluepill_monitor, :enable => true, :rackup_path => false do
+define :bluepill_monitor, :enable => true, :rack_config_path => false do
   include_recipe "bluepill"
   config_path = "#{node[:bluepill][:config_dir]}/#{params[:name]}.conf.rb"
 

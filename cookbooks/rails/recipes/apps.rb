@@ -50,6 +50,7 @@ if node[:active_applications]
         group "app"
         memory_limit 250 # megabytes
         cpu_limit 50 # percent
+        rack_config_path "/u/apps/#{app}/current/config.ru" if node[:applications][app][:rack_config]
       end
     end
     

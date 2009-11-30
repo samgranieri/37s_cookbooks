@@ -4,7 +4,8 @@ default_attributes  :active_applications =>  {"portfolio" =>  {"env" => "product
                     :applications => {
                       :portfolio => {
                         :gems => ['bundler'],
-                        :packages => ['imagemagick', 'libmagick9-dev']
+                        :packages => ['imagemagick', 'libmagick9-dev'],
+                        :rack_config => true
                       }
                     },
                     :rails => {:web_server => "nginx", :app_server => "unicorn"}
