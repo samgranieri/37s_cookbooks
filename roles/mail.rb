@@ -10,11 +10,6 @@ override_attributes :active_groups => {:app => {:enabled => true}},
                       {:user => "nobody", :target_user => "app", :command => "NOPASSWD:/u/apps/highrise/current/script/email_helper"},
                       {:user => "nobody", :target_user => "app", :command => "NOPASSWD:/u/apps/highrise/current/script/dropbox_helper"},                     
                     ],
-  :nfs_mounts => {
-    "/u/nfs/file1/depot"  =>  {"device" => "172.28.1.66:/u/depot",  "owner"  => "app"},
-    "/u/nfs/file2/depot"  =>  {"device" => "172.28.1.67:/u/depot",  "owner"  => "app"},
-    "/u/nfs/file3/depot"  =>  {"device" => "172.28.1.70:/u/depot",  "owner"  => "app"}
-  },
   :cron => {
     :jobs => {
       :bc_email_replies => {
