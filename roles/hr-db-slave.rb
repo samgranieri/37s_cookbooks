@@ -1,4 +1,4 @@
-name 'hr-db'
+name 'hr-db-slave'
 description 'Highrise Database Server'
 recipes 'cron', 'mysql::server', 'syslog::client', 'nfs::client'
 
