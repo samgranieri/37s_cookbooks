@@ -2,24 +2,21 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
   },
-  "dependencies": {
-    "apache2": [
-
-    ]
-  },
   "conflicting": {
 
   },
-  "description": "Configures rubygems",
-  "platforms": {
+  "license": "Apache v2.0",
+  "recipes": {
+    "rubygems::client": "",
+    "rubygems::mirror": ""
+  },
+  "attributes": {
 
   },
-  "version": "0.1.0",
   "providing": {
     "rubygems::client": [
 
@@ -28,17 +25,20 @@
 
     ]
   },
+  "dependencies": {
+    "apache2": [
+
+    ]
+  },
   "long_description": "",
   "replacing": {
 
   },
-  "name": "rubygems",
-  "recipes": {
-    "rubygems::client": "",
-    "rubygems::mirror": ""
-  },
-  "attributes": {
+  "platforms": {
 
   },
+  "description": "Configures rubygems",
+  "name": "rubygems",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

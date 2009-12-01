@@ -2,24 +2,22 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
   },
-  "dependencies": {
-    "logrotate": [
-
-    ]
-  },
   "conflicting": {
 
   },
-  "description": "Configures syslog",
-  "platforms": {
+  "license": "Apache v2.0",
+  "recipes": {
+    "syslog::client": "",
+    "syslog::server": "",
+    "syslog": ""
+  },
+  "attributes": {
 
   },
-  "version": "0.1.0",
   "providing": {
     "syslog": [
 
@@ -31,18 +29,20 @@
 
     ]
   },
+  "dependencies": {
+    "logrotate": [
+
+    ]
+  },
   "long_description": "",
   "replacing": {
 
   },
-  "name": "syslog",
-  "recipes": {
-    "syslog::client": "",
-    "syslog::server": "",
-    "syslog": ""
-  },
-  "attributes": {
+  "platforms": {
 
   },
+  "description": "Configures syslog",
+  "name": "syslog",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

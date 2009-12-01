@@ -2,37 +2,37 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
-
-  },
-  "dependencies": {
 
   },
   "conflicting": {
 
   },
-  "description": "Configures ejabberd",
-  "platforms": {
-
-  },
-  "version": "0.1.0",
-  "providing": {
-    "ejabberd": [
-
-    ]
-  },
-  "long_description": "",
-  "replacing": {
-
-  },
-  "name": "ejabberd",
+  "license": "Apache v2.0",
   "recipes": {
     "ejabberd": ""
   },
   "attributes": {
 
   },
+  "providing": {
+    "ejabberd": [
+
+    ]
+  },
+  "dependencies": {
+
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "platforms": {
+
+  },
+  "description": "Configures ejabberd",
+  "name": "ejabberd",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

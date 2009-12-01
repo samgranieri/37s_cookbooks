@@ -2,37 +2,37 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
-
-  },
-  "dependencies": {
 
   },
   "conflicting": {
 
   },
-  "description": "Configures ssh",
-  "platforms": {
-
-  },
-  "version": "0.1.0",
-  "providing": {
-    "ssh::server": [
-
-    ]
-  },
-  "long_description": "",
-  "replacing": {
-
-  },
-  "name": "ssh",
+  "license": "Apache v2.0",
   "recipes": {
     "ssh::server": ""
   },
   "attributes": {
 
   },
+  "providing": {
+    "ssh::server": [
+
+    ]
+  },
+  "dependencies": {
+
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "platforms": {
+
+  },
+  "description": "Configures ssh",
+  "name": "ssh",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

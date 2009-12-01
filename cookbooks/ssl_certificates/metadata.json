@@ -2,37 +2,37 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
-
-  },
-  "dependencies": {
 
   },
   "conflicting": {
 
   },
-  "description": "Configures SSL certificate",
-  "platforms": {
-
-  },
-  "version": "0.1.0",
-  "providing": {
-    "ssl_certificates": [
-
-    ]
-  },
-  "long_description": "",
-  "replacing": {
-
-  },
-  "name": "ssl_certificates",
+  "license": "Apache v2.0",
   "recipes": {
     "ssl_certificates": ""
   },
   "attributes": {
 
   },
+  "providing": {
+    "ssl_certificates": [
+
+    ]
+  },
+  "dependencies": {
+
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "platforms": {
+
+  },
+  "description": "Configures SSL certificate",
+  "name": "ssl_certificates",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

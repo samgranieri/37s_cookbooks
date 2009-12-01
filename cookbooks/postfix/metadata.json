@@ -2,22 +2,22 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
-
-  },
-  "dependencies": {
 
   },
   "conflicting": {
 
   },
-  "description": "Configures postfix",
-  "platforms": {
+  "license": "Apache v2.0",
+  "recipes": {
+    "postfix::aliases": "",
+    "postfix::virtual": "",
+    "postfix": ""
+  },
+  "attributes": {
 
   },
-  "version": "0.1.0",
   "providing": {
     "postfix::aliases": [
 
@@ -29,18 +29,18 @@
 
     ]
   },
+  "dependencies": {
+
+  },
   "long_description": "",
   "replacing": {
 
   },
-  "name": "postfix",
-  "recipes": {
-    "postfix::aliases": "",
-    "postfix::virtual": "",
-    "postfix": ""
-  },
-  "attributes": {
+  "platforms": {
 
   },
+  "description": "Configures postfix",
+  "name": "postfix",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

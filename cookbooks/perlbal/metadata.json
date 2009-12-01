@@ -2,10 +2,24 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
+  },
+  "conflicting": {
+
+  },
+  "license": "Apache v2.0",
+  "recipes": {
+    "perlbal": ""
+  },
+  "attributes": {
+
+  },
+  "providing": {
+    "perlbal": [
+
+    ]
   },
   "dependencies": {
     "runit": [
@@ -15,29 +29,15 @@
 
     ]
   },
-  "conflicting": {
-
-  },
-  "description": "Configures perlbal",
-  "platforms": {
-
-  },
-  "version": "0.1.0",
-  "providing": {
-    "perlbal": [
-
-    ]
-  },
   "long_description": "",
   "replacing": {
 
   },
-  "name": "perlbal",
-  "recipes": {
-    "perlbal": ""
-  },
-  "attributes": {
+  "platforms": {
 
   },
+  "description": "Configures perlbal",
+  "name": "perlbal",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

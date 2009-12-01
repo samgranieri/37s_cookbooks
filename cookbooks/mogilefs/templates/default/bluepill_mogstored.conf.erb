@@ -1,0 +1,14 @@
+Bluepill.application("mogstored", :log_file => "/var/log/bluepill/bluepill_mogstored.log") do |app|
+  app.process("mogstored") do |process|
+    process.start_command = "/u/apps/mogilefs/bin/mogstored"
+    process.stdout = process.stderr = "/var/log/bluepill/mogstored.log"
+    process.pid_file = "/var/run/bluepill/mogstored.pid"
+    process.daemonize = true
+    process.checks :mem_usage, :every => 10, :below => 100.megabytes, :times => [3, 5]
+    
+    process.monitor_children do |cp|
+      cp.checks :mem_usage, :every => 10, :below => 30.megabytes, :times => [3, 5]
+      cp.stop_command = "kill -QUIT {{PID}}"
+    end
+  end
+end

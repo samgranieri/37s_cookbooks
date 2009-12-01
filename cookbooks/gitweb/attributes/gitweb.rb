@@ -1,1 +1,1 @@
-gitweb Mash.new unless attribute?(:gitweb)
+default.gitweb[:config_path] = "/etc/gitweb"

@@ -2,22 +2,21 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
-
-  },
-  "dependencies": {
 
   },
   "conflicting": {
 
   },
-  "description": "Configures ruby",
-  "platforms": {
+  "license": "Apache v2.0",
+  "recipes": {
+    "ruby::gc_wrapper": "",
+    "ruby": ""
+  },
+  "attributes": {
 
   },
-  "version": "0.1.0",
   "providing": {
     "ruby::gc_wrapper": [
 
@@ -26,17 +25,18 @@
 
     ]
   },
+  "dependencies": {
+
+  },
   "long_description": "",
   "replacing": {
 
   },
-  "name": "ruby",
-  "recipes": {
-    "ruby::gc_wrapper": "",
-    "ruby": ""
-  },
-  "attributes": {
+  "platforms": {
 
   },
+  "description": "Configures ruby",
+  "name": "ruby",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

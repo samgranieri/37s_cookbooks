@@ -2,10 +2,28 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
+  },
+  "conflicting": {
+
+  },
+  "license": "Apache v2.0",
+  "recipes": {
+    "unicorn": "",
+    "unicorn::apps": ""
+  },
+  "attributes": {
+
+  },
+  "providing": {
+    "unicorn": [
+
+    ],
+    "unicorn::apps": [
+
+    ]
   },
   "dependencies": {
     "runit": [
@@ -21,33 +39,15 @@
 
     ]
   },
-  "conflicting": {
-
-  },
-  "description": "Configures unicorn",
-  "platforms": {
-
-  },
-  "version": "0.1.0",
-  "providing": {
-    "unicorn": [
-
-    ],
-    "unicorn::apps": [
-
-    ]
-  },
   "long_description": "",
   "replacing": {
 
   },
-  "name": "unicorn",
-  "recipes": {
-    "unicorn": "",
-    "unicorn::apps": ""
-  },
-  "attributes": {
+  "platforms": {
 
   },
+  "description": "Configures unicorn",
+  "name": "unicorn",
+  "version": "0.1.0",
   "maintainer": "unicorn"
 }

@@ -2,22 +2,21 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
-
-  },
-  "dependencies": {
 
   },
   "conflicting": {
 
   },
-  "description": "Configures mysql",
-  "platforms": {
+  "license": "Apache v2.0",
+  "recipes": {
+    "mysql::client": "",
+    "mysql::server": ""
+  },
+  "attributes": {
 
   },
-  "version": "0.1.0",
   "providing": {
     "mysql::client": [
 
@@ -26,17 +25,18 @@
 
     ]
   },
+  "dependencies": {
+
+  },
   "long_description": "",
   "replacing": {
 
   },
-  "name": "mysql",
-  "recipes": {
-    "mysql::client": "",
-    "mysql::server": ""
-  },
-  "attributes": {
+  "platforms": {
 
   },
+  "description": "Configures mysql",
+  "name": "mysql",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

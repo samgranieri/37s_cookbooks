@@ -2,10 +2,24 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
+  },
+  "conflicting": {
+
+  },
+  "license": "Apache v2.0",
+  "recipes": {
+    "sudo": ""
+  },
+  "attributes": {
+
+  },
+  "providing": {
+    "sudo": [
+
+    ]
   },
   "dependencies": {
     "apt": [
@@ -15,29 +29,15 @@
 
     ]
   },
-  "conflicting": {
-
-  },
-  "description": "Configures sudo",
-  "platforms": {
-
-  },
-  "version": "0.1.0",
-  "providing": {
-    "sudo": [
-
-    ]
-  },
   "long_description": "",
   "replacing": {
 
   },
-  "name": "sudo",
-  "recipes": {
-    "sudo": ""
-  },
-  "attributes": {
+  "platforms": {
 
   },
+  "description": "Configures sudo",
+  "name": "sudo",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

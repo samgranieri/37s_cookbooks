@@ -2,27 +2,23 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
   },
-  "dependencies": {
-    "runit": [
-
-    ],
-    "apache2": [
-
-    ]
-  },
   "conflicting": {
 
   },
-  "description": "Configures nagios",
-  "platforms": {
+  "license": "Apache v2.0",
+  "recipes": {
+    "nagios": "",
+    "nagios::client": "",
+    "nagios::checks": "",
+    "nagios::server": ""
+  },
+  "attributes": {
 
   },
-  "version": "0.1.0",
   "providing": {
     "nagios": [
 
@@ -37,19 +33,23 @@
 
     ]
   },
+  "dependencies": {
+    "runit": [
+
+    ],
+    "apache2": [
+
+    ]
+  },
   "long_description": "",
   "replacing": {
 
   },
-  "name": "nagios",
-  "recipes": {
-    "nagios": "",
-    "nagios::client": "",
-    "nagios::checks": "",
-    "nagios::server": ""
-  },
-  "attributes": {
+  "platforms": {
 
   },
+  "description": "Configures nagios",
+  "name": "nagios",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

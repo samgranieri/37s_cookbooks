@@ -11,7 +11,7 @@ $git_temp = "/tmp";
 $home_text = "indextext.html";
 
 # file with project list; by default, simply scan the projectroot dir.
-$projects_list = $projectroot;
+$projects_list = "/etc/gitweb/projects.conf";
 
 # stylesheet to use
 $stylesheet = "/gitweb.css";
@@ -21,3 +21,6 @@ $logo = "/git-logo.png";
 
 # the 'favicon'
 $favicon = "/git-favicon.png";
+
+# restrict access to projects on visible overview page
+$strict_export = true;

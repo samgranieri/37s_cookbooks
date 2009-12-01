@@ -2,37 +2,37 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
-
-  },
-  "dependencies": {
 
   },
   "conflicting": {
 
   },
-  "description": "Configures cron",
-  "platforms": {
-
-  },
-  "version": "0.1.0",
-  "providing": {
-    "cron": [
-
-    ]
-  },
-  "long_description": "",
-  "replacing": {
-
-  },
-  "name": "cron",
+  "license": "Apache v2.0",
   "recipes": {
     "cron": ""
   },
   "attributes": {
 
   },
+  "providing": {
+    "cron": [
+
+    ]
+  },
+  "dependencies": {
+
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "platforms": {
+
+  },
+  "description": "Configures cron",
+  "name": "cron",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

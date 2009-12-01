@@ -3,6 +3,7 @@ default.nagios[:webroot] = "/usr/share/nagios3/htdocs"
 default.nagios[:bin_path] = "/usr/sbin/nagios3"
 default.nagios[:config_path] = "/etc/nagios3/nagios.cfg"
 default.nagios[:config_subdir] = "conf.d"
+default.nagios[:users]["nagiosadmin"] = "12345678"
 default.nagios[:notifications_enabled] = 1
 default.nagios[:check_external_commands] = true
 default.nagios[:default_contact_groups] = %w(admins)

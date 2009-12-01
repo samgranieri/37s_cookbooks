@@ -2,10 +2,32 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
+  },
+  "conflicting": {
+
+  },
+  "license": "Apache v2.0",
+  "recipes": {
+    "chef::server": "",
+    "chef": "",
+    "chef::client": ""
+  },
+  "attributes": {
+
+  },
+  "providing": {
+    "chef::server": [
+
+    ],
+    "chef": [
+
+    ],
+    "chef::client": [
+
+    ]
   },
   "dependencies": {
     "logrotate": [
@@ -27,37 +49,15 @@
 
     ]
   },
-  "conflicting": {
-
-  },
-  "description": "Configures chef",
-  "platforms": {
-
-  },
-  "version": "0.7.0",
-  "providing": {
-    "chef::server": [
-
-    ],
-    "chef": [
-
-    ],
-    "chef::client": [
-
-    ]
-  },
   "long_description": "",
   "replacing": {
 
   },
-  "name": "chef",
-  "recipes": {
-    "chef::server": "",
-    "chef": "",
-    "chef::client": ""
-  },
-  "attributes": {
+  "platforms": {
 
   },
+  "description": "Configures chef",
+  "name": "chef",
+  "version": "0.7.0",
   "maintainer": "37signals"
 }

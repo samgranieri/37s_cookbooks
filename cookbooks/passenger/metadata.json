@@ -2,26 +2,27 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
   },
-  "dependencies": {
-    "apache2": [
-
-    ]
-  },
   "conflicting": {
 
   },
-  "description": "Configures passenger",
-  "platforms": {
+  "license": "Apache v2.0",
+  "recipes": {
+    "passenger": ""
+  },
+  "attributes": {
 
   },
-  "version": "0.1.0",
   "providing": {
     "passenger": [
+
+    ]
+  },
+  "dependencies": {
+    "apache2": [
 
     ]
   },
@@ -29,12 +30,11 @@
   "replacing": {
 
   },
-  "name": "passenger",
-  "recipes": {
-    "passenger": ""
-  },
-  "attributes": {
+  "platforms": {
 
   },
+  "description": "Configures passenger",
+  "name": "passenger",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

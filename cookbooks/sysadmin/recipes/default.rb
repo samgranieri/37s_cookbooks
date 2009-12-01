@@ -1,6 +1,11 @@
-package "policykit"
-package "emacs22-nox"
-require_recipe "apt"
+case node[:platform]
+when "debian", "ubuntu"
+  package "policykit"
+  package "emacs22-nox"
+  require_recipe "apt"
+else 
+  package "emacs-nox"
+end
 
 package "vim"
 package "curl"
@@ -26,7 +31,7 @@ directory "/u/system/bin" do
   mode 0755  
 end
 
-%w(memory_stats).each do |file|
+%w(memory_stats rotate-email-folders rotate-misc-log rotate-db-backups).each do |file|
   remote_file "/usr/local/bin/#{file}" do
     source file
     mode 0755

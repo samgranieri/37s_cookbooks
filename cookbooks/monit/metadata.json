@@ -2,37 +2,37 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
-
-  },
-  "dependencies": {
 
   },
   "conflicting": {
 
   },
-  "description": "Configures monit",
-  "platforms": {
-
-  },
-  "version": "0.1.0",
-  "providing": {
-    "monit": [
-
-    ]
-  },
-  "long_description": "Configuresmonit",
-  "replacing": {
-
-  },
-  "name": "monit",
+  "license": "Apache v2.0",
   "recipes": {
     "monit": ""
   },
   "attributes": {
 
   },
+  "providing": {
+    "monit": [
+
+    ]
+  },
+  "dependencies": {
+
+  },
+  "long_description": "Configuresmonit",
+  "replacing": {
+
+  },
+  "platforms": {
+
+  },
+  "description": "Configures monit",
+  "name": "monit",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

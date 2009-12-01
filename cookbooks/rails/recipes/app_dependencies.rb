@@ -8,7 +8,7 @@ directory "/u/apps" do
 end
 
 gem_package "rack" do
-  version "1.0.0"
+  version "1.0.1"
 end
 
 gem_package "system_timer"
@@ -45,6 +45,12 @@ if node[:active_applications]
           link target do
             to source
           end
+        end
+      end
+      
+      if node[:applications][app][:domains]
+        node[:applications][app][:domains].each do |domain|
+          ssl_certificate domain
         end
       end
       

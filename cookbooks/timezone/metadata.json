@@ -2,37 +2,37 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
-
-  },
-  "dependencies": {
 
   },
   "conflicting": {
 
   },
-  "description": "Configures timezone",
-  "platforms": {
-
-  },
-  "version": "0.1.0",
-  "providing": {
-    "timezone": [
-
-    ]
-  },
-  "long_description": "",
-  "replacing": {
-
-  },
-  "name": "timezone",
+  "license": "Apache v2.0",
   "recipes": {
     "timezone": ""
   },
   "attributes": {
 
   },
+  "providing": {
+    "timezone": [
+
+    ]
+  },
+  "dependencies": {
+
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "platforms": {
+
+  },
+  "description": "Configures timezone",
+  "name": "timezone",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

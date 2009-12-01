@@ -2,26 +2,27 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
   },
-  "dependencies": {
-    "passenger": [
-
-    ]
-  },
   "conflicting": {
 
   },
-  "description": "Configures integrity",
-  "platforms": {
+  "license": "Apache v2.0",
+  "recipes": {
+    "integrity": ""
+  },
+  "attributes": {
 
   },
-  "version": "0.1.0",
   "providing": {
     "integrity": [
+
+    ]
+  },
+  "dependencies": {
+    "passenger": [
 
     ]
   },
@@ -29,12 +30,11 @@
   "replacing": {
 
   },
-  "name": "integrity",
-  "recipes": {
-    "integrity": ""
-  },
-  "attributes": {
+  "platforms": {
 
   },
+  "description": "Configures integrity",
+  "name": "integrity",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

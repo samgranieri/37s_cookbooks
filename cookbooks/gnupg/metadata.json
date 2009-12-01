@@ -2,37 +2,37 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
-
-  },
-  "dependencies": {
 
   },
   "conflicting": {
 
   },
-  "description": "Configures gnupg",
-  "platforms": {
-
-  },
-  "version": "0.1.0",
-  "providing": {
-    "gnupg": [
-
-    ]
-  },
-  "long_description": "",
-  "replacing": {
-
-  },
-  "name": "gnupg",
+  "license": "Apache v2.0",
   "recipes": {
     "gnupg": ""
   },
   "attributes": {
 
   },
+  "providing": {
+    "gnupg": [
+
+    ]
+  },
+  "dependencies": {
+
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "platforms": {
+
+  },
+  "description": "Configures gnupg",
+  "name": "gnupg",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

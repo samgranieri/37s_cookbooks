@@ -2,22 +2,21 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
-
-  },
-  "dependencies": {
 
   },
   "conflicting": {
 
   },
-  "description": "Configures apt",
-  "platforms": {
+  "license": "Apache v2.0",
+  "recipes": {
+    "apt": "",
+    "apt::mirror": ""
+  },
+  "attributes": {
 
   },
-  "version": "0.1.0",
   "providing": {
     "apt": [
 
@@ -26,17 +25,18 @@
 
     ]
   },
+  "dependencies": {
+
+  },
   "long_description": "",
   "replacing": {
 
   },
-  "name": "apt",
-  "recipes": {
-    "apt::mirror": "",
-    "apt": ""
-  },
-  "attributes": {
+  "platforms": {
 
   },
+  "description": "Configures apt",
+  "name": "apt",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

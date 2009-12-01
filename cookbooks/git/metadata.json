@@ -2,10 +2,28 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
+  },
+  "conflicting": {
+
+  },
+  "license": "Apache v2.0",
+  "recipes": {
+    "git::server": "",
+    "git": ""
+  },
+  "attributes": {
+
+  },
+  "providing": {
+    "git::server": [
+
+    ],
+    "git": [
+
+    ]
   },
   "dependencies": {
     "gitosis": [
@@ -18,33 +36,15 @@
 
     ]
   },
-  "conflicting": {
-
-  },
-  "description": "Configures git",
-  "platforms": {
-
-  },
-  "version": "0.1.0",
-  "providing": {
-    "git::server": [
-
-    ],
-    "git": [
-
-    ]
-  },
   "long_description": "",
   "replacing": {
 
   },
-  "name": "git",
-  "recipes": {
-    "git": "",
-    "git::server": ""
-  },
-  "attributes": {
+  "platforms": {
 
   },
+  "description": "Configures git",
+  "name": "git",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

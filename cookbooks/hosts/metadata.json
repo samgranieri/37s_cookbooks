@@ -2,37 +2,37 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
-
-  },
-  "dependencies": {
 
   },
   "conflicting": {
 
   },
-  "description": "Configures hosts",
-  "platforms": {
-
-  },
-  "version": "0.1.0",
-  "providing": {
-    "hosts": [
-
-    ]
-  },
-  "long_description": "",
-  "replacing": {
-
-  },
-  "name": "hosts",
+  "license": "Apache v2.0",
   "recipes": {
     "hosts": ""
   },
   "attributes": {
 
   },
+  "providing": {
+    "hosts": [
+
+    ]
+  },
+  "dependencies": {
+
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "platforms": {
+
+  },
+  "description": "Configures hosts",
+  "name": "hosts",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

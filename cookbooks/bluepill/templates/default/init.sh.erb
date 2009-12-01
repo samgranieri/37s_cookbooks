@@ -16,7 +16,7 @@ case "$1" in
     log_daemon_msg "Starting bluepill services"
     for i in <%= @node[:bluepill][:config_dir] %>/*conf.rb; do
       bluepill load $i
-    end
+    done
     log_end_msg 0
     ;;
   stop)
@@ -25,7 +25,7 @@ case "$1" in
   restart)
     for i in <%= @node[:bluepill][:config_dir] %>/*conf.rb; do
       bluepill load $i
-    end
+    done
     ;;
   *)
     log_action_msg "Usage: /etc/init.d/bluepill start"

@@ -2,10 +2,24 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
+  },
+  "conflicting": {
+
+  },
+  "license": "Apache v2.0",
+  "recipes": {
+    "gitweb": ""
+  },
+  "attributes": {
+
+  },
+  "providing": {
+    "gitweb": [
+
+    ]
   },
   "dependencies": {
     "git": [
@@ -15,29 +29,15 @@
 
     ]
   },
-  "conflicting": {
-
-  },
-  "description": "Configures gitweb",
-  "platforms": {
-
-  },
-  "version": "0.1.0",
-  "providing": {
-    "gitweb": [
-
-    ]
-  },
   "long_description": "",
   "replacing": {
 
   },
-  "name": "gitweb",
-  "recipes": {
-    "gitweb": ""
-  },
-  "attributes": {
+  "platforms": {
 
   },
+  "description": "Configures gitweb",
+  "name": "gitweb",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

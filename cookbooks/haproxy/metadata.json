@@ -2,37 +2,37 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
-
-  },
-  "dependencies": {
 
   },
   "conflicting": {
 
   },
-  "description": "Configures haproxy",
-  "platforms": {
-
-  },
-  "version": "0.1.0",
-  "providing": {
-    "haproxy": [
-
-    ]
-  },
-  "long_description": "",
-  "replacing": {
-
-  },
-  "name": "haproxy",
+  "license": "Apache v2.0",
   "recipes": {
     "haproxy": ""
   },
   "attributes": {
 
   },
+  "providing": {
+    "haproxy": [
+
+    ]
+  },
+  "dependencies": {
+
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "platforms": {
+
+  },
+  "description": "Configures haproxy",
+  "name": "haproxy",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

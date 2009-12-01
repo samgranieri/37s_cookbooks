@@ -2,37 +2,37 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
-
-  },
-  "dependencies": {
 
   },
   "conflicting": {
 
   },
-  "description": "Configures users and groups",
-  "platforms": {
-
-  },
-  "version": "0.1.0",
-  "providing": {
-    "users": [
-
-    ]
-  },
-  "long_description": "",
-  "replacing": {
-
-  },
-  "name": "users",
+  "license": "Apache v2.0",
   "recipes": {
     "users": ""
   },
   "attributes": {
 
   },
+  "providing": {
+    "users": [
+
+    ]
+  },
+  "dependencies": {
+
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "platforms": {
+
+  },
+  "description": "Configures users and groups",
+  "name": "users",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

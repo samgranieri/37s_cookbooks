@@ -2,26 +2,27 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
 
   },
-  "dependencies": {
-    "java": [
-
-    ]
-  },
   "conflicting": {
 
   },
-  "description": "Configures tomcat",
-  "platforms": {
+  "license": "Apache v2.0",
+  "recipes": {
+    "tomcat": ""
+  },
+  "attributes": {
 
   },
-  "version": "0.1.0",
   "providing": {
     "tomcat": [
+
+    ]
+  },
+  "dependencies": {
+    "java": [
 
     ]
   },
@@ -29,12 +30,11 @@
   "replacing": {
 
   },
-  "name": "tomcat",
-  "recipes": {
-    "tomcat": ""
-  },
-  "attributes": {
+  "platforms": {
 
   },
+  "description": "Configures tomcat",
+  "name": "tomcat",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

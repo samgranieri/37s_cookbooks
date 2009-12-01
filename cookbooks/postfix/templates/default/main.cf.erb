@@ -33,3 +33,5 @@ alias_database = hash:/etc/aliases
 
 # Disable rewriting of address lines and the envelope.
 local_header_rewrite_clients = static:none
+
+message_size_limit = <%= @node[:postfix][:message_size_limit] %>

@@ -15,7 +15,7 @@ God::Contacts::Email.server_settings = {
 
 God.contact(:email) do |c|
   c.name = 'ops'
-  c.email = '<%= @node[:syadmin_email] %>'
+  c.email = '<%= @node[:sysadmin_email] %>'
 end
 
 God::Contacts::Jabber.settings = { :jabber_id => '<%= @node[:jabber_notifier_username] %>',

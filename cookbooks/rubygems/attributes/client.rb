@@ -1,1 +1,1 @@
-default.rubygems[:sources] = ['gems', 'localgems']
+default.rubygems[:sources] = ['gems', 'localgems', 'gemcutter.org']

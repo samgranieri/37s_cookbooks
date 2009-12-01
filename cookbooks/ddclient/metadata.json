@@ -2,37 +2,37 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
-
-  },
-  "dependencies": {
 
   },
   "conflicting": {
 
   },
-  "description": "Configures ddclient",
-  "platforms": {
-
-  },
-  "version": "0.1.0",
-  "providing": {
-    "ddclient": [
-
-    ]
-  },
-  "long_description": "",
-  "replacing": {
-
-  },
-  "name": "ddclient",
+  "license": "Apache v2.0",
   "recipes": {
     "ddclient": ""
   },
   "attributes": {
 
   },
+  "providing": {
+    "ddclient": [
+
+    ]
+  },
+  "dependencies": {
+
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "platforms": {
+
+  },
+  "description": "Configures ddclient",
+  "name": "ddclient",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

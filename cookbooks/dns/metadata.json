@@ -2,22 +2,21 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
-
-  },
-  "dependencies": {
 
   },
   "conflicting": {
 
   },
-  "description": "Configures dns",
-  "platforms": {
+  "license": "Apache v2.0",
+  "recipes": {
+    "dns": "",
+    "dns::client": ""
+  },
+  "attributes": {
 
   },
-  "version": "0.1.0",
   "providing": {
     "dns::client": [
 
@@ -26,17 +25,18 @@
 
     ]
   },
+  "dependencies": {
+
+  },
   "long_description": "",
   "replacing": {
 
   },
-  "name": "dns",
-  "recipes": {
-    "dns::client": "",
-    "dns": ""
-  },
-  "attributes": {
+  "platforms": {
 
   },
+  "description": "Configures dns",
+  "name": "dns",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

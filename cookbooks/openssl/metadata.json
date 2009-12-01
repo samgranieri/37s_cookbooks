@@ -2,37 +2,37 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
-
-  },
-  "dependencies": {
 
   },
   "conflicting": {
 
   },
-  "description": "Configures openssl",
-  "platforms": {
-
-  },
-  "version": "0.1.0",
-  "providing": {
-    "openssl": [
-
-    ]
-  },
-  "long_description": "",
-  "replacing": {
-
-  },
-  "name": "openssl",
+  "license": "Apache v2.0",
   "recipes": {
     "openssl": ""
   },
   "attributes": {
 
   },
+  "providing": {
+    "openssl": [
+
+    ]
+  },
+  "dependencies": {
+
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "platforms": {
+
+  },
+  "description": "Configures openssl",
+  "name": "openssl",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }

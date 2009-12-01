@@ -2,37 +2,37 @@
   "recommendations": {
 
   },
-  "license": "Apache v2.0",
   "maintainer_email": "sysadmins@37signals.com",
   "suggestions": {
-
-  },
-  "dependencies": {
 
   },
   "conflicting": {
 
   },
-  "description": "Configures logrotate",
-  "platforms": {
-
-  },
-  "version": "0.1.0",
-  "providing": {
-    "logrotate": [
-
-    ]
-  },
-  "long_description": "",
-  "replacing": {
-
-  },
-  "name": "logrotate",
+  "license": "Apache v2.0",
   "recipes": {
     "logrotate": ""
   },
   "attributes": {
 
   },
+  "providing": {
+    "logrotate": [
+
+    ]
+  },
+  "dependencies": {
+
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "platforms": {
+
+  },
+  "description": "Configures logrotate",
+  "name": "logrotate",
+  "version": "0.1.0",
   "maintainer": "37signals"
 }
