@@ -1,5 +1,6 @@
 name "ganglia"
 description "Ganglia System Monitoring"
+recipes "ganglia::client"
 
 default_attributes :ganglia => {
                      :cluster_name => '37signals',
