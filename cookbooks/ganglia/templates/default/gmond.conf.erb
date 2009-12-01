@@ -37,7 +37,7 @@ udp_send_channel {
 
 <% if @node[:ipaddress] == sever.split(':').first %>
 udp_recv_channel {
-  port = <%= server.split(':').last
+  port = <%= server.split(':').last %>
   family = inet4
 }
 <% end %>
