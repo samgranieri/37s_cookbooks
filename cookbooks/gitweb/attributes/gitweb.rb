@@ -1,1 +1,0 @@
-default.gitweb[:config_path] = "/etc/gitweb"

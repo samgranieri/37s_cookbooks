@@ -1,1 +1,0 @@
-cron Mash.new unless attribute?(:cron)
