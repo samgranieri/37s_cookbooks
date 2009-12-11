@@ -1,0 +1,31 @@
+PassengerDefaultUser chef
+PassengerMaxPoolSize 20
+
+<VirtualHost *:443>
+  ServerAdmin   <%= @node[:sysadmin_email] %>
+  ServerName    chef.<%= @node[:domain] %>
+  ServerAlias   chef
+  DocumentRoot  <%= @node[:chef][:server_path]%>/public
+  ErrorLog      /var/log/chef/apache_error.log
+  SSLEngine     On
+
+  # Enforce a decent level of encryption
+  SSLProtocol -ALL +SSLv3 +TLSv1
+  SSLCipherSuite ALL:!aNULL:!ADH:!eNULL:!LOW:!EXP:RC4+RSA:+HIGH:+MEDIUM
+
+  SSLCertificateFile     /var/chef/certificates/chef.<%= @node[:domain] %>.crt
+  SSLCertificateKeyFile  /var/chef/certificates/chef.<%= @node[:domain] %>.key
+
+  Alias /facebox <%= @node[:chef][:server_slice_path] %>/public/facebox
+  Alias /images <%= @node[:chef][:server_slice_path] %>/public/images
+  Alias /javascripts <%= @node[:chef][:server_slice_path] %>/public/javascripts
+  Alias /stylesheets <%= @node[:chef][:server_slice_path] %>/public/stylesheets
+  Alias /web-app-theme <%= @node[:chef][:server_slice_path] %>/public/web-app-theme
+
+  # Asset Rewrites
+  RewriteEngine On
+  RewriteRule ^/(facebox/.*)$     /slices/chef-server-slice/$1
+  RewriteRule ^/(images/.*)$      /slices/chef-server-slice/$1
+  RewriteRule ^/(javascripts/.*)$ /slices/chef-server-slice/$1
+  RewriteRule ^/(stylesheets/.*)$ /slices/chef-server-slice/$1
+</VirtualHost>

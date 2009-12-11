@@ -1,0 +1,40 @@
+{
+  "replacing": {
+
+  },
+  "long_description": "",
+  "attributes": {
+
+  },
+  "maintainer": "37signals",
+  "recommendations": {
+
+  },
+  "license": "Apache v2.0",
+  "recipes": {
+    "passenger": ""
+  },
+  "maintainer_email": "sysadmins@37signals.com",
+  "suggestions": {
+
+  },
+  "dependencies": {
+    "apache2": [
+
+    ]
+  },
+  "conflicting": {
+
+  },
+  "platforms": {
+
+  },
+  "description": "Configures passenger",
+  "version": "0.1.0",
+  "name": "passenger",
+  "providing": {
+    "passenger": [
+
+    ]
+  }
+}

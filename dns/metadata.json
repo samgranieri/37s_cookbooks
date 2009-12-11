@@ -1,0 +1,42 @@
+{
+  "replacing": {
+
+  },
+  "long_description": "",
+  "attributes": {
+
+  },
+  "maintainer": "37signals",
+  "recommendations": {
+
+  },
+  "license": "Apache v2.0",
+  "recipes": {
+    "dns::client": "",
+    "dns": ""
+  },
+  "maintainer_email": "sysadmins@37signals.com",
+  "suggestions": {
+
+  },
+  "dependencies": {
+
+  },
+  "conflicting": {
+
+  },
+  "platforms": {
+
+  },
+  "description": "Configures dns",
+  "version": "0.1.0",
+  "name": "dns",
+  "providing": {
+    "dns::client": [
+
+    ],
+    "dns": [
+
+    ]
+  }
+}
