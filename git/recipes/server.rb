@@ -48,6 +48,7 @@ if node[:git][:repos]
       source "post-receive-hook.erb"
       owner "git"
       group "git"
+      variables :repo => repo, :config => config
       mode 0755
     end
   end

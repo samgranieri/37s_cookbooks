@@ -1,4 +1,4 @@
-require_recipe "rails::app_dependencies"
+# TODO: consolidate this recipe and app_dependencies
 
 web_server = node[:web_server]
 system_web_server = web_server == 'apache' ? 'apache2' : web_server
@@ -16,6 +16,12 @@ if node[:active_applications]
           require_recipe "apache2::mod_#{mod}"
           apache_module mod
         end
+      end
+    end
+    
+    if node[:applications][app][:domains]
+      node[:applications][app][:domains].each do |domain|
+        ssl_certificate domain
       end
     end
     

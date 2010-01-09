@@ -6,6 +6,7 @@ package "gmetad"
 
 template "/etc/ganglia/vhost.conf" do
   source "ganglia-vhost.conf.erb"
+  backup false
   owner "root"
   group "www-data"
   mode 0640
@@ -17,21 +18,21 @@ end
 
 service "gmetad" do
   enabled true
-  running true
 end
 
-clusters = {}
-search(:node, '*', %w(ganglia_cluster_name fqdn)) do	|node|
+cluster_nodes = {}
+search(:node, '*', %w(fqdn ganglia_cluster_name)) do |node|
   next unless node['ganglia_cluster_name']
-  clusters[node['ganglia_cluster_name']] ||= []
-  clusters[node['ganglia_cluster_name']] << node['fqdn']
+  cluster_nodes[node['ganglia_cluster_name']] ||= []
+  cluster_nodes[node['ganglia_cluster_name']] << node['fqdn'].split('.').first
 end
 
 template "/etc/ganglia/gmetad.conf" do
   source "gmetad.conf.erb"
+  backup false
   owner "ganglia"
   group "ganglia"
   mode 0644
-  variables(:clusters => clusters)
+  variables(:cluster_nodes => cluster_nodes)
   notifies :restart, resources(:service => "gmetad")
 end

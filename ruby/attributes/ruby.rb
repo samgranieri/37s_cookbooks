@@ -7,6 +7,6 @@ default.ruby[:gc][:malloc_limit] = 50000000
 default.ruby[:gc][:heap_free_min] = 4096
 default.ruby[:gc][:enabled] = true
 
-ruby[:bin_dir] = languages[:ruby][:ruby_bin].gsub(/\/ruby.*$/, "")
+default.ruby[:bin_dir] = defined?(Gem) ? Gem.bindir : "/usr/local/bin"
 
-ruby[:bin_path] = ruby[:gc][:enabled] ? "#{ruby[:bin_dir]}/ruby_gc_wrapper" : "#{ruby[:bin_dir]}/ruby"
+default.ruby[:bin_path] = ruby[:gc][:enabled] ? "#{ruby[:bin_dir]}/ruby_gc_wrapper" : "#{ruby[:bin_dir]}/ruby"

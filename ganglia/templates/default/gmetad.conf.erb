@@ -36,8 +36,9 @@
 # data_source "my grid" 50 1.3.4.7:8655 grid.org:8651 grid-backup.org:8651
 # data_source "another source" 1.3.4.7:8655  1.3.4.8
 
-<% @clusters.each do |name, hosts| %>
-data_source "<%= name %>" <%= @node[:ganglia][:interval] %> <%= hosts.sort.join(' ') %>
+<% @node[:ganglia][:clusters].each do |cluster| %>
+<%   next unless @cluster_nodes[cluster[:name]] %>
+data_source "<%= cluster[:name] %>" <%= cluster[:interval] %> <%= @cluster_nodes[cluster[:name]].join(' ') %>
 <% end %>
 
 #
@@ -62,8 +63,8 @@ data_source "<%= name %>" <%= @node[:ganglia][:interval] %> <%= hosts.sort.join(
 # The name of this Grid. All the data sources above will be wrapped in a GRID
 # tag with this name.
 # default: unspecified
-# gridname "MyGrid"
-#
+gridname "<%= @node[:ganglia][:grid_name] %>"
+
 #-------------------------------------------------------------------------------
 # The authority URL for this grid. Used by other gmetads to locate graphs
 # for our data sources. Generally points to a ganglia/
@@ -92,7 +93,7 @@ data_source "<%= name %>" <%= @node[:ganglia][:interval] %> <%= hosts.sort.join(
 #-------------------------------------------------------------------------------
 # User gmetad will setuid to (defaults to "nobody")
 # default: "nobody"
-# setuid_username "nobody"
+setuid_username "ganglia"
 #
 #-------------------------------------------------------------------------------
 # The port gmetad will answer requests for XML
@@ -113,4 +114,4 @@ data_source "<%= name %>" <%= @node[:ganglia][:interval] %> <%= hosts.sort.join(
 #-------------------------------------------------------------------------------
 # Where gmetad stores its round-robin databases
 # default: "/var/lib/ganglia/rrds"
-# rrd_rootdir "/some/other/place"
+# rrd_rootdir "/var/lib/ganglia/rrds"

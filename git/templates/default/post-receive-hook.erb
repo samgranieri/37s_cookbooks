@@ -1,1 +1,6 @@
-<%= @node[:languages][:ruby][:ruby_bin] %> /u/system/spitfire/spitfire-git.rb
+SPITFIRE_ROOM=<%= @config[:campfire_room] || 1 %> <%= @node[:languages][:ruby][:ruby_bin] %> /u/system/spitfire/spitfire-git.rb
+<% if @config[:ci] %>
+read msg
+BRANCH=`echo $msg | cut -d/ -f3`
+curl --silent -d "post_receive=1" http://integrity:4567/<%= @repo %>-$BRANCH
+<% end %>

@@ -26,11 +26,19 @@ if node[:active_applications]
       end
     end
 
-    send("#{web_server}_site".to_sym, full_name) do
-      config_path path
-      only_if { File.exists?("/etc/#{system_web_server}/sites-available/#{full_name}") }
+    if !conf[:app_only]
+      send("#{web_server}_site".to_sym, full_name) do
+        config_path path
+        only_if { File.exists?("/etc/#{system_web_server}/sites-available/#{full_name}") }
+      end
+      
+      if node[:applications][app][:domains]
+        node[:applications][app][:domains].each do |domain|
+          ssl_certificate domain
+        end
+      end
     end
-
+    
     logrotate full_name do
       files "/u/apps/#{app}/current/log/*.log"
       frequency "daily"
@@ -54,12 +62,6 @@ if node[:active_applications]
       end
     end
     
-    if node[:applications][app][:domains]
-      node[:applications][app][:domains].each do |domain|
-        ssl_certificate domain
-      end
-    end
-
   end
 else
   Chef::Log.info "Add an :active_applications attribute to configure this node's apps"

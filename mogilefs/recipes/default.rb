@@ -18,6 +18,7 @@ end
 template "#{node[:mogilefs][:path]}/etc/mogilefs.conf" do
   source "mogilefs.conf.erb"
   owner "root"
+  group "app"
   mode 0644
 end
 

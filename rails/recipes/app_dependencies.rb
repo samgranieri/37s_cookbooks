@@ -19,6 +19,8 @@ if node[:active_applications]
 
     directory "/u/apps/#{app}/shared/config" do
       recursive true
+      owner "app"
+      group "app"
     end
     
     if node[:applications][app]

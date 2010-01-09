@@ -37,7 +37,7 @@ end
 
 logrotate "syslog-remote" do
   restart_command "/etc/init.d/syslog-ng reload 2>&1 || true"
-  files ['/u/logs/syslog/messages', "/u/logs/syslog/secure", "/u/logs/syslog/maillog", "/u/logs/syslog/cron"]
+  files ['/u/logs/syslog/messages', "/u/logs/syslog/secure", "/u/logs/syslog/maillog", "/u/logs/syslog/cron", "/u/logs/syslog/bluepill"]
 end
 
 node[:applications].each do |app, config|

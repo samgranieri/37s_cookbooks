@@ -16,12 +16,3 @@ end
 apache_site "gitweb" do
   config_path "/etc/gitweb/apache.conf"
 end
-
-if node[:git][:repos]
-  node[:git][:repos].each do |name, config|
-    link "#{node[:gitweb][:repo_root]}/#{name}" do
-      to "#{node[:git][:repo_root]}/#{name}"
-      not_if { config[:gitweb] == false }
-    end
-  end
-end
