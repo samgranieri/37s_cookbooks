@@ -1,22 +1,42 @@
 {
-  "replacing": {
+  "groupings": {
 
   },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "unicorn",
   "recommendations": {
 
   },
+  "platforms": {
+
+  },
   "license": "Apache v2.0",
+  "maintainer": "unicorn",
+  "suggestions": {
+
+  },
+  "maintainer_email": "sysadmins@37signals.com",
+  "version": "0.1.0",
+  "conflicting": {
+
+  },
+  "description": "Configures unicorn",
+  "providing": {
+    "unicorn": [
+
+    ],
+    "unicorn::apps": [
+
+    ]
+  },
+  "name": "unicorn",
+  "attributes": {
+
+  },
+  "long_description": "",
   "recipes": {
     "unicorn": "",
     "unicorn::apps": ""
   },
-  "maintainer_email": "sysadmins@37signals.com",
-  "suggestions": {
+  "replacing": {
 
   },
   "dependencies": {
@@ -30,23 +50,6 @@
 
     ],
     "ruby": [
-
-    ]
-  },
-  "conflicting": {
-
-  },
-  "platforms": {
-
-  },
-  "description": "Configures unicorn",
-  "version": "0.1.0",
-  "name": "unicorn",
-  "providing": {
-    "unicorn": [
-
-    ],
-    "unicorn::apps": [
 
     ]
   }

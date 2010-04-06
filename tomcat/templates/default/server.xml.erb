@@ -10,7 +10,7 @@
   <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
 
   <Service name="Catalina">
-    <Connector port="<%= @node[:tomcat][:port] %>" protocol="HTTP/1.1" 
+    <Connector maxThreads="<%= @node[:tomcat][:max_thread] %>" backlog="<%= @node[:tomcat][:backlog] %>" port="<%= @node[:tomcat][:port] %>" protocol="HTTP/1.1" 
                URIEncoding="UTF-8"
                connectionTimeout="20000" 
                redirectPort="8443" />

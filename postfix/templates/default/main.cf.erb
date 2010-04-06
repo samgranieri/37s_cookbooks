@@ -35,3 +35,6 @@ alias_database = hash:/etc/aliases
 local_header_rewrite_clients = static:none
 
 message_size_limit = <%= @node[:postfix][:message_size_limit] %>
+
+# Reduce per-destination concurrency limits
+default_destination_concurrency_limit = 5

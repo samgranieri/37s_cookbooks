@@ -1,37 +1,24 @@
 {
-  "replacing": {
+  "groupings": {
 
   },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
-
-  },
-  "license": "Apache v2.0",
-  "recipes": {
-    "postfix::aliases": "",
-    "postfix::virtual": "",
-    "postfix": ""
-  },
-  "maintainer_email": "sysadmins@37signals.com",
-  "suggestions": {
-
-  },
-  "dependencies": {
-
-  },
-  "conflicting": {
 
   },
   "platforms": {
 
   },
-  "description": "Configures postfix",
+  "license": "Apache v2.0",
+  "maintainer": "37signals",
+  "suggestions": {
+
+  },
+  "maintainer_email": "sysadmins@37signals.com",
   "version": "0.1.0",
-  "name": "postfix",
+  "conflicting": {
+
+  },
+  "description": "Configures postfix",
   "providing": {
     "postfix::aliases": [
 
@@ -42,5 +29,21 @@
     "postfix": [
 
     ]
+  },
+  "name": "postfix",
+  "attributes": {
+
+  },
+  "long_description": "",
+  "recipes": {
+    "postfix::aliases": "",
+    "postfix::virtual": "",
+    "postfix": ""
+  },
+  "replacing": {
+
+  },
+  "dependencies": {
+
   }
 }

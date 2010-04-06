@@ -20,3 +20,27 @@ template "/etc/ganglia/gmond.conf" do
             })
   notifies :restart, resources(:service => "ganglia-monitor")
 end
+
+remote_file "/usr/local/bin/ganglia_disk_stats.pl" do
+  source "ganglia_disk_stats.pl"
+  owner "root"
+  group "root"
+  mode "0755"
+end
+
+node[:filesystem].each do |device,options|
+  next unless options[:mount] == "/"
+  disk = device.gsub(/\/dev\//, '').gsub(/[0-9]+$/, '')
+  cron "gather ganglia I/O statistics for #{disk}" do
+    command "/usr/local/bin/ganglia_disk_stats.pl #{disk}"
+    minute "*"
+  end
+end
+
+node[:ganglia][:disks].each do |disk|
+  cron "gather ganglia I/O statistics for #{disk}" do
+    command "/usr/local/bin/ganglia_disk_stats.pl #{disk}"
+    minute "*"
+  end
+end
+  

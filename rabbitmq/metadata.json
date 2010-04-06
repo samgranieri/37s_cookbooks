@@ -1,18 +1,12 @@
 {
-  "maintainer": "Opscode, Inc.",
-  "description": "Installs the RabbitMQ AMQP Broker",
+  "groupings": {
+
+  },
   "recommendations": {
 
   },
-  "maintainer_email": "cookbooks@opscode.com",
-  "recipes": {
-    "rabbitmq": ""
-  },
-  "suggestions": {
-
-  },
   "platforms": {
-    "ubuntu": [
+    "debian": [
 
     ],
     "fedora": [
@@ -21,28 +15,37 @@
     "centos": [
 
     ],
-    "debian": [
+    "ubuntu": [
 
     ],
     "redhat": [
 
     ]
   },
+  "license": "Apache 2.0",
+  "maintainer": "Opscode, Inc.",
+  "suggestions": {
+
+  },
+  "maintainer_email": "cookbooks@opscode.com",
   "version": "0.8.0",
-  "name": "rabbitmq",
   "conflicting": {
 
   },
-  "attributes": {
-
-  },
+  "description": "Installs the RabbitMQ AMQP Broker",
   "providing": {
     "rabbitmq": [
 
     ]
   },
-  "license": "Apache 2.0",
+  "name": "rabbitmq",
+  "attributes": {
+
+  },
   "long_description": "",
+  "recipes": {
+    "rabbitmq": ""
+  },
   "replacing": {
 
   },

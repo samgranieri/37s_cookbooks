@@ -1,37 +1,24 @@
 {
-  "replacing": {
+  "groupings": {
 
   },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
-
-  },
-  "license": "Apache v2.0",
-  "recipes": {
-    "nfs": "",
-    "nfs::client": "",
-    "nfs::server": ""
-  },
-  "maintainer_email": "sysadmins@37signals.com",
-  "suggestions": {
-
-  },
-  "dependencies": {
-
-  },
-  "conflicting": {
 
   },
   "platforms": {
 
   },
-  "description": "Configures NFS",
+  "license": "Apache v2.0",
+  "maintainer": "37signals",
+  "suggestions": {
+
+  },
+  "maintainer_email": "sysadmins@37signals.com",
   "version": "0.1.0",
-  "name": "nfs",
+  "conflicting": {
+
+  },
+  "description": "Configures NFS",
   "providing": {
     "nfs": [
 
@@ -42,5 +29,21 @@
     "nfs::server": [
 
     ]
+  },
+  "name": "nfs",
+  "attributes": {
+
+  },
+  "long_description": "",
+  "recipes": {
+    "nfs": "",
+    "nfs::client": "",
+    "nfs::server": ""
+  },
+  "replacing": {
+
+  },
+  "dependencies": {
+
   }
 }

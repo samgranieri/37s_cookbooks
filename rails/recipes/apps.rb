@@ -12,9 +12,10 @@ if node[:active_applications]
     full_name = "#{app}_#{conf[:env]}"
     filename = "#{conf[:env]}.conf"
     path = "/u/apps/#{app}/current/config/#{web_server}/#{filename}"
+    app_name = conf[:app_name] || app
 
-    if node[:applications][app]
-      if modules = node[:applications][app]["#{web_server}_modules"]
+    if node[:applications][app_name]
+      if modules = node[:applications][app_name]["#{web_server}_modules"]
         modules.each do |mod|
           if web_server == "apache"
             require_recipe "apache2::mod_#{mod}"
@@ -32,8 +33,8 @@ if node[:active_applications]
         only_if { File.exists?("/etc/#{system_web_server}/sites-available/#{full_name}") }
       end
       
-      if node[:applications][app][:domains]
-        node[:applications][app][:domains].each do |domain|
+      if node[:applications][app_name][:domains]
+        node[:applications][app_name][:domains].each do |domain|
           ssl_certificate domain
         end
       end
@@ -47,18 +48,20 @@ if node[:active_applications]
       restart_command "/etc/init.d/#{system_web_server} reload > /dev/null"
     end
 
-    if node[:rails][:app_server] != "passenger"
+    if node[:rails][:app_server] !~ /passenger/
       bluepill_monitor app do
         cookbook node[:rails][:app_server]
         source "bluepill.conf.erb"
-        rails_env conf[:env]
-        rails_root "/u/apps/#{app}/current"
+        env conf[:env]
+        app_root "/u/apps/#{app}/current"
+        preload !node[:applications][app_name][:preload].nil? ? node[:applications][app_name][:preload] : true
         interval 30
         user "app"
         group "app"
         memory_limit 250 # megabytes
         cpu_limit 50 # percent
-        rack_config_path "/u/apps/#{app}/current/config.ru" if node[:applications][app][:rack_config]
+        rack_config_path "/u/apps/#{app}/current/config.ru" if node[:applications][app_name][:rack_config]
+        use_bundler !node[:applications][app_name][:use_bundler].nil? ? node[:applications][app_name][:use_bundler] : false
       end
     end
     

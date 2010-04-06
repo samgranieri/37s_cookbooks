@@ -4,21 +4,14 @@ gem_package "integrity" do
   source "http://localgems"
 end
 
-gem_package "integrity-campfire" do
-  source "http://localgems"
-end
-
-gem_package "fiveruns-dash-rails" do
-  source "http://gems.github.com"
-end
-  
-gem_package "do_sqlite3"
-gem_package "do_mysql"
-gem_package "mocha"
-gem_package "rcov"
-gem_package "ruby-debug"
-gem_package "quietbacktrace"
-gem_package "tinder"
+# uses bundler now
+# gem_package "do_sqlite3"
+# gem_package "do_mysql"
+# gem_package "mocha"
+# gem_package "rcov"
+# gem_package "ruby-debug"
+# gem_package "quietbacktrace"
+# gem_package "tinder"
 
 if node[:integrity][:projects]
   node[:integrity][:projects].each do |app|
@@ -71,12 +64,12 @@ template "#{node[:integrity][:path]}/config.ru" do
   mode 0644
 end
 
-template "#{node[:integrity][:path]}/config.yml" do
-  source "config.yml.erb"
-  owner "app"
-  group "app"
-  mode 0644
-end
+# template "#{node[:integrity][:path]}/config.yml" do
+#   source "config.yml.erb"
+#   owner "app"
+#   group "app"
+#   mode 0644
+# end
 
 template "#{node[:integrity][:path]}/vhost.conf" do
   source "vhost.conf.erb"
@@ -85,19 +78,19 @@ template "#{node[:integrity][:path]}/vhost.conf" do
   mode 0644
 end
 
-remote_file "#{node[:integrity][:path]}/integrity_build.rb" do
-  source "integrity_build.rb"
-  owner "app"
-  group "app"
-  mode 0700
-end
-
-cron "integrity_build" do
-  user "app"
-  minute "*/10"
-  command "/usr/local/bin/ruby #{node[:integrity][:path]}/integrity_build.rb"
-  only_if { File.exist?(File.join(node[:integrity][:path], "integrity_build.rb")) }
-end
+# remote_file "#{node[:integrity][:path]}/integrity_build.rb" do
+#   source "integrity_build.rb"
+#   owner "app"
+#   group "app"
+#   mode 0700
+# end
+# 
+# cron "integrity_build" do
+#   user "app"
+#   minute "*/10"
+#   command "/usr/local/bin/ruby #{node[:integrity][:path]}/integrity_build.rb"
+#   only_if { File.exist?(File.join(node[:integrity][:path], "integrity_build.rb")) }
+# end
 
 apache_site "integrity" do
   config_path "#{node[:integrity][:path]}/vhost.conf"

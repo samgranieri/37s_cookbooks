@@ -9,9 +9,10 @@ if node[:active_applications]
     full_name = "#{app}_#{conf[:env]}"
     filename = "#{conf[:env]}_web.conf"
     path = "/u/apps/#{app}/current/config/#{system_web_server}/#{filename}"
+    app_name = conf[:app_name] || app
     
     if system_web_server == "apache"
-      if modules = node[:applications][app][:apache_modules]
+      if modules = node[:applications][app_name][:apache_modules]
         modules.each do |mod|
           require_recipe "apache2::mod_#{mod}"
           apache_module mod
@@ -19,8 +20,8 @@ if node[:active_applications]
       end
     end
     
-    if node[:applications][app][:domains]
-      node[:applications][app][:domains].each do |domain|
+    if node[:applications][app_name][:domains]
+      node[:applications][app_name][:domains].each do |domain|
         ssl_certificate domain
       end
     end

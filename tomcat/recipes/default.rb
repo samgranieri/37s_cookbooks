@@ -3,7 +3,10 @@ require_recipe "java"
 return unless ["ubuntu", "debian"].include?(node[:platform])
 
 package "tomcat6"
-service "tomcat6"
+
+service "tomcat6" do
+  supports [ :status, :restart ]
+end
 
 template "/etc/default/tomcat6" do
   source "default.tomcat6.erb"

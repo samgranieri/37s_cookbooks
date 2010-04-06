@@ -1,4 +1,4 @@
-Bluepill.application("mogstored", :log_file => "/var/log/bluepill/bluepill_mogstored.log") do |app|
+Bluepill.application("mogstored") do |app|
   app.process("mogstored") do |process|
     process.start_command = "/u/apps/mogilefs/bin/mogstored"
     process.stdout = process.stderr = "/var/log/bluepill/mogstored.log"

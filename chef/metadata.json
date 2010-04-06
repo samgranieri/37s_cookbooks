@@ -1,22 +1,46 @@
 {
-  "replacing": {
+  "groupings": {
 
   },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
 
   },
+  "platforms": {
+
+  },
   "license": "Apache v2.0",
-  "recipes": {
-    "chef::server": "",
-    "chef::client": ""
+  "maintainer": "37signals",
+  "suggestions": {
+
   },
   "maintainer_email": "sysadmins@37signals.com",
-  "suggestions": {
+  "version": "0.7.0",
+  "conflicting": {
+
+  },
+  "description": "Configures chef",
+  "providing": {
+    "chef::server": [
+
+    ],
+    "chef::rabbitmq": [
+
+    ],
+    "chef::client": [
+
+    ]
+  },
+  "name": "chef",
+  "attributes": {
+
+  },
+  "long_description": "",
+  "recipes": {
+    "chef::server": "",
+    "chef::rabbitmq": "",
+    "chef::client": ""
+  },
+  "replacing": {
 
   },
   "dependencies": {
@@ -29,6 +53,9 @@
     "couchdb": [
 
     ],
+    "unicorn": [
+
+    ],
     "openssl": [
 
     ],
@@ -36,23 +63,6 @@
 
     ],
     "apache2": [
-
-    ]
-  },
-  "conflicting": {
-
-  },
-  "platforms": {
-
-  },
-  "description": "Configures chef",
-  "version": "0.7.0",
-  "name": "chef",
-  "providing": {
-    "chef::server": [
-
-    ],
-    "chef::client": [
 
     ]
   }

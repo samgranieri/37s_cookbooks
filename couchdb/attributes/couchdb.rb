@@ -1,2 +1,1 @@
-couchdb Mash.new unless attribute?(:couchdb)
-couchdb[:version] = "0.8.0-1"
+default.couchdb[:version] = "0.10.0-0ubuntu3"

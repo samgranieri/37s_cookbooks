@@ -1,39 +1,42 @@
 {
-  "replacing": {
+  "groupings": {
 
   },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
-
-  },
-  "license": "Apache v2.0",
-  "recipes": {
-    "erlang": ""
-  },
-  "maintainer_email": "sysadmins@37signals.com",
-  "suggestions": {
-
-  },
-  "dependencies": {
-    "runit": [
-
-    ]
-  },
-  "conflicting": {
 
   },
   "platforms": {
 
   },
-  "description": "Configures erlang",
+  "license": "Apache v2.0",
+  "maintainer": "37signals",
+  "suggestions": {
+
+  },
+  "maintainer_email": "sysadmins@37signals.com",
   "version": "0.1.0",
-  "name": "erlang",
+  "conflicting": {
+
+  },
+  "description": "Configures erlang",
   "providing": {
     "erlang": [
+
+    ]
+  },
+  "name": "erlang",
+  "attributes": {
+
+  },
+  "long_description": "",
+  "recipes": {
+    "erlang": ""
+  },
+  "replacing": {
+
+  },
+  "dependencies": {
+    "runit": [
 
     ]
   }

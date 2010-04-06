@@ -1,31 +1,63 @@
-PassengerDefaultUser chef
-PassengerMaxPoolSize 20
+upstream chef_server {
+  server unix:/var/chef/sockets/chef-server.sock;
+}
 
-<VirtualHost *:443>
-  ServerAdmin   <%= @node[:sysadmin_email] %>
-  ServerName    chef.<%= @node[:domain] %>
-  ServerAlias   chef
-  DocumentRoot  <%= @node[:chef][:server_path]%>/public
-  ErrorLog      /var/log/chef/apache_error.log
-  SSLEngine     On
+server {
+  listen 443;
+  server_name chef.<%= @node[:domain] %> chef;
+  root <%= @node[:chef][:server_api_path]%>/public;
 
-  # Enforce a decent level of encryption
-  SSLProtocol -ALL +SSLv3 +TLSv1
-  SSLCipherSuite ALL:!aNULL:!ADH:!eNULL:!LOW:!EXP:RC4+RSA:+HIGH:+MEDIUM
+  set $forwarded_proto https;
+  ssl on;
+  ssl_protocols SSLv3 TLSv1;
+  ssl_ciphers ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:-LOW:-SSLv2:-EXP;
+  
+  ssl_certificate /etc/chef/certificates/chef.<%= @node[:domain] %>.crt;
+  ssl_certificate_key /etc/chef/certificates/chef.<%= @node[:domain] %>.key;
 
-  SSLCertificateFile     /var/chef/certificates/chef.<%= @node[:domain] %>.crt
-  SSLCertificateKeyFile  /var/chef/certificates/chef.<%= @node[:domain] %>.key
+  include /etc/nginx/helpers/headers.conf;
+  proxy_set_header Host $host;
+  
+  location / {
+    if (-f $request_filename) {
+      break;
+    }
 
-  Alias /facebox <%= @node[:chef][:server_slice_path] %>/public/facebox
-  Alias /images <%= @node[:chef][:server_slice_path] %>/public/images
-  Alias /javascripts <%= @node[:chef][:server_slice_path] %>/public/javascripts
-  Alias /stylesheets <%= @node[:chef][:server_slice_path] %>/public/stylesheets
-  Alias /web-app-theme <%= @node[:chef][:server_slice_path] %>/public/web-app-theme
+    if (!-f $request_filename) {
+      proxy_pass http://chef_server;
+      break;
+    }    
+  }
+}
 
-  # Asset Rewrites
-  RewriteEngine On
-  RewriteRule ^/(facebox/.*)$     /slices/chef-server-slice/$1
-  RewriteRule ^/(images/.*)$      /slices/chef-server-slice/$1
-  RewriteRule ^/(javascripts/.*)$ /slices/chef-server-slice/$1
-  RewriteRule ^/(stylesheets/.*)$ /slices/chef-server-slice/$1
-</VirtualHost>
+upstream chef_webui {
+  server unix:/var/chef/sockets/chef-server-webui.sock;
+}
+
+server {
+  listen 444;
+  server_name chefui.<%= @node[:domain] %> chefui;
+  root <%= @node[:chef][:server_webui_path]%>/public;
+  
+  set $forwarded_proto https;
+  ssl on;
+  ssl_protocols SSLv3 TLSv1;
+  ssl_ciphers ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:-LOW:-SSLv2:-EXP;
+  
+  ssl_certificate /etc/chef/certificates/chef.<%= @node[:domain] %>.crt;
+  ssl_certificate_key /etc/chef/certificates/chef.<%= @node[:domain] %>.key;
+
+  include /etc/nginx/helpers/headers.conf;
+  proxy_set_header Host $host;
+  
+  location / {
+    if (-f $request_filename) {
+      break;
+    }
+
+    if (!-f $request_filename) {
+      proxy_pass http://chef_webui;
+      break;
+    }
+  }
+}

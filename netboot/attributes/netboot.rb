@@ -1,0 +1,5 @@
+netboot Mash.new unless attribute?("netboot")
+netboot[:begin_ip_range] = "192.168.2.20" unless netboot.has_key?(:begin_ip_range)
+netboot[:end_ip_range] = "192.168.2.254" unless netboot.has_key?(:end_ip_range)
+netboot[:default_gateway] = "192.168.2.1" unless netboot.has_key?(:default_gateway)
+netboot[:build_server_ip] = "192.168.2.1" unless netboot.has_key?(:build_server_ip)

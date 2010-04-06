@@ -1,39 +1,24 @@
 {
-  "replacing": {
+  "groupings": {
 
   },
-  "long_description": "Configuresmogilefs",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
-
-  },
-  "license": "Apache v2.0",
-  "recipes": {
-    "mogilefs::tracker": "",
-    "mogilefs::storenode": "",
-    "mogilefs": ""
-  },
-  "maintainer_email": "sysadmins@37signals.com",
-  "suggestions": {
-
-  },
-  "dependencies": {
-    "runit": [
-
-    ]
-  },
-  "conflicting": {
 
   },
   "platforms": {
 
   },
-  "description": "Configures mogilefs",
+  "license": "Apache v2.0",
+  "maintainer": "37signals",
+  "suggestions": {
+
+  },
+  "maintainer_email": "sysadmins@37signals.com",
   "version": "0.1.0",
-  "name": "mogilefs",
+  "conflicting": {
+
+  },
+  "description": "Configures mogilefs",
   "providing": {
     "mogilefs::tracker": [
 
@@ -42,6 +27,24 @@
 
     ],
     "mogilefs": [
+
+    ]
+  },
+  "name": "mogilefs",
+  "attributes": {
+
+  },
+  "long_description": "",
+  "recipes": {
+    "mogilefs": "",
+    "mogilefs::tracker": "",
+    "mogilefs::storenode": ""
+  },
+  "replacing": {
+
+  },
+  "dependencies": {
+    "bluepill": [
 
     ]
   }

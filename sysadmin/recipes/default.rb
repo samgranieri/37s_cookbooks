@@ -17,7 +17,7 @@ package "gdb"
 package "socat"
 package "procmail"
 package "zsh"
-package "ack"
+package "ack-grep"
 
 directory "/u/system" do
   owner "root"

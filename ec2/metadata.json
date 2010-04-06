@@ -1,36 +1,24 @@
 {
-  "replacing": {
+  "groupings": {
 
   },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
-
-  },
-  "license": "Apache v2.0",
-  "recipes": {
-    "ec2::filesystems": "",
-    "ec2": ""
-  },
-  "maintainer_email": "sysadmins@37signals.com",
-  "suggestions": {
-
-  },
-  "dependencies": {
-
-  },
-  "conflicting": {
 
   },
   "platforms": {
 
   },
-  "description": "Configures EC2 environment",
+  "license": "Apache v2.0",
+  "maintainer": "37signals",
+  "suggestions": {
+
+  },
+  "maintainer_email": "sysadmins@37signals.com",
   "version": "0.1.0",
-  "name": "ec2",
+  "conflicting": {
+
+  },
+  "description": "Configures EC2 environment",
   "providing": {
     "ec2::filesystems": [
 
@@ -38,5 +26,20 @@
     "ec2": [
 
     ]
+  },
+  "name": "ec2",
+  "attributes": {
+
+  },
+  "long_description": "",
+  "recipes": {
+    "ec2::filesystems": "",
+    "ec2": ""
+  },
+  "replacing": {
+
+  },
+  "dependencies": {
+
   }
 }

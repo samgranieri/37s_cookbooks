@@ -1,39 +1,42 @@
 {
-  "replacing": {
+  "groupings": {
 
   },
-  "long_description": "",
-  "attributes": {
-
-  },
-  "maintainer": "37signals",
   "recommendations": {
-
-  },
-  "license": "Apache v2.0",
-  "recipes": {
-    "tomcat": ""
-  },
-  "maintainer_email": "sysadmins@37signals.com",
-  "suggestions": {
-
-  },
-  "dependencies": {
-    "java": [
-
-    ]
-  },
-  "conflicting": {
 
   },
   "platforms": {
 
   },
-  "description": "Configures tomcat",
+  "license": "Apache v2.0",
+  "maintainer": "37signals",
+  "suggestions": {
+
+  },
+  "maintainer_email": "sysadmins@37signals.com",
   "version": "0.1.0",
-  "name": "tomcat",
+  "conflicting": {
+
+  },
+  "description": "Configures tomcat",
   "providing": {
     "tomcat": [
+
+    ]
+  },
+  "name": "tomcat",
+  "attributes": {
+
+  },
+  "long_description": "",
+  "recipes": {
+    "tomcat": ""
+  },
+  "replacing": {
+
+  },
+  "dependencies": {
+    "java": [
 
     ]
   }

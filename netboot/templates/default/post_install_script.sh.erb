@@ -1,0 +1,22 @@
+#!/bin/sh
+#install ruby gems
+cd /tmp
+wget http://rubyforge.org/frs/download.php/69365/rubygems-1.3.6.tgz
+tar zxf rubygems-1.3.6.tgz
+cd rubygems-1.3.6
+sudo ruby setup.rb
+sudo ln -sfv /usr/bin/gem1.8 /usr/bin/gem
+#install chef gems
+/usr/bin/gem install chef --no-rdoc --no-ri
+mkdir /etc/chef
+cd /etc/chef
+wget /usr/bin/wget http://<%= @node[:netboot][:build_server_ip] %>/<%= @filename %>.pem -O client.pem
+wget /usr/bin/wget http://<%= @node[:netboot][:build_server_ip] %>/client.rb
+
+chef-client
+#run additional server specific items
+<% @server[:post_inst_commands].each do |command| %>
+  <%= command %>
+<% end %>
+#get rid of the first boot script
+/bin/rm /etc/init.d/firstboot /etc/rc2.d/S99firstboot

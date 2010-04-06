@@ -14,14 +14,15 @@ node[:active_applications].each do |name, config|
     :worker_bind_address => '127.0.0.1',
     :worker_bind_base_port => "37#{counter}01",
     :debug => false,
-    :binary_path => config[:rack_only] ? "#{node[:ruby][:bin_path]} #{node[:ruby][:bin_dir]}/unicorn" : "#{node[:ruby][:bin_path]} #{node[:ruby][:bin_dir]}/unicorn_rails",
+    :binary_path => config[:rack_only] ? "#{node[:ruby][:bin_path]} #{node[:languages][:ruby][:bin_dir]}/unicorn" : "#{node[:ruby][:bin_path]} #{node[:languages][:ruby][:bin_dir]}/unicorn_rails",
     :env => 'production',
     :app_root => app_root,
     :enable => true,
-    :config_path => "#{app_root}/current/config/unicorn.conf.rb"
+    :config_path => "#{app_root}/current/config/unicorn.conf.rb",
+    :use_bundler => false
   })
   
-  config = defaults.merge(Mash.new(config))
+  config = defaults.merge(Mash.new(node[:applications][name]))
   
   runit_service "unicorn-#{name}" do
     template_name "unicorn"

@@ -1,4 +1,4 @@
 #!/bin/sh
-# set memory limit to 250MB
+PATH=/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin<% if @node[:languages][:ruby][:gems_dir] %>:<%= @node[:languages][:ruby][:gems_dir] %>/bin<% end -%>
 exec 2>&1
-exec chpst -m 262144000 <%= @node[:chef][:client_path] %> -i <%= @node[:chef][:client_interval] %> -s <%= @node[:chef][:client_splay] %> -L <%= @node[:chef][:log_path] %>
+exec /usr/bin/env chef-client -i <%= @node[:bootstrap][:chef][:client_interval] %> -s <%= @node[:bootstrap][:chef][:client_splay] %> <% if @node[:bootstrap][:chef][:client_log] != "STDOUT" then -%>-L <%= @node[:bootstrap][:chef][:client_log] %><% end -%>
