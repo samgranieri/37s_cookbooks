@@ -1,19 +1,17 @@
 #!/bin/sh
-#install ruby gems
+#install ruby ee
+sleep 60
 cd /tmp
-wget http://rubyforge.org/frs/download.php/69365/rubygems-1.3.6.tgz
-tar zxf rubygems-1.3.6.tgz
-cd rubygems-1.3.6
-sudo ruby setup.rb
-sudo ln -sfv /usr/bin/gem1.8 /usr/bin/gem
+/usr/bin/wget http://<%= @node[:netboot][:build_server_ip] %>/ruby-enterprise_1.8.7-2010.01_amd64.deb
+/usr/bin/dpkg -i ruby-enterprise_1.8.7-2010.01_amd64.deb
 #install chef gems
-/usr/bin/gem install chef --no-rdoc --no-ri
-mkdir /etc/chef
+/usr/local/bin/gem install chef --no-rdoc --no-ri
+/bin/mkdir /etc/chef
 cd /etc/chef
-wget /usr/bin/wget http://<%= @node[:netboot][:build_server_ip] %>/<%= @filename %>.pem -O client.pem
-wget /usr/bin/wget http://<%= @node[:netboot][:build_server_ip] %>/client.rb
-
-chef-client
+/usr/bin/wget /usr/bin/wget http://<%= @node[:netboot][:build_server_ip] %>/<%= @filename %>.pem -O client.pem
+/usr/bin/wget /usr/bin/wget http://<%= @node[:netboot][:build_server_ip] %>/client.rb
+#run chef client
+/usr/local/bin/chef-client
 #run additional server specific items
 <% @server[:post_inst_commands].each do |command| %>
   <%= command %>

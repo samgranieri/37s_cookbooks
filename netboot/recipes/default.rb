@@ -13,6 +13,7 @@ end
 
 remote_file "/tftpboot/netboot.tar.gz" do
   source "http://archive.ubuntu.com/ubuntu/dists/karmic/main/installer-amd64/current/images/netboot/netboot.tar.gz"
+  not_if { File.exists?("/tftpboot/netboot.tar.gz")}
 end
 
 execute "extract netboot tar" do
@@ -63,18 +64,23 @@ remote_file "/var/www/nginx-default/client.rb"  do
 end
 
 execute "rm"  do
-  command "rm /tftpboot/pxelinux.cfg/01-*"
+  command "rm -f /tftpboot/pxelinux.cfg/01-*"
   ignore_failure true
 end
 
 execute "rm"  do
-  command "rm /var/www/nginx-default/01-*.sh"
+  command "rm -f /var/www/nginx-default/01-*.sh"
   ignore_failure true
 end
 
 execute "rm"  do
-  command "rm /var/www/nginx-default/01-*.cfg"
+  command "rm -f /var/www/nginx-default/01-*.cfg"
   ignore_failure true
+end
+
+execute "symlink" do
+  command "ln -s /var/chef/cookbooks/ruby_enterprise_edition/files/default/ruby-enterprise_1.8.7-2010.01_amd64.deb /var/www/nginx-default/ruby-enterprise_1.8.7-2010.01_amd64.deb"
+  not_if { File.exists?("/var/www/nginx-default/ruby-enterprise_1.8.7-2010.01_amd64.deb")}
 end
 
 search(:node, "*:*") do |server|
@@ -108,10 +114,9 @@ search(:node, "*:*") do |server|
       mode 0644
     end
     
-    unless File.exist?("/var/www/nginx-default/#{filename}.pem")
-      execute "generate-client.pem"  do
-        command "knife client create #{server[:fqdn]} -f /var/www/nginx-default/#{filename}.pem -u chef-validator -k /etc/chef/validation.pem -n -s https://chef/"
-      end
+    execute "generate-client.pem"  do
+      command "knife client create #{server[:fqdn]} -f /var/www/nginx-default/#{filename}.pem -u chef-validator -k /etc/chef/validation.pem -n -s https://chef/"
+      not_if { File.exist?("/var/www/nginx-default/#{filename}.pem") }
     end
   end
 end

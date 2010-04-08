@@ -11,7 +11,7 @@ d-i console-setup/layoutcode string us
 ### Mirror settings
 d-i mirror/protocol string http
 d-i mirror/country string manual
-d-i mirror/http/hostname string us.archive.ubuntu.com
+d-i mirror/http/hostname string mirrors.servercentral.net
 d-i mirror/http/directory string /ubuntu
 #d-i mirror/http/proxy string http://<%= @node[:netboot][:build_server_ip] %>:3128
 
@@ -75,7 +75,7 @@ d-i passwd/user-password-crypted password $1$Ryc7Coa/$tdP3nK76sbsFlF1b2YWmL/
 tasksel tasksel/first multiselect standard
 
 # Individual additional packages to install
-d-i pkgsel/include string openssh-server build-essential ruby ruby1.8-dev libopenssl-ruby1.8 rdoc wget ssh git-core
+d-i pkgsel/include string openssh-server build-essential wget ssh git-core
 
 ### Finish
 # Avoid that last message about the install being complete.
