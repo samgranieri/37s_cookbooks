@@ -3,9 +3,14 @@ service "ssh" do
   action :enable
 end
 
-remote_file "/etc/ssh/known_hosts" do
-  source "known_hosts"
+nodes = search(:node, "*:*")
+
+template "/etc/ssh/known_hosts" do
+  source "known_hosts.erb"
   mode 0644
+  owner "root"
+  group "root"
+  variables(:nodes => nodes)
 end
 
 template "/etc/ssh/ssh_config" do

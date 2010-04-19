@@ -9,7 +9,7 @@ if node[:nfs_mounts]
     end
     mount target do
       fstype "nfs"
-      options %w(rw,soft,intr)
+      options %w(rsize=32768,wsize=32768,bg,nfsvers=3,intr,tcp)
       device config[:device]
       dump 0
       pass 0

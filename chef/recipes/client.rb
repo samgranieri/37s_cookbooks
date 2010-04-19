@@ -1,4 +1,3 @@
-require_recipe "runit"
 include_recipe "logrotate"
 
 gem_package "ohai" do

@@ -11,6 +11,6 @@ execute "unpack fcgiwrap" do
 end
 
 execute "make and install fcgiwrap" do
-  command "autoconf && configure && make && make install"
+  command "autoconf && ./configure && make && make install"
   creates "/usr/local/sbin/fcgiwrap"
 end
