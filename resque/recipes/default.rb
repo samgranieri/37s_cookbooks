@@ -1,3 +1,3 @@
-require_recipe "nginx"
-gem_package "thin"
-gem_package "resque"
+gem_package "resque" do
+  version node[:resque][:version]
+end

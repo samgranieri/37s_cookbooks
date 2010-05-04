@@ -7,9 +7,10 @@ if node[:nfs_mounts]
       owner config[:owner]
       group config[:owner]
     end
+
     mount target do
       fstype "nfs"
-      options %w(rsize=32768,wsize=32768,bg,nfsvers=3,intr,tcp)
+      options config[:options] || %w(rsize=32768,wsize=32768,bg,hard,nfsvers=3,intr,tcp)
       device config[:device]
       dump 0
       pass 0

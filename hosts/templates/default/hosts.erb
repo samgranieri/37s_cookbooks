@@ -2,8 +2,8 @@
 127.0.1.1 <%= @node['fqdn'] %> <%= @node['hostname'] %> <%= "chef.#{@node['domain']}" if @node.run_list.include?("recipe[chef::server]") %>
 
 <% if @node[:hosts][:entries] %>
-<% @node[:hosts][:entries].each do |h| %>
-<%= h.join(" ") %>
+<% @node[:hosts][:entries].each do |ip, name| %>
+<%= ip %> <%= name %>
 <% end %>
 <% end %>
 

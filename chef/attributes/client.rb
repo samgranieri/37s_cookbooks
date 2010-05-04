@@ -1,4 +1,4 @@
-default.chef[:client_version] = "0.8.10"
+default.chef[:client_version] = "0.8.11"
 default.chef[:client_path] = `which chef-client`.chomp
 default.chef[:client_interval] = "300"
 default.chef[:client_splay] = "20"

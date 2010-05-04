@@ -38,16 +38,9 @@ if node[:integrity][:projects]
         link target do
           to source
         end
-      end      
+      end
     end
   end
-end
-
-directory "/u/apps" do
-  owner "app"
-  group "app"
-  mode 0755
-  recursive true
 end
 
 execute "setup_integrity" do

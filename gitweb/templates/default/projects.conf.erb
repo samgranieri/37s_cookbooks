@@ -1,4 +1,4 @@
-<% @projects.each do |name, conf| %>
-<% next if conf[:visible] == false %>
-<%= name %> Gitosis+User
+<% @projects.each do |project| %>
+<% next if project[:visible] == false %>
+<%= project[:id] %> Gitosis+User
 <% end %>

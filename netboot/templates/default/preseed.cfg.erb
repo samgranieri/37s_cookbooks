@@ -13,7 +13,7 @@ d-i mirror/protocol string http
 d-i mirror/country string manual
 d-i mirror/http/hostname string mirrors.servercentral.net
 d-i mirror/http/directory string /ubuntu
-#d-i mirror/http/proxy string http://<%= @node[:netboot][:build_server_ip] %>:3128
+#d-i mirror/http/proxy string http://<%= @node[:netboot][:tftp_server_ip] %>:3128
 
 ### Clock and time zone setup
 # Controls whether or not the hardware clock is set to UTC.
@@ -80,4 +80,4 @@ d-i pkgsel/include string openssh-server build-essential wget ssh git-core
 ### Finish
 # Avoid that last message about the install being complete.
 d-i finish-install/reboot_in_progress note
-d-i preseed/late_command string cd /target/etc/init.d/ && /usr/bin/wget http://<%= @node[:netboot][:build_server_ip] %>/<%= @script %> -O firstboot && chmod +x firstboot && cd ../rc2.d && ln -s ../init.d/firstboot S99firstboot
+d-i preseed/late_command string cd /target/etc/init.d/ && /usr/bin/wget http://<%= @node[:netboot][:tftp_server_ip] %>/<%= @script %> -O firstboot && chmod +x firstboot && cd ../rc2.d && ln -s ../init.d/firstboot S99firstboot

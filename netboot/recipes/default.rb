@@ -1,6 +1,8 @@
 package "dnsmasq"
 package "atftp"
 
+netboot_nodes = search(:node, "(netboot:mac OR nfsroot:initial_ip)")
+
 service "dnsmasq" do
   name "dnsmasq"
   supports :restart => true, :reload => false
@@ -12,7 +14,7 @@ directory "/tftpboot" do
 end
 
 remote_file "/tftpboot/netboot.tar.gz" do
-  source "http://archive.ubuntu.com/ubuntu/dists/karmic/main/installer-amd64/current/images/netboot/netboot.tar.gz"
+  source "http://mirrors.servercentral.net/ubuntu/dists/karmic/main/installer-amd64/current/images/netboot/netboot.tar.gz"
   not_if { File.exists?("/tftpboot/netboot.tar.gz")}
 end
 
@@ -30,7 +32,7 @@ template "dnsmasq.conf" do
   source "dnsmasq.conf.erb"
   owner "root"
   group "root"
-  variables(:servers => search(:node, "*:*"))
+  variables(:servers => netboot_nodes)
   mode 0644
   notifies :restart, resources(:service => "dnsmasq")
 end
@@ -83,8 +85,8 @@ execute "symlink" do
   not_if { File.exists?("/var/www/nginx-default/ruby-enterprise_1.8.7-2010.01_amd64.deb")}
 end
 
-search(:node, "*:*") do |server|
-  if server[:uptime] == nil
+netboot_nodes.each do |server|
+  if server[:uptime] == nil || (server[:nfsroot] && server[:nfsroot][:initial_ip])
     filename = "01-" + server[:netboot][:mac].downcase.gsub(":", "-")
 
     template "/var/www/nginx-default/" + filename + ".cfg" do
@@ -94,6 +96,7 @@ search(:node, "*:*") do |server|
       owner "root"
       group "root"
       mode 0644
+      not_if { server[:nfsroot] && server[:nfsroot][:initial_ip] }
     end
 
     template "/var/www/nginx-default/" + filename + ".sh" do
@@ -103,12 +106,13 @@ search(:node, "*:*") do |server|
       owner "root"
       group "root"
       mode 0644
+      not_if { server[:nfsroot] && server[:nfsroot][:initial_ip] }
     end
 
     template filename do
       path "/tftpboot/pxelinux.cfg/" + filename
-      source "pxelinux-default.cfg.erb"
-      variables(:key => server.name, :filename => filename + ".cfg", :server => server[:netboot], :interface => server[:netboot][:interfaces][:eth0])
+      source ( server[:nfsroot] && server[:nfsroot][:initial_ip] ) ? "pxelinux-nfsroot.cfg.erb" : "pxelinux-default.cfg.erb"
+      variables(:key => server.name, :filename => filename + ".cfg", :server => server)
       owner "root"
       group "root"
       mode 0644
@@ -116,7 +120,7 @@ search(:node, "*:*") do |server|
     
     execute "generate-client.pem"  do
       command "knife client create #{server[:fqdn]} -f /var/www/nginx-default/#{filename}.pem -u chef-validator -k /etc/chef/validation.pem -n -s https://chef/"
-      not_if { File.exist?("/var/www/nginx-default/#{filename}.pem") }
+      not_if { File.exist?("/var/www/nginx-default/#{filename}.pem") || ( server[:nfsroot] && server[:nfsroot][:initial_ip] )}
     end
   end
 end

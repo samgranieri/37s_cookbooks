@@ -16,7 +16,7 @@ template "/etc/ganglia/gmond.conf" do
   variables(:server => false,
             :cluster => {
               :name => @node[:ganglia][:cluster_name],
-              :port => @node[:ganglia][:clusters].find { |c| c[:name] == @node[:ganglia][:cluster_name] }[:port]
+              :port => search(:ganglia_clusters, "name:#{@node[:ganglia][:cluster_name]}").first[:port]
             })
   notifies :restart, resources(:service => "ganglia-monitor")
 end

@@ -70,14 +70,14 @@ filter f_uploader { match("Uploader"); };
 
 <% @apps.each do |app| %>
 
-<% if app.to_hash[:syslog_send_to_host] && @node[:ipaddress] != app.to_hash[:syslog_send_to_host] %>
+<% if app[:syslog_send_to_host] && @node[:ipaddress] != app[:syslog_send_to_host] %>
 # send <%= app[:id] %> logs to another host
-destination loghost_<%= app[:id] %> { tcp("<%= app.to_hash[:syslog_send_to_host] %>", port(5140)); };
+destination loghost_<%= app[:id] %> { tcp("<%= app[:syslog_send_to_host] %>", port(5140)); };
 log { source(s_remote); filter(f_<%= app[:id] %>); destination(loghost_<%= app[:id] %>); };
 <% end %>
 
-<% app.to_hash[:syslog_files] ||= Mash.new %>
-<% if app.to_hash[:syslog_files][:haproxy] %>
+<% app[:syslog_files] ||= Mash.new %>
+<% if app[:syslog_files][:haproxy] %>
 destination d_<%= app[:id] %>_haproxy { file("/u/logs/<%= app[:id] %>/haproxy.log", owner(app), group(app), perm(0640)); };
 filter f_<%= app[:id] %>_haproxy { program("haproxy") and match("<%= app[:id] %>"); };
 log { source(s_remote); filter(f_local1); filter(f_haproxy); filter(f_<%= app[:id] %>_haproxy); destination(d_<%= app[:id] %>_haproxy); flags(final); };
@@ -85,27 +85,27 @@ log { source(s_remote); filter(f_local1); filter(f_haproxy); filter(f_<%= app[:i
 
 filter f_<%= app[:id] %> { program("<%= app[:id] %>"); };
 
-<% if app.to_hash[:syslog_files][:completed] %>
+<% if app[:syslog_files][:completed] %>
 destination <%= app[:id] %>_completed { file("/u/logs/<%= app[:id] %>/completed.log", owner(app), group(app), perm(0640)); };
 log { source(s_remote); filter(f_<%= app[:id] %>); filter(f_completed_in); destination(<%= app[:id] %>_completed); };
 <% end %>
 
-<% if app.to_hash[:syslog_files][:thumbnails] %>
+<% if app[:syslog_files][:thumbnails] %>
 destination <%= app[:id] %>_thumbnails { file("/u/logs/<%= app[:id] %>/thumbnails.log", owner(app), group(app), perm(0640)); };
 log { source(s_remote); filter(f_<%= app[:id] %>); filter(f_thumbnail_build); destination(<%= app[:id] %>_thumbnails); };
 <% end %>
 
-<% if app.to_hash[:syslog_files][:memcache] %>
+<% if app[:syslog_files][:memcache] %>
 destination <%= app[:id] %>_memcache { file("/u/logs/<%= app[:id] %>/memcache.log", owner(app), group(app), perm(0640)); };
 log { source(s_remote); filter(f_<%= app[:id] %>); filter(f_memcache); destination(<%= app[:id] %>_memcache); };
 <% end %>
 
-<% if app.to_hash[:syslog_files][:uploader] %>
+<% if app[:syslog_files][:uploader] %>
 destination <%= app[:id] %>_uploader { file("/u/logs/<%= app[:id] %>/uploader.log", owner(app), group(app), perm(0640)); };
 log { source(s_remote); filter(f_<%= app[:id] %>); filter(f_uploader); destination(<%= app[:id] %>_uploader); };
 <% end %>
 
-<% if app.to_hash[:syslog_files][:logsort] %>
+<% if app[:syslog_files][:logsort] %>
 destination <%= app[:id] %>_logsort { program("/usr/local/bin/logsort", log_fifo_size(30000)); };
 log { source(s_remote); filter(f_<%= app[:id] %>); destination(<%= app[:id] %>_logsort); flags(final); };	
 <% else %>
