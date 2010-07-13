@@ -4,7 +4,7 @@
 /usr/bin/dpkg --root=$1 -i /home/system/pkg/debs/ruby-enterprise_<%= @node[:ree][:version] %>_amd64.deb
 
 # Install Chef
-/usr/sbin/chroot $1 /usr/bin/env HOME=/root /usr/local/bin/gem install /tmp/chef.gem --no-user-install --no-rdoc --no-ri
+/usr/sbin/chroot $1 /usr/bin/env HOME=/root /usr/local/bin/gem install chef --no-user-install --no-rdoc --no-ri
 
 # Create /etc/chef, set the perms, and move the client key there
 mkdir -p $1/etc/chef

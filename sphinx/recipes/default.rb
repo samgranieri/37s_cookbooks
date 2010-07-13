@@ -1,20 +1,10 @@
-#
-# Cookbook Name:: sphinx
-# Recipe:: default
-#
-# Copyright 2010, 37signals
-#
-# All rights reserved - Do Not Redistribute
-#
-
 script "install sphinx" do
   interpreter "bash"
   user "root"
   cwd "/tmp"
   
   code <<-EOH
-wget http://dist/packages/sphinx-#{node[:sphinx][:version]}.tar.gz && \
-tar xfz sphinx-#{node[:sphinx][:version]}.tar.gz && \
+tar xfz /home/system/pkg/sphinx/sphinx-#{node[:sphinx][:version]}.tar.gz && \
 cd sphinx-#{node[:sphinx][:version]} && \
 ./configure --prefix=/usr/local && \
 make install
@@ -23,8 +13,11 @@ EOH
   not_if { File.exist?("/usr/local/bin/search") && `/usr/local/bin/search`.match(/Sphinx #{node[:sphinx][:version]}/) }
 end
 
-node[:applications].each do |name, config|
-  next unless config[:sphinx] == true
+node[:active_applications].each do |name, config|
+  
+  app = search(:apps, "id:#{name}").first
+  
+  next unless app[:sphinx]
 
   directory "/u/apps/#{name}/shared/sphinx" do
     action :create
@@ -37,7 +30,7 @@ node[:applications].each do |name, config|
   bluepill_monitor "sphinx_#{name}" do
     source "bluepill_sphinx.conf.erb"
     rails_root "/u/apps/#{name}/current"
-    config_file node[:staging] == true ? 'staging.conf' : 'production.conf'
+    config_file config[:env] == "staging" ? 'staging.conf' : 'production.conf'
     user "app"
     group "app"
   end  

@@ -28,7 +28,7 @@ end
 
 logrotate "syslog-remote" do
   restart_command "/etc/init.d/syslog-ng reload 2>&1 || true"
-  files ['/u/logs/syslog/messages', "/u/logs/syslog/secure", "/u/logs/syslog/maillog", "/u/logs/syslog/cron", "/u/logs/syslog/bluepill"]
+  files ['/u/logs/syslog/messages', "/u/logs/syslog/secure", "/u/logs/syslog/maillog", "/u/logs/syslog/cron", "/u/logs/syslog/bluepill", "/u/logs/syslog/boot.log"]
 end
 
 apps.each do |app|
@@ -40,7 +40,7 @@ apps.each do |app|
   
   if app[:syslog_files] && app[:syslog_files][:logsort]
     cron "logsort log rotation: #{app[:id]}" do
-      command "find /u/logs/#{app[:id]} -maxdepth 1 -type d -mtime +5 -exec rm -rf {} \\;"
+      command "find /u/logs/#{app[:id]} -maxdepth 1 -type d -mtime +4 -exec rm -rf {} \\;"
       hour "10"
       minute "0"
     end

@@ -28,7 +28,7 @@ user "chef" do
 end
 
 %w(/var/chef /etc/chef /var/log/chef /var/chef/openid /var/chef/ca /var/chef/cache /var/chef/pids /var/chef/sockets /var/chef/cookbooks
-   /var/chef/site-cookbooks /var/chef/cookbook-tarballs).each do |dir|
+   /var/chef/site-cookbooks /var/chef/cookbook-tarballs /var/chef/sandboxes /var/chef/checksums).each do |dir|
   directory dir do
     owner "chef"
     group "admin"
@@ -63,13 +63,13 @@ template "/etc/chef/client.rb" do
 end
 
 
-%w(chef-server chef-server-api chef-server-webui).each do |app|
-  template "#{node[:languages][:ruby][:gems_dir]}/gems/#{app}-#{node[:chef][:server_version]}/config/init.rb" do
-    source "#{app}-init.rb.erb"
-  end
-end
+#%w(chef-server chef-server-api chef-server-webui).each do |app|
+  #template "#{node[:languages][:ruby][:gems_dir]}/gems/#{app}-#{node[:chef][:server_version]}/config/init.rb" do
+  #  source "#{app}-init.rb.erb"
+ # end
+#end
   
-%w(chef-server chef-server-webui).each do |app|
+%w(chef-server-api chef-server-webui).each do |app|
   unicorn_conf = "/etc/chef/#{app}.unicorn.conf.rb"
   directory "/var/chef/#{app}"
   
@@ -115,7 +115,7 @@ ssl_cert "/etc/chef/certificates" do
 end
 
 # install the wildcard cert for this domain
-ssl_certificate "*.#{node[:public_domain] || node[:domain]}"
+ssl_certificate "*.#{node[:domain]}"
 
 nginx_site "chef-server" do
   config_path "/etc/chef/server-vhost.conf"

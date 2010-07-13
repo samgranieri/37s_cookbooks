@@ -43,7 +43,7 @@ end
 
 # Setup network bridging
 service "networking"
-remote_file "/etc/network/interfaces" do
+cookbook_file "/etc/network/interfaces" do
   source "interfaces"
   notifies(:restart, resources(:service => "networking"))  
 end
@@ -56,7 +56,7 @@ execute "install ruby-libvirt gem" do
   not_if "gem list ruby-libvirt | grep 0.1.0"
 end
 
-search(:slices, "host:#{@node[:hostname]}").each do |slice|
+search(:slices, "host:#{node[:hostname]}").each do |slice|
   defaults ||= search(:slices, "id:default").first
   slice = defaults.merge(slice)
 

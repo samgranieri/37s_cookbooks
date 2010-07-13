@@ -1,9 +1,9 @@
-include_recipe "bluepill"
+require_recipe "bluepill"
 
 package "libfcgi-dev"
 package "autoconf"
 
-remote_file "/tmp/fcgiwrap.tar.gz" do
+cookbook_file "/tmp/fcgiwrap.tar.gz" do
   not_if { File.exists?("/usr/local/sbin/fcgiwrap") }
 end
 

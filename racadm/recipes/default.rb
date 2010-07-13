@@ -1,6 +1,6 @@
 package "ia32-libs"
 
-remote_file "/tmp/racadm.tar.gz" do
+cookbook_file "/tmp/racadm.tar.gz" do
   source "racadm.tar.gz"
 end
 
@@ -20,9 +20,17 @@ dpkg_package "libstdc++5_3.3.6-17ubuntu1" do
   options "--force-architecture"
 end
 
-unless File.exist?("/etc/init/ttyS1.conf") 
-  remote_file "/etc/init/ttyS1.conf" do
+unless File.exist?("/etc/init/ttyS1.conf")
+  cookbook_file "/etc/init/ttyS1.conf" do
     source "ttyS1.conf"
+  end
+  
+  cookbook_file "/etc/init/tty0.conf" do
+    source "tty0.conf"
+  end
+  
+  execute "start virtual console" do
+    command "start tty0"
   end
   
   execute "start serial console" do
@@ -34,9 +42,18 @@ unless File.exist?("/etc/init/ttyS1.conf")
     action :nothing
   end
   
-  remote_file "/etc/default/grub" do
+  cookbook_file "/etc/default/grub" do
     source "grub"
     notifies :run, resources(:execute => "updategrub")
   end
+end
+
+unless File.exist?("/etc/init/tty0.conf")
+  cookbook_file "/etc/init/tty0.conf" do
+    source "tty0.conf"
+  end
   
+  execute "start virtual console" do
+    command "start tty0"
+  end
 end

@@ -1,7 +1,7 @@
 Bluepill.application("<%= @name %>") do |app|
   app.working_dir = "<%= @app_root %>"
   app.process("<%= @name %>") do |process|
-    process.start_command = "<%= @rack_config_path ? "#{@node[:languages][:ruby][:bin_dir]}/unicorn #{@rack_config_path}" : "#{@node[:languages][:ruby][:bin_dir]}/unicorn_rails" %> -Dc <%= @unicorn_config_path %> -E <%= @env %>"
+    process.start_command = "/usr/local/bin/ruby_gc_wrapper <%= @rack_config_path ? "#{@node[:languages][:ruby][:bin_dir]}/unicorn #{@rack_config_path}" : "#{@node[:languages][:ruby][:bin_dir]}/unicorn_rails" %> -Dc <%= @unicorn_config_path %> -E <%= @env %>"
     process.stop_command = "kill -QUIT {{PID}}"
     process.restart_command = "kill -<%= @preload ? 'USR2' : 'HUP' %> {{PID}}"
     process.stdout = process.stderr = "<%= @unicorn_log_path %>"

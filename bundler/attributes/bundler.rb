@@ -1,1 +1,1 @@
-set[:bundler][:version] = '0.9.24'
+default.bundler[:version] = '0.9.25'

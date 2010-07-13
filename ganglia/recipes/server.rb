@@ -7,7 +7,8 @@ package "libfcgi-dev"
 package 'spawn-fcgi'
 package "ganglia-webfrontend"
 package "gmetad"
-package "php-cgi"
+package "php5-cgi"
+package "php5-gd"
 
 template "/etc/ganglia/nginx.conf" do
   source "nginx.conf.erb"
@@ -38,7 +39,7 @@ template "/etc/ganglia/gmetad.conf" do
   owner "ganglia"
   group "ganglia"
   mode 0644
-  variables(:cluster_nodes => cluster_nodes)
+  variables(:cluster_nodes => cluster_nodes, :clusters => search(:ganglia_clusters, "*:*"))
   notifies :restart, resources(:service => "gmetad")
 end
 
@@ -55,4 +56,25 @@ bluepill_monitor "ganglia-php-cgi" do
   memory_limit 250 # megabytes
   pid_file "/var/run/php-cgi.pid"
   port 47001
+end
+
+cookbook_file "/usr/share/ganglia-webfrontend/host_view.php" do
+  source "host_view.php"
+  owner "root"
+  group "root"
+  mode "0644"
+end
+
+cookbook_file "/usr/share/ganglia-webfrontend/templates/default/host_view.tpl" do
+  source "host_view.tpl"
+  owner "root"
+  group "root"
+  mode "0644"
+end
+
+cookbook_file "/usr/share/ganglia-webfrontend/conf.php" do
+  source "conf.php"
+  owner "root"
+  group "root"
+  mode "0644"
 end

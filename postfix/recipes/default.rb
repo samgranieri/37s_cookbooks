@@ -9,6 +9,7 @@ end
 
 template "/etc/postfix/main.cf" do
   source "main.cf.erb"
+  mode 00644
   notifies :restart, resources(:service => "postfix")
 end
 

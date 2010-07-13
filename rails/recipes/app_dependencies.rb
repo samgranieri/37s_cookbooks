@@ -1,21 +1,24 @@
 require_recipe "aws"
-require_recipe "bundler"
+require_recipe "mysql::client"
 
-gem_package "rack" do
-  version "1.0.1"
-end
+package "runit"
 
-gem_package "system_timer"
-
+aws_credentials = search(:aws)
 
 if node[:active_applications]
 
+  directory "/u/apps" do
+    owner "app"
+    group "app"
+    mode 0755
+  end
+  
   node[:active_applications].each do |name, conf|
 
     app = search(:apps, "id:#{name}").first
-
     app_name = conf[:app_name] || name
-
+    app_root = "/u/apps/#{app_name}"
+    aws_creds = aws_credentials.detect {|aws| aws[:id] == "#{name}-#{conf[:env]}" }
     directory "/u/apps/#{name}/shared/config" do
       recursive true
       owner "app"
@@ -48,29 +51,17 @@ if node[:active_applications]
           end
         end
       end
-      
-      if app[:domains]
-        app[:domains].each do |domain|
-          ssl_certificate domain
-        end
-      end
-      
-      if app[:aws]
-        
-        s3_bucket = app[:aws][:s3] ? app[:aws][:s3][:bucket] : "#{name}-#{conf[:env]}"
-        
-        template "/u/apps/#{name}/shared/config/s3.yml" do
+      if aws_creds
+        template "#{app_root}/shared/config/s3.yml" do
           source "s3.yml.erb"
-          mode "0640"
+          variables aws_creds.to_hash
           cookbook "aws"
           backup false
-          variables(:aki => app[:aws][:aki], :sak => app[:aws][:sak], :s3_bucket => s3_bucket)
-          owner "root"
+          mode "0640"
+          owner "app"
           group "app"
         end
-        
       end
-      
     end
   end
 else

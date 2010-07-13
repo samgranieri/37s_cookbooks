@@ -44,7 +44,7 @@ service "dsm_om_shrsvc" do
 end
 
 # fixing webui login issues
-remote_file "/lib32/security/pam_nologin.so"  do
+cookbook_file "/lib32/security/pam_nologin.so"  do
   source "pam_nologin.so"
   mode 0755
   owner "root"
@@ -52,7 +52,7 @@ remote_file "/lib32/security/pam_nologin.so"  do
   notifies :run, resources(:execute => "ldconfig")
 end
 
-remote_file "/lib32/security/pam_unix.so"  do
+cookbook_file "/lib32/security/pam_unix.so"  do
   source "pam_unix.so"
   mode 0755
   owner "root"

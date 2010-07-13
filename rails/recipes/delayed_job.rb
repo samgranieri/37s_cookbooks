@@ -1,20 +1,15 @@
-if node[:active_applications]
-
-  node[:active_applications].each do |app, conf|
-
-    if node[:applications][app][:delayed_job]
-      god_monitor "delayed_job" do
-        source "delayed_job.conf.erb"
-        cookbook "rails"
-        rails_env conf[:env]
-        rails_root "/u/apps/#{app}/current"
-        interval 30
-        user "app"
-        group "app"
-        memory_limit 500 # megabytes
-        cpu_limit 50 # percent
-      end
-
-    end  
+if node[:delayed_jobs]
+  node[:delayed_jobs].each do |name, conf|
+    bluepill_monitor "#{name}_dj" do
+      cookbook "rails"
+      source "bluepill_dj.conf.erb"
+      rails_env conf[:env]
+      log_path conf[:log_path] || "/tmp/bluepill_stdout.log"
+      rails_root "/u/apps/#{name}/current"
+      user "app"
+      group "app"
+      memory_limit 250 # megabytes
+      cpu_limit 50 # percent
+    end
   end
 end

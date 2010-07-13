@@ -13,7 +13,7 @@ directory node[:git][:repo_root]+"/bin" do
   mode 0755
 end
 
-remote_file node[:git][:repo_root]+"/bin/update_mirrors.rb" do
+cookbook_file node[:git][:repo_root]+"/bin/update_mirrors.rb" do
   source "update_mirrors.rb"
   mode 0755
 end

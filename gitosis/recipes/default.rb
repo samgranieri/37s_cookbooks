@@ -10,7 +10,7 @@ end
 
 # Install local modifications to Gitosis
 %W(access.py serve.py).each do |patched|
-  remote_file "/usr/share/pyshared/gitosis/#{patched}" do
+  cookbook_file "/usr/share/pyshared/gitosis/#{patched}" do
     source "#{patched}"
     owner "root"
     group "root"

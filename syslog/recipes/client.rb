@@ -7,7 +7,7 @@ template "/etc/syslog-ng/syslog-ng.conf" do
   group "root"
   mode 0644
   notifies :restart, resources(:service => "syslog-ng")
-  not_if { @node.run_list.include?("recipe[syslog::server]") }
+  not_if { node.run_list.include?("recipe[syslog::server]") }
 end
 
 

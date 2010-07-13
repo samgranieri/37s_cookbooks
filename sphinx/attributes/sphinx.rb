@@ -1,1 +1,1 @@
-set_unless[:sphinx][:version] = "0.9.9"
+default.sphinx[:version] = "0.9.9"

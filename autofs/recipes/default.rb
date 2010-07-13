@@ -20,7 +20,7 @@ template "/etc/auto.master" do
   owner "root"
   group "root"
   mode "0644"
-  notifies(:reload, resources(:service => "autofs"))
+  notifies :reload, resources(:service => "autofs"), :immediately
 end
 
 node[:autofs][:maps].each do |map, args|
@@ -30,6 +30,6 @@ node[:autofs][:maps].each do |map, args|
     mode 0644
     source "auto.map.erb"
     variables(:keys => args[:keys])
-    notifies(:reload, resources(:service => "autofs"))
+    notifies :reload, resources(:service => "autofs"), :immediately
   end
 end

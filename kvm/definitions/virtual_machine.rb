@@ -1,8 +1,8 @@
 define :virtual_machine do
-  hostname = "#{@params[:name]}.#{@node[:internal_domain]}"
+  hostname = "#{@params[:name]}.#{node[:internal_domain]}"
   config_dir = "#{params[:path]}/config"
+  image_dir = "#{params[:path]}/img"
   key_file = "#{config_dir}/client.pem"
-  root_image = "#{params[:path]}/img/disk0.qcow2"
 
   execute "save_vm_config" do
     command "/usr/bin/virsh dumpxml #{params[:name]} > #{config_dir}/#{params[:name]}.xml"
@@ -46,7 +46,7 @@ define :virtual_machine do
       end
     end
 
-    not_if { File.exist?(root_image) }
+    not_if { Dir.glob("#{image_dir}/*.qcow2").size > 0 }
   end
 
   file key_file do
@@ -62,21 +62,22 @@ define :virtual_machine do
   end
 
   execute "chown_root_image" do
-    command "chown root:libvirtd #{root_image} && chmod 660 #{root_image}"
+    command "chown -R root:libvirtd #{image_dir} && chmod -R 660 #{image_dir}"
     action :nothing
   end
 
   execute "build_vm_image" do
     command <<-EOVM
 /usr/bin/vmbuilder kvm ubuntu --suite=#{@params[:suite]} --flavour=virtual --arch=#{@params[:arch]} \
-  --hostname=#{@params[:name]} --mem=#{@params[:memory]} --cpus=#{@params[:vcpus]} --mirror=#{@node[:apt_mirror]} \
-  --dest=#{@params[:path]}/img --rootsize=#{@params[:root_size]} --swapsize=#{@params[:swap_size]} \
-  --ip=#{@params[:external_ip]} --mask=#{@node[:networks][:ext][:netmask]} \
-  --net=#{@node[:networks][:ext][:network]} --bcast=#{@node[:networks][:ext][:broadcast]} \
-  --gw=#{@node[:networks][:ext][:gateway]} --dns=#{@node[:nameservers].first} --bridge=br0 \
+  --hostname=#{@params[:name]} --mem=#{@params[:memory]} --cpus=#{@params[:vcpus]} \
+  --destdir=#{image_dir} --rootsize=#{@params[:root_size]} --swapsize=#{@params[:swap_size]} \
+  --ip=#{@params[:external_ip]} --mask=#{node[:networks][:ext][:netmask]} \
+  --net=#{node[:networks][:ext][:network]} --bcast=#{node[:networks][:ext][:broadcast]} \
+  --gw=#{node[:networks][:ext][:gateway]} --dns=#{node[:nameservers].first} --bridge=br0 \
   --addpkg=openssh-server --addpkg=acpid --addpkg=build-essential --addpkg=wget --addpkg=ntp --addpkg=syslog-ng \
+  --addpkg=acpi-support \
+  --mirror=#{node[:apt_mirror]} \
   --user=signal --name='37signals Administrator' \
-  --firstboot=/usr/local/share/kvm/files/chef-firstboot \
   --lang=en_US.UTF-8 \
   --templates=/usr/local/share/kvm/templates \
   --copy=#{config_dir}/manifest.txt \
@@ -88,6 +89,6 @@ EOVM
     notifies :run, resources(:execute => "remove_client_pem")
     notifies :run, resources(:execute => "chown_root_image")
 
-    creates root_image
+    not_if { Dir.glob("#{image_dir}/*.qcow2").size > 0 }
   end
 end

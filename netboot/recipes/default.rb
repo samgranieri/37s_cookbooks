@@ -37,28 +37,28 @@ template "dnsmasq.conf" do
   notifies :restart, resources(:service => "dnsmasq")
 end
 
-remote_file "/tftpboot/ubuntu-installer/amd64/boot-screens/37menu.cfg"  do
+cookbook_file "/tftpboot/ubuntu-installer/amd64/boot-screens/37menu.cfg"  do
   source "37menu.cfg"
   mode 0755
   owner "nobody"
   group "nogroup"
 end
 
-remote_file "/tftpboot/ubuntu-installer/amd64/boot-screens/menu.cfg"  do
+cookbook_file "/tftpboot/ubuntu-installer/amd64/boot-screens/menu.cfg"  do
   source "menu.cfg"
   mode 0755
   owner "nobody"
   group "nogroup"
 end
 
-remote_file "/tftpboot/ubuntu-installer/amd64/boot-screens/splash.png"  do
+cookbook_file "/tftpboot/ubuntu-installer/amd64/boot-screens/splash.png"  do
   source "splash.png"
   mode 0755
   owner "nobody"
   group "nogroup"
 end
 
-remote_file "/var/www/nginx-default/client.rb"  do
+cookbook_file "/var/www/nginx-default/client.rb"  do
   source "client.rb"
   mode 0755
   owner "nobody"
@@ -80,9 +80,8 @@ execute "rm"  do
   ignore_failure true
 end
 
-execute "symlink" do
-  command "ln -s /var/chef/cookbooks/ruby_enterprise_edition/files/default/ruby-enterprise_1.8.7-2010.01_amd64.deb /var/www/nginx-default/ruby-enterprise_1.8.7-2010.01_amd64.deb"
-  not_if { File.exists?("/var/www/nginx-default/ruby-enterprise_1.8.7-2010.01_amd64.deb")}
+link "/var/www/nginx-default/ruby-enterprise_1.8.7-2010.01_amd64.deb" do
+  to "/home/system/pkg/debs/ruby-enterprise_1.8.7-2010.01_amd64.deb"
 end
 
 netboot_nodes.each do |server|

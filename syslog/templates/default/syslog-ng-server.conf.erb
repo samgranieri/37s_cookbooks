@@ -57,11 +57,6 @@ log { source(s_remote); filter(f_exceptions); destination(exceptions); };
 # filter HAProxy logs
 filter f_haproxy { program("haproxy"); };
 
-# filter passenger monitor logs
-filter f_passenger { program("passenger"); };
-destination passenger_monitor { file("/u/logs/passenger_monitor.log", owner(app), group(app), perm(0640)); };
-log { source(s_remote); filter(f_passenger); destination(passenger_monitor); flags(final); };
-
 # filter Rails apps
 filter f_completed_in { match("Completed in"); };
 filter f_thumbnail_build { match("thumbnail\.build"); };
@@ -77,11 +72,10 @@ log { source(s_remote); filter(f_<%= app[:id] %>); destination(loghost_<%= app[:
 <% end %>
 
 <% app[:syslog_files] ||= Mash.new %>
-<% if app[:syslog_files][:haproxy] %>
+
 destination d_<%= app[:id] %>_haproxy { file("/u/logs/<%= app[:id] %>/haproxy.log", owner(app), group(app), perm(0640)); };
 filter f_<%= app[:id] %>_haproxy { program("haproxy") and match("<%= app[:id] %>"); };
 log { source(s_remote); filter(f_local1); filter(f_haproxy); filter(f_<%= app[:id] %>_haproxy); destination(d_<%= app[:id] %>_haproxy); flags(final); };
-<% end %>
 
 filter f_<%= app[:id] %> { program("<%= app[:id] %>"); };
 
@@ -106,7 +100,7 @@ log { source(s_remote); filter(f_<%= app[:id] %>); filter(f_uploader); destinati
 <% end %>
 
 <% if app[:syslog_files][:logsort] %>
-destination <%= app[:id] %>_logsort { program("/usr/local/bin/logsort", log_fifo_size(30000)); };
+destination <%= app[:id] %>_logsort { program("/usr/local/bin/logsort.<%= app[:id] %>", log_fifo_size(30000)); };
 log { source(s_remote); filter(f_<%= app[:id] %>); destination(<%= app[:id] %>_logsort); flags(final); };	
 <% else %>
 destination <%= app[:id] %> { file("/u/logs/<%= app[:id] %>/rails.log", owner(app), group(app), perm(0640)); };

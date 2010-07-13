@@ -1,5 +1,5 @@
 upstream chef_server {
-  server unix:/var/chef/sockets/chef-server.sock;
+  server unix:/var/chef/sockets/chef-server-api.sock;
 }
 
 server {
@@ -7,7 +7,6 @@ server {
   server_name chef.<%= @node[:domain] %> chef;
   root <%= @node[:chef][:server_api_path]%>/public;
 
-  set $forwarded_proto https;
   ssl on;
   ssl_protocols SSLv3 TLSv1;
   ssl_ciphers ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:-LOW:-SSLv2:-EXP;
@@ -17,6 +16,7 @@ server {
 
   include /etc/nginx/helpers/headers.conf;
   proxy_set_header Host $host;
+  proxy_set_header X-Forwarded-Proto https;
   
   location / {
     if (-f $request_filename) {
@@ -39,7 +39,6 @@ server {
   server_name chefui.<%= @node[:domain] %> chefui;
   root <%= @node[:chef][:server_webui_path]%>/public;
   
-  set $forwarded_proto https;
   ssl on;
   ssl_protocols SSLv3 TLSv1;
   ssl_ciphers ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:-LOW:-SSLv2:-EXP;
@@ -49,6 +48,7 @@ server {
 
   include /etc/nginx/helpers/headers.conf;
   proxy_set_header Host $host;
+  proxy_set_header X-Forwarded-Proto https;
   
   location / {
     if (-f $request_filename) {

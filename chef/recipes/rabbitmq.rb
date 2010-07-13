@@ -1,7 +1,5 @@
 include_recipe "rabbitmq"
 
-Chef::Log.info("Configuring rabbitmq for chef.")
-
 execute "rabbitmqctl add_vhost /chef" do
   not_if "rabbitmqctl list_vhosts| grep /chef"
 end

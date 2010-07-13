@@ -1,7 +1,4 @@
-# TODO: consolidate this recipe and app_dependencies
-
-web_server = node[:web_server]
-system_web_server = web_server == 'apache' ? 'apache2' : web_server
+require_recipe "rails::app_dependencies"
 
 if node[:active_applications]
 
@@ -11,24 +8,9 @@ if node[:active_applications]
     path = "/u/apps/#{app}/current/config/#{system_web_server}/#{filename}"
     app_name = conf[:app_name] || app
     
-    if system_web_server == "apache"
-      if modules = node[:applications][app_name][:apache_modules]
-        modules.each do |mod|
-          require_recipe "apache2::mod_#{mod}"
-          apache_module mod
-        end
-      end
-    end
-    
-    if node[:applications][app_name][:domains]
-      node[:applications][app_name][:domains].each do |domain|
-        ssl_certificate domain
-      end
-    end
-    
-    send("#{web_server}_site".to_sym, full_name) do
+    nginx_site do
       config_path path
-      only_if { File.exists?("/etc/#{system_web_server}/sites-available/#{full_name}") }
+      only_if { File.exists?("/etc/nginx/sites-available/#{full_name}") }
     end
     
     logrotate full_name do
@@ -36,7 +18,7 @@ if node[:active_applications]
       frequency "daily"
       rotate_count 14
       compress true
-      restart_command "/etc/init.d/#{system_web_server} reload > /dev/null"
+      restart_command "/etc/init.d/nginx reload > /dev/null"
     end
   end
 else

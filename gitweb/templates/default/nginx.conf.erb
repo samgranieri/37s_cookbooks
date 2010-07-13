@@ -35,4 +35,9 @@ server {
     root /usr/share/gitweb;
   }
 	
+	location /integrity {
+    proxy_pass        http://192.168.2.77:80/;
+    proxy_set_header  X-Real-IP  $remote_addr;
+  }
+  
 }

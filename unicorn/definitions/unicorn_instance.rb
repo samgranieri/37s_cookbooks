@@ -9,15 +9,7 @@ define :unicorn_instance, :enable => true do
   bluepill_monitor app do
     cookbook 'unicorn'
     source "bluepill.conf.erb"
-    env params[:env]
-    root params[:root]
-    preload params[:preload]
-    interval params[:interval]
-    user params[:user]
-    group params[:group]
-    memory_limit params[:memory_limit]
-    cpu_limit params[:cpu_limit]
-    rack_config_path params[:rack_config_path]
+    params.each { |k, v| send(k.to_sym, v) }
   end
 
 end

@@ -1,9 +1,5 @@
 include_recipe "logrotate"
 
-gem_package "ohai" do
-  action :upgrade
-end
-
 gem_package "chef" do
   action :install
   version node[:chef][:client_version]

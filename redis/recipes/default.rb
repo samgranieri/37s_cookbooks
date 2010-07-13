@@ -1,11 +1,15 @@
-pkg = "redis-server_#{node[:redis][:version]}_amd64.deb"
-
-remote_file "/tmp/#{pkg}" do
-  source "http://dist/debs/intrepid/redis/#{pkg}"
+package "redis-server" do
+  version node[:redis][:version]
 end
 
-package pkg do
-  provider Chef::Provider::Package::Dpkg
-  source "/tmp/#{pkg}"
-  only_if "test -e /tmp/#{pkg}"
+service "redis-server" do
+  action :enable
+end
+
+template "/etc/redis/redis.conf" do
+  notifies :restart, resources(:service => "redis-server")
+end
+
+service "redis-server" do
+  action :start
 end
